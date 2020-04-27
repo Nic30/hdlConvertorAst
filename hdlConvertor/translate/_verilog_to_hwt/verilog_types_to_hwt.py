@@ -1,22 +1,13 @@
-
-from hdlConvertor.hdlAst._defs import HdlVariableDef
 from hdlConvertor.hdlAst._expr import HdlTypeAuto
-from hdlConvertor.to.basic_hdl_sim_model.utils import BitsT
+from hdlConvertor.to.hwt.utils import BitsT
 from hdlConvertor.to.verilog.utils import collect_array_dims, get_wire_t_params
-from hdlConvertor.to.hdl_ast_visitor import HdlAstVisitor
+from hdlConvertor.translate._verilog_to_basic_hdl_sim_model.verilog_types_to_basic_hdl_sim_model import VerilogTypesToBasicHdlSimModel
 
 
-class VerilogTypesToBasicHdlSimModel(HdlAstVisitor):
+class VerilogTypesToHwt(VerilogTypesToBasicHdlSimModel):
     """
-    Translate Verilog HDL types to BasicHdlSimModel HDL types
+    Translate Verilog HDL types to HWT HDL types
     """
-    def visit_HdlVariableDef(self, o):
-        """
-        :type o: HdlVariableDef
-        """
-        o.type = self.visit_type(o.type)
-        if o.value is not None:
-            self.visit_iHdlExr(o.value)
 
     def visit_type(self, t):
         """
