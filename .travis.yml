@@ -21,12 +21,12 @@ install:
  fi
 - python setup.py install
 
-script: 
-  - if [ "$CODE_COVERAGE" == "1" ]; then
- 	   coverage run --source=hdlConvertorAst setup.py test;
-    else
-       python setup.py test;
-	fi
+script:
+- if [ "$CODE_COVERAGE" == "1" ]; then
+ 	coverage run --source=hdlConvertorAst setup.py test;
+  else
+    python setup.py test;
+  fi
 
 after_success:
 - coveralls
