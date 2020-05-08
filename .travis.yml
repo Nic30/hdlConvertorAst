@@ -15,9 +15,9 @@ matrix:
 
 # command to install dependencies
 install:
-- python setup.py install --user
+- python setup.py install
 - if [ "$CODE_COVERAGE" == "1" ]; then
-    pip install coveralls codecov --user;
+    pip install coveralls codecov;
  fi
 
 script:
