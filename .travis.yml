@@ -1,4 +1,3 @@
-sudo: required
 dist: bionic
 language: python
 
@@ -16,14 +15,14 @@ matrix:
 
 # command to install dependencies
 install:
-- python setup.py install
+- python setup.py install --user
 - if [ "$CODE_COVERAGE" == "1" ]; then
-    pip install coveralls codecov
+    pip install coveralls codecov --user
  fi
 
 script:
 - if [ "$CODE_COVERAGE" == "1" ]; then
-     coverage run --source=hdlConvertorAst setup.py test;
+    coverage run --source=hdlConvertorAst setup.py test;
   else
     python setup.py test;
   fi
