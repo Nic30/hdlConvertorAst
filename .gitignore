@@ -1,0 +1,64 @@
+# Compiled Object files
+*.pyc
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# generated files
+MANIFEST
+
+# build folders
+Debug/
+build/
+target/
+dist/
+_skbuild/
+.eggs/
+hdlConvertor.egg-info
+
+# parser generated source dirs/files
+src/svConvertor/sv2017Parser/
+src/verilogPreproc/verilogPreprocParser/
+src/vhdlConvertor/vhdlParser/
+
+include/hdlConvertor/svConvertor/sv2017Parser/*.h
+include/hdlConvertor/verilogPreproc/verilogPreprocParser/*.h
+include/hdlConvertor/vhdlConvertor/vhdlParser/*.h
+
+
+# devel archives
+*.zip
+*.jar
+
+# eclipse files
+.cproject
+.project
+.pydevproject
+.settings/
+
+# coverage files
+*.gcda
+coverage.info
+coverage.info.raw
+

@@ -1,0 +1,9 @@
+include *.md
+include MANIFEST.in
+include README.md
+include setup.py
+include setup.cfg
+include LICENSE
+
+recursive-include hdlConvertorAst *.py
+
