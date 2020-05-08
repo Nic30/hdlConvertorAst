@@ -18,12 +18,12 @@ matrix:
 install:
 - python setup.py install
 - if [ "$CODE_COVERAGE" == "1" ]; then
-	pip install coveralls codecov
+    pip install coveralls codecov
  fi
 
 script:
 - if [ "$CODE_COVERAGE" == "1" ]; then
- 	coverage run --source=hdlConvertorAst setup.py test;
+     coverage run --source=hdlConvertorAst setup.py test;
   else
     python setup.py test;
   fi
