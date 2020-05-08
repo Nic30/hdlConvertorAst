@@ -28,7 +28,7 @@ Doc shared with [hdlConvertor](https://github.com/Nic30/hdlConvertor).
 
 
 ### List of selected unique features of this library
-* single straight forward universal AST for all languages, wide spectrum of import/export languages
+* single straightforward universal AST for all languages, wide spectrum of import/export languages
 * automatic parenthesis resolution in expressions based on operator priority/associativity
 * clever white-spaces, constant and expression formating 
 * comments preserved as doc of objects
