@@ -1,7 +1,7 @@
 from typing import List, Optional, Union, Tuple
 
-from hdlConvertor.hdlAst._bases import iHdlStatement
-from hdlConvertor.hdlAst._expr import iHdlExpr
+from hdlConvertorAst.hdlAst._bases import iHdlStatement
+from hdlConvertorAst.hdlAst._expr import iHdlExpr
 from enum import Enum
 
 

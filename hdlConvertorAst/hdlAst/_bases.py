@@ -25,7 +25,7 @@ class iHdlObj(object):
         self.origin = None
 
     def __repr__(self):
-        from hdlConvertor.to.json_debug import ToJsonDebug
+        from hdlConvertorAst.to.json_debug import ToJsonDebug
         from pprint import pprint
         to = ToJsonDebug()
         d = getattr(to, "visit_" + self.__class__.__name__)(self)

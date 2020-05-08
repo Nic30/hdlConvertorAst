@@ -1,7 +1,7 @@
-from hdlConvertor.to.hdl_ast_visitor import HdlAstVisitor
-from hdlConvertor.to.verilog.utils import collect_array_dims
-from hdlConvertor.hdlAst._expr import HdlValueInt
-from hdlConvertor.translate._verilog_to_basic_hdl_sim_model.utils import hdl_getattr
+from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
+from hdlConvertorAst.to.verilog.utils import collect_array_dims
+from hdlConvertorAst.hdlAst._expr import HdlValueInt
+from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_getattr
 
 
 class AssignmentToUpdateAssignment(HdlAstVisitor):

@@ -1,12 +1,12 @@
 from itertools import chain
 
-from hdlConvertor.hdlAst import HdlIdDef, HdlOp, HdlOpType,\
+from hdlConvertorAst.hdlAst import HdlIdDef, HdlOp, HdlOpType,\
     HdlDirection, HdlValueId, HdlCompInst, HdlEnumDef, HdlClassDef
-from hdlConvertor.to.basic_hdl_sim_model.stm import ToBasicHdlSimModelStm
-from hdlConvertor.to.hdlUtils import Indent, iter_with_last
-from hdlConvertor.to.basic_hdl_sim_model.utils import sensitivityByOp
-from hdlConvertor.hdlAst._statements import ALL_STATEMENT_CLASSES
-from hdlConvertor.hdlAst._expr import HdlTypeType
+from hdlConvertorAst.to.basic_hdl_sim_model.stm import ToBasicHdlSimModelStm
+from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
+from hdlConvertorAst.to.basic_hdl_sim_model.utils import sensitivityByOp
+from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
+from hdlConvertorAst.hdlAst._expr import HdlTypeType
 
 
 DEFAULT_IMPORTS = """\
@@ -267,22 +267,3 @@ class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
         """
         self.stm_outputs = stm_outputs
         return super(ToBasicHdlSimModel, self).visit_HdlContext(context)
-
-
-if __name__ == "__main__":
-    import os
-    import sys
-    from hdlConvertor.language import Language
-    from hdlConvertor import HdlConvertor
-    from hdlConvertor.translate.verilog_to_basic_hdl_sim_model import\
-        verilog_to_basic_hdl_sim_model
-
-    BASE_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "..")
-    TEST_DIR = os.path.join(BASE_DIR, 'tests', 'verilog')
-
-    c = HdlConvertor()
-    filenames = [os.path.join(TEST_DIR, "arbiter.v")]
-    d = c.parse(filenames, Language.VERILOG, [], False, True)
-    d, stm_outputs, ns = verilog_to_basic_hdl_sim_model(d)
-    tv = ToBasicHdlSimModel(sys.stdout)
-    tv.visit_HdlContext(d, stm_outputs)

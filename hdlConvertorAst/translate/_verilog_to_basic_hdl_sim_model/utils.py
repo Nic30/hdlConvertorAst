@@ -1,4 +1,4 @@
-from hdlConvertor.hdlAst._expr import HdlOp, HdlOpType, HdlValueId
+from hdlConvertorAst.hdlAst._expr import HdlOp, HdlOpType, HdlValueId
 
 
 def to_property_call(o, prop_name):

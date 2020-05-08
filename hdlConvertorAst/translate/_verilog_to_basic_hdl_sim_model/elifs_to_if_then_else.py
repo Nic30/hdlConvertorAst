@@ -1,4 +1,4 @@
-from hdlConvertor.hdlAst._statements import HdlStmIf, HdlStmBlock
+from hdlConvertorAst.hdlAst._statements import HdlStmIf, HdlStmBlock
 
 
 def elifs_to_if_then_else(stm):

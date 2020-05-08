@@ -1,9 +1,9 @@
-from hdlConvertor.hdlAst._defs import HdlIdDef
-from hdlConvertor.hdlAst._statements import HdlStmBlock
-from hdlConvertor.to.hdlUtils import Indent
-from hdlConvertor.to.systemc.expr import ToSystemcExpr
-from hdlConvertor.to.verilog.stm import ToVerilog2005Stm
-from hdlConvertor.hdlAst._bases import iHdlStatement
+from hdlConvertorAst.hdlAst._defs import HdlIdDef
+from hdlConvertorAst.hdlAst._statements import HdlStmBlock
+from hdlConvertorAst.to.hdlUtils import Indent
+from hdlConvertorAst.to.systemc.expr import ToSystemcExpr
+from hdlConvertorAst.to.verilog.stm import ToVerilog2005Stm
+from hdlConvertorAst.hdlAst._bases import iHdlStatement
 
 
 class ToSystemcStm(ToSystemcExpr):

@@ -1,6 +1,6 @@
-from hdlConvertor.hdlAst._expr import HdlOp, HdlValueId, HdlOpType
-from hdlConvertor.hdlAst._statements import HdlStmAssign, HdlStmProcess
-from hdlConvertor.hdlAst._structural import HdlModuleDec, HdlModuleDef
+from hdlConvertorAst.hdlAst._expr import HdlOp, HdlValueId, HdlOpType
+from hdlConvertorAst.hdlAst._statements import HdlStmAssign, HdlStmProcess
+from hdlConvertorAst.hdlAst._structural import HdlModuleDec, HdlModuleDef
 
 
 def collect_hdl_ids(expr, res):

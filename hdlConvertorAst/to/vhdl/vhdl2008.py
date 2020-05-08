@@ -1,11 +1,11 @@
-from hdlConvertor.hdlAst import HdlDirection, iHdlStatement, \
+from hdlConvertorAst.hdlAst import HdlDirection, iHdlStatement, \
     HdlIdDef, HdlModuleDec, HdlFunctionDef, HdlCompInst, \
     HdlTypeType, HdlOp, HdlOpType, HdlValueIdspace, \
     HdlEnumDef
-from hdlConvertor.to.hdlUtils import Indent, iter_with_last, UnIndent
-from hdlConvertor.to.vhdl.stm import ToVhdl2008Stm
-from hdlConvertor.hdlAst._expr import HdlTypeSubtype, HdlValueInt
-from hdlConvertor.hdlAst._typeDefs import HdlClassDef, HdlClassType
+from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last, UnIndent
+from hdlConvertorAst.to.vhdl.stm import ToVhdl2008Stm
+from hdlConvertorAst.hdlAst._expr import HdlTypeSubtype, HdlValueInt
+from hdlConvertorAst.hdlAst._typeDefs import HdlClassDef, HdlClassType
 
 
 class ToVhdl2008(ToVhdl2008Stm):
@@ -345,16 +345,3 @@ class ToVhdl2008(ToVhdl2008Stm):
 
         w("END PACKAGE;\n")
 
-
-if __name__ == "__main__":
-    import os
-    import sys
-    BASE_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "..")
-    TEST_DIR = os.path.join(BASE_DIR, 'tests', 'vhdl')
-    from hdlConvertor.language import Language
-    from hdlConvertor import HdlConvertor
-    c = HdlConvertor()
-    filenames = [os.path.join(TEST_DIR, "package_constants.vhd")]
-    d = c.parse(filenames, Language.VHDL, [], False, True)
-    tv = ToVhdl2008(sys.stdout)
-    tv.visit_HdlContext(d)

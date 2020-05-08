@@ -1,6 +1,6 @@
 from enum import Enum
 from typing import Dict, Union, Tuple, List
-from hdlConvertor.hdlAst._bases import iHdlObj,iHdlObjWithName
+from hdlConvertorAst.hdlAst._bases import iHdlObj,iHdlObjWithName
 
 HdlTypeStr = str
 # Verilog real

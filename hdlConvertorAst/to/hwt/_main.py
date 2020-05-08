@@ -1,11 +1,11 @@
-from hdlConvertor.hdlAst import HdlIdDef, iHdlExpr, HdlOp, HdlOpType,\
+from hdlConvertorAst.hdlAst import HdlIdDef, iHdlExpr, HdlOp, HdlOpType,\
     HdlDirection, HdlValueId, HdlStmProcess, HdlCompInst, HdlModuleDec,\
     HdlEnumDef, HdlClassDef
-from hdlConvertor.to.hdlUtils import Indent, iter_with_last
-from hdlConvertor.to.hwt.stm import ToHwtStm
-from hdlConvertor.to.basic_hdl_sim_model._main import ToBasicHdlSimModel
-from hdlConvertor.to.common import ToHdlCommon
-from hdlConvertor.hdlAst._statements import ALL_STATEMENT_CLASSES
+from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
+from hdlConvertorAst.to.hwt.stm import ToHwtStm
+from hdlConvertorAst.to.basic_hdl_sim_model._main import ToBasicHdlSimModel
+from hdlConvertorAst.to.common import ToHdlCommon
+from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
 
 
 DEFAULT_IMPORTS = """\
@@ -178,21 +178,3 @@ class ToHwt(ToHwtStm):
                 self.visit_iHdlExpr(var.value)
                 w(")\n")
 
-
-if __name__ == "__main__":
-    import os
-    import sys
-    from hdlConvertor.language import Language
-    from hdlConvertor import HdlConvertor
-    from hdlConvertor.translate.verilog_to_hwt import\
-        verilog_to_hwt
-
-    BASE_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "..")
-    TEST_DIR = os.path.join(BASE_DIR, 'tests', 'verilog')
-
-    c = HdlConvertor()
-    filenames = [os.path.join(TEST_DIR, "arbiter.v")]
-    d = c.parse(filenames, Language.VERILOG, [], False, True)
-    d, name_scope = verilog_to_hwt(d)
-    tv = ToHwt(sys.stdout)
-    tv.visit_HdlContext(d)

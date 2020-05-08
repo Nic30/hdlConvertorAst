@@ -1,7 +1,7 @@
-from hdlConvertor.hdlAst import HdlValueId, HdlValueInt, HdlOp, HdlOpType
-from hdlConvertor.py_ver_compatibility import is_str
-from hdlConvertor.to.hdl_ast_visitor import HdlAstVisitor
-from hdlConvertor.translate._verilog_to_basic_hdl_sim_model.utils import hdl_getattr,\
+from hdlConvertorAst.hdlAst import HdlValueId, HdlValueInt, HdlOp, HdlOpType
+from hdlConvertorAst.py_ver_compatibility import is_str
+from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
+from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_getattr,\
     hdl_name_prefix
 
 

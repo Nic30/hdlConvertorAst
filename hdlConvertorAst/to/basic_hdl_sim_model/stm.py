@@ -1,6 +1,6 @@
-from hdlConvertor.hdlAst import HdlOp, HdlStmIf, HdlStmBlock, HdlStmAssign
-from hdlConvertor.to.basic_hdl_sim_model.expr import ToBasicHdlSimModelExpr
-from hdlConvertor.to.hdlUtils import Indent, iter_with_last
+from hdlConvertorAst.hdlAst import HdlOp, HdlStmIf, HdlStmBlock, HdlStmAssign
+from hdlConvertorAst.to.basic_hdl_sim_model.expr import ToBasicHdlSimModelExpr
+from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 
 
 class ToBasicHdlSimModelStm(ToBasicHdlSimModelExpr):

@@ -1,11 +1,11 @@
-from hdlConvertor.hdlAst import HdlOpType, HdlValueId, HdlValueInt, \
+from hdlConvertorAst.hdlAst import HdlOpType, HdlValueId, HdlValueInt, \
     HdlOp
-from hdlConvertor.py_ver_compatibility import is_str
-from hdlConvertor.to.common import ToHdlCommon, ASSOCIATIVITY,\
+from hdlConvertorAst.py_ver_compatibility import is_str
+from hdlConvertorAst.to.common import ToHdlCommon, ASSOCIATIVITY,\
     ASSIGN_OPERATORS_SYMBOLS_C
-from hdlConvertor.to.basic_hdl_sim_model.expr import ToBasicHdlSimModelExpr
-from hdlConvertor.to.hdlUtils import iter_with_last
-from hdlConvertor.to.verilog.expr import ASSIGN_OPERATORS
+from hdlConvertorAst.to.basic_hdl_sim_model.expr import ToBasicHdlSimModelExpr
+from hdlConvertorAst.to.hdlUtils import iter_with_last
+from hdlConvertorAst.to.verilog.expr import ASSIGN_OPERATORS
 
 
 L = ASSOCIATIVITY.L_TO_R

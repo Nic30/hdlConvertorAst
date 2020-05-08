@@ -1,9 +1,9 @@
-from hdlConvertor.hdlAst import HdlDirection, HdlOpType,\
+from hdlConvertorAst.hdlAst import HdlDirection, HdlOpType,\
     HdlOp, HdlCompInst, HdlIdDef, iHdlStatement,\
     HdlTypeAuto
-from hdlConvertor.hdlAst._defs import HdlFunctionDef
-from hdlConvertor.to.hdlUtils import Indent, iter_with_last
-from hdlConvertor.to.verilog.stm import ToVerilog2005Stm
+from hdlConvertorAst.hdlAst._defs import HdlFunctionDef
+from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
+from hdlConvertorAst.to.verilog.stm import ToVerilog2005Stm
 
 
 class ToVerilog2005(ToVerilog2005Stm):
@@ -254,26 +254,3 @@ class ToVerilog2005(ToVerilog2005Stm):
 
         self.out.write("endmodule\n")
 
-
-if __name__ == "__main__":
-    import os
-    import sys
-    BASE_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "..")
-    TEST_DIR = os.path.join(BASE_DIR, 'tests', 'verilog')
-    from hdlConvertor.language import Language
-    from hdlConvertor import HdlConvertor
-    c = HdlConvertor()
-    filenames = [os.path.join(TEST_DIR, "arbiter_tb.v")]
-    # AES = os.path.join(BASE_DIR, "..", "aes")
-    # files = [
-    #    # "aes_cipher_top.v",
-    #    # "aes_key_expand_128.v",
-    #    # "aes_inv_cipher_top.v",  "aes_rcon.v",
-    #    "test_bench_top.v",
-    #    # "aes_inv_sbox.v",        "aes_sbox.v",
-    # ]
-    #
-    # filenames = [os.path.join(AES, f) for f in files]
-    d = c.parse(filenames, Language.VERILOG, [], False, True)
-    tv = ToVerilog2005(sys.stdout)
-    tv.visit_HdlContext(d)

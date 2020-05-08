@@ -1,6 +1,6 @@
-from hdlConvertor.hdlAst import HdlOp, HdlStmIf, HdlStmBlock, HdlStmAssign
-from hdlConvertor.to.hdlUtils import Indent, iter_with_last
-from hdlConvertor.to.hwt.expr import ToHwtExpr
+from hdlConvertorAst.hdlAst import HdlOp, HdlStmIf, HdlStmBlock, HdlStmAssign
+from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
+from hdlConvertorAst.to.hwt.expr import ToHwtExpr
 
 
 class ToHwtStm(ToHwtExpr):

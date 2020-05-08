@@ -56,9 +56,9 @@
         if(gated_clk)
              latch_data <= new_data;
 """
-from hdlConvertor.to.hdl_ast_visitor import HdlAstVisitor
-from hdlConvertor.hdlAst._expr import HdlOp, HdlOpType
-from hdlConvertor.hdlAst._statements import HdlStmIf
+from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
+from hdlConvertorAst.hdlAst._expr import HdlOp, HdlOpType
+from hdlConvertorAst.hdlAst._statements import HdlStmIf
 
 class InjectProcessSensToStatements(HdlAstVisitor):
 

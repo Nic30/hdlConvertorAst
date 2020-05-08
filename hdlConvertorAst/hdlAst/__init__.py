@@ -14,20 +14,20 @@ Main container is HdlContext which can store all other objects.
 :attention: classes in his module are used from C++
 """
 
-from hdlConvertor.hdlAst._bases import (
+from hdlConvertorAst.hdlAst._bases import (
     iHdlObj, iHdlObjInModule, iHdlObjWithName, iHdlStatement)
-from hdlConvertor.hdlAst._defs import HdlFunctionDef, HdlIdDef
-from hdlConvertor.hdlAst._expr import (
+from hdlConvertorAst.hdlAst._defs import HdlFunctionDef, HdlIdDef
+from hdlConvertorAst.hdlAst._expr import (
     HdlAll, HdlOpType, HdlOp, HdlDirection, HdlValueInt, HdlValueId,
     HdlOthers, HdlTypeAuto, HdlTypeType, HdlTypeSubtype, HdlExprNotImplemented,
     iHdlExpr)
-from hdlConvertor.hdlAst._statements import (
+from hdlConvertorAst.hdlAst._statements import (
     HdlImport, HdlStmAssign, HdlStmBlockJoinType, HdlStmBlock, HdlStmBreak,
     HdlStmCase, HdlStmContinue, HdlStmFor, HdlStmForIn, HdlStmIf, HdlStmProcess,
     HdlStmRepeat, HdlStmReturn, HdlStmWait, HdlStmWhile)
-from hdlConvertor.hdlAst._structural import (
+from hdlConvertorAst.hdlAst._structural import (
     HdlCompInst, HdlContext, HdlModuleDec, HdlModuleDef, HdlValueIdspace,
     HdlLibrary)
-from hdlConvertor.hdlAst._typeDefs import (
+from hdlConvertorAst.hdlAst._typeDefs import (
     iHdlTypeDef, HdlClassType, HdlClassDef, HdlEnumDef, HdlTypeBitsDef)
-from hdlConvertor.hdlAst.utils import CodePosition
+from hdlConvertorAst.hdlAst.utils import CodePosition

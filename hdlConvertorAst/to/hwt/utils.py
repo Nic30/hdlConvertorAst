@@ -1,4 +1,4 @@
-from hdlConvertor.to.basic_hdl_sim_model.utils import BitsT as bsm_BitsT
+from hdlConvertorAst.to.basic_hdl_sim_model.utils import BitsT as bsm_BitsT
 
 
 def BitsT(width, is_signed=False, bits_cls_name="Bits"):

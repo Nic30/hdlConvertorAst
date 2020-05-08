@@ -1,6 +1,6 @@
 from itertools import chain
 
-from hdlConvertor.hdlAst import HdlImport, HdlStmProcess, HdlStmIf,\
+from hdlConvertorAst.hdlAst import HdlImport, HdlStmProcess, HdlStmIf,\
     HdlStmAssign, HdlStmCase, HdlStmWait, HdlStmReturn, HdlStmFor, HdlStmForIn,\
     HdlStmWhile, HdlStmBlock, iHdlStatement, HdlModuleDec, HdlModuleDef,\
     HdlValueIdspace, HdlIdDef, HdlFunctionDef, HdlOp, HdlCompInst, \

@@ -4,11 +4,11 @@ and use them to associate HdlValueIds to a HdlObjects.
 """
 from itertools import chain
 
-from hdlConvertor.hdlAst import HdlOp, HdlOpType, HdlValueId, HdlAll,\
+from hdlConvertorAst.hdlAst import HdlOp, HdlOpType, HdlValueId, HdlAll,\
     HdlValueInt, HdlIdDef, HdlStmAssign, HdlModuleDec, HdlModuleDef,\
     HdlCompInst, iHdlStatement
-from hdlConvertor.to.hdl_ast_visitor import HdlAstVisitor
-from hdlConvertor.translate.common.discover_declarations import WithNameScope
+from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
+from hdlConvertorAst.translate.common.discover_declarations import WithNameScope
 
 
 class ResolveNames(HdlAstVisitor):

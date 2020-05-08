@@ -1,9 +1,9 @@
-from hdlConvertor.hdlAst._bases import iHdlStatement
-from hdlConvertor.hdlAst._defs import HdlIdDef
-from hdlConvertor.hdlAst._expr import HdlOp, HdlOpType
-from hdlConvertor.hdlAst._statements import HdlStmBlock
-from hdlConvertor.to.hdlUtils import iter_with_last, Indent, UnIndent
-from hdlConvertor.to.vhdl.expr import ToVhdl2008Expr
+from hdlConvertorAst.hdlAst._bases import iHdlStatement
+from hdlConvertorAst.hdlAst._defs import HdlIdDef
+from hdlConvertorAst.hdlAst._expr import HdlOp, HdlOpType
+from hdlConvertorAst.hdlAst._statements import HdlStmBlock
+from hdlConvertorAst.to.hdlUtils import iter_with_last, Indent, UnIndent
+from hdlConvertorAst.to.vhdl.expr import ToVhdl2008Expr
 
 
 class ToVhdl2008Stm(ToVhdl2008Expr):

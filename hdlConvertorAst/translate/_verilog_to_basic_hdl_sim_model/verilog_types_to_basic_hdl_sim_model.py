@@ -1,9 +1,9 @@
 
-from hdlConvertor.hdlAst._defs import HdlIdDef
-from hdlConvertor.hdlAst._expr import HdlTypeAuto
-from hdlConvertor.to.basic_hdl_sim_model.utils import BitsT
-from hdlConvertor.to.verilog.utils import collect_array_dims, get_wire_t_params
-from hdlConvertor.to.hdl_ast_visitor import HdlAstVisitor
+from hdlConvertorAst.hdlAst._defs import HdlIdDef
+from hdlConvertorAst.hdlAst._expr import HdlTypeAuto
+from hdlConvertorAst.to.basic_hdl_sim_model.utils import BitsT
+from hdlConvertorAst.to.verilog.utils import collect_array_dims, get_wire_t_params
+from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
 
 
 class VerilogTypesToBasicHdlSimModel(HdlAstVisitor):

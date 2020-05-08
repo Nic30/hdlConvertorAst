@@ -1,6 +1,6 @@
-from hdlConvertor.hdlAst._expr import HdlOpType, HdlOp, HdlValueId
-from hdlConvertor.to.hdl_ast_visitor import HdlAstVisitor
-from hdlConvertor.translate._verilog_to_basic_hdl_sim_model.utils import \
+from hdlConvertorAst.hdlAst._expr import HdlOpType, HdlOp, HdlValueId
+from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
+from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import \
     to_property_call
 
 

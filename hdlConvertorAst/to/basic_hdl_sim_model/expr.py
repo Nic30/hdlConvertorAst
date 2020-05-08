@@ -1,8 +1,8 @@
-from hdlConvertor.hdlAst import HdlOpType, HdlValueId, HdlValueInt, \
+from hdlConvertorAst.hdlAst import HdlOpType, HdlValueId, HdlValueInt, \
     HdlOp
-from hdlConvertor.py_ver_compatibility import is_str
-from hdlConvertor.to.common import ToHdlCommon, ASSOCIATIVITY
-from hdlConvertor.to.hdlUtils import iter_with_last, Indent
+from hdlConvertorAst.py_ver_compatibility import is_str
+from hdlConvertorAst.to.common import ToHdlCommon, ASSOCIATIVITY
+from hdlConvertorAst.to.hdlUtils import iter_with_last, Indent
 
 
 L = ASSOCIATIVITY.L_TO_R

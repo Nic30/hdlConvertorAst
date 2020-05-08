@@ -1,13 +1,13 @@
-from hdlConvertor.hdlAst import HdlIdDef, iHdlExpr, HdlOp, HdlOpType,\
+from hdlConvertorAst.hdlAst import HdlIdDef, iHdlExpr, HdlOp, HdlOpType,\
     HdlDirection, HdlValueId, HdlStmProcess, HdlCompInst, HdlModuleDec,\
     HdlEnumDef, HdlClassDef
-from hdlConvertor.hdlAst._statements import ALL_STATEMENT_CLASSES
-from hdlConvertor.to.basic_hdl_sim_model._main import ToBasicHdlSimModel
-from hdlConvertor.to.common import ToHdlCommon
-from hdlConvertor.to.hdlUtils import Indent, iter_with_last
-from hdlConvertor.to.systemc.stm import ToSystemcStm
-from hdlConvertor.hdlAst._expr import HdlTypeType
-from hdlConvertor.to.verilog.utils import collect_array_dims
+from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
+from hdlConvertorAst.to.basic_hdl_sim_model._main import ToBasicHdlSimModel
+from hdlConvertorAst.to.common import ToHdlCommon
+from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
+from hdlConvertorAst.to.systemc.stm import ToSystemcStm
+from hdlConvertorAst.hdlAst._expr import HdlTypeType
+from hdlConvertorAst.to.verilog.utils import collect_array_dims
 
 
 DEFAULT_IMPORTS = """\

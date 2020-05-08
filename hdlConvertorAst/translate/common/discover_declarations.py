@@ -1,9 +1,9 @@
 from itertools import chain
 
-from hdlConvertor.hdlAst import iHdlStatement, HdlIdDef,\
+from hdlConvertorAst.hdlAst import iHdlStatement, HdlIdDef,\
     HdlModuleDec, HdlModuleDef, HdlCompInst
-from hdlConvertor.to.hdl_ast_visitor import HdlAstVisitor
-from hdlConvertor.translate.common.name_scope import WithNameScope
+from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
+from hdlConvertorAst.translate.common.name_scope import WithNameScope
 
 
 class DiscoverDeclarations(HdlAstVisitor):

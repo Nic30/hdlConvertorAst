@@ -1,6 +1,6 @@
-from hdlConvertor.hdlAst._structural import HdlContext, HdlModuleDef,\
+from hdlConvertorAst.hdlAst._structural import HdlContext, HdlModuleDef,\
     HdlModuleDec
-from hdlConvertor.hdlAst._expr import HdlValueId
+from hdlConvertorAst.hdlAst._expr import HdlValueId
 
 
 def link_module_dec_def(context):

@@ -1,7 +1,7 @@
 from typing import List, Union
 
-from hdlConvertor.hdlAst._bases import iHdlObjWithName, iHdlObjInModule, iHdlObj
-from hdlConvertor.hdlAst._defs import HdlIdDef
+from hdlConvertorAst.hdlAst._bases import iHdlObjWithName, iHdlObjInModule, iHdlObj
+from hdlConvertorAst.hdlAst._defs import HdlIdDef
 
 
 try:
@@ -102,7 +102,7 @@ class HdlContext(object):
         self.name_scope = None
 
     def __repr__(self):
-        from hdlConvertor.to.json import ToJson
+        from hdlConvertorAst.to.json import ToJson
         from pprint import pprint
         to = ToJson()
         d = getattr(to, "visit_" + self.__class__.__name__)(self)

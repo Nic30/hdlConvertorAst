@@ -1,5 +1,5 @@
-from hdlConvertor.hdlAst import HdlValueId, HdlOpType, HdlValueInt, HdlOp, iHdlExpr
-from hdlConvertor.translate.common.name_scope import LanguageKeyword
+from hdlConvertorAst.hdlAst import HdlValueId, HdlOpType, HdlValueInt, HdlOp, iHdlExpr
+from hdlConvertorAst.translate.common.name_scope import LanguageKeyword
 
 NONE = HdlValueId("None")
 

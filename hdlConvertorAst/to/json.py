@@ -1,7 +1,7 @@
-from hdlConvertor.hdlAst import HdlDirection, HdlValueId, HdlValueInt,\
+from hdlConvertorAst.hdlAst import HdlDirection, HdlValueId, HdlValueInt,\
     HdlOp, HdlAll, HdlTypeAuto, HdlOthers, HdlTypeType
-from hdlConvertor.py_ver_compatibility import is_str
-from hdlConvertor.to.hdl_ast_visitor import HdlAstVisitor
+from hdlConvertorAst.py_ver_compatibility import is_str
+from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
 
 
 class ToJson(HdlAstVisitor):
@@ -343,28 +343,3 @@ class ToJson(HdlAstVisitor):
             "fn": o.fn.name
         }
         return d
-
-
-if __name__ == "__main__":
-    import os
-    from hdlConvertor.language import Language
-    from hdlConvertor import HdlConvertor
-    from pprint import pprint
-    BASE_DIR = os.path.join(os.path.dirname(__file__), "..", "..")
-    TEST_DIR = os.path.join(BASE_DIR, 'tests', 'verilog')
-    c = HdlConvertor()
-    filenames = [os.path.join(TEST_DIR, "arbiter_tb.v")]
-    # AES = os.path.join(BASE_DIR, "..", "aes")
-    # files = [
-    #    # "aes_cipher_top.v",
-    #    # "aes_key_expand_128.v",
-    #    # "aes_inv_cipher_top.v",  "aes_rcon.v",
-    #    "test_bench_top.v",
-    #    # "aes_inv_sbox.v",        "aes_sbox.v",
-    # ]
-    #
-    # filenames = [os.path.join(AES, f) for f in files]
-    d = c.parse(filenames, Language.VERILOG, [], False, True)
-    tv = ToJson()
-    res = tv.visit_HdlContext(d)
-    pprint(res)

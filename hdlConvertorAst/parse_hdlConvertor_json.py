@@ -1,9 +1,9 @@
 import json
 
-from hdlConvertor import hdlAst
-from hdlConvertor.hdlAst import HdlContext, CodePosition, HdlOpType,\
+from hdlConvertorAst import hdlAst
+from hdlConvertorAst.hdlAst import HdlContext, CodePosition, HdlOpType,\
     HdlDirection, HdlStmBlockJoinType
-from hdlConvertor.py_ver_compatibility import is_str
+from hdlConvertorAst.py_ver_compatibility import is_str
 
 
 KNOWN_NODES = {

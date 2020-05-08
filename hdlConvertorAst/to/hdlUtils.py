@@ -1,5 +1,5 @@
 import sys
-from hdlConvertor.hdlAst._expr import HdlValueInt
+from hdlConvertorAst.hdlAst._expr import HdlValueInt
 
 
 class Indent(object):

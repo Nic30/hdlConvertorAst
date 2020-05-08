@@ -1,9 +1,9 @@
 from copy import copy
 
-from hdlConvertor.hdlAst._expr import HdlOpType
-from hdlConvertor.hdlAst._statements import HdlStmWait, HdlStmBlock
-from hdlConvertor.to.hdlUtils import Indent, iter_with_last
-from hdlConvertor.to.verilog.expr import ToVerilog2005Expr
+from hdlConvertorAst.hdlAst._expr import HdlOpType
+from hdlConvertorAst.hdlAst._statements import HdlStmWait, HdlStmBlock
+from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
+from hdlConvertorAst.to.verilog.expr import ToVerilog2005Expr
 
 
 class ToVerilog2005Stm(ToVerilog2005Expr):

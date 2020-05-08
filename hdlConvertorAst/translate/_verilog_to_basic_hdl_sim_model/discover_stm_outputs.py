@@ -1,9 +1,9 @@
 from typing import Set, List, Dict
 
-from hdlConvertor.hdlAst import iHdlExpr, HdlValueId, \
+from hdlConvertorAst.hdlAst import iHdlExpr, HdlValueId, \
     HdlContext, HdlModuleDec, HdlStmAssign, HdlStmProcess, \
     HdlStmIf, HdlStmBlock
-from hdlConvertor.hdlAst._structural import HdlModuleDef
+from hdlConvertorAst.hdlAst._structural import HdlModuleDef
 
 
 def get_output_ids(e, outputs):
