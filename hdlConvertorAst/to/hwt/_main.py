@@ -20,6 +20,14 @@ from hwt.synthesizer.unit import Unit
 """
 
 
+def pop_port_or_param_map(o):
+    assert isinstance(o, HdlOp) and\
+        o.fn == HdlOpType.MAP_ASSOCIATION, o
+    mod_p, connected_p = o.ops
+    assert isinstance(mod_p, HdlValueId), mod_p
+    return mod_p, connected_p
+
+
 class ToHwt(ToHwtStm):
     """
     Convert hdlObject AST to BasicHdlSimModel
@@ -37,23 +45,52 @@ class ToHwt(ToHwtStm):
         self._is_port = False
         self._is_param = False
 
-    def visit_doc(self, obj):
-        return super(ToHwt, self).visit_doc(obj, "#")
+    def visit_doc(self, obj, doc_string=False):
+        if doc_string:
+            doc = obj.doc
+            if doc is not None:
+                doc = doc.split("\n")
+                w = self.out.write
+                if len(doc) > 1:
+                    w('"""')
+                    for d in doc:
+                        w(d.replace('\r', ''))
+                        w("\n")
+                    w('"""\n')
+                else:
+                    w('"')
+                    if doc:
+                        w(doc[0].replace('\r', ''))
+                    w('"\n')
+        else:
+            return super(ToHwt, self).visit_doc(obj, "#")
+
+    def add_module_exampe_serialization(self, module_name):
+        w = self.out.write
+        w('if __name__ == "__main__":\n')
+        with Indent(self.out):
+            w("from hwt.synthesizer.utils import to_rtl_str\n")
+            w("u = ")
+            w(module_name)
+            w("()\n")
+            w("print(to_rtl_str(u))\n")
 
     def visit_HdlModuleDef(self, mod_def):
         """
         :type mod_def: HdlModuleDef
         """
-        mod_dec = mod_def.dec 
+        mod_dec = mod_def.dec
         assert mod_dec is not None, mod_def
         w = self.out.write
-        w(DEFAULT_IMPORTS)
-        w("\n")
+        if self.add_imports:
+            w(DEFAULT_IMPORTS)
+            w("\n")
+            if self.module_path_prefix is None:
+                self.add_imports = False
 
         types, variables, processes, components = \
             ToBasicHdlSimModel.split_HdlModuleDefObjs(self, mod_def.objs)
 
-        self.visit_doc(mod_dec)
         ToBasicHdlSimModel.visit_component_imports(self, components)
 
         w("class ")
@@ -61,6 +98,8 @@ class ToHwt(ToHwtStm):
         w("(Unit):\n")
         port_params_comp_names = []
         with Indent(self.out):
+            self.visit_doc(mod_dec, doc_string=True)
+
             if mod_dec.params:
                 w('def _config(self):\n')
                 with Indent(self.out):
@@ -71,12 +110,13 @@ class ToHwt(ToHwtStm):
                             port_params_comp_names.append(p.name)
                     finally:
                         self._is_param = False
-
-            for t in types:
-                self.visit_type_declr(t)
+                w("\n")
 
             w('def _declr(self):\n')
             with Indent(self.out):
+                for t in types:
+                    self.visit_type_declr(t)
+
                 w('# ports\n')
                 try:
                     self._is_port = True
@@ -88,12 +128,25 @@ class ToHwt(ToHwtStm):
 
                 w("# component instances\n")
                 for c in components:
+                    if c.param_map:
+                        w(c.name.val)
+                        w(" = ")
                     w("self.")
                     w(c.name.val)
                     w(" = ")
                     w(c.module_name.val)
                     w('()\n')
                     port_params_comp_names.append(c.name.val)
+                    for cp in c.param_map:
+                        mod_p, val = pop_port_or_param_map(cp)
+                        w(c.name.val)
+                        w(".")
+                        w(mod_p.val)
+                        w(" = ")
+                        self.visit_iHdlExpr(val)
+                        w("\n")
+
+                w("\n")
 
             w("def _impl(self):\n")
             with Indent(self.out):
@@ -116,32 +169,39 @@ class ToHwt(ToHwtStm):
 
                 for c in components:
                     for pm in c.port_map:
-                        w("connectSimPort(self, self.")
-                        w(c.name.val)
-                        w(', "')
-                        assert isinstance(pm, HdlOp) and\
-                            pm.fn == HdlOpType.MAP_ASSOCIATION, pm
-                        mod_port, connected_sig = pm.ops
+                        mod_port, connected_sig = pop_port_or_param_map(pm)
                         assert isinstance(
                             connected_sig, HdlValueId), connected_sig
-                        self.visit_iHdlExpr(connected_sig)
-                        w('", "')
-                        assert isinstance(mod_port, HdlValueId), mod_port
-                        self.visit_iHdlExpr(mod_port)
-                        w('", ')
                         p = mod_port.obj
                         assert p is not None, (
                             "HdlValueId to module ports "
                             "shoudl have been discovered before")
                         d = p.direction
-                        assert d in (HdlDirection.IN, HdlDirection.OUT), d
-                        w(str(d == HdlDirection.IN))
-                        w(')\n')
+                        assert d.name in (HdlDirection.IN.name,
+                                          HdlDirection.OUT.name), d
+                        is_input = d.name == HdlDirection.IN.name
+                        if is_input:
+                            w(c.name.val)
+                            w(".")
+                            self.visit_iHdlExpr(mod_port)
+                            w("(")
+                            self.visit_iHdlExpr(connected_sig)
+                            w(")\n")
+                        else:
+                            self.visit_iHdlExpr(connected_sig)
+                            w("(")
+                            w(c.name.val)
+                            w(".")
+                            self.visit_iHdlExpr(mod_port)
+                            w(")\n")
 
                 for p in processes:
                     self.visit_iHdlStatement(p)
                     # extra line to separate a process functions
                     w("\n")
+        # w("\n")
+        # w("\n")
+        # self.add_module_exampe_serialization(mod_dec.name)
 
     def visit_HdlIdDef(self, var):
         """
@@ -153,7 +213,7 @@ class ToHwt(ToHwtStm):
             w("self.")
         w(var.name)
         if self._is_port:
-            w(" = Signal(")
+            w(" = Signal(dtype=")
             self.visit_type(var.type)
             w(")")
             if var.direction == HdlDirection.OUT:
@@ -162,7 +222,9 @@ class ToHwt(ToHwtStm):
                 w("\n")
                 assert var.direction == HdlDirection.IN, var.direction
         elif self._is_param:
-            raise NotImplementedError()
+            w(" = Param(")
+            self.visit_iHdlExpr(var.value)
+            w(")\n")
         else:
             # body signal
             w(' = self._sig(')
@@ -177,4 +239,3 @@ class ToHwt(ToHwtStm):
                 w(", def_val=")
                 self.visit_iHdlExpr(var.value)
                 w(")\n")
-
