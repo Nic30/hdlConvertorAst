@@ -27,7 +27,7 @@ class ToJson(HdlAstVisitor):
         :type o: iHdlObj
         """
         d = self.visit_iHdlObj(o)
-        d["name"] = o.name
+        d["name"] = self.visit_iHdlExpr(o.name)
         return d
 
     def visit_CodePosition(self, o):
@@ -44,7 +44,7 @@ class ToJson(HdlAstVisitor):
             "__class__": o.__class__.__name__,
         }
         if o.doc:
-            d["doc"] = o.doc
+            d["doc"] = self.visit_iHdlExpr(o.doc)
         if o.position:
             d["position"] = self.visit_CodePosition(o.position)
         return d
@@ -70,7 +70,7 @@ class ToJson(HdlAstVisitor):
         """
         :type o: HdlDirection
         """
-        if o == HdlDirection.UNKNOWN:
+        if o is None or o == HdlDirection.UNKNOWN:
             return None
         else:
             return o.name
@@ -117,7 +117,7 @@ class ToJson(HdlAstVisitor):
         :type o: iHdlStatement
         """
         d = self.visit_iHdlObj(o)
-        d["labels"] = [str(x) for x in o.labels]
+        d["labels"] = [self.visit_iHdlExpr(str(x)) for x in o.labels]
         if o.in_prepoc:
             d["in_prepoc"] = True
         return d
@@ -266,6 +266,7 @@ class ToJson(HdlAstVisitor):
             d["time_delay"] = self.visit_iHdlExpr(o.time_delay)
         d["src"] = self.visit_iHdlExpr(o.src)
         d["dst"] = self.visit_iHdlExpr(o.dst)
+        d["is_blocking"] = bool(o.is_blocking)
         return d
 
     def visit_HdlStmReturn(self, o):
@@ -295,12 +296,12 @@ class ToJson(HdlAstVisitor):
         :return: iHdlExpr
         """
         if isinstance(o, HdlValueId):
-            d = {
-                "__class__": o.__class__.__name__,
-                "val": str(o),
-            }
+            return o.val
         elif is_str(o) or o is None:
-            d = o
+            d = {
+                "__class__": "str",
+                "val" : o
+            }
         elif isinstance(o, HdlValueInt):
             d = self.visit_HdlValueInt(o)
         elif isinstance(o, HdlOp):
@@ -310,18 +311,34 @@ class ToJson(HdlAstVisitor):
                 o is HdlOthers or\
                 o is HdlTypeType:
             d = {
-                "__class__": o.__class__.__name__,
+                "__class__": o.__name__,
             }
-        elif isinstance(o, (list, tuple)):
-            return [self.visit_iHdlExpr(o2) for o2 in o]
+        elif isinstance(o, (list, tuple, dict)):
+            if isinstance(o, dict):
+                items = []
+                for _k, _v in o.items():
+                    k = self.visit_iHdlExpr(_k)
+                    v = self.visit_iHdlExpr(_v)
+                    items.append((k, v))
+            else:
+                items = [self.visit_iHdlExpr(o2) for o2 in o]
+
+            d = {
+                "__class__": o.__class__.__name__,
+                "items": items,
+            }
         else:
-            raise NotImplementedError("Unexpected object of type "+str(type(o)))
+            raise NotImplementedError(
+                "Unexpected object of type " + str(type(o)))
         return d
 
     def visit_HdlValueInt(self, o):
         """
         :type o: HdlValueInt
         """
+        if isinstance(o.val, int) and o.bits is None and o.base is None:
+            return o.val
+
         d = {
             "__class__": o.__class__.__name__,
             "val": o.val,

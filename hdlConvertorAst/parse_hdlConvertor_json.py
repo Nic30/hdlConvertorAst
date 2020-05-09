@@ -3,6 +3,8 @@ import json
 from hdlConvertorAst import hdlAst
 from hdlConvertorAst.hdlAst import HdlContext, CodePosition, HdlOpType,\
     HdlDirection, HdlStmBlockJoinType
+from hdlConvertorAst.hdlAst._expr import HdlTypeAuto, HdlAll, HdlOthers,\
+    HdlTypeType, HdlTypeSubtype, HdlValueInt, HdlValueId
 from hdlConvertorAst.py_ver_compatibility import is_str
 
 
@@ -10,14 +12,31 @@ KNOWN_NODES = {
     cls_name: getattr(hdlAst, cls_name)
     for cls_name in dir(hdlAst) if cls_name.startswith("Hdl")
 }
+KNOWN_NODES.update({
+    "dict": dict,
+    "list": list,
+    "tuple": tuple,
+    "str": str,
+})
+NON_INSTANCIABLE_NODES = {
+    HdlAll,
+    HdlOthers,
+    HdlTypeType,
+    HdlTypeSubtype,
+    HdlTypeAuto,
+}
 
 
 def _parse_hdlConvertor_json(j):
     # handle primitive types
     if j is None:
         return j
-    elif isinstance(j, (int, float)) or is_str(j):
+    elif isinstance(j, float):
         return j
+    elif is_str(j):
+        return HdlValueId(j)
+    elif isinstance(j, int):
+        return HdlValueInt(j, None, None)
     elif isinstance(j, list):
         return [_parse_hdlConvertor_json(_j) for _j in j]
 
@@ -25,6 +44,26 @@ def _parse_hdlConvertor_json(j):
     cls = j["__class__"]
     cls = KNOWN_NODES[cls]
     consumed = {"__class__", }
+    if cls in NON_INSTANCIABLE_NODES:
+        assert len(j) == 1
+        return cls
+
+    elif cls in (dict, list, tuple):
+        _items = j["items"]
+        items = [_parse_hdlConvertor_json(i) for i in _items]
+        if cls is dict:
+            return {k: v for k, v in items}
+        elif cls is tuple:
+            return tuple(items)
+        else:
+            return items
+
+    elif cls is str:
+        return j["val"]
+
+    elif cls is HdlValueInt:
+        return HdlValueInt(j["val"], j.get("bits", None), j.get("base", None))
+
     argc = cls.__init__.__code__.co_argcount
     if argc == 1:
         o = cls()
@@ -43,13 +82,13 @@ def _parse_hdlConvertor_json(j):
             consumed.add(a)
         o = cls(*argv)
 
-    if len(consumed) != len(j):
+    not_consumed = set(j.keys()).difference(consumed)
+    if not_consumed:
         # load rest of the properties which were not in __init__ params
-        for k, v in j.items():
-            if k in consumed:
-                continue
+        for k in not_consumed:
+            v = j[k]
             # there are few cases where object class is not specified specified
-            # explicitely we have to handle them first
+            # explicitly we have to handle them first
             if k == "position":
                 _v = CodePosition()
                 (
@@ -59,7 +98,10 @@ def _parse_hdlConvertor_json(j):
                     _v.stop_column
                 ) = v
             elif k == "direction":
-                _v = getattr(HdlDirection, v)
+                if v is None:
+                    _v = v
+                else:
+                    _v = getattr(HdlDirection, v)
             elif k == "join_t":
                 _v = getattr(HdlStmBlockJoinType, v)
             else:
@@ -71,7 +113,7 @@ def _parse_hdlConvertor_json(j):
 
 def parse_hdlConvertor_json(j):
     """
-    Convert loaded json (structure composed of list, dict, str, int, float, None)
+    Convert loaded JSON (structure composed of list, dict, str, int, float, None)
 
     :return: HdlContext
     """
@@ -97,5 +139,5 @@ def parse_hdlConvertor_json_file(file_name):
 if __name__ == "__main__":
     import os
     f_name = os.path.join(os.path.dirname(__file__), "..",
-                          "tests", "json", "dff_async_reset.json")
+                          "tests", "data", "dff_async_reset.Verilog.json")
     print(parse_hdlConvertor_json_file(f_name))
