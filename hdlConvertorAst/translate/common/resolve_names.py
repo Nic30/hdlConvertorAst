@@ -19,6 +19,7 @@ class ResolveNames(HdlAstVisitor):
         """
         super(ResolveNames, self).__init__()
         self.name_scope = name_scope
+        self.in_args = False
 
     def visit_HdlIdDef(self, o):
         """
@@ -57,11 +58,14 @@ class ResolveNames(HdlAstVisitor):
                 pm.fn == HdlOpType.MAP_ASSOCIATION, pm
             mod_port, connected_sig = pm.ops
             assert isinstance(mod_port, HdlValueId), mod_port
-            _, mod_port.obj = mod_name_scope.get_object_and_scope_by_name(
-                mod_port.val)
-            assert isinstance(connected_sig, HdlValueId), connected_sig
-            _, connected_sig.obj = self.name_scope.get_object_and_scope_by_name(
-                mod_port.val)
+            orig_name_scope = self.name_scope
+            try:
+                self.name_scope = mod_name_scope
+                self.visit_iHdlExpr(mod_port)
+            finally:
+                self.name_scope = orig_name_scope
+
+            self.visit_iHdlExpr(connected_sig)
 
     def visit_HdlCompInst(self, o):
         """
@@ -82,14 +86,43 @@ class ResolveNames(HdlAstVisitor):
         :type o: iHdlExpr
         """
         if isinstance(o, HdlOp):
-            for o2 in o.ops:
-                self.visit_iHdlExpr(o2)
+            if o.fn is HdlOpType.DOT:
+                # resolve only top id in id.id.id....
+                self.visit_iHdlExpr(o.ops[0])
+                assert isinstance(o.ops[1], HdlValueId), o.ops[1]
+
+            elif o.fn in (HdlOpType.CALL, HdlOpType.PARAMETRIZATION):
+                # mark argument list so we know that we should not search for
+                # keyword ids
+                orig_in_args = self.in_args
+                try:
+                    self.visit_iHdlExpr(o.ops[0])
+                    self.in_args = True
+                    for o2 in o.ops[1:]:
+                        self.visit_iHdlExpr(o2)
+                finally:
+                    self.in_args = orig_in_args
+
+            elif self.in_args and o.fn == HdlOpType.MAP_ASSOCIATION:
+                # function keyword args, do not search for argument object
+                assert isinstance(o.ops[0], HdlValueId), o.ops[0]
+                for o2 in o.ops[1:]:
+                    self.visit_iHdlExpr(o2)
+
+            else:
+                for o2 in o.ops:
+                    self.visit_iHdlExpr(o2)
+
         elif isinstance(o, HdlValueId):
             _, o.obj = self.name_scope.get_object_and_scope_by_name(o.val)
+
         elif o is None or o is HdlAll or isinstance(
                 o,  (HdlValueInt, float, str)):
             pass
-        else:
-            assert isinstance(o, list), o
+
+        elif isinstance(o, (list, tuple)):
             for o2 in o:
                 self.visit_iHdlExpr(o2)
+
+        else:
+            raise NotImplementedError(o)
