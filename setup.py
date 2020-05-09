@@ -35,6 +35,6 @@ setup(
     license="MIT",
     packages=[p for p in find_packages() if p != "tests"],
     test_suite='tests.all.suite',
-    install_require=deps,
+    install_requires=deps,
     test_require=deps,
 )
