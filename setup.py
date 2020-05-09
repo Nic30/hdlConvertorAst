@@ -31,5 +31,5 @@ setup(
     ],
     license="MIT",
     packages=[p for p in find_packages() if p != "tests"],
-    test_suite="tests.main_test_suite",
+    test_suite='tests.all.suite',
 )
