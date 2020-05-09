@@ -17,9 +17,11 @@ class NameOccupiedErr(Exception):
     object in current scope
     """
 
-    def __init__(self, usedOn):
+    def __init__(self, name, usedOn):
         super(NameOccupiedErr, self).__init__()
+        self.name = name
         self.usedOn = usedOn
+        self.args = (name, usedOn)
 
 
 class ObjectForNameNotFound(KeyError):
@@ -63,11 +65,7 @@ class NameScope(dict):
         """
         return cls(None, None, ignorecase)
 
-    def update(self, other):
-        for k, v in other.items():
-            self.register_name(k, v)
-
-    def __init__(self, parent, name, ignorecase):
+    def __init__(self, parent, name, ignorecase, debug=False):
         """
         :type parent: Optional[NameScope]
         :param name: name of object which this namescope belongs to
@@ -75,6 +73,9 @@ class NameScope(dict):
         :note: parent=None, name=None for global namescope
         :param ignorecase: if True the name comparison does not
             care about lowercase/uppercase
+        :param debug: If True name scopes are not required to have
+            forward declarations and for any object some name
+            is always resolved without raising definition errors
         """
         super(NameScope, self).__init__()
         self.parent = parent
@@ -88,6 +89,11 @@ class NameScope(dict):
         self.serializer_ctx = None
         self.children = {}
         self.name = name
+        self.debug = debug
+
+    def update(self, other):
+        for k, v in other.items():
+            self.register_name(k, v)
 
     # @internal
     def __incrPrefixCntr(self, prefix, currentVal):
@@ -127,7 +133,7 @@ class NameScope(dict):
             self[_name] = obj
             self.reversed[obj] = _name
         else:
-            raise NameOccupiedErr(o)
+            raise NameOccupiedErr(name, o)
 
     def get_child(self, name):
         assert is_str(name), name
@@ -145,8 +151,12 @@ class NameScope(dict):
             # there is already a child with such a name
             return i
 
-        assert name in self, (
-            name, "name not registered for any object in this scope")
+        if name not in self:
+            if self.debug:
+                self[name] = object()
+            else:
+                raise AssertionError(
+                    name, "name not registered for any object in this scope")
         i = self.__class__(self, name, self.ignorecase)
         self.children[name] = i
         return i
@@ -200,7 +210,8 @@ class NameScope(dict):
         """
         cntr_val = self.cntrsForPrefixNames.pop(prefix, -1)
         for c in self.children.values():
-            cntr_val = max(cntr_val, c.__discard_prefix_cntrs_from_children(prefix))
+            cntr_val = max(
+                cntr_val, c.__discard_prefix_cntrs_from_children(prefix))
         return cntr_val
 
     def get_object_and_scope_by_name(self, name):
