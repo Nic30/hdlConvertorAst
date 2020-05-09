@@ -1,4 +1,5 @@
 import keyword
+import sys
 
 SIMMODEL_KEYWORDS = keyword.kwlist + [
     # BasicRtlSimModel properties
@@ -29,3 +30,6 @@ SIMMODEL_KEYWORDS = keyword.kwlist + [
     'sim_eval_cond',
     'slice',
 ]
+
+if sys.version_info[0] <= 2:
+    SIMMODEL_KEYWORDS.append("None")

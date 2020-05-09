@@ -8,6 +8,7 @@ from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 from hdlConvertorAst.to.systemc.stm import ToSystemcStm
 from hdlConvertorAst.hdlAst._expr import HdlTypeType
 from hdlConvertorAst.to.verilog.utils import collect_array_dims
+from hdlConvertorAst.py_ver_compatibility import method_as_function
 
 
 DEFAULT_IMPORTS = """\
@@ -43,11 +44,12 @@ class ToSystemc(ToSystemcStm):
         w(DEFAULT_IMPORTS)
         w("\n")
 
+        split_HdlModuleDefObjs = method_as_function(ToBasicHdlSimModel.split_HdlModuleDefObjs)
         types, variables, processes, components = \
-            ToBasicHdlSimModel.split_HdlModuleDefObjs(self, mod_def.objs)
+            split_HdlModuleDefObjs(self, mod_def.objs)
 
         self.visit_doc(mod_dec)
-        ToBasicHdlSimModel.visit_component_imports(self, components)
+        method_as_function(ToBasicHdlSimModel.visit_component_imports)(self, components)
 
         w("SC_MODULE(")
         w(mod_dec.name)

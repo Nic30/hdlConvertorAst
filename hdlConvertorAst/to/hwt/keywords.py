@@ -1,4 +1,5 @@
 import keyword
+import sys
 
 
 HWT_KEYWORDS = keyword.kwlist + [
@@ -8,3 +9,6 @@ HWT_KEYWORDS = keyword.kwlist + [
     "HArray", "HArrayVal", "Bits", "INT", "SLICE",
     "HEnum", "SliceVal", "_",
 ]
+
+if sys.version_info[0] <= 2:
+    HWT_KEYWORDS.append("None")

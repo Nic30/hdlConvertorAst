@@ -8,3 +8,9 @@ if sys.version_info[0] <= 2:
 else:
     def is_str(x):
         return isinstance(x, str)
+
+
+def method_as_function(fn):
+    if sys.version_info[0] <= 2:
+        return fn.im_func
+    return fn

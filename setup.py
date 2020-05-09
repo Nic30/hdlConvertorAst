@@ -3,10 +3,13 @@
 
 import os
 from setuptools import find_packages, setup
+import sys
 
 this_directory = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_directory, "README.md")) as f:
     long_description = f.read()
+
+deps = ["typing", "future"] if sys.version_info[0] == 2 else None
 
 setup(
     name='hdlConvertorAst',
@@ -32,4 +35,6 @@ setup(
     license="MIT",
     packages=[p for p in find_packages() if p != "tests"],
     test_suite='tests.all.suite',
+    install_require=deps,
+    test_require=deps,
 )

@@ -1,11 +1,12 @@
 from hdlConvertorAst.hdlAst import HdlIdDef, iHdlExpr, HdlOp, HdlOpType,\
     HdlDirection, HdlValueId, HdlStmProcess, HdlCompInst, HdlModuleDec,\
     HdlEnumDef, HdlClassDef
-from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
-from hdlConvertorAst.to.hwt.stm import ToHwtStm
+from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
+from hdlConvertorAst.py_ver_compatibility import method_as_function
 from hdlConvertorAst.to.basic_hdl_sim_model._main import ToBasicHdlSimModel
 from hdlConvertorAst.to.common import ToHdlCommon
-from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
+from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
+from hdlConvertorAst.to.hwt.stm import ToHwtStm
 
 
 DEFAULT_IMPORTS = """\
@@ -88,10 +89,11 @@ class ToHwt(ToHwtStm):
             if self.module_path_prefix is None:
                 self.add_imports = False
 
+        split_HdlModuleDefObjs = method_as_function(ToBasicHdlSimModel.split_HdlModuleDefObjs)
         types, variables, processes, components = \
-            ToBasicHdlSimModel.split_HdlModuleDefObjs(self, mod_def.objs)
+            split_HdlModuleDefObjs(self, mod_def.objs)
 
-        ToBasicHdlSimModel.visit_component_imports(self, components)
+        method_as_function(ToBasicHdlSimModel.visit_component_imports)(self, components)
 
         w("class ")
         w(mod_dec.name)

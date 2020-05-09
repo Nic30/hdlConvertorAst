@@ -1,15 +1,16 @@
+from hdlConvertorAst.hdlAst._bases import iHdlStatement
 from hdlConvertorAst.hdlAst._defs import HdlIdDef
 from hdlConvertorAst.hdlAst._statements import HdlStmBlock
+from hdlConvertorAst.py_ver_compatibility import method_as_function
 from hdlConvertorAst.to.hdlUtils import Indent
 from hdlConvertorAst.to.systemc.expr import ToSystemcExpr
 from hdlConvertorAst.to.verilog.stm import ToVerilog2005Stm
-from hdlConvertorAst.hdlAst._bases import iHdlStatement
 
 
 class ToSystemcStm(ToSystemcExpr):
 
     def visit_iHdlStatement_in_statement(self, stm):
-        return ToVerilog2005Stm.visit_iHdlStatement_in_statement(self, stm)
+        return method_as_function(ToVerilog2005Stm.visit_iHdlStatement_in_statement)(self, stm)
 
     def visit_iHdlStatement(self, o):
         """
@@ -39,7 +40,7 @@ class ToSystemcStm(ToSystemcExpr):
         return False
 
     def visit_HdlStmIf(self, o):
-        return ToVerilog2005Stm.visit_HdlStmIf(self, o)
+        return method_as_function(ToVerilog2005Stm.visit_HdlStmIf)(self, o)
 
     def visit_HdlStmProcess(self, o):
         """
@@ -110,11 +111,11 @@ class ToSystemcStm(ToSystemcExpr):
         return False
 
     def visit_HdlStmReturn(self, o):
-        return ToVerilog2005Stm.visit_HdlStmReturn(self, o)
+        return method_as_function(ToVerilog2005Stm.visit_HdlStmReturn)(self, o)
 
     def visit_HdlStmContinue(self, o):
-        return ToVerilog2005Stm.visit_HdlStmContinue(self, o)
+        return method_as_function(ToVerilog2005Stm.visit_HdlStmContinue)(self, o)
 
     def visit_HdlStmBreak(self, o):
-        return ToVerilog2005Stm.visit_HdlStmBreak(self, o)
+        return method_as_function(ToVerilog2005Stm.visit_HdlStmBreak)(self, o)
 
