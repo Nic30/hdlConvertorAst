@@ -1,0 +1,1908 @@
+[
+ {
+  "__class__": "HdlLibrary",
+  "name": {
+   "__class__": "str",
+   "val": "IEEE"
+  }
+ },
+ {
+  "__class__": "HdlImport",
+  "path": {
+   "__class__": "list",
+   "items": [
+    "IEEE",
+    "std_logic_1164",
+    {
+     "__class__": "HdlAll"
+    }
+   ]
+  }
+ },
+ {
+  "__class__": "HdlImport",
+  "path": {
+   "__class__": "list",
+   "items": [
+    "IEEE",
+    "numeric_std",
+    {
+     "__class__": "HdlAll"
+    }
+   ]
+  }
+ },
+ {
+  "__class__": "HdlModuleDef",
+  "dec": {
+   "__class__": "HdlModuleDec",
+   "declaration_only": false,
+   "doc": {
+    "__class__": "str",
+    "val": "\n    True dual port RAM.\n    :note: write-first variant \n\n    .. hwt-schematic::\n    "
+   },
+   "name": {
+    "__class__": "str",
+    "val": "Ram_dp"
+   },
+   "objs": [],
+   "params": [
+    {
+     "__class__": "HdlIdDef",
+     "direction": null,
+     "name": {
+      "__class__": "str",
+      "val": "ADDR_WIDTH"
+     },
+     "type": "INTEGER",
+     "value": 8
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": null,
+     "name": {
+      "__class__": "str",
+      "val": "DATA_WIDTH"
+     },
+     "type": "INTEGER",
+     "value": 64
+    }
+   ],
+   "ports": [
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "a_addr"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         7,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "a_clk"
+     },
+     "type": "STD_LOGIC"
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "a_din"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         63,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "a_dout"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         63,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "a_en"
+     },
+     "type": "STD_LOGIC"
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "a_we"
+     },
+     "type": "STD_LOGIC"
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "b_addr"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         7,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "b_clk"
+     },
+     "type": "STD_LOGIC"
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "b_din"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         63,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "b_dout"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         63,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "b_en"
+     },
+     "type": "STD_LOGIC"
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "b_we"
+     },
+     "type": "STD_LOGIC"
+    }
+   ]
+  },
+  "module_name": "Ram_dp",
+  "name": {
+   "__class__": "str",
+   "val": "rtl"
+  },
+  "objs": [
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "arr_t_0"
+    },
+    "type": {
+     "__class__": "HdlTypeType"
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "INDEX",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "STD_LOGIC_VECTOR",
+        {
+         "__class__": "HdlOp",
+         "fn": "DOWNTO",
+         "ops": [
+          63,
+          0
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        255,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "ram_memory"
+    },
+    "type": "arr_t_0"
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmIf",
+     "cond": {
+      "__class__": "HdlOp",
+      "fn": "AND",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "RISING",
+        "ops": [
+         "a_clk"
+        ]
+       },
+       {
+        "__class__": "HdlOp",
+        "fn": "EQ",
+        "ops": [
+         "a_en",
+         {
+          "__class__": "HdlValueInt",
+          "base": 256,
+          "bits": 1,
+          "val": "1"
+         }
+        ]
+       }
+      ]
+     },
+     "elifs": [],
+     "if_true": {
+      "__class__": "HdlStmBlock",
+      "body": [
+       {
+        "__class__": "HdlStmIf",
+        "cond": {
+         "__class__": "HdlOp",
+         "fn": "EQ",
+         "ops": [
+          "a_we",
+          {
+           "__class__": "HdlValueInt",
+           "base": 256,
+           "bits": 1,
+           "val": "1"
+          }
+         ]
+        },
+        "elifs": [],
+        "if_true": {
+         "__class__": "HdlStmAssign",
+         "dst": {
+          "__class__": "HdlOp",
+          "fn": "INDEX",
+          "ops": [
+           "ram_memory",
+           {
+            "__class__": "HdlOp",
+            "fn": "CALL",
+            "ops": [
+             "TO_INTEGER",
+             {
+              "__class__": "HdlOp",
+              "fn": "CALL",
+              "ops": [
+               "UNSIGNED",
+               "a_addr"
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         "is_blocking": false,
+         "labels": [],
+         "src": "a_din"
+        },
+        "labels": []
+       },
+       {
+        "__class__": "HdlStmAssign",
+        "dst": "a_dout",
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "HdlOp",
+         "fn": "INDEX",
+         "ops": [
+          "ram_memory",
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            "TO_INTEGER",
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              "UNSIGNED",
+              "a_addr"
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       }
+      ],
+      "join_t": "SEQ",
+      "labels": []
+     },
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_a_dout"
+     }
+    ],
+    "sensitivity": [
+     "a_clk"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmIf",
+     "cond": {
+      "__class__": "HdlOp",
+      "fn": "AND",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "RISING",
+        "ops": [
+         "b_clk"
+        ]
+       },
+       {
+        "__class__": "HdlOp",
+        "fn": "EQ",
+        "ops": [
+         "b_en",
+         {
+          "__class__": "HdlValueInt",
+          "base": 256,
+          "bits": 1,
+          "val": "1"
+         }
+        ]
+       }
+      ]
+     },
+     "elifs": [],
+     "if_true": {
+      "__class__": "HdlStmBlock",
+      "body": [
+       {
+        "__class__": "HdlStmIf",
+        "cond": {
+         "__class__": "HdlOp",
+         "fn": "EQ",
+         "ops": [
+          "b_we",
+          {
+           "__class__": "HdlValueInt",
+           "base": 256,
+           "bits": 1,
+           "val": "1"
+          }
+         ]
+        },
+        "elifs": [],
+        "if_true": {
+         "__class__": "HdlStmAssign",
+         "dst": {
+          "__class__": "HdlOp",
+          "fn": "INDEX",
+          "ops": [
+           "ram_memory",
+           {
+            "__class__": "HdlOp",
+            "fn": "CALL",
+            "ops": [
+             "TO_INTEGER",
+             {
+              "__class__": "HdlOp",
+              "fn": "CALL",
+              "ops": [
+               "UNSIGNED",
+               "b_addr"
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         "is_blocking": false,
+         "labels": [],
+         "src": "b_din"
+        },
+        "labels": []
+       },
+       {
+        "__class__": "HdlStmAssign",
+        "dst": "b_dout",
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "HdlOp",
+         "fn": "INDEX",
+         "ops": [
+          "ram_memory",
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            "TO_INTEGER",
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              "UNSIGNED",
+              "b_addr"
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       }
+      ],
+      "join_t": "SEQ",
+      "labels": []
+     },
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_b_dout"
+     }
+    ],
+    "sensitivity": [
+     "b_clk"
+    ]
+   }
+  ]
+ },
+ {
+  "__class__": "HdlLibrary",
+  "name": {
+   "__class__": "str",
+   "val": "IEEE"
+  }
+ },
+ {
+  "__class__": "HdlImport",
+  "path": {
+   "__class__": "list",
+   "items": [
+    "IEEE",
+    "std_logic_1164",
+    {
+     "__class__": "HdlAll"
+    }
+   ]
+  }
+ },
+ {
+  "__class__": "HdlImport",
+  "path": {
+   "__class__": "list",
+   "items": [
+    "IEEE",
+    "numeric_std",
+    {
+     "__class__": "HdlAll"
+    }
+   ]
+  }
+ },
+ {
+  "__class__": "HdlModuleDef",
+  "dec": {
+   "__class__": "HdlModuleDec",
+   "declaration_only": false,
+   "doc": {
+    "__class__": "str",
+    "val": "\n    .. hwt-schematic::\n    "
+   },
+   "name": {
+    "__class__": "str",
+    "val": "GroupOfBlockrams"
+   },
+   "objs": [],
+   "params": [
+    {
+     "__class__": "HdlIdDef",
+     "direction": null,
+     "name": {
+      "__class__": "str",
+      "val": "ADDR_WIDTH"
+     },
+     "type": "INTEGER",
+     "value": 8
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": null,
+     "name": {
+      "__class__": "str",
+      "val": "DATA_WIDTH"
+     },
+     "type": "INTEGER",
+     "value": 64
+    }
+   ],
+   "ports": [
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "addr"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         7,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "clk"
+     },
+     "type": "STD_LOGIC"
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "en"
+     },
+     "type": "STD_LOGIC"
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "in_r_a"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         63,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "in_r_b"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         63,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "in_w_a"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         63,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "in_w_b"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         63,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "out_r_a"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         63,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "out_r_b"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         63,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "out_w_a"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         63,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "out_w_b"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "STD_LOGIC_VECTOR",
+       {
+        "__class__": "HdlOp",
+        "fn": "DOWNTO",
+        "ops": [
+         63,
+         0
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "we"
+     },
+     "type": "STD_LOGIC"
+    }
+   ]
+  },
+  "module_name": "GroupOfBlockrams",
+  "name": {
+   "__class__": "str",
+   "val": "rtl"
+  },
+  "objs": [
+   {
+    "__class__": "HdlModuleDec",
+    "declaration_only": false,
+    "doc": {
+     "__class__": "str",
+     "val": "\n    True dual port RAM.\n    :note: write-first variant \n\n    .. hwt-schematic::\n    "
+    },
+    "name": {
+     "__class__": "str",
+     "val": "Ram_dp"
+    },
+    "objs": [],
+    "params": [
+     {
+      "__class__": "HdlIdDef",
+      "direction": null,
+      "name": {
+       "__class__": "str",
+       "val": "ADDR_WIDTH"
+      },
+      "type": "INTEGER",
+      "value": 8
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": null,
+      "name": {
+       "__class__": "str",
+       "val": "DATA_WIDTH"
+      },
+      "type": "INTEGER",
+      "value": 64
+     }
+    ],
+    "ports": [
+     {
+      "__class__": "HdlIdDef",
+      "direction": "IN",
+      "name": {
+       "__class__": "str",
+       "val": "a_addr"
+      },
+      "type": {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "STD_LOGIC_VECTOR",
+        {
+         "__class__": "HdlOp",
+         "fn": "DOWNTO",
+         "ops": [
+          7,
+          0
+         ]
+        }
+       ]
+      }
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": "IN",
+      "name": {
+       "__class__": "str",
+       "val": "a_clk"
+      },
+      "type": "STD_LOGIC"
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": "IN",
+      "name": {
+       "__class__": "str",
+       "val": "a_din"
+      },
+      "type": {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "STD_LOGIC_VECTOR",
+        {
+         "__class__": "HdlOp",
+         "fn": "DOWNTO",
+         "ops": [
+          63,
+          0
+         ]
+        }
+       ]
+      }
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": "OUT",
+      "name": {
+       "__class__": "str",
+       "val": "a_dout"
+      },
+      "type": {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "STD_LOGIC_VECTOR",
+        {
+         "__class__": "HdlOp",
+         "fn": "DOWNTO",
+         "ops": [
+          63,
+          0
+         ]
+        }
+       ]
+      }
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": "IN",
+      "name": {
+       "__class__": "str",
+       "val": "a_en"
+      },
+      "type": "STD_LOGIC"
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": "IN",
+      "name": {
+       "__class__": "str",
+       "val": "a_we"
+      },
+      "type": "STD_LOGIC"
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": "IN",
+      "name": {
+       "__class__": "str",
+       "val": "b_addr"
+      },
+      "type": {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "STD_LOGIC_VECTOR",
+        {
+         "__class__": "HdlOp",
+         "fn": "DOWNTO",
+         "ops": [
+          7,
+          0
+         ]
+        }
+       ]
+      }
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": "IN",
+      "name": {
+       "__class__": "str",
+       "val": "b_clk"
+      },
+      "type": "STD_LOGIC"
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": "IN",
+      "name": {
+       "__class__": "str",
+       "val": "b_din"
+      },
+      "type": {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "STD_LOGIC_VECTOR",
+        {
+         "__class__": "HdlOp",
+         "fn": "DOWNTO",
+         "ops": [
+          63,
+          0
+         ]
+        }
+       ]
+      }
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": "OUT",
+      "name": {
+       "__class__": "str",
+       "val": "b_dout"
+      },
+      "type": {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "STD_LOGIC_VECTOR",
+        {
+         "__class__": "HdlOp",
+         "fn": "DOWNTO",
+         "ops": [
+          63,
+          0
+         ]
+        }
+       ]
+      }
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": "IN",
+      "name": {
+       "__class__": "str",
+       "val": "b_en"
+      },
+      "type": "STD_LOGIC"
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": "IN",
+      "name": {
+       "__class__": "str",
+       "val": "b_we"
+      },
+      "type": "STD_LOGIC"
+     }
+    ]
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramR_a_addr"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "STD_LOGIC_VECTOR",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        7,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramR_a_clk"
+    },
+    "type": "STD_LOGIC"
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramR_a_din"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "STD_LOGIC_VECTOR",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        63,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramR_a_dout"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "STD_LOGIC_VECTOR",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        63,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramR_a_en"
+    },
+    "type": "STD_LOGIC"
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramR_a_we"
+    },
+    "type": "STD_LOGIC"
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramR_b_addr"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "STD_LOGIC_VECTOR",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        7,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramR_b_clk"
+    },
+    "type": "STD_LOGIC"
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramR_b_din"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "STD_LOGIC_VECTOR",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        63,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramR_b_dout"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "STD_LOGIC_VECTOR",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        63,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramR_b_en"
+    },
+    "type": "STD_LOGIC"
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramR_b_we"
+    },
+    "type": "STD_LOGIC"
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramW_a_addr"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "STD_LOGIC_VECTOR",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        7,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramW_a_clk"
+    },
+    "type": "STD_LOGIC"
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramW_a_din"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "STD_LOGIC_VECTOR",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        63,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramW_a_dout"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "STD_LOGIC_VECTOR",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        63,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramW_a_en"
+    },
+    "type": "STD_LOGIC"
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramW_a_we"
+    },
+    "type": "STD_LOGIC"
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramW_b_addr"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "STD_LOGIC_VECTOR",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        7,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramW_b_clk"
+    },
+    "type": "STD_LOGIC"
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramW_b_din"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "STD_LOGIC_VECTOR",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        63,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramW_b_dout"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "STD_LOGIC_VECTOR",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOWNTO",
+       "ops": [
+        63,
+        0
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramW_b_en"
+    },
+    "type": "STD_LOGIC"
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "sig_bramW_b_we"
+    },
+    "type": "STD_LOGIC"
+   },
+   {
+    "__class__": "HdlCompInst",
+    "module_name": "Ram_dp",
+    "name": "bramR_inst",
+    "param_map": [
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "ADDR_WIDTH",
+       8
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "DATA_WIDTH",
+       64
+      ]
+     }
+    ],
+    "port_map": [
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "a_addr",
+       "sig_bramR_a_addr"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "a_clk",
+       "sig_bramR_a_clk"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "a_din",
+       "sig_bramR_a_din"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "a_dout",
+       "sig_bramR_a_dout"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "a_en",
+       "sig_bramR_a_en"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "a_we",
+       "sig_bramR_a_we"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "b_addr",
+       "sig_bramR_b_addr"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "b_clk",
+       "sig_bramR_b_clk"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "b_din",
+       "sig_bramR_b_din"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "b_dout",
+       "sig_bramR_b_dout"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "b_en",
+       "sig_bramR_b_en"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "b_we",
+       "sig_bramR_b_we"
+      ]
+     }
+    ]
+   },
+   {
+    "__class__": "HdlCompInst",
+    "module_name": "Ram_dp",
+    "name": "bramW_inst",
+    "param_map": [
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "ADDR_WIDTH",
+       8
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "DATA_WIDTH",
+       64
+      ]
+     }
+    ],
+    "port_map": [
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "a_addr",
+       "sig_bramW_a_addr"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "a_clk",
+       "sig_bramW_a_clk"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "a_din",
+       "sig_bramW_a_din"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "a_dout",
+       "sig_bramW_a_dout"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "a_en",
+       "sig_bramW_a_en"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "a_we",
+       "sig_bramW_a_we"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "b_addr",
+       "sig_bramW_b_addr"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "b_clk",
+       "sig_bramW_b_clk"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "b_din",
+       "sig_bramW_b_din"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "b_dout",
+       "sig_bramW_b_dout"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "b_en",
+       "sig_bramW_b_en"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "b_we",
+       "sig_bramW_b_we"
+      ]
+     }
+    ]
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "out_r_a",
+    "is_blocking": false,
+    "labels": [],
+    "src": "sig_bramR_a_dout"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "out_r_b",
+    "is_blocking": false,
+    "labels": [],
+    "src": "sig_bramR_b_dout"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "out_w_a",
+    "is_blocking": false,
+    "labels": [],
+    "src": "sig_bramW_a_dout"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "out_w_b",
+    "is_blocking": false,
+    "labels": [],
+    "src": "sig_bramW_b_dout"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramR_a_addr",
+    "is_blocking": false,
+    "labels": [],
+    "src": "addr"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramR_a_clk",
+    "is_blocking": false,
+    "labels": [],
+    "src": "clk"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramR_a_din",
+    "is_blocking": false,
+    "labels": [],
+    "src": "in_r_a"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramR_a_en",
+    "is_blocking": false,
+    "labels": [],
+    "src": "en"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramR_a_we",
+    "is_blocking": false,
+    "labels": [],
+    "src": "we"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramR_b_addr",
+    "is_blocking": false,
+    "labels": [],
+    "src": "addr"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramR_b_clk",
+    "is_blocking": false,
+    "labels": [],
+    "src": "clk"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramR_b_din",
+    "is_blocking": false,
+    "labels": [],
+    "src": "in_r_b"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramR_b_en",
+    "is_blocking": false,
+    "labels": [],
+    "src": "en"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramR_b_we",
+    "is_blocking": false,
+    "labels": [],
+    "src": "we"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramW_a_addr",
+    "is_blocking": false,
+    "labels": [],
+    "src": "addr"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramW_a_clk",
+    "is_blocking": false,
+    "labels": [],
+    "src": "clk"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramW_a_din",
+    "is_blocking": false,
+    "labels": [],
+    "src": "in_w_a"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramW_a_en",
+    "is_blocking": false,
+    "labels": [],
+    "src": "en"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramW_a_we",
+    "is_blocking": false,
+    "labels": [],
+    "src": "we"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramW_b_addr",
+    "is_blocking": false,
+    "labels": [],
+    "src": "addr"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramW_b_clk",
+    "is_blocking": false,
+    "labels": [],
+    "src": "clk"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramW_b_din",
+    "is_blocking": false,
+    "labels": [],
+    "src": "in_w_b"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramW_b_en",
+    "is_blocking": false,
+    "labels": [],
+    "src": "en"
+   },
+   {
+    "__class__": "HdlStmAssign",
+    "dst": "sig_bramW_b_we",
+    "is_blocking": false,
+    "labels": [],
+    "src": "we"
+   }
+  ]
+ }
+]

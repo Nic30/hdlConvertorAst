@@ -1,0 +1,5738 @@
+[
+ {
+  "__class__": "HdlModuleDef",
+  "dec": {
+   "__class__": "HdlModuleDec",
+   "declaration_only": false,
+   "doc": {
+    "__class__": "str",
+    "val": "\n    Every HW component class has to be derived from Unit class\n\n    .. hwt-schematic::\n    "
+   },
+   "name": {
+    "__class__": "str",
+    "val": "Showcase0"
+   },
+   "objs": [],
+   "params": [],
+   "ports": [
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "a"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       32,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "b"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       32,
+       1
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "c"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       32,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "clk"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "cmp_0"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "cmp_1"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "cmp_2"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "cmp_3"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "cmp_4"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "cmp_5"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "contOut"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       32,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "d"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       32,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "e"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "f"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "fitted"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       16,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "g"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       8,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "h"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       8,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "i"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       2,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "j"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       8,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "k"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       32,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "out"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "output"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "rst_n"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "sc_signal"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       "Bits3t",
+       8,
+       0
+      ]
+     }
+    }
+   ]
+  },
+  "module_name": "Showcase0",
+  "name": {
+   "__class__": "str",
+   "val": "rtl"
+  },
+  "objs": [
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "arr_t_0"
+    },
+    "type": {
+     "__class__": "HdlTypeType"
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "INDEX",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        8,
+        1
+       ]
+      },
+      4
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "arr_t_1"
+    },
+    "type": {
+     "__class__": "HdlTypeType"
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "INDEX",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        8,
+        0
+       ]
+      },
+      4
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_private_signal"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      32,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        32,
+        0
+       ]
+      },
+      123,
+      4294967295
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "fallingEdgeRam"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "DOT",
+     "ops": [
+      "self",
+      "arr_t_0"
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "r"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      1,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        1,
+        0
+       ]
+      },
+      0,
+      1
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "r_0"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      2,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        2,
+        0
+       ]
+      },
+      0,
+      3
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "r_1"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      2,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        2,
+        0
+       ]
+      },
+      0,
+      3
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "r_next"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      1,
+      0
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "r_next_0"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      2,
+      0
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "r_next_1"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      2,
+      0
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "name": {
+     "__class__": "str",
+     "val": "rom"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "DOT",
+     "ops": [
+      "self",
+      "arr_t_1"
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Array3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "self",
+        "arr_t_1"
+       ]
+      },
+      {
+       "__class__": "dict",
+       "items": [
+        [
+         0,
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           "Bits3val",
+           {
+            "__class__": "HdlOp",
+            "fn": "CALL",
+            "ops": [
+             "Bits3t",
+             8,
+             0
+            ]
+           },
+           0,
+           255
+          ]
+         }
+        ],
+        [
+         1,
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           "Bits3val",
+           {
+            "__class__": "HdlOp",
+            "fn": "CALL",
+            "ops": [
+             "Bits3t",
+             8,
+             0
+            ]
+           },
+           1,
+           255
+          ]
+         }
+        ],
+        [
+         2,
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           "Bits3val",
+           {
+            "__class__": "HdlOp",
+            "fn": "CALL",
+            "ops": [
+             "Bits3t",
+             8,
+             0
+            ]
+           },
+           2,
+           255
+          ]
+         }
+        ],
+        [
+         3,
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           "Bits3val",
+           {
+            "__class__": "HdlOp",
+            "fn": "CALL",
+            "ops": [
+             "Bits3t",
+             8,
+             0
+            ]
+           },
+           3,
+           255
+          ]
+         }
+        ]
+       ]
+      },
+      1
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_4_0"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      32,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        32,
+        0
+       ]
+      },
+      4,
+      4294967295
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_4_1"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      32,
+      1
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        32,
+        1
+       ]
+      },
+      4,
+      4294967295
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_0"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "DOT",
+     "ops": [
+      "self",
+      "arr_t_0"
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Array3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "self",
+        "arr_t_0"
+       ]
+      },
+      {
+       "__class__": "dict",
+       "items": []
+      },
+      0
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_0_0"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      32,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        32,
+        0
+       ]
+      },
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_1"
+    },
+    "type": "slice",
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "slice",
+      8,
+      0,
+      -1
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_0_1"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      24,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        24,
+        0
+       ]
+      },
+      0,
+      16777215
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_2"
+    },
+    "type": "slice",
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "slice",
+      16,
+      0,
+      -1
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_1_0"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      32,
+      1
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        32,
+        1
+       ]
+      },
+      1,
+      4294967295
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_0_2"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      32,
+      1
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        32,
+        1
+       ]
+      },
+      0,
+      4294967295
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_3"
+    },
+    "type": "slice",
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "slice",
+      6,
+      0,
+      -1
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_0_3"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      8,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        8,
+        0
+       ]
+      },
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_2_0"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      32,
+      1
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        32,
+        1
+       ]
+      },
+      2,
+      4294967295
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_1_1"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      1,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        1,
+        0
+       ]
+      },
+      1,
+      1
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_0_4"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      8,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        8,
+        0
+       ]
+      },
+      0,
+      255
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_1_2"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      8,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        8,
+        0
+       ]
+      },
+      1,
+      255
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_2_1"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      8,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        8,
+        0
+       ]
+      },
+      2,
+      255
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_0_5"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      1,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        1,
+        0
+       ]
+      },
+      0,
+      1
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_0_6"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      1,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        1,
+        0
+       ]
+      },
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_0_7"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      2,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        2,
+        0
+       ]
+      },
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_0_8"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      2,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        2,
+        0
+       ]
+      },
+      0,
+      3
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_1_3"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      32,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        32,
+        0
+       ]
+      },
+      1,
+      4294967295
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_2_2"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      32,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        32,
+        0
+       ]
+      },
+      2,
+      4294967295
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_3_0"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      32,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        32,
+        0
+       ]
+      },
+      3,
+      4294967295
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_3_1"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      8,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        8,
+        0
+       ]
+      },
+      3,
+      255
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "is_latched": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_4_2"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3t",
+      8,
+      0
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      "Bits3val",
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        "Bits3t",
+        8,
+        0
+       ]
+      },
+      4,
+      255
+     ]
+    }
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "c"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "ADD",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               "self",
+               "io"
+              ]
+             },
+             "a"
+            ]
+           },
+           "val"
+          ]
+         },
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "io"
+                  ]
+                 },
+                 "b"
+                ]
+               },
+               "val"
+              ]
+             },
+             "cast_sign"
+            ]
+           },
+           "True"
+          ]
+         }
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_c"
+     }
+    ],
+    "sensitivity": [
+     "a",
+     "b"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "cmp_0"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "LT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               "self",
+               "io"
+              ]
+             },
+             "a"
+            ]
+           },
+           "val"
+          ]
+         },
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "const_4_0"
+          ]
+         }
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_cmp_0"
+     }
+    ],
+    "sensitivity": [
+     "a"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "cmp_1"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "GT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               "self",
+               "io"
+              ]
+             },
+             "a"
+            ]
+           },
+           "val"
+          ]
+         },
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "const_4_0"
+          ]
+         }
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_cmp_1"
+     }
+    ],
+    "sensitivity": [
+     "a"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "cmp_2"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "LE",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               "self",
+               "io"
+              ]
+             },
+             "b"
+            ]
+           },
+           "val"
+          ]
+         },
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "const_4_1"
+          ]
+         }
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_cmp_2"
+     }
+    ],
+    "sensitivity": [
+     "b"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "cmp_3"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "GE",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               "self",
+               "io"
+              ]
+             },
+             "b"
+            ]
+           },
+           "val"
+          ]
+         },
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "const_4_1"
+          ]
+         }
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_cmp_3"
+     }
+    ],
+    "sensitivity": [
+     "b"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "cmp_4"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "NEQ",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               "self",
+               "io"
+              ]
+             },
+             "b"
+            ]
+           },
+           "val"
+          ]
+         },
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "const_4_1"
+          ]
+         }
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_cmp_4"
+     }
+    ],
+    "sensitivity": [
+     "b"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "cmp_5"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 "self",
+                 "io"
+                ]
+               },
+               "b"
+              ]
+             },
+             "val"
+            ]
+           },
+           "_eq"
+          ]
+         },
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "const_4_1"
+          ]
+         }
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_cmp_5"
+     }
+    ],
+    "sensitivity": [
+     "b"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "contOut"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         "self",
+         "const_private_signal"
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_contOut"
+     }
+    ],
+    "sensitivity": []
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "f"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             "self",
+             "io"
+            ]
+           },
+           "r"
+          ]
+         },
+         "val"
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_f"
+     }
+    ],
+    "sensitivity": [
+     "r"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmBlock",
+     "body": [
+      {
+       "__class__": "HdlStmAssign",
+       "dst": {
+        "__class__": "tuple",
+        "items": [
+         "c",
+         "cVld"
+        ]
+       },
+       "is_blocking": true,
+       "labels": [],
+       "src": {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         "sim_eval_cond",
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 "self",
+                 "io"
+                ]
+               },
+               "clk"
+              ]
+             },
+             "_onFallingEdge"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "__class__": "HdlStmIf",
+       "cond": {
+        "__class__": "HdlOp",
+        "fn": "NEG_LOG",
+        "ops": [
+         "cVld"
+        ]
+       },
+       "elifs": [
+        [
+         "c",
+         {
+          "__class__": "HdlStmBlock",
+          "body": [
+           {
+            "__class__": "HdlStmAssign",
+            "dst": {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  "self",
+                  "io"
+                 ]
+                },
+                "fallingEdgeRam"
+               ]
+              },
+              "val_next"
+             ]
+            },
+            "is_blocking": false,
+            "labels": [],
+            "src": {
+             "__class__": "tuple",
+             "items": [
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "INDEX",
+                   "ops": [
+                    {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      {
+                       "__class__": "HdlOp",
+                       "fn": "DOT",
+                       "ops": [
+                        {
+                         "__class__": "HdlOp",
+                         "fn": "DOT",
+                         "ops": [
+                          "self",
+                          "io"
+                         ]
+                        },
+                        "a"
+                       ]
+                      },
+                      "val"
+                     ]
+                    },
+                    {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      "self",
+                      "const_1"
+                     ]
+                    }
+                   ]
+                  },
+                  "cast_sign"
+                 ]
+                },
+                "False"
+               ]
+              },
+              {
+               "__class__": "list",
+               "items": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      "self",
+                      "io"
+                     ]
+                    },
+                    "r_1"
+                   ]
+                  },
+                  "val"
+                 ]
+                }
+               ]
+              },
+              1
+             ]
+            }
+           },
+           {
+            "__class__": "HdlStmAssign",
+            "dst": {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  "self",
+                  "io"
+                 ]
+                },
+                "k"
+               ]
+              },
+              "val_next"
+             ]
+            },
+            "is_blocking": false,
+            "labels": [],
+            "src": {
+             "__class__": "tuple",
+             "items": [
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    "self",
+                    "const_0_1"
+                   ]
+                  },
+                  "_concat"
+                 ]
+                },
+                {
+                 "__class__": "HdlOp",
+                 "fn": "CALL",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    {
+                     "__class__": "HdlOp",
+                     "fn": "INDEX",
+                     "ops": [
+                      {
+                       "__class__": "HdlOp",
+                       "fn": "DOT",
+                       "ops": [
+                        {
+                         "__class__": "HdlOp",
+                         "fn": "DOT",
+                         "ops": [
+                          {
+                           "__class__": "HdlOp",
+                           "fn": "DOT",
+                           "ops": [
+                            "self",
+                            "io"
+                           ]
+                          },
+                          "fallingEdgeRam"
+                         ]
+                        },
+                        "val"
+                       ]
+                      },
+                      {
+                       "__class__": "HdlOp",
+                       "fn": "DOT",
+                       "ops": [
+                        {
+                         "__class__": "HdlOp",
+                         "fn": "DOT",
+                         "ops": [
+                          {
+                           "__class__": "HdlOp",
+                           "fn": "DOT",
+                           "ops": [
+                            "self",
+                            "io"
+                           ]
+                          },
+                          "r_1"
+                         ]
+                        },
+                        "val"
+                       ]
+                      }
+                     ]
+                    },
+                    "cast_sign"
+                   ]
+                  },
+                  "True"
+                 ]
+                }
+               ]
+              },
+              1
+             ]
+            }
+           }
+          ],
+          "join_t": "SEQ",
+          "labels": []
+         }
+        ]
+       ],
+       "if_true": {
+        "__class__": "HdlStmBlock",
+        "body": [
+         {
+          "__class__": "HdlStmAssign",
+          "dst": {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "self",
+                "io"
+               ]
+              },
+              "fallingEdgeRam"
+             ]
+            },
+            "val_next"
+           ]
+          },
+          "is_blocking": false,
+          "labels": [],
+          "src": {
+           "__class__": "tuple",
+           "items": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "self",
+              "const_0"
+             ]
+            },
+            1
+           ]
+          }
+         },
+         {
+          "__class__": "HdlStmAssign",
+          "dst": {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "self",
+                "io"
+               ]
+              },
+              "k"
+             ]
+            },
+            "val_next"
+           ]
+          },
+          "is_blocking": false,
+          "labels": [],
+          "src": {
+           "__class__": "tuple",
+           "items": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "self",
+              "const_0_0"
+             ]
+            },
+            1
+           ]
+          }
+         }
+        ],
+        "join_t": "SEQ",
+        "labels": []
+       },
+       "labels": []
+      }
+     ],
+     "join_t": "SEQ",
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_fallingEdgeRam"
+     }
+    ],
+    "sensitivity": [
+     {
+      "__class__": "HdlOp",
+      "fn": "FALLING",
+      "ops": [
+       "clk"
+      ]
+     }
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "fitted"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "INDEX",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               "self",
+               "io"
+              ]
+             },
+             "a"
+            ]
+           },
+           "val"
+          ]
+         },
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "const_2"
+          ]
+         }
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_fitted"
+     }
+    ],
+    "sensitivity": [
+     "a"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "g"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "CALL",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "AND",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "INDEX",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         "self",
+                         "io"
+                        ]
+                       },
+                       "a"
+                      ]
+                     },
+                     "val"
+                    ]
+                   },
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "const_1_0"
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "INDEX",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         "self",
+                         "io"
+                        ]
+                       },
+                       "b"
+                      ]
+                     },
+                     "val"
+                    ]
+                   },
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "const_1_0"
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               },
+               "_concat"
+              ]
+             },
+             {
+              "__class__": "HdlOp",
+              "fn": "OR",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "XOR",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "INDEX",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         "self",
+                         "io"
+                        ]
+                       },
+                       "a"
+                      ]
+                     },
+                     "val"
+                    ]
+                   },
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "const_0_2"
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "INDEX",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         "self",
+                         "io"
+                        ]
+                       },
+                       "b"
+                      ]
+                     },
+                     "val"
+                    ]
+                   },
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "const_0_2"
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               },
+               {
+                "__class__": "HdlOp",
+                "fn": "INDEX",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       "self",
+                       "io"
+                      ]
+                     },
+                     "a"
+                    ]
+                   },
+                   "val"
+                  ]
+                 },
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "const_1_0"
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           "_concat"
+          ]
+         },
+         {
+          "__class__": "HdlOp",
+          "fn": "INDEX",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 "self",
+                 "io"
+                ]
+               },
+               "a"
+              ]
+             },
+             "val"
+            ]
+           },
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             "self",
+             "const_3"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_g"
+     }
+    ],
+    "sensitivity": [
+     "a",
+     "b"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmBlock",
+     "body": [
+      {
+       "__class__": "HdlStmAssign",
+       "dst": {
+        "__class__": "tuple",
+        "items": [
+         "c",
+         "cVld"
+        ]
+       },
+       "is_blocking": true,
+       "labels": [],
+       "src": {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         "sim_eval_cond",
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "INDEX",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "io"
+                    ]
+                   },
+                   "a"
+                  ]
+                 },
+                 "val"
+                ]
+               },
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 "self",
+                 "const_2_0"
+                ]
+               }
+              ]
+             },
+             "_eq"
+            ]
+           },
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             "self",
+             "const_1_1"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "__class__": "HdlStmIf",
+       "cond": {
+        "__class__": "HdlOp",
+        "fn": "NEG_LOG",
+        "ops": [
+         "cVld"
+        ]
+       },
+       "elifs": [
+        [
+         "c",
+         {
+          "__class__": "HdlStmBlock",
+          "body": [
+           {
+            "__class__": "HdlStmAssign",
+            "dst": {
+             "__class__": "tuple",
+             "items": [
+              "c",
+              "cVld"
+             ]
+            },
+            "is_blocking": true,
+            "labels": [],
+            "src": {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              "sim_eval_cond",
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      {
+                       "__class__": "HdlOp",
+                       "fn": "DOT",
+                       "ops": [
+                        "self",
+                        "io"
+                       ]
+                      },
+                      "r"
+                     ]
+                    },
+                    "val"
+                   ]
+                  },
+                  "_eq"
+                 ]
+                },
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  "self",
+                  "const_1_1"
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           },
+           {
+            "__class__": "HdlStmIf",
+            "cond": {
+             "__class__": "HdlOp",
+             "fn": "NEG_LOG",
+             "ops": [
+              "cVld"
+             ]
+            },
+            "elifs": [
+             [
+              "c",
+              {
+               "__class__": "HdlStmAssign",
+               "dst": {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "io"
+                    ]
+                   },
+                   "h"
+                  ]
+                 },
+                 "val_next"
+                ]
+               },
+               "is_blocking": false,
+               "labels": [],
+               "src": {
+                "__class__": "tuple",
+                "items": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "const_0_4"
+                  ]
+                 },
+                 0
+                ]
+               }
+              }
+             ]
+            ],
+            "if_false": {
+             "__class__": "HdlStmBlock",
+             "body": [
+              {
+               "__class__": "HdlStmAssign",
+               "dst": {
+                "__class__": "tuple",
+                "items": [
+                 "c",
+                 "cVld"
+                ]
+               },
+               "is_blocking": true,
+               "labels": [],
+               "src": {
+                "__class__": "HdlOp",
+                "fn": "CALL",
+                "ops": [
+                 "sim_eval_cond",
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "CALL",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "INDEX",
+                      "ops": [
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         {
+                          "__class__": "HdlOp",
+                          "fn": "DOT",
+                          "ops": [
+                           {
+                            "__class__": "HdlOp",
+                            "fn": "DOT",
+                            "ops": [
+                             "self",
+                             "io"
+                            ]
+                           },
+                           "a"
+                          ]
+                         },
+                         "val"
+                        ]
+                       },
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         "self",
+                         "const_1_0"
+                        ]
+                       }
+                      ]
+                     },
+                     "_eq"
+                    ]
+                   },
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "const_1_1"
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               }
+              },
+              {
+               "__class__": "HdlStmIf",
+               "cond": {
+                "__class__": "HdlOp",
+                "fn": "NEG_LOG",
+                "ops": [
+                 "cVld"
+                ]
+               },
+               "elifs": [
+                [
+                 "c",
+                 {
+                  "__class__": "HdlStmAssign",
+                  "dst": {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      {
+                       "__class__": "HdlOp",
+                       "fn": "DOT",
+                       "ops": [
+                        "self",
+                        "io"
+                       ]
+                      },
+                      "h"
+                     ]
+                    },
+                    "val_next"
+                   ]
+                  },
+                  "is_blocking": false,
+                  "labels": [],
+                  "src": {
+                   "__class__": "tuple",
+                   "items": [
+                    {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      "self",
+                      "const_1_2"
+                     ]
+                    },
+                    0
+                   ]
+                  }
+                 }
+                ]
+               ],
+               "if_false": {
+                "__class__": "HdlStmAssign",
+                "dst": {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      "self",
+                      "io"
+                     ]
+                    },
+                    "h"
+                   ]
+                  },
+                  "val_next"
+                 ]
+                },
+                "is_blocking": false,
+                "labels": [],
+                "src": {
+                 "__class__": "tuple",
+                 "items": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    "self",
+                    "const_2_1"
+                   ]
+                  },
+                  0
+                 ]
+                }
+               },
+               "if_true": {
+                "__class__": "HdlStmAssign",
+                "dst": {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      "self",
+                      "io"
+                     ]
+                    },
+                    "h"
+                   ]
+                  },
+                  "val_next"
+                 ]
+                },
+                "is_blocking": false,
+                "labels": [],
+                "src": {
+                 "__class__": "tuple",
+                 "items": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    "self",
+                    "const_0_3"
+                   ]
+                  },
+                  0
+                 ]
+                }
+               },
+               "labels": []
+              }
+             ],
+             "join_t": "SEQ",
+             "labels": []
+            },
+            "if_true": {
+             "__class__": "HdlStmAssign",
+             "dst": {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "io"
+                  ]
+                 },
+                 "h"
+                ]
+               },
+               "val_next"
+              ]
+             },
+             "is_blocking": false,
+             "labels": [],
+             "src": {
+              "__class__": "tuple",
+              "items": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 "self",
+                 "const_0_3"
+                ]
+               },
+               0
+              ]
+             }
+            },
+            "labels": []
+           }
+          ],
+          "join_t": "SEQ",
+          "labels": []
+         }
+        ]
+       ],
+       "if_true": {
+        "__class__": "HdlStmAssign",
+        "dst": {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "self",
+              "io"
+             ]
+            },
+            "h"
+           ]
+          },
+          "val_next"
+         ]
+        },
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "tuple",
+         "items": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "self",
+            "const_0_3"
+           ]
+          },
+          0
+         ]
+        }
+       },
+       "labels": []
+      }
+     ],
+     "join_t": "SEQ",
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_h"
+     }
+    ],
+    "sensitivity": [
+     "a",
+     "r"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmBlock",
+     "body": [
+      {
+       "__class__": "HdlStmAssign",
+       "dst": {
+        "__class__": "tuple",
+        "items": [
+         "c",
+         "cVld"
+        ]
+       },
+       "is_blocking": true,
+       "labels": [],
+       "src": {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         "sim_eval_cond",
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 "self",
+                 "io"
+                ]
+               },
+               "clk"
+              ]
+             },
+             "_onRisingEdge"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "__class__": "HdlStmIf",
+       "cond": {
+        "__class__": "HdlOp",
+        "fn": "NEG_LOG",
+        "ops": [
+         "cVld"
+        ]
+       },
+       "elifs": [
+        [
+         "c",
+         {
+          "__class__": "HdlStmAssign",
+          "dst": {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "self",
+                "io"
+               ]
+              },
+              "j"
+             ]
+            },
+            "val_next"
+           ]
+          },
+          "is_blocking": false,
+          "labels": [],
+          "src": {
+           "__class__": "tuple",
+           "items": [
+            {
+             "__class__": "HdlOp",
+             "fn": "INDEX",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "self",
+                "rom"
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    "self",
+                    "io"
+                   ]
+                  },
+                  "r_1"
+                 ]
+                },
+                "val"
+               ]
+              }
+             ]
+            },
+            1
+           ]
+          }
+         }
+        ]
+       ],
+       "if_true": {
+        "__class__": "HdlStmAssign",
+        "dst": {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "self",
+              "io"
+             ]
+            },
+            "j"
+           ]
+          },
+          "val_next"
+         ]
+        },
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "tuple",
+         "items": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "self",
+            "const_0_3"
+           ]
+          },
+          1
+         ]
+        }
+       },
+       "labels": []
+      }
+     ],
+     "join_t": "SEQ",
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_j"
+     }
+    ],
+    "sensitivity": [
+     {
+      "__class__": "HdlOp",
+      "fn": "RISING",
+      "ops": [
+       "clk"
+      ]
+     }
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "out"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         "self",
+         "const_0_5"
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_out"
+     }
+    ],
+    "sensitivity": []
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "output"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         "self",
+         "const_0_6"
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_output"
+     }
+    ],
+    "sensitivity": []
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmBlock",
+     "body": [
+      {
+       "__class__": "HdlStmAssign",
+       "dst": {
+        "__class__": "tuple",
+        "items": [
+         "c",
+         "cVld"
+        ]
+       },
+       "is_blocking": true,
+       "labels": [],
+       "src": {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         "sim_eval_cond",
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 "self",
+                 "io"
+                ]
+               },
+               "clk"
+              ]
+             },
+             "_onRisingEdge"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "__class__": "HdlStmIf",
+       "cond": {
+        "__class__": "HdlOp",
+        "fn": "NEG_LOG",
+        "ops": [
+         "cVld"
+        ]
+       },
+       "elifs": [
+        [
+         "c",
+         {
+          "__class__": "HdlStmBlock",
+          "body": [
+           {
+            "__class__": "HdlStmAssign",
+            "dst": {
+             "__class__": "tuple",
+             "items": [
+              "c",
+              "cVld"
+             ]
+            },
+            "is_blocking": true,
+            "labels": [],
+            "src": {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              "sim_eval_cond",
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      {
+                       "__class__": "HdlOp",
+                       "fn": "DOT",
+                       "ops": [
+                        "self",
+                        "io"
+                       ]
+                      },
+                      "rst_n"
+                     ]
+                    },
+                    "val"
+                   ]
+                  },
+                  "_eq"
+                 ]
+                },
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  "self",
+                  "const_0_5"
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           },
+           {
+            "__class__": "HdlStmIf",
+            "cond": {
+             "__class__": "HdlOp",
+             "fn": "NEG_LOG",
+             "ops": [
+              "cVld"
+             ]
+            },
+            "elifs": [
+             [
+              "c",
+              {
+               "__class__": "HdlStmBlock",
+               "body": [
+                {
+                 "__class__": "HdlStmAssign",
+                 "dst": {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       "self",
+                       "io"
+                      ]
+                     },
+                     "r_1"
+                    ]
+                   },
+                   "val_next"
+                  ]
+                 },
+                 "is_blocking": false,
+                 "labels": [],
+                 "src": {
+                  "__class__": "tuple",
+                  "items": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "const_0_8"
+                    ]
+                   },
+                   1
+                  ]
+                 }
+                },
+                {
+                 "__class__": "HdlStmAssign",
+                 "dst": {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       "self",
+                       "io"
+                      ]
+                     },
+                     "r_0"
+                    ]
+                   },
+                   "val_next"
+                  ]
+                 },
+                 "is_blocking": false,
+                 "labels": [],
+                 "src": {
+                  "__class__": "tuple",
+                  "items": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "const_0_8"
+                    ]
+                   },
+                   1
+                  ]
+                 }
+                },
+                {
+                 "__class__": "HdlStmAssign",
+                 "dst": {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       "self",
+                       "io"
+                      ]
+                     },
+                     "r"
+                    ]
+                   },
+                   "val_next"
+                  ]
+                 },
+                 "is_blocking": false,
+                 "labels": [],
+                 "src": {
+                  "__class__": "tuple",
+                  "items": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "const_0_5"
+                    ]
+                   },
+                   1
+                  ]
+                 }
+                }
+               ],
+               "join_t": "SEQ",
+               "labels": []
+              }
+             ]
+            ],
+            "if_false": {
+             "__class__": "HdlStmBlock",
+             "body": [
+              {
+               "__class__": "HdlStmAssign",
+               "dst": {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "io"
+                    ]
+                   },
+                   "r_1"
+                  ]
+                 },
+                 "val_next"
+                ]
+               },
+               "is_blocking": false,
+               "labels": [],
+               "src": {
+                "__class__": "tuple",
+                "items": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       "self",
+                       "io"
+                      ]
+                     },
+                     "r_next_1"
+                    ]
+                   },
+                   "val"
+                  ]
+                 },
+                 1
+                ]
+               }
+              },
+              {
+               "__class__": "HdlStmAssign",
+               "dst": {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "io"
+                    ]
+                   },
+                   "r_0"
+                  ]
+                 },
+                 "val_next"
+                ]
+               },
+               "is_blocking": false,
+               "labels": [],
+               "src": {
+                "__class__": "tuple",
+                "items": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       "self",
+                       "io"
+                      ]
+                     },
+                     "r_next_0"
+                    ]
+                   },
+                   "val"
+                  ]
+                 },
+                 1
+                ]
+               }
+              },
+              {
+               "__class__": "HdlStmAssign",
+               "dst": {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "io"
+                    ]
+                   },
+                   "r"
+                  ]
+                 },
+                 "val_next"
+                ]
+               },
+               "is_blocking": false,
+               "labels": [],
+               "src": {
+                "__class__": "tuple",
+                "items": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       "self",
+                       "io"
+                      ]
+                     },
+                     "r_next"
+                    ]
+                   },
+                   "val"
+                  ]
+                 },
+                 1
+                ]
+               }
+              }
+             ],
+             "join_t": "SEQ",
+             "labels": []
+            },
+            "if_true": {
+             "__class__": "HdlStmBlock",
+             "body": [
+              {
+               "__class__": "HdlStmAssign",
+               "dst": {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "io"
+                    ]
+                   },
+                   "r_1"
+                  ]
+                 },
+                 "val_next"
+                ]
+               },
+               "is_blocking": false,
+               "labels": [],
+               "src": {
+                "__class__": "tuple",
+                "items": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "const_0_7"
+                  ]
+                 },
+                 1
+                ]
+               }
+              },
+              {
+               "__class__": "HdlStmAssign",
+               "dst": {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "io"
+                    ]
+                   },
+                   "r_0"
+                  ]
+                 },
+                 "val_next"
+                ]
+               },
+               "is_blocking": false,
+               "labels": [],
+               "src": {
+                "__class__": "tuple",
+                "items": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "const_0_7"
+                  ]
+                 },
+                 1
+                ]
+               }
+              },
+              {
+               "__class__": "HdlStmAssign",
+               "dst": {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "io"
+                    ]
+                   },
+                   "r"
+                  ]
+                 },
+                 "val_next"
+                ]
+               },
+               "is_blocking": false,
+               "labels": [],
+               "src": {
+                "__class__": "tuple",
+                "items": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "const_0_6"
+                  ]
+                 },
+                 1
+                ]
+               }
+              }
+             ],
+             "join_t": "SEQ",
+             "labels": []
+            },
+            "labels": []
+           }
+          ],
+          "join_t": "SEQ",
+          "labels": []
+         }
+        ]
+       ],
+       "if_true": {
+        "__class__": "HdlStmBlock",
+        "body": [
+         {
+          "__class__": "HdlStmAssign",
+          "dst": {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "self",
+                "io"
+               ]
+              },
+              "r_1"
+             ]
+            },
+            "val_next"
+           ]
+          },
+          "is_blocking": false,
+          "labels": [],
+          "src": {
+           "__class__": "tuple",
+           "items": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "self",
+              "const_0_7"
+             ]
+            },
+            1
+           ]
+          }
+         },
+         {
+          "__class__": "HdlStmAssign",
+          "dst": {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "self",
+                "io"
+               ]
+              },
+              "r_0"
+             ]
+            },
+            "val_next"
+           ]
+          },
+          "is_blocking": false,
+          "labels": [],
+          "src": {
+           "__class__": "tuple",
+           "items": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "self",
+              "const_0_7"
+             ]
+            },
+            1
+           ]
+          }
+         },
+         {
+          "__class__": "HdlStmAssign",
+          "dst": {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "self",
+                "io"
+               ]
+              },
+              "r"
+             ]
+            },
+            "val_next"
+           ]
+          },
+          "is_blocking": false,
+          "labels": [],
+          "src": {
+           "__class__": "tuple",
+           "items": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "self",
+              "const_0_6"
+             ]
+            },
+            1
+           ]
+          }
+         }
+        ],
+        "join_t": "SEQ",
+        "labels": []
+       },
+       "labels": []
+      }
+     ],
+     "join_t": "SEQ",
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_r"
+     }
+    ],
+    "sensitivity": [
+     {
+      "__class__": "HdlOp",
+      "fn": "RISING",
+      "ops": [
+       "clk"
+      ]
+     }
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "r_next_0"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             "self",
+             "io"
+            ]
+           },
+           "i"
+          ]
+         },
+         "val"
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_r_next"
+     }
+    ],
+    "sensitivity": [
+     "i"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": {
+      "__class__": "HdlOp",
+      "fn": "DOT",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "self",
+           "io"
+          ]
+         },
+         "r_next_1"
+        ]
+       },
+       "val_next"
+      ]
+     },
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "tuple",
+      "items": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             "self",
+             "io"
+            ]
+           },
+           "r_0"
+          ]
+         },
+         "val"
+        ]
+       },
+       0
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_r_next_0"
+     }
+    ],
+    "sensitivity": [
+     "r_0"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmBlock",
+     "body": [
+      {
+       "__class__": "HdlStmAssign",
+       "dst": {
+        "__class__": "tuple",
+        "items": [
+         "c",
+         "cVld"
+        ]
+       },
+       "is_blocking": true,
+       "labels": [],
+       "src": {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         "sim_eval_cond",
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "NEG",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "io"
+                    ]
+                   },
+                   "r"
+                  ]
+                 },
+                 "val"
+                ]
+               }
+              ]
+             },
+             "_eq"
+            ]
+           },
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             "self",
+             "const_1_1"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "__class__": "HdlStmIf",
+       "cond": {
+        "__class__": "HdlOp",
+        "fn": "NEG_LOG",
+        "ops": [
+         "cVld"
+        ]
+       },
+       "elifs": [
+        [
+         "c",
+         {
+          "__class__": "HdlStmAssign",
+          "dst": {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "self",
+                "io"
+               ]
+              },
+              "r_next"
+             ]
+            },
+            "val_next"
+           ]
+          },
+          "is_blocking": false,
+          "labels": [],
+          "src": {
+           "__class__": "tuple",
+           "items": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  "self",
+                  "io"
+                 ]
+                },
+                "e"
+               ]
+              },
+              "val"
+             ]
+            },
+            0
+           ]
+          }
+         }
+        ]
+       ],
+       "if_false": {
+        "__class__": "HdlStmAssign",
+        "dst": {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "self",
+              "io"
+             ]
+            },
+            "r_next"
+           ]
+          },
+          "val_next"
+         ]
+        },
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "tuple",
+         "items": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "self",
+                "io"
+               ]
+              },
+              "r"
+             ]
+            },
+            "val"
+           ]
+          },
+          0
+         ]
+        }
+       },
+       "if_true": {
+        "__class__": "HdlStmAssign",
+        "dst": {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "self",
+              "io"
+             ]
+            },
+            "r_next"
+           ]
+          },
+          "val_next"
+         ]
+        },
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "tuple",
+         "items": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "self",
+            "const_0_6"
+           ]
+          },
+          0
+         ]
+        }
+       },
+       "labels": []
+      }
+     ],
+     "join_t": "SEQ",
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_r_next_1"
+     }
+    ],
+    "sensitivity": [
+     "e",
+     "r"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmBlock",
+     "body": [
+      {
+       "__class__": "HdlStmAssign",
+       "dst": {
+        "__class__": "tuple",
+        "items": [
+         "c",
+         "cVld"
+        ]
+       },
+       "is_blocking": true,
+       "labels": [],
+       "src": {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         "sim_eval_cond",
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "io"
+                  ]
+                 },
+                 "a"
+                ]
+               },
+               "val"
+              ]
+             },
+             "_eq"
+            ]
+           },
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             "self",
+             "const_1_3"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "__class__": "HdlStmIf",
+       "cond": {
+        "__class__": "HdlOp",
+        "fn": "NEG_LOG",
+        "ops": [
+         "cVld"
+        ]
+       },
+       "elifs": [
+        [
+         "c",
+         {
+          "__class__": "HdlStmAssign",
+          "dst": {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "self",
+                "io"
+               ]
+              },
+              "sc_signal"
+             ]
+            },
+            "val_next"
+           ]
+          },
+          "is_blocking": false,
+          "labels": [],
+          "src": {
+           "__class__": "tuple",
+           "items": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "self",
+              "const_0_4"
+             ]
+            },
+            0
+           ]
+          }
+         }
+        ]
+       ],
+       "if_false": {
+        "__class__": "HdlStmBlock",
+        "body": [
+         {
+          "__class__": "HdlStmAssign",
+          "dst": {
+           "__class__": "tuple",
+           "items": [
+            "c",
+            "cVld"
+           ]
+          },
+          "is_blocking": true,
+          "labels": [],
+          "src": {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            "sim_eval_cond",
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      "self",
+                      "io"
+                     ]
+                    },
+                    "a"
+                   ]
+                  },
+                  "val"
+                 ]
+                },
+                "_eq"
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "self",
+                "const_2_2"
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         },
+         {
+          "__class__": "HdlStmIf",
+          "cond": {
+           "__class__": "HdlOp",
+           "fn": "NEG_LOG",
+           "ops": [
+            "cVld"
+           ]
+          },
+          "elifs": [
+           [
+            "c",
+            {
+             "__class__": "HdlStmAssign",
+             "dst": {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "io"
+                  ]
+                 },
+                 "sc_signal"
+                ]
+               },
+               "val_next"
+              ]
+             },
+             "is_blocking": false,
+             "labels": [],
+             "src": {
+              "__class__": "tuple",
+              "items": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 "self",
+                 "const_1_2"
+                ]
+               },
+               0
+              ]
+             }
+            }
+           ]
+          ],
+          "if_false": {
+           "__class__": "HdlStmBlock",
+           "body": [
+            {
+             "__class__": "HdlStmAssign",
+             "dst": {
+              "__class__": "tuple",
+              "items": [
+               "c",
+               "cVld"
+              ]
+             },
+             "is_blocking": true,
+             "labels": [],
+             "src": {
+              "__class__": "HdlOp",
+              "fn": "CALL",
+              "ops": [
+               "sim_eval_cond",
+               {
+                "__class__": "HdlOp",
+                "fn": "CALL",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         "self",
+                         "io"
+                        ]
+                       },
+                       "a"
+                      ]
+                     },
+                     "val"
+                    ]
+                   },
+                   "_eq"
+                  ]
+                 },
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "const_3_0"
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            },
+            {
+             "__class__": "HdlStmIf",
+             "cond": {
+              "__class__": "HdlOp",
+              "fn": "NEG_LOG",
+              "ops": [
+               "cVld"
+              ]
+             },
+             "elifs": [
+              [
+               "c",
+               {
+                "__class__": "HdlStmAssign",
+                "dst": {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      "self",
+                      "io"
+                     ]
+                    },
+                    "sc_signal"
+                   ]
+                  },
+                  "val_next"
+                 ]
+                },
+                "is_blocking": false,
+                "labels": [],
+                "src": {
+                 "__class__": "tuple",
+                 "items": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    "self",
+                    "const_3_1"
+                   ]
+                  },
+                  0
+                 ]
+                }
+               }
+              ]
+             ],
+             "if_false": {
+              "__class__": "HdlStmAssign",
+              "dst": {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    "self",
+                    "io"
+                   ]
+                  },
+                  "sc_signal"
+                 ]
+                },
+                "val_next"
+               ]
+              },
+              "is_blocking": false,
+              "labels": [],
+              "src": {
+               "__class__": "tuple",
+               "items": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  "self",
+                  "const_4_2"
+                 ]
+                },
+                0
+               ]
+              }
+             },
+             "if_true": {
+              "__class__": "HdlStmAssign",
+              "dst": {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    "self",
+                    "io"
+                   ]
+                  },
+                  "sc_signal"
+                 ]
+                },
+                "val_next"
+               ]
+              },
+              "is_blocking": false,
+              "labels": [],
+              "src": {
+               "__class__": "tuple",
+               "items": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  "self",
+                  "const_0_3"
+                 ]
+                },
+                0
+               ]
+              }
+             },
+             "labels": []
+            }
+           ],
+           "join_t": "SEQ",
+           "labels": []
+          },
+          "if_true": {
+           "__class__": "HdlStmAssign",
+           "dst": {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 "self",
+                 "io"
+                ]
+               },
+               "sc_signal"
+              ]
+             },
+             "val_next"
+            ]
+           },
+           "is_blocking": false,
+           "labels": [],
+           "src": {
+            "__class__": "tuple",
+            "items": [
+             {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               "self",
+               "const_0_3"
+              ]
+             },
+             0
+            ]
+           }
+          },
+          "labels": []
+         }
+        ],
+        "join_t": "SEQ",
+        "labels": []
+       },
+       "if_true": {
+        "__class__": "HdlStmAssign",
+        "dst": {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "self",
+              "io"
+             ]
+            },
+            "sc_signal"
+           ]
+          },
+          "val_next"
+         ]
+        },
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "tuple",
+         "items": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "self",
+            "const_0_3"
+           ]
+          },
+          0
+         ]
+        }
+       },
+       "labels": []
+      }
+     ],
+     "join_t": "SEQ",
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_sc_signal"
+     }
+    ],
+    "sensitivity": [
+     "a"
+    ]
+   }
+  ]
+ }
+]

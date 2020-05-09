@@ -1,0 +1,3397 @@
+[
+ {
+  "__class__": "HdlModuleDef",
+  "dec": {
+   "__class__": "HdlModuleDec",
+   "declaration_only": false,
+   "doc": {
+    "__class__": "str",
+    "val": "\n    Every HW component class has to be derived from Unit class\n\n    .. hwt-schematic::\n    "
+   },
+   "name": {
+    "__class__": "str",
+    "val": "Showcase0"
+   },
+   "objs": [],
+   "params": [],
+   "ports": [
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "a"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_in",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         32
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "b"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_in",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_int",
+         32
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "c"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         32
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "clk"
+     },
+     "type": "sc_in_clk"
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "cmp_0"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         1
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "cmp_1"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         1
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "cmp_2"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         1
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "cmp_3"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         1
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "cmp_4"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         1
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "cmp_5"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         1
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "contOut"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         32
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "d"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_in",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         32
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "e"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_in",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         1
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "f"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         1
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "fitted"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         16
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "g"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         8
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "h"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         8
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "i"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_in",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         2
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "j"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         8
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "k"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         32
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "out"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         1
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "output"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         1
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "IN",
+     "name": {
+      "__class__": "str",
+      "val": "rst_n"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_in",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         1
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": "OUT",
+     "name": {
+      "__class__": "str",
+      "val": "sc_signal_0"
+     },
+     "type": {
+      "__class__": "HdlOp",
+      "fn": "PARAMETRIZATION",
+      "ops": [
+       "sc_out",
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_uint",
+         8
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "module_name": "Showcase0",
+  "name": {
+   "__class__": "str",
+   "val": "rtl"
+  },
+  "objs": [
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "name": {
+     "__class__": "str",
+     "val": "const_private_signal"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "PARAMETRIZATION",
+     "ops": [
+      "sc_uint",
+      32
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "PARAMETRIZATION",
+       "ops": [
+        "sc_uint",
+        32
+       ]
+      },
+      {
+       "__class__": "HdlValueInt",
+       "base": 16,
+       "bits": 32,
+       "val": "0000007b"
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "fallingEdgeRam"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "INDEX",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "PARAMETRIZATION",
+       "ops": [
+        "sc_int",
+        8
+       ]
+      },
+      4
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "r"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "PARAMETRIZATION",
+     "ops": [
+      "sc_uint",
+      1
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "PARAMETRIZATION",
+       "ops": [
+        "sc_uint",
+        1
+       ]
+      },
+      {
+       "__class__": "HdlValueInt",
+       "base": 2,
+       "bits": 1,
+       "val": "0"
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "r_0"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "PARAMETRIZATION",
+     "ops": [
+      "sc_uint",
+      2
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "PARAMETRIZATION",
+       "ops": [
+        "sc_uint",
+        2
+       ]
+      },
+      {
+       "__class__": "HdlValueInt",
+       "base": 2,
+       "bits": 2,
+       "val": "00"
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "r_1"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "PARAMETRIZATION",
+     "ops": [
+      "sc_uint",
+      2
+     ]
+    },
+    "value": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "PARAMETRIZATION",
+       "ops": [
+        "sc_uint",
+        2
+       ]
+      },
+      {
+       "__class__": "HdlValueInt",
+       "base": 2,
+       "bits": 2,
+       "val": "00"
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "r_next"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "PARAMETRIZATION",
+     "ops": [
+      "sc_signal",
+      {
+       "__class__": "HdlOp",
+       "fn": "PARAMETRIZATION",
+       "ops": [
+        "sc_uint",
+        1
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "r_next_0"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "PARAMETRIZATION",
+     "ops": [
+      "sc_signal",
+      {
+       "__class__": "HdlOp",
+       "fn": "PARAMETRIZATION",
+       "ops": [
+        "sc_uint",
+        2
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "name": {
+     "__class__": "str",
+     "val": "r_next_1"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "PARAMETRIZATION",
+     "ops": [
+      "sc_signal",
+      {
+       "__class__": "HdlOp",
+       "fn": "PARAMETRIZATION",
+       "ops": [
+        "sc_uint",
+        2
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlIdDef",
+    "direction": null,
+    "is_const": true,
+    "name": {
+     "__class__": "str",
+     "val": "rom"
+    },
+    "type": {
+     "__class__": "HdlOp",
+     "fn": "INDEX",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "PARAMETRIZATION",
+       "ops": [
+        "sc_uint",
+        8
+       ]
+      },
+      4
+     ]
+    },
+    "value": {
+     "__class__": "list",
+     "items": [
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "PARAMETRIZATION",
+         "ops": [
+          "sc_uint",
+          8
+         ]
+        },
+        {
+         "__class__": "HdlValueInt",
+         "base": 16,
+         "bits": 8,
+         "val": "00"
+        }
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "PARAMETRIZATION",
+         "ops": [
+          "sc_uint",
+          8
+         ]
+        },
+        {
+         "__class__": "HdlValueInt",
+         "base": 16,
+         "bits": 8,
+         "val": "01"
+        }
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "PARAMETRIZATION",
+         "ops": [
+          "sc_uint",
+          8
+         ]
+        },
+        {
+         "__class__": "HdlValueInt",
+         "base": 16,
+         "bits": 8,
+         "val": "02"
+        }
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "PARAMETRIZATION",
+         "ops": [
+          "sc_uint",
+          8
+         ]
+        },
+        {
+         "__class__": "HdlValueInt",
+         "base": 16,
+         "bits": 8,
+         "val": "03"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "c",
+        "write"
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "PARAMETRIZATION",
+         "ops": [
+          "static_cast",
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_uint",
+            32
+           ]
+          }
+         ]
+        },
+        {
+         "__class__": "HdlOp",
+         "fn": "ADD",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "a",
+              "read"
+             ]
+            }
+           ]
+          },
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "PARAMETRIZATION",
+             "ops": [
+              "static_cast",
+              {
+               "__class__": "HdlOp",
+               "fn": "PARAMETRIZATION",
+               "ops": [
+                "sc_uint",
+                32
+               ]
+              }
+             ]
+            },
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "b",
+                "read"
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_c"
+     }
+    ],
+    "sensitivity": [
+     "a",
+     "b"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "cmp_0",
+        "write"
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "LT",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "a",
+            "read"
+           ]
+          }
+         ]
+        },
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_uint",
+            32
+           ]
+          },
+          {
+           "__class__": "HdlValueInt",
+           "base": 16,
+           "bits": 32,
+           "val": "00000004"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_cmp_0"
+     }
+    ],
+    "sensitivity": [
+     "a"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "cmp_1",
+        "write"
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "GT",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "a",
+            "read"
+           ]
+          }
+         ]
+        },
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_uint",
+            32
+           ]
+          },
+          {
+           "__class__": "HdlValueInt",
+           "base": 16,
+           "bits": 32,
+           "val": "00000004"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_cmp_1"
+     }
+    ],
+    "sensitivity": [
+     "a"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "cmp_2",
+        "write"
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "LE",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "b",
+            "read"
+           ]
+          }
+         ]
+        },
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_int",
+            32
+           ]
+          },
+          {
+           "__class__": "HdlValueInt",
+           "base": 16,
+           "bits": 32,
+           "val": "00000004"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_cmp_2"
+     }
+    ],
+    "sensitivity": [
+     "b"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "cmp_3",
+        "write"
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "GE",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "b",
+            "read"
+           ]
+          }
+         ]
+        },
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_int",
+            32
+           ]
+          },
+          {
+           "__class__": "HdlValueInt",
+           "base": 16,
+           "bits": 32,
+           "val": "00000004"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_cmp_3"
+     }
+    ],
+    "sensitivity": [
+     "b"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "cmp_4",
+        "write"
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "NEQ",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "b",
+            "read"
+           ]
+          }
+         ]
+        },
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_int",
+            32
+           ]
+          },
+          {
+           "__class__": "HdlValueInt",
+           "base": 16,
+           "bits": 32,
+           "val": "00000004"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_cmp_4"
+     }
+    ],
+    "sensitivity": [
+     "b"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "cmp_5",
+        "write"
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "EQ",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "b",
+            "read"
+           ]
+          }
+         ]
+        },
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_int",
+            32
+           ]
+          },
+          {
+           "__class__": "HdlValueInt",
+           "base": 16,
+           "bits": 32,
+           "val": "00000004"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_cmp_5"
+     }
+    ],
+    "sensitivity": [
+     "b"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "contOut",
+        "write"
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "PARAMETRIZATION",
+         "ops": [
+          "static_cast",
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_uint",
+            32
+           ]
+          }
+         ]
+        },
+        "const_private_signal"
+       ]
+      }
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_contOut"
+     }
+    ],
+    "sensitivity": []
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "f",
+        "write"
+       ]
+      },
+      "r"
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_f"
+     }
+    ],
+    "sensitivity": [
+     "r"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmBlock",
+     "body": [
+      {
+       "__class__": "HdlIdDef",
+       "direction": null,
+       "is_latched": true,
+       "name": {
+        "__class__": "str",
+        "val": "tmpConcat_0"
+       },
+       "type": {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_signal",
+         {
+          "__class__": "HdlOp",
+          "fn": "PARAMETRIZATION",
+          "ops": [
+           "sc_uint",
+           32
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          "tmpConcat_0",
+          "write"
+         ]
+        },
+        {
+         "__class__": "tuple",
+         "items": [
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "PARAMETRIZATION",
+             "ops": [
+              "sc_uint",
+              24
+             ]
+            },
+            {
+             "__class__": "HdlValueInt",
+             "base": 16,
+             "bits": 24,
+             "val": "000000"
+            }
+           ]
+          },
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "PARAMETRIZATION",
+             "ops": [
+              "static_cast",
+              {
+               "__class__": "HdlOp",
+               "fn": "PARAMETRIZATION",
+               "ops": [
+                "sc_uint",
+                8
+               ]
+              }
+             ]
+            },
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "PARAMETRIZATION",
+               "ops": [
+                "static_cast",
+                {
+                 "__class__": "HdlOp",
+                 "fn": "PARAMETRIZATION",
+                 "ops": [
+                  "sc_uint",
+                  8
+                 ]
+                }
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "INDEX",
+               "ops": [
+                "fallingEdgeRam",
+                "r_1"
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "HdlStmBlock",
+       "body": [
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "INDEX",
+             "ops": [
+              "fallingEdgeRam",
+              "r_1"
+             ]
+            },
+            "write"
+           ]
+          },
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "PARAMETRIZATION",
+             "ops": [
+              "static_cast",
+              {
+               "__class__": "HdlOp",
+               "fn": "PARAMETRIZATION",
+               "ops": [
+                "sc_int",
+                8
+               ]
+              }
+             ]
+            },
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "CALL",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    "a",
+                    "read"
+                   ]
+                  }
+                 ]
+                },
+                "range"
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "PARAMETRIZATION",
+                 "ops": [
+                  "sc_int",
+                  32
+                 ]
+                },
+                {
+                 "__class__": "HdlValueInt",
+                 "base": 16,
+                 "bits": 32,
+                 "val": "00000008"
+                }
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "PARAMETRIZATION",
+                 "ops": [
+                  "sc_int",
+                  32
+                 ]
+                },
+                {
+                 "__class__": "HdlValueInt",
+                 "base": 16,
+                 "bits": 32,
+                 "val": "00000000"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "__class__": "HdlStmAssign",
+         "dst": "k",
+         "is_blocking": false,
+         "labels": [],
+         "src": {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             "tmpConcat_0",
+             "read"
+            ]
+           }
+          ]
+         }
+        }
+       ],
+       "join_t": "SEQ",
+       "labels": []
+      }
+     ],
+     "join_t": "SEQ",
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_fallingEdgeRam"
+     }
+    ],
+    "sensitivity": [
+     {
+      "__class__": "HdlOp",
+      "fn": "FALLING",
+      "ops": [
+       "clk"
+      ]
+     }
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "fitted",
+        "write"
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "PARAMETRIZATION",
+         "ops": [
+          "static_cast",
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_uint",
+            16
+           ]
+          }
+         ]
+        },
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "a",
+                "read"
+               ]
+              }
+             ]
+            },
+            "range"
+           ]
+          },
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "PARAMETRIZATION",
+             "ops": [
+              "sc_int",
+              32
+             ]
+            },
+            {
+             "__class__": "HdlValueInt",
+             "base": 16,
+             "bits": 32,
+             "val": "00000010"
+            }
+           ]
+          },
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "PARAMETRIZATION",
+             "ops": [
+              "sc_int",
+              32
+             ]
+            },
+            {
+             "__class__": "HdlValueInt",
+             "base": 16,
+             "bits": 32,
+             "val": "00000000"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_fitted"
+     }
+    ],
+    "sensitivity": [
+     "a"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmBlock",
+     "body": [
+      {
+       "__class__": "HdlIdDef",
+       "direction": null,
+       "is_latched": true,
+       "name": {
+        "__class__": "str",
+        "val": "tmpConcat_0"
+       },
+       "type": {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_signal",
+         {
+          "__class__": "HdlOp",
+          "fn": "PARAMETRIZATION",
+          "ops": [
+           "sc_uint",
+           8
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "__class__": "HdlIdDef",
+       "direction": null,
+       "is_latched": true,
+       "name": {
+        "__class__": "str",
+        "val": "tmpConcat_1"
+       },
+       "type": {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_signal",
+         {
+          "__class__": "HdlOp",
+          "fn": "PARAMETRIZATION",
+          "ops": [
+           "sc_uint",
+           2
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          "tmpConcat_0",
+          "write"
+         ]
+        },
+        {
+         "__class__": "tuple",
+         "items": [
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "tmpConcat_1",
+              "read"
+             ]
+            }
+           ]
+          },
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "PARAMETRIZATION",
+             "ops": [
+              "static_cast",
+              {
+               "__class__": "HdlOp",
+               "fn": "PARAMETRIZATION",
+               "ops": [
+                "sc_uint",
+                6
+               ]
+              }
+             ]
+            },
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "CALL",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    "a",
+                    "read"
+                   ]
+                  }
+                 ]
+                },
+                "range"
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "PARAMETRIZATION",
+                 "ops": [
+                  "sc_int",
+                  32
+                 ]
+                },
+                {
+                 "__class__": "HdlValueInt",
+                 "base": 16,
+                 "bits": 32,
+                 "val": "00000006"
+                }
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "PARAMETRIZATION",
+                 "ops": [
+                  "sc_int",
+                  32
+                 ]
+                },
+                {
+                 "__class__": "HdlValueInt",
+                 "base": 16,
+                 "bits": 32,
+                 "val": "00000000"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          "tmpConcat_1",
+          "write"
+         ]
+        },
+        {
+         "__class__": "tuple",
+         "items": [
+          {
+           "__class__": "HdlOp",
+           "fn": "AND",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "INDEX",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  "a",
+                  "read"
+                 ]
+                }
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "PARAMETRIZATION",
+                 "ops": [
+                  "sc_int",
+                  32
+                 ]
+                },
+                {
+                 "__class__": "HdlValueInt",
+                 "base": 16,
+                 "bits": 32,
+                 "val": "00000001"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "__class__": "HdlOp",
+             "fn": "INDEX",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  "b",
+                  "read"
+                 ]
+                }
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "PARAMETRIZATION",
+                 "ops": [
+                  "sc_int",
+                  32
+                 ]
+                },
+                {
+                 "__class__": "HdlValueInt",
+                 "base": 16,
+                 "bits": 32,
+                 "val": "00000001"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "__class__": "HdlOp",
+           "fn": "OR",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "XOR",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "INDEX",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "CALL",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    "a",
+                    "read"
+                   ]
+                  }
+                 ]
+                },
+                {
+                 "__class__": "HdlOp",
+                 "fn": "CALL",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "PARAMETRIZATION",
+                   "ops": [
+                    "sc_int",
+                    32
+                   ]
+                  },
+                  {
+                   "__class__": "HdlValueInt",
+                   "base": 16,
+                   "bits": 32,
+                   "val": "00000000"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "INDEX",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "CALL",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    "b",
+                    "read"
+                   ]
+                  }
+                 ]
+                },
+                {
+                 "__class__": "HdlOp",
+                 "fn": "CALL",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "PARAMETRIZATION",
+                   "ops": [
+                    "sc_int",
+                    32
+                   ]
+                  },
+                  {
+                   "__class__": "HdlValueInt",
+                   "base": 16,
+                   "bits": 32,
+                   "val": "00000000"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "__class__": "HdlOp",
+             "fn": "INDEX",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  "a",
+                  "read"
+                 ]
+                }
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "PARAMETRIZATION",
+                 "ops": [
+                  "sc_int",
+                  32
+                 ]
+                },
+                {
+                 "__class__": "HdlValueInt",
+                 "base": 16,
+                 "bits": 32,
+                 "val": "00000001"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          "g",
+          "write"
+         ]
+        },
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "tmpConcat_0",
+            "read"
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "join_t": "SEQ",
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_g"
+     }
+    ],
+    "sensitivity": [
+     "a",
+     "b"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmIf",
+     "cond": {
+      "__class__": "HdlOp",
+      "fn": "EQ",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "INDEX",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             "a",
+             "read"
+            ]
+           }
+          ]
+         },
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "PARAMETRIZATION",
+            "ops": [
+             "sc_int",
+             32
+            ]
+           },
+           {
+            "__class__": "HdlValueInt",
+            "base": 16,
+            "bits": 32,
+            "val": "00000002"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "PARAMETRIZATION",
+          "ops": [
+           "sc_uint",
+           1
+          ]
+         },
+         {
+          "__class__": "HdlValueInt",
+          "base": 2,
+          "bits": 1,
+          "val": "1"
+         }
+        ]
+       }
+      ]
+     },
+     "elifs": [],
+     "if_true": {
+      "__class__": "HdlStmIf",
+      "cond": {
+       "__class__": "HdlOp",
+       "fn": "EQ",
+       "ops": [
+        "r",
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_uint",
+            1
+           ]
+          },
+          {
+           "__class__": "HdlValueInt",
+           "base": 2,
+           "bits": 1,
+           "val": "1"
+          }
+         ]
+        }
+       ]
+      },
+      "elifs": [
+       [
+        {
+         "__class__": "HdlOp",
+         "fn": "EQ",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "INDEX",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                "a",
+                "read"
+               ]
+              }
+             ]
+            },
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "PARAMETRIZATION",
+               "ops": [
+                "sc_int",
+                32
+               ]
+              },
+              {
+               "__class__": "HdlValueInt",
+               "base": 16,
+               "bits": 32,
+               "val": "00000001"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "PARAMETRIZATION",
+             "ops": [
+              "sc_uint",
+              1
+             ]
+            },
+            {
+             "__class__": "HdlValueInt",
+             "base": 2,
+             "bits": 1,
+             "val": "1"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "h",
+            "write"
+           ]
+          },
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "PARAMETRIZATION",
+             "ops": [
+              "sc_uint",
+              8
+             ]
+            },
+            {
+             "__class__": "HdlValueInt",
+             "base": 16,
+             "bits": 8,
+             "val": "01"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      ],
+      "if_false": {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          "h",
+          "write"
+         ]
+        },
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_uint",
+            8
+           ]
+          },
+          {
+           "__class__": "HdlValueInt",
+           "base": 16,
+           "bits": 8,
+           "val": "02"
+          }
+         ]
+        }
+       ]
+      },
+      "if_true": {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          "h",
+          "write"
+         ]
+        },
+        {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_uint",
+            8
+           ]
+          },
+          {
+           "__class__": "HdlValueInt",
+           "base": 16,
+           "bits": 8,
+           "val": "00"
+          }
+         ]
+        }
+       ]
+      },
+      "labels": []
+     },
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_h"
+     }
+    ],
+    "sensitivity": [
+     "a",
+     "r"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmAssign",
+     "dst": "j",
+     "is_blocking": false,
+     "labels": [],
+     "src": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "static_cast",
+         {
+          "__class__": "HdlOp",
+          "fn": "PARAMETRIZATION",
+          "ops": [
+           "sc_uint",
+           8
+          ]
+         }
+        ]
+       },
+       {
+        "__class__": "HdlOp",
+        "fn": "INDEX",
+        "ops": [
+         "rom",
+         "r_1"
+        ]
+       }
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_j"
+     }
+    ],
+    "sensitivity": [
+     {
+      "__class__": "HdlOp",
+      "fn": "RISING",
+      "ops": [
+       "clk"
+      ]
+     }
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "out",
+        "write"
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "PARAMETRIZATION",
+         "ops": [
+          "sc_uint",
+          1
+         ]
+        },
+        {
+         "__class__": "HdlValueInt",
+         "base": 2,
+         "bits": 1,
+         "val": "0"
+        }
+       ]
+      }
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_out"
+     }
+    ],
+    "sensitivity": []
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "output",
+        "write"
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "PARAMETRIZATION",
+         "ops": [
+          "sc_uint",
+          1
+         ]
+        },
+        {
+         "__class__": "HdlValueInt",
+         "base": 2,
+         "bits": 1,
+         "val": "x"
+        }
+       ]
+      }
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_output"
+     }
+    ],
+    "sensitivity": []
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmIf",
+     "cond": {
+      "__class__": "HdlOp",
+      "fn": "EQ",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "rst_n",
+           "read"
+          ]
+         }
+        ]
+       },
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "PARAMETRIZATION",
+          "ops": [
+           "sc_uint",
+           1
+          ]
+         },
+         {
+          "__class__": "HdlValueInt",
+          "base": 2,
+          "bits": 1,
+          "val": "0"
+         }
+        ]
+       }
+      ]
+     },
+     "elifs": [],
+     "if_false": {
+      "__class__": "HdlStmBlock",
+      "body": [
+       {
+        "__class__": "HdlStmAssign",
+        "dst": "r_1",
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "r_next_1",
+            "read"
+           ]
+          }
+         ]
+        }
+       },
+       {
+        "__class__": "HdlStmAssign",
+        "dst": "r_0",
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "r_next_0",
+            "read"
+           ]
+          }
+         ]
+        }
+       },
+       {
+        "__class__": "HdlStmAssign",
+        "dst": "r",
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "DOT",
+           "ops": [
+            "r_next",
+            "read"
+           ]
+          }
+         ]
+        }
+       }
+      ],
+      "join_t": "SEQ",
+      "labels": []
+     },
+     "if_true": {
+      "__class__": "HdlStmBlock",
+      "body": [
+       {
+        "__class__": "HdlStmAssign",
+        "dst": "r_1",
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_uint",
+            2
+           ]
+          },
+          {
+           "__class__": "HdlValueInt",
+           "base": 2,
+           "bits": 2,
+           "val": "00"
+          }
+         ]
+        }
+       },
+       {
+        "__class__": "HdlStmAssign",
+        "dst": "r_0",
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_uint",
+            2
+           ]
+          },
+          {
+           "__class__": "HdlValueInt",
+           "base": 2,
+           "bits": 2,
+           "val": "00"
+          }
+         ]
+        }
+       },
+       {
+        "__class__": "HdlStmAssign",
+        "dst": "r",
+        "is_blocking": false,
+        "labels": [],
+        "src": {
+         "__class__": "HdlOp",
+         "fn": "CALL",
+         "ops": [
+          {
+           "__class__": "HdlOp",
+           "fn": "PARAMETRIZATION",
+           "ops": [
+            "sc_uint",
+            1
+           ]
+          },
+          {
+           "__class__": "HdlValueInt",
+           "base": 2,
+           "bits": 1,
+           "val": "0"
+          }
+         ]
+        }
+       }
+      ],
+      "join_t": "SEQ",
+      "labels": []
+     },
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_r"
+     }
+    ],
+    "sensitivity": [
+     {
+      "__class__": "HdlOp",
+      "fn": "RISING",
+      "ops": [
+       "clk"
+      ]
+     }
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "r_next_0",
+        "write"
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          "i",
+          "read"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_r_next"
+     }
+    ],
+    "sensitivity": [
+     "i"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlOp",
+     "fn": "CALL",
+     "ops": [
+      {
+       "__class__": "HdlOp",
+       "fn": "DOT",
+       "ops": [
+        "r_next_1",
+        "write"
+       ]
+      },
+      "r_0"
+     ]
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_r_next_0"
+     }
+    ],
+    "sensitivity": [
+     "r_0"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmIf",
+     "cond": {
+      "__class__": "HdlOp",
+      "fn": "EQ",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "NEG",
+        "ops": [
+         "r"
+        ]
+       },
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "PARAMETRIZATION",
+          "ops": [
+           "sc_uint",
+           1
+          ]
+         },
+         {
+          "__class__": "HdlValueInt",
+          "base": 2,
+          "bits": 1,
+          "val": "1"
+         }
+        ]
+       }
+      ]
+     },
+     "elifs": [],
+     "if_false": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         "r_next",
+         "write"
+        ]
+       },
+       "r"
+      ]
+     },
+     "if_true": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         "r_next",
+         "write"
+        ]
+       },
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "DOT",
+          "ops": [
+           "e",
+           "read"
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     "labels": []
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_r_next_1"
+     }
+    ],
+    "sensitivity": [
+     "e",
+     "r"
+    ]
+   },
+   {
+    "__class__": "HdlStmProcess",
+    "body": {
+     "__class__": "HdlStmCase",
+     "cases": [
+      [
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "PARAMETRIZATION",
+          "ops": [
+           "sc_uint",
+           32
+          ]
+         },
+         {
+          "__class__": "HdlValueInt",
+          "base": 16,
+          "bits": 32,
+          "val": "00000001"
+         }
+        ]
+       },
+       {
+        "__class__": "HdlStmBlock",
+        "body": [
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             "sc_signal_0",
+             "write"
+            ]
+           },
+           {
+            "__class__": "HdlOp",
+            "fn": "CALL",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "PARAMETRIZATION",
+              "ops": [
+               "sc_uint",
+               8
+              ]
+             },
+             {
+              "__class__": "HdlValueInt",
+              "base": 16,
+              "bits": 8,
+              "val": "00"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "__class__": "HdlStmBreak",
+          "labels": []
+         }
+        ],
+        "join_t": "SEQ",
+        "labels": []
+       }
+      ],
+      [
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "PARAMETRIZATION",
+          "ops": [
+           "sc_uint",
+           32
+          ]
+         },
+         {
+          "__class__": "HdlValueInt",
+          "base": 16,
+          "bits": 32,
+          "val": "00000002"
+         }
+        ]
+       },
+       {
+        "__class__": "HdlStmBlock",
+        "body": [
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             "sc_signal_0",
+             "write"
+            ]
+           },
+           {
+            "__class__": "HdlOp",
+            "fn": "CALL",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "PARAMETRIZATION",
+              "ops": [
+               "sc_uint",
+               8
+              ]
+             },
+             {
+              "__class__": "HdlValueInt",
+              "base": 16,
+              "bits": 8,
+              "val": "01"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "__class__": "HdlStmBreak",
+          "labels": []
+         }
+        ],
+        "join_t": "SEQ",
+        "labels": []
+       }
+      ],
+      [
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "PARAMETRIZATION",
+          "ops": [
+           "sc_uint",
+           32
+          ]
+         },
+         {
+          "__class__": "HdlValueInt",
+          "base": 16,
+          "bits": 32,
+          "val": "00000003"
+         }
+        ]
+       },
+       {
+        "__class__": "HdlStmBlock",
+        "body": [
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           {
+            "__class__": "HdlOp",
+            "fn": "DOT",
+            "ops": [
+             "sc_signal_0",
+             "write"
+            ]
+           },
+           {
+            "__class__": "HdlOp",
+            "fn": "CALL",
+            "ops": [
+             {
+              "__class__": "HdlOp",
+              "fn": "PARAMETRIZATION",
+              "ops": [
+               "sc_uint",
+               8
+              ]
+             },
+             {
+              "__class__": "HdlValueInt",
+              "base": 16,
+              "bits": 8,
+              "val": "03"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "__class__": "HdlStmBreak",
+          "labels": []
+         }
+        ],
+        "join_t": "SEQ",
+        "labels": []
+       }
+      ]
+     ],
+     "default": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         "sc_signal_0",
+         "write"
+        ]
+       },
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         {
+          "__class__": "HdlOp",
+          "fn": "PARAMETRIZATION",
+          "ops": [
+           "sc_uint",
+           8
+          ]
+         },
+         {
+          "__class__": "HdlValueInt",
+          "base": 16,
+          "bits": 8,
+          "val": "04"
+         }
+        ]
+       }
+      ]
+     },
+     "labels": [],
+     "switch_on": {
+      "__class__": "HdlOp",
+      "fn": "CALL",
+      "ops": [
+       {
+        "__class__": "HdlOp",
+        "fn": "DOT",
+        "ops": [
+         "a",
+         "read"
+        ]
+       }
+      ]
+     }
+    },
+    "labels": [
+     {
+      "__class__": "str",
+      "val": "assig_process_sc_signal_0"
+     }
+    ],
+    "sensitivity": [
+     "a"
+    ]
+   }
+  ]
+ }
+]
