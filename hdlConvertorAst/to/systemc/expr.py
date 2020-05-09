@@ -3,9 +3,8 @@ from hdlConvertorAst.hdlAst import HdlOpType, HdlValueId, HdlValueInt, \
 from hdlConvertorAst.py_ver_compatibility import is_str
 from hdlConvertorAst.to.common import ToHdlCommon, ASSOCIATIVITY,\
     ASSIGN_OPERATORS_SYMBOLS_C
-from hdlConvertorAst.to.basic_hdl_sim_model.expr import ToBasicHdlSimModelExpr
 from hdlConvertorAst.to.hdlUtils import iter_with_last
-from hdlConvertorAst.to.verilog.expr import ASSIGN_OPERATORS
+from hdlConvertorAst.to.verilog.expr import ASSIGN_OPERATORS, ToVerilog2005Expr
 
 
 L = ASSOCIATIVITY.L_TO_R
@@ -69,7 +68,10 @@ class ToSystemcExpr(ToHdlCommon):
         HdlOpType.NEG_LOG: "!",
         HdlOpType.NEG: "~",
         HdlOpType.MINUS_UNARY: "-",
+        HdlOpType.INCR_PRE: "++",
+        HdlOpType.DECR_PRE: "--",
     }
+    GENERIC_UNARY_OPS_POSTFIX = ToVerilog2005Expr.GENERIC_UNARY_OPS_POSTFIX
 
     GENERIC_BIN_OPS = {
         HdlOpType.DOUBLE_COLON: "::",
