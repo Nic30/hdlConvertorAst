@@ -135,6 +135,8 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
                 else:
                     w("\n")
         w("end")
+        if o.in_prepoc:
+            w(" endgenerate")
         return False
 
     def visit_HdlStmIf(self, o):
