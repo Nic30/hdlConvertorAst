@@ -14,7 +14,7 @@ from hwt.serializer.systemC import SystemCSerializer
 from hwt.serializer.verilog import VerilogSerializer
 from hwt.serializer.vhdl import Vhdl2008Serializer
 from hwt.synthesizer.unit import Unit, HdlConstraintList
-from hwt.synthesizer.utils import toRtl
+from hwt.synthesizer.utils import to_rtl
 from hwtLib.examples.hierarchy.groupOfBlockrams import GroupOfBlockrams
 from hwtLib.examples.showcase0 import Showcase0
 from builtins import isinstance
@@ -57,7 +57,7 @@ class SaveHwtToJson(StoreManager):
 
 def hwt_to_json(u: Unit, to_hdl_ast):
     store_manager = SaveHwtToJson(to_hdl_ast)
-    toRtl(u, store_manager)
+    to_rtl(u, store_manager)
     return store_manager.ctx
 
 
@@ -85,7 +85,7 @@ def generate_hwt_examples(u_cls, data_root):
         u = u_cls()
         with open(os.path.join(data_root, "ref", f"{u_name}{ref_file_suffix}"), "w") as f:
             store_man = SaveToStream(ser, f)
-            toRtl(u, store_man)
+            to_rtl(u, store_man)
 
 
 if __name__ == '__main__':
