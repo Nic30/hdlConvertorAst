@@ -2004,6 +2004,7 @@
     "__class__": "HdlStmProcess",
     "body": {
      "__class__": "HdlStmCase",
+     "type": "CASE",
      "cases": [
       [
        {

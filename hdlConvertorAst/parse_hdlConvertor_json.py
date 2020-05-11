@@ -2,9 +2,8 @@ import json
 
 from hdlConvertorAst import hdlAst
 from hdlConvertorAst.hdlAst import HdlContext, CodePosition, HdlOpType,\
-    HdlDirection, HdlStmBlockJoinType
-from hdlConvertorAst.hdlAst._expr import HdlTypeAuto, HdlAll, HdlOthers,\
-    HdlTypeType, HdlTypeSubtype, HdlValueInt, HdlValueId
+    HdlDirection, HdlStmBlockJoinType, HdlTypeAuto, HdlAll, HdlOthers,\
+    HdlTypeType, HdlTypeSubtype, HdlValueInt, HdlValueId, HdlStmCase, HdlStmCaseType
 from hdlConvertorAst.py_ver_compatibility import is_str
 
 
@@ -104,6 +103,8 @@ def _parse_hdlConvertor_json(j):
                     _v = getattr(HdlDirection, v)
             elif k == "join_t":
                 _v = getattr(HdlStmBlockJoinType, v)
+            elif cls is HdlStmCase and k == "type":
+                _v = getattr(HdlStmCaseType, v)
             else:
                 _v = _parse_hdlConvertor_json(v)
             setattr(o, k, _v)

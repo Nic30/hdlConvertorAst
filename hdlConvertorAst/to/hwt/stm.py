@@ -1,4 +1,4 @@
-from hdlConvertorAst.hdlAst import HdlOp, HdlStmIf, HdlStmBlock, HdlStmAssign
+from hdlConvertorAst.hdlAst import HdlOp, HdlStmIf, HdlStmBlock, HdlStmAssign, HdlStmCaseType
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 from hdlConvertorAst.to.hwt.expr import ToHwtExpr
 
@@ -110,6 +110,8 @@ class ToHwtStm(ToHwtExpr):
         """
         self.visit_doc(o)
         w = self.out.write
+        if o.type != HdlStmCaseType.CASE:
+            raise NotImplementedError()
         w("Switch(")
         self.visit_iHdlExpr(o.switch_on)
         w(")")

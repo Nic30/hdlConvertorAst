@@ -199,6 +199,7 @@ class ToJson(HdlAstVisitor):
         :return: True if requires ;\n after end
         """
         d = self._visit_iHdlStatement(o)
+        d["type"] = o.type.name
         d["switch_on"] = self.visit_iHdlExpr(o.switch_on)
         d["cases"] = [
             [self.visit_iHdlExpr(c), self.visit_iHdlStatement(stm)]
@@ -300,7 +301,7 @@ class ToJson(HdlAstVisitor):
         elif is_str(o) or o is None:
             d = {
                 "__class__": "str",
-                "val" : o
+                "val": o
             }
         elif isinstance(o, HdlValueInt):
             d = self.visit_HdlValueInt(o)

@@ -227,7 +227,8 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         """
         self.visit_doc(o)
         w = self.out.write
-        w("case(")
+        w(o.type.name.lower())
+        w("(")
         self.visit_iHdlExpr(o.switch_on)
         w(")\n")
         with Indent(self.out):

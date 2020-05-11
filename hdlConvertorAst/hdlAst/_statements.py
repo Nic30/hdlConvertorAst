@@ -123,14 +123,19 @@ class HdlStmProcess(iHdlStatement):
         self.body = None  # type: iHdlStatement
 
 
+class HdlStmCaseType(Enum):
+    (CASE, CASEX, CASEZ) = range(3)
+
+
 class HdlStmCase(iHdlStatement):
     """
     HDL case statement
     """
-    __slots__ = ["switch_on", "cases", "default"]
+    __slots__ = ["type", "switch_on", "cases", "default"]
 
     def __init__(self):
         super(HdlStmCase, self).__init__()
+        self.type = HdlStmCaseType.CASE
         self.switch_on = None  # type: iHdlExpr
         self.cases = []  # type: List[Tuple[iHdlExpr, iHdlStatement]]
         self.default = None  # type: Optional[iHdlStatement]

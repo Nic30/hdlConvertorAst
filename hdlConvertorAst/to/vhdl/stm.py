@@ -1,7 +1,5 @@
-from hdlConvertorAst.hdlAst._bases import iHdlStatement
-from hdlConvertorAst.hdlAst._defs import HdlIdDef
-from hdlConvertorAst.hdlAst._expr import HdlOp, HdlOpType
-from hdlConvertorAst.hdlAst._statements import HdlStmBlock
+from hdlConvertorAst.hdlAst import iHdlStatement, HdlStmCaseType, HdlIdDef,\
+    HdlOp, HdlOpType, HdlStmBlock
 from hdlConvertorAst.to.hdlUtils import iter_with_last, Indent, UnIndent
 from hdlConvertorAst.to.vhdl.expr import ToVhdl2008Expr
 
@@ -166,6 +164,8 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
         """
         self.visit_doc(o)
         w = self.out.write
+        if o.type != HdlStmCaseType.CASE:
+            raise NotImplementedError()
         w("CASE ")
         self.visit_iHdlExpr(o.switch_on)
         w(" IS\n")

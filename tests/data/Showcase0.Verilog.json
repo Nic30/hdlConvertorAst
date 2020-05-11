@@ -1840,6 +1840,7 @@
      "body": [
       {
        "__class__": "HdlStmCase",
+       "type": "CASE",
        "cases": [
         [
          {

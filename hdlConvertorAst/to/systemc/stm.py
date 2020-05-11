@@ -1,6 +1,6 @@
 from hdlConvertorAst.hdlAst._bases import iHdlStatement
 from hdlConvertorAst.hdlAst._defs import HdlIdDef
-from hdlConvertorAst.hdlAst._statements import HdlStmBlock
+from hdlConvertorAst.hdlAst._statements import HdlStmBlock, HdlStmCaseType
 from hdlConvertorAst.py_ver_compatibility import method_as_function
 from hdlConvertorAst.to.hdlUtils import Indent
 from hdlConvertorAst.to.systemc.expr import ToSystemcExpr
@@ -84,6 +84,8 @@ class ToSystemcStm(ToSystemcExpr):
         """
         self.visit_doc(o)
         w = self.out.write
+        if o.type != HdlStmCaseType.CASE:
+            raise NotImplementedError()
         w("switch(")
         self.visit_iHdlExpr(o.switch_on)
         w(") {\n")
