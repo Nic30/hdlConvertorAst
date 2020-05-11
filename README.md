@@ -10,33 +10,30 @@ E. g. the VHDL AST and SV AST will have a different type names and thus the dire
 
 Doc shared with [hdlConvertor](https://github.com/Nic30/hdlConvertor).
 
-
 ### Intended as a support library for:
-* code generators
-* code parsers
-* document generators
-* compilers/transpilers
-
+  * code generators
+  * code parsers
+  * document generators
+  * compilers/transpilers
 
 ### Supported languages:
-* [IEEE 1076-2008 (VHDL 2008)](https://ieeexplore.ieee.org/document/4772740) and all previous standard, (currently without `tool_directive` and `PSL`)
-* [IEEE 1800-2017 (SystemVerilog 2017)](https://ieeexplore.ieee.org/document/8299595) and all previous standards.
-* SystemC 2.3.3
-* HdlConvertor JSON
-* pycocotb basic_rtl_sim_model (python interpreted RTL simulator)
-* hwt (hardware construction framework (HCL) with algorithmic synthesis (HLS))
+  * [IEEE 1076-2008 (VHDL 2008)](https://ieeexplore.ieee.org/document/4772740) and all previous standard, (currently without `tool_directive` and `PSL`)
+  * [IEEE 1800-2017 (SystemVerilog 2017)](https://ieeexplore.ieee.org/document/8299595) and all previous standards.
+  * SystemC 2.3.3
+  * HdlConvertor JSON
+  * pycocotb basic_rtl_sim_model (python interpreted RTL simulator)
+  * hwt (hardware construction framework (HCL) with algorithmic synthesis (HLS))
 
 
 ### List of selected unique features of this library
-* single straightforward universal AST for all languages, wide spectrum of import/export languages
-* automatic parenthesis resolution in expressions based on operator priority/associativity
-* clever white-spaces, constant and expression formating 
-* comments preserved as doc of objects
+  * single straightforward universal AST for all languages, wide spectrum of import/export languages
+  * automatic parenthesis resolution in expressions based on operator priority/associativity
+  * clever white-spaces, constant and expression formating 
+  * comments preserved as doc of objects
 
+### Installation
 
-## Installation
-
-```
+```bash
 # note this may be older version than you see in repo
 sudo pip3 install hdlConvertorAst
 
