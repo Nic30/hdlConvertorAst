@@ -1,2 +1,3 @@
+pylint
 sphinx_bootstrap_theme
 sphinx-pyreverse
