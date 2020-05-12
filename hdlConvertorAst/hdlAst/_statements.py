@@ -1,8 +1,8 @@
+from enum import Enum
 from typing import List, Optional, Union, Tuple
 
-from hdlConvertorAst.hdlAst._bases import iHdlStatement
+from hdlConvertorAst.hdlAst._bases import iHdlStatement, iHdlObj
 from hdlConvertorAst.hdlAst._expr import iHdlExpr
-from enum import Enum
 
 
 class HdlImport(iHdlStatement):

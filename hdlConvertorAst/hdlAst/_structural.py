@@ -2,6 +2,7 @@ from typing import List, Union
 
 from hdlConvertorAst.hdlAst._bases import iHdlObjWithName, iHdlObjInModule, iHdlObj
 from hdlConvertorAst.hdlAst._defs import HdlIdDef
+from hdlConvertorAst.hdlAst._expr import iHdlExpr
 
 
 try:

@@ -1,8 +1,8 @@
 from typing import List, Union, Optional
 
 from hdlConvertorAst.hdlAst._bases import iHdlObj, iHdlObjInModule, \
-                                       iHdlObjWithName
-from hdlConvertorAst.hdlAst._expr import iHdlExpr
+                                       iHdlObjWithName, iHdlStatement
+from hdlConvertorAst.hdlAst._expr import iHdlExpr, HdlDirection
 
 
 class HdlIdDef(iHdlObjWithName, iHdlObjInModule):

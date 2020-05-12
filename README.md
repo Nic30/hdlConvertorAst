@@ -10,13 +10,13 @@ E. g. the VHDL AST and SV AST will have a different type names and thus the dire
 
 Doc shared with [hdlConvertor](https://github.com/Nic30/hdlConvertor).
 
-### Intended as a support library for:
+### Intended as a support library for
   * code generators
   * code parsers
   * document generators
   * compilers/transpilers
 
-### Supported languages:
+### Supported languages
   * [IEEE 1076-2008 (VHDL 2008)](https://ieeexplore.ieee.org/document/4772740) and all previous standard, (currently without `tool_directive` and `PSL`)
   * [IEEE 1800-2017 (SystemVerilog 2017)](https://ieeexplore.ieee.org/document/8299595) and all previous standards.
   * SystemC 2.3.3

@@ -1,5 +1,5 @@
-from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model\
-    .wrap_module_statements_to_processes import wrap_module_statements_to_processes
+#from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model\
+#    .wrap_module_statements_to_processes import wrap_module_statements_to_processes
 from hdlConvertorAst.translate.common.discover_declarations import DiscoverDeclarations
 from hdlConvertorAst.translate.vhdl_to_verilog import link_module_dec_def
 from hdlConvertorAst.translate.common.name_scope import NameScope
