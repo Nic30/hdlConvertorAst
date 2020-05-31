@@ -52,8 +52,7 @@ class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
         if prefix is not None:
             for c in components:
                 n = c.module_name
-                with Indent(self.out):
-                    w('from %s.%s import %s\n' % (prefix, n, n))
+                w('from %s.%s import %s\n' % (prefix, n, n))
 
     def split_HdlModuleDefObjs(self, objs):
         """
