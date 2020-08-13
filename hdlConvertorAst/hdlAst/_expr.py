@@ -205,7 +205,7 @@ class HdlOpType(Enum):
         SHIFT_RIGHT_ASSIGN,  # >>=
         ARITH_SHIFT_LEFT_ASSIGN,  # <<<=
         ARITH_SHIFT_RIGHT_ASSIGN,  # >>>=
-    ) = range(84)
+    ) = range(86)
     # note that in verilog bitewise operators can have only one argument
 
 
