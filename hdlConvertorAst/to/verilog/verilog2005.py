@@ -198,13 +198,14 @@ class ToVerilog2005(ToVerilog2005Stm):
         """
         :type a: HdlModuleDef
         """
-        e = a.dec
-        assert e is not None, a
-        self.visit_doc(e)
+        mod_dec = a.dec
+        assert mod_dec is not None, a
+        assert not mod_dec.objs, mod_dec
+        self.visit_doc(mod_dec)
         w = self.out.write
         w("module ")
-        w(e.name)
-        gs = e.params
+        w(mod_dec.name)
+        gs = mod_dec.params
         if gs:
             w(" #(\n")
             with Indent(self.out):
@@ -216,7 +217,7 @@ class ToVerilog2005(ToVerilog2005Stm):
                         w(",\n")
 
             w(")")
-        ps = e.ports
+        ps = mod_dec.ports
         if ps:
             w(" (\n")
             with Indent(self.out):

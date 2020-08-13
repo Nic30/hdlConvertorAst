@@ -90,6 +90,11 @@ class ToVhdl2008(ToVhdl2008Stm):
                         else:
                             w(";\n")
                 w(");\n")
+        di = e.objs
+        if di:
+            with Indent(self.out):
+                for o in di:
+                    self.visit_iHdlObj(o)
         w("END ")
         w(vhdl_obj_name)
         w(";\n")
