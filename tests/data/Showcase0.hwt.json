@@ -882,7 +882,7 @@
      "labels": [],
      "src": {
       "__class__": "HdlOp",
-      "fn": "NEQ",
+      "fn": "NE",
       "ops": [
        "b",
        {

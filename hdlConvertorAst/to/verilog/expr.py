@@ -66,7 +66,12 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.MOD: " % ",
 
         HdlOpType.EQ: ' == ',
-        HdlOpType.NEQ: " != ",
+        HdlOpType.NE: " != ",
+        HdlOpType.IS: ' === ',
+        HdlOpType.IS_NOT: " !== ",
+
+        HdlOpType.EQ_MATCH:" ==? ",
+        HdlOpType.NE_MATCH:" !=? ",
 
         HdlOpType.SLL: " << ",
         HdlOpType.SRL: " >> ",
@@ -75,6 +80,10 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.SRA: " >>> ",
 
         HdlOpType.DOWNTO: ":",
+        HdlOpType.TO: ":",
+        HdlOpType.PART_SELECT_POST: " +: ",
+        HdlOpType.PART_SELECT_PRE: " -: ",
+
 
         HdlOpType.ARITH_SHIFT_LEFT_ASSIGN: ' <<<= ',
         HdlOpType.ARITH_SHIFT_RIGHT_ASSIGN: ' >>>= ',
@@ -115,7 +124,11 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.LE: (10, L),
 
         HdlOpType.EQ:  (11, L),
-        HdlOpType.NEQ: (11, L),
+        HdlOpType.NE: (11, L),
+        HdlOpType.IS:  (11, L),
+        HdlOpType.IS_NOT: (11, L),
+        HdlOpType.EQ_MATCH: (11, L),
+        HdlOpType.NE_MATCH: (11, L),
 
         HdlOpType.AND:  (12, L),
         HdlOpType.XOR:  (12, L),
@@ -132,6 +145,9 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.FALLING: (15, R),
         HdlOpType.DOWNTO: (16, L),
         HdlOpType.TO: (16, L),
+        HdlOpType.PART_SELECT_POST: (16, L),
+        HdlOpType.PART_SELECT_POST: (16, L),
+
     }
     OP_PRECEDENCE.update({k: (3, R) for k in [
         HdlOpType.NEG,

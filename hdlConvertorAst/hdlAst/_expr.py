@@ -124,6 +124,8 @@ class HdlOpType(Enum):
         DEFINE_RESOLVER,  # used in resolver specification in vhdl subtype definition
         TYPE_OF,  # SV type operator
         INDEX,  # array index
+        PART_SELECT_POST, # logic [31: 0] a; logic [0 :31] b;  a[ 0 +: 8] == a[ 7 : 0]; b[ 0 +: 8] == b[0 : 7]
+        PART_SELECT_PRE, # a[15 -: 8] == a[15 : 8]; b[15 -: 8] == b[8 :15]
         DOWNTO,  # downto for the slice specification
         TO,  # to for the slice specification
         MINUS_UNARY,
@@ -156,7 +158,9 @@ class HdlOpType(Enum):
         XOR,
         XNOR,
         EQ,  # ==
-        NEQ,  # ~
+        NE,  # !=
+        IS,  # ===
+        IS_NOT, # !==
         LT,  # <
         LE,   # <=
         GT,  # >
@@ -178,8 +182,8 @@ class HdlOpType(Enum):
         FALLING,  # falling edge/negedge event operator
         MAP_ASSOCIATION,
         # VHDL-2008 matching ops (the X values are ignored while match)
-        EQ_MATCH,
-        NEQ_MATCH,
+        EQ_MATCH, # SV ==?
+        NE_MATCH, # SV !=?
         LT_MATCH,
         LE_MATCH,
         GT_MATCH,
@@ -201,7 +205,7 @@ class HdlOpType(Enum):
         SHIFT_RIGHT_ASSIGN,  # >>=
         ARITH_SHIFT_LEFT_ASSIGN,  # <<<=
         ARITH_SHIFT_RIGHT_ASSIGN,  # >>>=
-    ) = range(82)
+    ) = range(86)
     # note that in verilog bitewise operators can have only one argument
 
 

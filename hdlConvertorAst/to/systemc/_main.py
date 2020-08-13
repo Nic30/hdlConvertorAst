@@ -40,6 +40,7 @@ class ToSystemc(ToSystemcStm):
         """
         mod_dec = mod_def.dec
         assert mod_dec is not None, mod_def
+        assert not mod_dec.objs, mod_dec
         w = self.out.write
         w(DEFAULT_IMPORTS)
         w("\n")

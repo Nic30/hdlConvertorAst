@@ -118,8 +118,8 @@ class ToJson(HdlAstVisitor):
         """
         d = self.visit_iHdlObj(o)
         d["labels"] = [self.visit_iHdlExpr(str(x)) for x in o.labels]
-        if o.in_prepoc:
-            d["in_prepoc"] = True
+        if o.in_preproc:
+            d["in_preproc"] = True
         return d
 
     def visit_HdlCompInst(self, o):

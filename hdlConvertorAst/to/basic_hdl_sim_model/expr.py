@@ -18,11 +18,13 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
         # note that HdlExpressions in BasicHdlSimModel
         # do not use == but ._eq()
         HdlOpType.EQ: (11, L),
-        HdlOpType.NEQ: (11, L),
+        HdlOpType.NE: (11, L),
         HdlOpType.GT:  (11, L),
         HdlOpType.LT:  (11, L),
         HdlOpType.GE:  (11, L),
         HdlOpType.LE:  (11, L),
+        HdlOpType.IS:  (11, L),
+        HdlOpType.IS_NOT:  (11, L),
 
         HdlOpType.OR: (10, L),
         HdlOpType.XOR: (9, L),
@@ -72,7 +74,10 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
         HdlOpType.XOR: " ^ ",
 
         HdlOpType.EQ: ' == ',
-        HdlOpType.NEQ: " != ",
+        HdlOpType.NE: " != ",
+
+        HdlOpType.IS: ' is ',
+        HdlOpType.IS_NOT: " is not ",
 
         HdlOpType.MUL: " * ",
         HdlOpType.DIV: " // ",
