@@ -80,6 +80,10 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.SRA: " >>> ",
 
         HdlOpType.DOWNTO: ":",
+        HdlOpType.TO: ":",
+        HdlOpType.PART_SELECT_POST: " +: ",
+        HdlOpType.PART_SELECT_PRE: " -: ",
+
 
         HdlOpType.ARITH_SHIFT_LEFT_ASSIGN: ' <<<= ',
         HdlOpType.ARITH_SHIFT_RIGHT_ASSIGN: ' >>>= ',
@@ -141,6 +145,9 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.FALLING: (15, R),
         HdlOpType.DOWNTO: (16, L),
         HdlOpType.TO: (16, L),
+        HdlOpType.PART_SELECT_POST: (16, L),
+        HdlOpType.PART_SELECT_POST: (16, L),
+
     }
     OP_PRECEDENCE.update({k: (3, R) for k in [
         HdlOpType.NEG,
