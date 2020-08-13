@@ -174,6 +174,9 @@ class ToVhdl2008(ToVhdl2008Stm):
                     w("\n")
                 elif isinstance(o, iHdlStatement):
                     self.visit_iHdlStatement(o)
+                elif isinstance(o, HdlOp) and o.fn == HdlOpType.CALL:
+                    self.visit_HdlOp(o)
+                    w(";\n")
                 else:
                     raise NotImplementedError(o)
         if in_def_section:
