@@ -1,4 +1,4 @@
-from hdlConvertorAst.hdlAst import iHdlStatement, HdlStmCaseType, HdlIdDef,\
+from hdlConvertorAst.hdlAst import iHdlStatement, HdlStmCaseType, HdlIdDef, \
     HdlOp, HdlOpType, HdlStmBlock
 from hdlConvertorAst.to.hdlUtils import iter_with_last, Indent, UnIndent
 from hdlConvertorAst.to.vhdl.expr import ToVhdl2008Expr
@@ -70,9 +70,11 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
         :return: True if statements are wrapped in begin-end block
         """
         w = self.out.write
+        in_preproc = False
         if isinstance(stms, HdlStmBlock):
             self.visit_doc(stms)
             must_have_begin_end = True
+            in_preproc = stms.in_preproc
             stms = stms.body
         elif isinstance(stms, list):
             must_have_begin_end = len(stms) != 1
@@ -97,8 +99,12 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
                         non_declarative_seen = True
                         with UnIndent(self.out):
                             self._write_begin(begin_end, must_have_begin_end, force_space_before)
-                    self.visit_iHdlExpr(s)
-                    w(";\n")
+                    if in_preproc:
+                        self.visit_iHdlObj(s)
+                        w("\n")
+                    else:
+                        self.visit_iHdlExpr(s)
+                        w(";\n")
 
         if not non_declarative_seen:
             self._write_begin(begin_end, must_have_begin_end, force_space_before)
@@ -227,6 +233,34 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
             for b in o.body:
                 self.visit_iHdlStatement(b)
         w("END FOR;\n")
+
+    def visit_HdlStmForIn(self, o):
+        """
+        :type o: HdlStmForIn
+        """
+        if o.in_preproc:
+            self.visit_doc(o)
+            w = self.out.write
+            if o.labels:
+                w(o.labels[0])
+                w(": ")
+            w("FOR ")
+            assert len(o.var_defs) == 1, o.var_defs
+            self.visit_iHdlExpr(o.var_defs[0])
+            w(" IN ")
+            self.visit_iHdlExpr(o.collection)
+            w(" GENERATE\n")
+            with Indent(self.out):
+                has_begin_end = self.visit_iHdlObj(o.body)
+
+            if has_begin_end:
+                w(" GENERATE;\n")
+            else:
+                w("\n")
+                w("END GENERATE;\n")
+
+        else:
+            raise TypeError("does not support HdlStmForIn", self, o)
 
     def visit_HdlStmWait(self, o):
         """
