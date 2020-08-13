@@ -119,7 +119,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         """
         self.visit_doc(o)
         w = self.out.write
-        if o.in_prepoc:
+        if o.in_preproc:
             w("generate ")
 
         w("begin")
@@ -135,7 +135,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
                 else:
                     w("\n")
         w("end")
-        if o.in_prepoc:
+        if o.in_preproc:
             w(" endgenerate")
         return False
 
@@ -145,7 +145,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         """
         self.visit_doc(o)
         w = self.out.write
-        if o.in_prepoc:
+        if o.in_preproc:
             w("generate ")
         w("if (")
         self.visit_iHdlExpr(o.cond)
@@ -171,7 +171,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
             w("else")
             need_semi = self.visit_iHdlStatement_in_statement(ifFalse)
 
-        if o.in_prepoc:
+        if o.in_preproc:
             if need_semi:
                 w(";\n")
             else:
@@ -189,7 +189,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         self.visit_doc(o)
         w = self.out.write
         ts = self.top_stm 
-        if ts is o or (ts is not None and ts.in_prepoc):
+        if ts is o or (ts is not None and ts.in_preproc):
             w("assign ")
             self.visit_iHdlExpr(o.dst)
             w(" = ")
@@ -273,7 +273,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         """
         self.visit_doc(o)
         w = self.out.write
-        if o.in_prepoc:
+        if o.in_preproc:
             w("generate ")
 
         w("for (")
@@ -300,7 +300,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
                 w(", ")
         w(")")
         need_semi = self.visit_iHdlStatement_in_statement(o.body)
-        if o.in_prepoc:
+        if o.in_preproc:
             if need_semi:
                 w(";\n")
             else:

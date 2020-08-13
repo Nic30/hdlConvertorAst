@@ -64,9 +64,9 @@ class iHdlStatement(iHdlObjInModule):
             and are evaluated by preprocessor
             in the first place)
     """
-    __slots__ = ["labels", "in_prepoc"]
+    __slots__ = ["labels", "in_preproc"]
 
     def __init__(self):
         iHdlObjInModule.__init__(self)
         self.labels = []  # type: List[HdlValueId]
-        self.in_prepoc = False  # type: bool
+        self.in_preproc = False  # type: bool
