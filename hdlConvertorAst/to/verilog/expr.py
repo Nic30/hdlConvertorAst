@@ -66,7 +66,12 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.MOD: " % ",
 
         HdlOpType.EQ: ' == ',
-        HdlOpType.NEQ: " != ",
+        HdlOpType.NE: " != ",
+        HdlOpType.IS: ' === ',
+        HdlOpType.IS_NOT: " !== ",
+
+        HdlOpType.EQ_MATCH:" ==? ",
+        HdlOpType.NE_MATCH:" !=? ",
 
         HdlOpType.SLL: " << ",
         HdlOpType.SRL: " >> ",
@@ -115,7 +120,11 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.LE: (10, L),
 
         HdlOpType.EQ:  (11, L),
-        HdlOpType.NEQ: (11, L),
+        HdlOpType.NE: (11, L),
+        HdlOpType.IS:  (11, L),
+        HdlOpType.IS_NOT: (11, L),
+        HdlOpType.EQ_MATCH: (11, L),
+        HdlOpType.NE_MATCH: (11, L),
 
         HdlOpType.AND:  (12, L),
         HdlOpType.XOR:  (12, L),

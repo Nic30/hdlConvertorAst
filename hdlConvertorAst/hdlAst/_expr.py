@@ -156,7 +156,9 @@ class HdlOpType(Enum):
         XOR,
         XNOR,
         EQ,  # ==
-        NEQ,  # ~
+        NE,  # !=
+        IS,  # ===
+        IS_NOT, # !==
         LT,  # <
         LE,   # <=
         GT,  # >
@@ -178,8 +180,8 @@ class HdlOpType(Enum):
         FALLING,  # falling edge/negedge event operator
         MAP_ASSOCIATION,
         # VHDL-2008 matching ops (the X values are ignored while match)
-        EQ_MATCH,
-        NEQ_MATCH,
+        EQ_MATCH, # SV ==?
+        NE_MATCH, # SV !=?
         LT_MATCH,
         LE_MATCH,
         GT_MATCH,
@@ -201,7 +203,7 @@ class HdlOpType(Enum):
         SHIFT_RIGHT_ASSIGN,  # >>=
         ARITH_SHIFT_LEFT_ASSIGN,  # <<<=
         ARITH_SHIFT_RIGHT_ASSIGN,  # >>>=
-    ) = range(82)
+    ) = range(84)
     # note that in verilog bitewise operators can have only one argument
 
 

@@ -48,7 +48,7 @@ class ToSystemcExpr(ToHdlCommon):
         HdlOpType.GE:  (9, L),
         HdlOpType.LE:  (9, L),
 
-        HdlOpType.NEQ: (10, L),
+        HdlOpType.NE: (10, L),
         HdlOpType.EQ: (10, L),
 
         HdlOpType.AND: (11, L),
@@ -80,7 +80,7 @@ class ToSystemcExpr(ToHdlCommon):
         HdlOpType.XOR: " ^ ",
 
         HdlOpType.EQ: ' == ',
-        HdlOpType.NEQ: " != ",
+        HdlOpType.NE: " != ",
 
         HdlOpType.MUL: " * ",
         HdlOpType.DIV: " / ",
