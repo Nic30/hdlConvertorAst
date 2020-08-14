@@ -14,7 +14,7 @@ deps = ["typing", "future"] if sys.version_info[0] == 2 else None
 
 setup(
     name='hdlConvertorAst',
-    version='0.2',
+    version='0.3',
     description='',
     long_description=long_description,
     long_description_content_type="text/markdown",
