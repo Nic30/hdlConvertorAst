@@ -7,7 +7,7 @@ from hdlConvertorAst.hdlAst._expr import HdlDirection
 class ToJsonDebug(ToJson):
     """
     HdlConverto AST -> json (dict/list/str/int/None composed object)
-    An ivalid object are converted to str using its __repr__()
+    An invalid object are converted to str using its __repr__()
     """
     def visit_HdlIdDef(self, o):
         try:

@@ -140,6 +140,7 @@ class HdlClassDef(iHdlTypeDef):
     def __init__(self):
         super(HdlClassDef, self).__init__()
         self.type = HdlClassType.CLASS
+        self.base_types = []
         self.is_virtual = False  # type: bool
         self.is_packed = True  # type: bool
         self.members = []  # type: List[HdlIdDef]

@@ -1,7 +1,8 @@
-from hdlConvertorAst.hdlAst import HdlDirection, HdlValueId, HdlValueInt,\
+from hdlConvertorAst.hdlAst import HdlDirection, HdlValueId, HdlValueInt, \
     HdlOp, HdlAll, HdlTypeAuto, HdlOthers, HdlTypeType
 from hdlConvertorAst.py_ver_compatibility import is_str
 from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
+from hdlConvertorAst.hdlAst._typeDefs import iHdlTypeDef
 
 
 class ToJson(HdlAstVisitor):
@@ -150,6 +151,26 @@ class ToJson(HdlAstVisitor):
             d["return_t"] = self.visit_iHdlExpr(o.return_t)
         d["params"] = [self.visit_HdlIdDef(v) for v in o.params]
         d["body"] = [self.visit_main_obj(o2) for o2 in o.body]
+        return d
+
+    def visit_HdlClassDef(self, o):
+        """
+        :type o: HdlClassDef
+        """
+        d = self.visit_iHdlObjWithName(o)
+        d["members"] = [HdlAstVisitor.visit_iHdlObj(self, m) for m in o.members]
+        d["type"] = o.type.name
+        d["base_types"] = [self.visit_iHdlExpr(t) for t in o.base_types]
+        d["is_virtual"] = o.is_virtual
+        d["is_packed"] = o.is_packed
+        return d
+
+    def visit_HdlEnumDef(self, o):
+        """
+        :type o: HdlEnumDef
+        """
+        d = self.visit_iHdlObjWithName(o)
+        d["values"] = [self.visit_iHdlExpr(v) for v in o.values]
         return d
 
     def visit_HdlStmProcess(self, o):
@@ -328,6 +349,8 @@ class ToJson(HdlAstVisitor):
                 "__class__": o.__class__.__name__,
                 "items": items,
             }
+        elif isinstance(o, iHdlTypeDef):
+            return HdlAstVisitor.visit_iHdlObj(self, o)
         else:
             raise NotImplementedError(
                 "Unexpected object of type " + str(type(o)))

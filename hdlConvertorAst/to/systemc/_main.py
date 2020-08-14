@@ -174,3 +174,9 @@ class ToSystemc(ToSystemcStm):
             with Indent(self.out):
                 self.visit_iHdlExpr(var.value)
         return True
+
+    def visit_HdlClassDef(self, o):
+        raise NotImplementedError()
+
+    def visit_HdlEnumDef(self, o):
+        raise NotImplementedError()

@@ -1,5 +1,4 @@
-from hdlConvertorAst.hdlAst import HdlValueId, HdlOp, HdlOpType
-from hdlConvertorAst.hdlAst._expr import HdlTypeAuto
+from hdlConvertorAst.hdlAst import HdlValueId, HdlOp, HdlOpType, HdlTypeAuto
 
 
 PRIMITIVE_TYPES = (
