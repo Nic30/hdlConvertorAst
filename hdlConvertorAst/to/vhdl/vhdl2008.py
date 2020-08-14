@@ -1,11 +1,9 @@
 from hdlConvertorAst.hdlAst import HdlDirection, iHdlStatement, \
     HdlIdDef, HdlModuleDec, HdlFunctionDef, HdlCompInst, \
     HdlTypeType, HdlOp, HdlOpType, HdlValueIdspace, \
-    HdlEnumDef
+    HdlEnumDef, HdlTypeSubtype, HdlValueInt, HdlClassDef, HdlClassType
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last, UnIndent
 from hdlConvertorAst.to.vhdl.stm import ToVhdl2008Stm
-from hdlConvertorAst.hdlAst._expr import HdlTypeSubtype, HdlValueInt
-from hdlConvertorAst.hdlAst._typeDefs import HdlClassDef, HdlClassType
 
 
 class ToVhdl2008(ToVhdl2008Stm):
