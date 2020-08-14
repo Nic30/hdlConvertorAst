@@ -262,6 +262,7 @@ class ToVhdl2008(ToVhdl2008Stm):
                 w(" := ")
                 self.visit_iHdlExpr(v)
         w(end)
+
     def visit_HdlClassDef(self, o):
         """
         :type o: HdlClassDef
@@ -273,6 +274,7 @@ class ToVhdl2008(ToVhdl2008Stm):
             for m in o.members:
                 self.visit_HdlIdDef(m)
         w("END RECORD")
+
     def visit_HdlEnumDef(self, o):
         """
         :type o: HdlEnumDef
@@ -355,7 +357,7 @@ class ToVhdl2008(ToVhdl2008Stm):
         """
         self.visit_doc(o)
         w = self.out.write
-        #TODO:: if o.declaration_only:
+        # TODO:: if o.declaration_only:
         w("PACKAGE ")
         w(o.name)
         w(" IS\n")
