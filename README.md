@@ -1,5 +1,5 @@
 # hdlConvertorAst
-[![Travis-ci Build Status](https://travis-ci.org/Nic30/hdlConvertor.png?branch=master)](https://travis-ci.org/Nic30/hdlConvertorAst)
+[![Travis-ci Build Status](https://travis-ci.org/Nic30/hdlConvertorAst.png?branch=master)](https://travis-ci.org/Nic30/hdlConvertorAst)
 [![PyPI version](https://badge.fury.io/py/hdlConvertorAst.svg)](http://badge.fury.io/py/hdlConvertorAst)
 [![Python version](https://img.shields.io/pypi/pyversions/hdlConvertorAst.svg)](https://img.shields.io/pypi/pyversions/hdlConvertorAst.svg)
 [![Coverage Status](https://coveralls.io/repos/github/Nic30/hdlConvertorAst/badge.svg?branch=master)](https://coveralls.io/github/Nic30/hdlConvertorAst?branch=master)
