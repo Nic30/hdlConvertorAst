@@ -1,7 +1,4 @@
-from copy import copy
-
-from hdlConvertorAst.hdlAst._expr import HdlOpType
-from hdlConvertorAst.hdlAst._statements import HdlStmWait, HdlStmBlock
+from hdlConvertorAst.hdlAst import HdlOpType, HdlStmWait, HdlStmBlock
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 from hdlConvertorAst.to.verilog.expr import ToVerilog2005Expr
 

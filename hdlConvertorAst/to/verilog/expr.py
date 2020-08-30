@@ -1,11 +1,10 @@
-from hdlConvertorAst.hdlAst import HdlOpType, HdlValueId, HdlValueInt, HdlAll,\
+from hdlConvertorAst.hdlAst import HdlOpType, HdlValueId, HdlValueInt, HdlAll, \
     HdlOp, HdlTypeAuto
 from hdlConvertorAst.py_ver_compatibility import is_str
-from hdlConvertorAst.to.common import ToHdlCommon, ASSOCIATIVITY,\
+from hdlConvertorAst.to.common import ToHdlCommon, ASSOCIATIVITY, \
     ASSIGN_OPERATORS_SYMBOLS_C
 from hdlConvertorAst.to.hdlUtils import iter_with_last
 from hdlConvertorAst.to.verilog.utils import collect_array_dims, get_wire_t_params
-
 
 L = ASSOCIATIVITY.L_TO_R
 R = ASSOCIATIVITY.R_TO_L
@@ -84,7 +83,6 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.PART_SELECT_POST: " +: ",
         HdlOpType.PART_SELECT_PRE: " -: ",
 
-
         HdlOpType.ARITH_SHIFT_LEFT_ASSIGN: ' <<<= ',
         HdlOpType.ARITH_SHIFT_RIGHT_ASSIGN: ' >>>= ',
     }
@@ -99,57 +97,62 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.TYPE_OF: (2, L),
         HdlOpType.PARAMETRIZATION: (2, L),
 
-        HdlOpType.MINUS_UNARY: (4, R),
-        HdlOpType.PLUS_UNARY: (4, R),
+        HdlOpType.POW: (5, L),
 
-        HdlOpType.CONCAT: (5, L),
+        HdlOpType.CONCAT: (6, L),
 
-        HdlOpType.REPL_CONCAT: (6, L),
+        HdlOpType.REPL_CONCAT: (7, L),
 
-        HdlOpType.DIV: (7, L),
-        HdlOpType.MUL: (7, L),
-        HdlOpType.MOD: (7, L),
+        HdlOpType.DIV: (8, L),
+        HdlOpType.MUL: (8, L),
+        HdlOpType.MOD: (8, L),
 
-        HdlOpType.ADD: (8, L),
-        HdlOpType.SUB: (8, L),
+        HdlOpType.ADD: (9, L),
+        HdlOpType.SUB: (9, L),
 
-        HdlOpType.SLL: (9, L),
-        HdlOpType.SRL: (9, L),
-        HdlOpType.SLA: (9, L),
-        HdlOpType.SRA: (9, L),
+        HdlOpType.SLL: (10, L),
+        HdlOpType.SRL: (10, L),
+        HdlOpType.SLA: (10, L),
+        HdlOpType.SRA: (10, L),
 
-        HdlOpType.GT: (10, L),
-        HdlOpType.LT: (10, L),
-        HdlOpType.GE: (10, L),
-        HdlOpType.LE: (10, L),
+        HdlOpType.GT: (11, L),
+        HdlOpType.LT: (11, L),
+        HdlOpType.GE: (11, L),
+        HdlOpType.LE: (11, L),
 
-        HdlOpType.EQ:  (11, L),
-        HdlOpType.NE: (11, L),
-        HdlOpType.IS:  (11, L),
-        HdlOpType.IS_NOT: (11, L),
-        HdlOpType.EQ_MATCH: (11, L),
-        HdlOpType.NE_MATCH: (11, L),
+        HdlOpType.EQ:  (12, L),
+        HdlOpType.NE: (12, L),
+        HdlOpType.IS:  (12, L),
+        HdlOpType.IS_NOT: (12, L),
+        HdlOpType.EQ_MATCH: (12, L),
+        HdlOpType.NE_MATCH: (12, L),
 
-        HdlOpType.AND:  (12, L),
-        HdlOpType.XOR:  (12, L),
-        HdlOpType.OR:   (12, L),
-        HdlOpType.NAND: (12, L),
-        HdlOpType.XNOR: (12, L),
+        HdlOpType.AND:  (13, L),
+        HdlOpType.XOR:  (13, L),
+        HdlOpType.OR:   (13, L),
+        HdlOpType.NAND: (13, L),
+        HdlOpType.XNOR: (13, L),
 
-        HdlOpType.AND_LOG: (13, L),
-        HdlOpType.OR_LOG: (13, L),
+        HdlOpType.AND_LOG: (14, L),
+        HdlOpType.OR_LOG: (14, L),
 
-        HdlOpType.TERNARY: (14, R),
+        HdlOpType.TERNARY: (15, R),
 
-        HdlOpType.RISING: (15, R),
-        HdlOpType.FALLING: (15, R),
-        HdlOpType.DOWNTO: (16, L),
-        HdlOpType.TO: (16, L),
-        HdlOpType.PART_SELECT_POST: (16, L),
-        HdlOpType.PART_SELECT_POST: (16, L),
+        HdlOpType.RISING: (16, R),
+        HdlOpType.FALLING: (16, R),
+        HdlOpType.DOWNTO: (17, L),
+        HdlOpType.TO: (17, L),
+        HdlOpType.PART_SELECT_PRE: (17, L),
+        HdlOpType.PART_SELECT_POST: (17, L),
 
     }
     OP_PRECEDENCE.update({k: (3, R) for k in [
+        HdlOpType.MINUS_UNARY,
+        HdlOpType.PLUS_UNARY,
+        HdlOpType.INCR_PRE,
+        HdlOpType.INCR_POST,
+        HdlOpType.DECR_PRE,
+        HdlOpType.DECR_POST,
         HdlOpType.NEG,
         HdlOpType.NEG_LOG,
         HdlOpType.OR_UNARY,
@@ -159,7 +162,7 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.XOR_UNARY,
         HdlOpType.XNOR_UNARY
     ]})
-    OP_PRECEDENCE.update({k: (16, ASSOCIATIVITY.NONE)
+    OP_PRECEDENCE.update({k: (18, ASSOCIATIVITY.NONE)
                           for k in ASSIGN_OPERATORS})
 
     GENERIC_UNARY_OPS = {

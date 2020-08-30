@@ -1,7 +1,6 @@
 from hdlConvertorAst.hdlAst import HdlDirection, HdlOpType,\
     HdlOp, HdlCompInst, HdlIdDef, iHdlStatement,\
-    HdlTypeAuto
-from hdlConvertorAst.hdlAst._defs import HdlFunctionDef
+    HdlTypeAuto, HdlFunctionDef
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 from hdlConvertorAst.to.verilog.stm import ToVerilog2005Stm
 
@@ -190,6 +189,12 @@ class ToVerilog2005(ToVerilog2005Stm):
             w("endtask")
         else:
             w("endfunction")
+
+    def visit_HdlClassDef(self, o):
+        raise NotImplementedError()
+
+    def visit_HdlEnumDef(self, o):
+        raise NotImplementedError()
 
     def visit_HdlModuleDec(self, e):
         raise ValueError(self, "does not support a module headers without body")

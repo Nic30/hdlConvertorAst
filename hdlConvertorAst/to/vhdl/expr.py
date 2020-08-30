@@ -252,24 +252,30 @@ class ToVhdl2008Expr(ToHdlCommon):
             }
             CONC = self.GENERIC_BIN_OPS[HdlOpType.CONCAT]
             first = True
-            string_begin = True
+            in_string_lit = False
             for c in o:
                 esc = ESCAPES.get(c, None)
-                if esc is not None:
-                    if not string_begin:
-                        w('"')  # string end "
-                        string_begin = True
-                    if not first:
-                        w(CONC)
-                    w(esc)
-                else:
-                    if string_begin:
-                        string_begin = False
+                if esc is None:
+                    if not in_string_lit:
+                        if not first:
+                            # first character after escape sequence
+                            w(CONC)
                         w('"')  # string start "
+                        in_string_lit = True
+                    # character inside ""
                     w(c)
+                else:
+                    if not first:
+                        if in_string_lit:
+                            w('"')  # string end "
+                            # escape sequence behind string
+                        w(CONC)
+                    in_string_lit = False
+                    # escape name
+                    w(esc)
                 first = False
 
-            if not string_begin:
+            if in_string_lit:
                 w('"')  # string end "
 
     def visit_iHdlExpr(self, expr):

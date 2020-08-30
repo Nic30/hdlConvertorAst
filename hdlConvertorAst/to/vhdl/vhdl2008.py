@@ -1,11 +1,9 @@
 from hdlConvertorAst.hdlAst import HdlDirection, iHdlStatement, \
     HdlIdDef, HdlModuleDec, HdlFunctionDef, HdlCompInst, \
     HdlTypeType, HdlOp, HdlOpType, HdlValueIdspace, \
-    HdlEnumDef
+    HdlEnumDef, HdlTypeSubtype, HdlValueInt, HdlClassDef, HdlClassType
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last, UnIndent
 from hdlConvertorAst.to.vhdl.stm import ToVhdl2008Stm
-from hdlConvertorAst.hdlAst._expr import HdlTypeSubtype, HdlValueInt
-from hdlConvertorAst.hdlAst._typeDefs import HdlClassDef, HdlClassType
 
 
 class ToVhdl2008(ToVhdl2008Stm):
@@ -174,6 +172,9 @@ class ToVhdl2008(ToVhdl2008Stm):
                     w("\n")
                 elif isinstance(o, iHdlStatement):
                     self.visit_iHdlStatement(o)
+                elif isinstance(o, HdlOp) and o.fn == HdlOpType.CALL:
+                    self.visit_HdlOp(o)
+                    w(";\n")
                 else:
                     raise NotImplementedError(o)
         if in_def_section:
@@ -214,18 +215,7 @@ class ToVhdl2008(ToVhdl2008Stm):
                 w(" IS ")
                 _t = var.value
                 if isinstance(_t, HdlEnumDef):
-                    w('(')
-                    for last, ev in iter_with_last(_t.values):
-                        k, v = ev
-                        if k is not None:
-                            w(k)
-                        else:
-                            assert isinstance(v, HdlValueInt) and v.base == 256, v
-                            self.visit_HdlValueInt(v)
-
-                        if not last:
-                            w(", ")
-                    w(")")
+                    self.visit_HdlEnumDef(_t)
                 elif isinstance(_t, HdlOp):
                     assert _t.fn == HdlOpType.INDEX, _t.fn
                     w("ARRAY (")
@@ -236,12 +226,7 @@ class ToVhdl2008(ToVhdl2008Stm):
                     w(") OF ")
                     self.visit_iHdlExpr(_t.ops[0])
                 elif isinstance(_t, HdlClassDef):
-                    assert _t.type == HdlClassType.STRUCT, _t.type
-                    w("RECORD\n")
-                    with Indent(self.out):
-                        for m in _t.members:
-                            self.visit_HdlIdDef(m)
-                    w("END RECORD")
+                    self.visit_HdlClassDef(_t)
                 else:
                     raise NotImplementedError(type(_t))
             finally:
@@ -276,6 +261,36 @@ class ToVhdl2008(ToVhdl2008Stm):
                 self.visit_iHdlExpr(v)
         w(end)
 
+    def visit_HdlClassDef(self, o):
+        """
+        :type o: HdlClassDef
+        """
+        w = self.out.write
+        assert o.type == HdlClassType.STRUCT, o.type
+        w("RECORD\n")
+        with Indent(self.out):
+            for m in o.members:
+                self.visit_HdlIdDef(m)
+        w("END RECORD")
+
+    def visit_HdlEnumDef(self, o):
+        """
+        :type o: HdlEnumDef
+        """
+        w = self.out.write
+        w('(')
+        for last, ev in iter_with_last(o.values):
+            k, v = ev
+            if k is not None:
+                w(k)
+            else:
+                assert isinstance(v, HdlValueInt) and v.base == 256, v
+                self.visit_HdlValueInt(v)
+
+            if not last:
+                w(", ")
+        w(")")
+        
     def visit_HdlFunctionDef(self, o):
         """
         :type o: HdlFunctionDef
@@ -340,7 +355,7 @@ class ToVhdl2008(ToVhdl2008Stm):
         """
         self.visit_doc(o)
         w = self.out.write
-        #TODO:: if o.declaration_only:
+        # TODO:: if o.declaration_only:
         w("PACKAGE ")
         w(o.name)
         w(" IS\n")

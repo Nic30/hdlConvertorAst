@@ -4,7 +4,8 @@ from hdlConvertorAst.hdlAst import HdlImport, HdlStmProcess, HdlStmIf,\
     HdlStmAssign, HdlStmCase, HdlStmWait, HdlStmReturn, HdlStmFor, HdlStmForIn,\
     HdlStmWhile, HdlStmBlock, iHdlStatement, HdlModuleDec, HdlModuleDef,\
     HdlValueIdspace, HdlIdDef, HdlFunctionDef, HdlOp, HdlCompInst, \
-    HdlValueInt, HdlStmBreak, HdlStmContinue, HdlStmRepeat, HdlLibrary, HdlContext
+    HdlValueInt, HdlStmBreak, HdlStmContinue, HdlStmRepeat, HdlLibrary, HdlContext,\
+    HdlClassDef, HdlEnumDef
 
 
 class HdlAstVisitor(object):
@@ -14,10 +15,11 @@ class HdlAstVisitor(object):
             for cls in [
                 HdlContext, HdlImport, HdlLibrary, HdlModuleDec, HdlModuleDef,
                 HdlValueIdspace, HdlIdDef, HdlFunctionDef,
+                HdlClassDef, HdlEnumDef,
                 HdlCompInst, HdlStmProcess, HdlStmIf, HdlStmAssign,
                 HdlStmCase, HdlStmWait, HdlStmRepeat, HdlStmReturn,
                 HdlStmBreak, HdlStmContinue, HdlStmFor, HdlStmForIn,
-                HdlStmWhile, HdlStmBlock, HdlOp, HdlValueInt
+                HdlStmWhile, HdlStmBlock, HdlOp, HdlValueInt,
             ]
         }
 
@@ -150,6 +152,25 @@ class HdlAstVisitor(object):
         self.visit_doc(o)
         for pm in chain(o.param_map, o.port_map):
             self.visit_iHdlExpr(pm)
+
+    def visit_HdlClassDef(self, o):
+        """
+        :type o: HdlClassDef
+        """
+        self.visit_doc(o)
+        for t in o.base_types:
+            self.visit_iHdlExpr(t)
+
+        for m in o.members:
+            self.visit_iHdlObj(m)
+
+        return o
+
+    def visit_HdlEnumDef(self, o):
+        """
+        :type o: HdlEnumDef
+        """
+        return o
 
     def visit_HdlFunctionDef(self, o):
         """
