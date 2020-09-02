@@ -217,14 +217,21 @@ class ToVhdl2008(ToVhdl2008Stm):
                 if isinstance(_t, HdlEnumDef):
                     self.visit_HdlEnumDef(_t)
                 elif isinstance(_t, HdlOp):
-                    assert _t.fn == HdlOpType.INDEX, _t.fn
-                    w("ARRAY (")
-                    for last, i in iter_with_last(_t.ops[1:]):
-                        self.visit_iHdlExpr(i)
-                        if not last:
-                            w(", ")
-                    w(") OF ")
-                    self.visit_iHdlExpr(_t.ops[0])
+                    if _t.fn == HdlOpType.INDEX:
+                        w("ARRAY (")
+                        for last, i in iter_with_last(_t.ops[1:]):
+                            self.visit_iHdlExpr(i)
+                            if not last:
+                                w(", ")
+                        w(") OF ")
+                        self.visit_iHdlExpr(_t.ops[0])
+                    elif _t.fn == HdlOpType.RANGE:
+                        w("RANGE ")
+                        assert len(_t.ops) == 1, _t.ops
+                        self.visit_iHdlExpr(_t.ops[0])
+                    else:
+                        raise NotImplementedError(_t.fn)
+
                 elif isinstance(_t, HdlClassDef):
                     self.visit_HdlClassDef(_t)
                 else:
