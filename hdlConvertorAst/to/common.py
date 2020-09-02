@@ -134,6 +134,8 @@ class ToHdlCommon(HdlAstVisitor):
         elif isinstance(o, HdlOp):
             self.visit_HdlOp(o)
             return
+        elif isinstance(o, float):
+            w("%e" % o)
         else:
             raise NotImplementedError(
                 "Do not know how to convert %r" % (o))
