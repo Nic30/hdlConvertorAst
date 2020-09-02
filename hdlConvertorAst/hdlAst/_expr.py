@@ -180,7 +180,7 @@ class HdlOpType(Enum):
         ARROW,  # arrow operator used in vhdl type descriptions
         RISING,  # rising edge/posedge event operator
         FALLING,  # falling edge/negedge event operator
-        MAP_ASSOCIATION,
+        MAP_ASSOCIATION, # arg=val
         # VHDL-2008 matching ops (the X values are ignored while match)
         EQ_MATCH, # SV ==?
         NE_MATCH, # SV !=?
