@@ -3,6 +3,7 @@ from hdlConvertorAst.hdlAst._expr import HdlOpType, HdlValueId, HdlValueInt,\
 from hdlConvertorAst.py_ver_compatibility import is_str
 from hdlConvertorAst.to.common import ToHdlCommon, ASSOCIATIVITY
 from hdlConvertorAst.to.hdlUtils import iter_with_last, Indent
+from copy import copy
 
 
 L = ASSOCIATIVITY.L_TO_R
@@ -11,9 +12,11 @@ R = ASSOCIATIVITY.R_TO_L
 
 # https://www.csee.umbc.edu/portal/help/VHDL/operator.html
 class ToVhdl2008Expr(ToHdlCommon):
-    GENERIC_UNARY_OPS = ToHdlCommon.GENERIC_UNARY_OPS
-    GENERIC_UNARY_OPS.update({HdlOpType.NEG: "NOT ",
-                              HdlOpType.NEG_LOG: "NOT "})
+    GENERIC_UNARY_OPS = copy(ToHdlCommon.GENERIC_UNARY_OPS)
+    GENERIC_UNARY_OPS.update({
+        HdlOpType.NEG: "NOT ",
+        HdlOpType.NEG_LOG: "NOT ",
+    })
     BITWISE_BIN_OPS = {HdlOpType.AND, HdlOpType.AND_LOG,
                        HdlOpType.OR, HdlOpType.OR_LOG,
                        HdlOpType.XOR, HdlOpType.NAND,
