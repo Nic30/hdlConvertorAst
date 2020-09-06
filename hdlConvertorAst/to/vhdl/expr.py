@@ -16,12 +16,14 @@ class ToVhdl2008Expr(ToHdlCommon):
     GENERIC_UNARY_OPS.update({
         HdlOpType.NEG: "NOT ",
         HdlOpType.NEG_LOG: "NOT ",
-        HdlOpType.RANGE: " RANGE ", # used in HdlPhysicalDef
+        HdlOpType.RANGE: "RANGE ", # used in HdlPhysicalDef
     })
-    BITWISE_BIN_OPS = {HdlOpType.AND, HdlOpType.AND_LOG,
-                       HdlOpType.OR, HdlOpType.OR_LOG,
-                       HdlOpType.XOR, HdlOpType.NAND,
-                       HdlOpType.NOR, HdlOpType.XNOR}
+    BITWISE_BIN_OPS = {
+        HdlOpType.AND, HdlOpType.AND_LOG,
+        HdlOpType.OR, HdlOpType.OR_LOG,
+        HdlOpType.XOR, HdlOpType.NAND,
+        HdlOpType.NOR, HdlOpType.XNOR
+    }
     GENERIC_BIN_OPS = {
         HdlOpType.AND: " AND ",
         HdlOpType.AND_LOG: " AND ",
@@ -55,6 +57,7 @@ class ToVhdl2008Expr(ToHdlCommon):
         HdlOpType.SRA: " SRA ",
         HdlOpType.SLL: " SLL ",
         HdlOpType.SRL: " SRL ",
+        HdlOpType.UNIT_SPEC: " ",
     }
     GENERIC_BIN_OPS.update(ToHdlCommon.GENERIC_BIN_OPS)
     NUM_BASES = {
@@ -64,6 +67,7 @@ class ToVhdl2008Expr(ToHdlCommon):
         256: "",  # 'X' literals
     }
     OP_PRECEDENCE = {
+        HdlOpType.UNIT_SPEC: (0, L),
         HdlOpType.DOT: (1, L),
         HdlOpType.CALL: (1, L),
         HdlOpType.INDEX: (1, L),
@@ -73,7 +77,8 @@ class ToVhdl2008Expr(ToHdlCommon):
 
         HdlOpType.POW: (2, R),
         HdlOpType.ABS: (2, L),
-        HdlOpType.NEG: (2, L),
+        HdlOpType.NEG: (2, R),
+        HdlOpType.NEG_LOG: (2, R),
 
         HdlOpType.MUL: (3, L),
         HdlOpType.DIV: (3, L),
