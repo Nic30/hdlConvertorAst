@@ -1,5 +1,5 @@
 from hdlConvertorAst.hdlAst import HdlDirection, HdlValueId, HdlValueInt, \
-    HdlOp, HdlAll, HdlTypeAuto, HdlOthers, HdlTypeType
+    HdlOp, NON_INSTANCIABLE_NODES
 from hdlConvertorAst.py_ver_compatibility import is_str
 from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
 from hdlConvertorAst.hdlAst._typeDefs import iHdlTypeDef
@@ -337,13 +337,6 @@ class ToJson(HdlAstVisitor):
             d = self.visit_HdlValueInt(o)
         elif isinstance(o, HdlOp):
             d = self.visit_HdlOp(o)
-        elif o is HdlAll or\
-                o is HdlTypeAuto or\
-                o is HdlOthers or\
-                o is HdlTypeType:
-            d = {
-                "__class__": o.__name__,
-            }
         elif isinstance(o, (list, tuple, dict)):
             if isinstance(o, dict):
                 items = []
@@ -360,6 +353,12 @@ class ToJson(HdlAstVisitor):
             }
         elif isinstance(o, iHdlTypeDef):
             return HdlAstVisitor.visit_iHdlObj(self, o)
+        elif isinstance(o, float):
+            return o
+        elif o in NON_INSTANCIABLE_NODES:
+            d = {
+                "__class__": o.__name__,
+            }
         else:
             raise NotImplementedError(
                 "Unexpected object of type " + str(type(o)))

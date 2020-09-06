@@ -31,3 +31,11 @@ from hdlConvertorAst.hdlAst._structural import (
 from hdlConvertorAst.hdlAst._typeDefs import (
     iHdlTypeDef, HdlClassType, HdlClassDef, HdlPhysicalDef, HdlEnumDef, HdlTypeBitsDef)
 from hdlConvertorAst.hdlAst.utils import CodePosition
+
+NON_INSTANCIABLE_NODES = {
+    HdlAll,
+    HdlOthers,
+    HdlTypeType,
+    HdlTypeSubtype,
+    HdlTypeAuto,
+}

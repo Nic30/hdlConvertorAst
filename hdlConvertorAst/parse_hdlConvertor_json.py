@@ -2,8 +2,8 @@ import json
 
 from hdlConvertorAst import hdlAst
 from hdlConvertorAst.hdlAst import HdlContext, CodePosition, HdlOpType,\
-    HdlDirection, HdlStmBlockJoinType, HdlTypeAuto, HdlAll, HdlOthers,\
-    HdlTypeType, HdlTypeSubtype, HdlValueInt, HdlValueId, HdlStmCase, HdlStmCaseType
+    HdlDirection, HdlStmBlockJoinType, HdlValueInt, HdlValueId, HdlStmCase, HdlStmCaseType,\
+    NON_INSTANCIABLE_NODES
 from hdlConvertorAst.py_ver_compatibility import is_str
 
 
@@ -17,13 +17,6 @@ KNOWN_NODES.update({
     "tuple": tuple,
     "str": str,
 })
-NON_INSTANCIABLE_NODES = {
-    HdlAll,
-    HdlOthers,
-    HdlTypeType,
-    HdlTypeSubtype,
-    HdlTypeAuto,
-}
 
 
 def _parse_hdlConvertor_json(j):
