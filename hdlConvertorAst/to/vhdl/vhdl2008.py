@@ -214,8 +214,6 @@ class ToVhdl2008(ToVhdl2008Stm):
                 w(name)
                 w(" IS ")
                 _t = var.value
-                if isinstance(_t, HdlPhysicalDef):
-                    self.visit_HdlPhysicalDef(_t)
                 if isinstance(_t, HdlEnumDef):
                     self.visit_HdlEnumDef(_t)
                 elif isinstance(_t, HdlOp):
@@ -236,6 +234,8 @@ class ToVhdl2008(ToVhdl2008Stm):
 
                 elif isinstance(_t, HdlClassDef):
                     self.visit_HdlClassDef(_t)
+                elif isinstance(_t, HdlPhysicalDef):
+                    self.visit_HdlPhysicalDef(_t)
                 else:
                     raise NotImplementedError(type(_t))
             finally:
@@ -290,14 +290,15 @@ class ToVhdl2008(ToVhdl2008Stm):
         self.visit_HdlOp(o.range)
         w("\n")
         with Indent(self.out):
-            w("units\n")
+            w("UNITS\n")
             with Indent(self.out):
-                for k, v in iter_with_last(o.members):
+                for k, v in o.members:
                     w(k)
                     if v is not None:
+                        w(" = ")
                         self.visit_HdlOp(v)
                     w(";\n")
-            w("end units\n")
+            w("END UNITS")
 
     def visit_HdlEnumDef(self, o):
         """
