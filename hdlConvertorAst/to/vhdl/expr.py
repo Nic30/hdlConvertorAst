@@ -16,6 +16,7 @@ class ToVhdl2008Expr(ToHdlCommon):
     GENERIC_UNARY_OPS.update({
         HdlOpType.NEG: "NOT ",
         HdlOpType.NEG_LOG: "NOT ",
+        HdlOpType.RANGE: " RANGE ", # used in HdlPhysicalDef
     })
     BITWISE_BIN_OPS = {HdlOpType.AND, HdlOpType.AND_LOG,
                        HdlOpType.OR, HdlOpType.OR_LOG,
