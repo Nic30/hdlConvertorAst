@@ -1,6 +1,6 @@
 from hdlConvertorAst.hdlAst import HdlDirection, iHdlStatement, \
     HdlIdDef, HdlModuleDec, HdlFunctionDef, HdlCompInst, \
-    HdlTypeType, HdlOp, HdlOpType, HdlValueIdspace, \
+    HdlTypeType, HdlOp, HdlOpType, HdlValueIdspace, HdlPhysicalDef, \
     HdlEnumDef, HdlTypeSubtype, HdlValueInt, HdlClassDef, HdlClassType
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last, UnIndent
 from hdlConvertorAst.to.vhdl.stm import ToVhdl2008Stm
@@ -214,6 +214,8 @@ class ToVhdl2008(ToVhdl2008Stm):
                 w(name)
                 w(" IS ")
                 _t = var.value
+                if isinstance(_t, HdlPhysicalDef):
+                    self.visit_HdlPhysicalDef(_t)
                 if isinstance(_t, HdlEnumDef):
                     self.visit_HdlEnumDef(_t)
                 elif isinstance(_t, HdlOp):
@@ -279,6 +281,23 @@ class ToVhdl2008(ToVhdl2008Stm):
             for m in o.members:
                 self.visit_HdlIdDef(m)
         w("END RECORD")
+
+    def visit_HdlPhysicalDef(self, o):
+        """
+        :type o: HdlPhysicalDef
+        """
+        w = self.out.write
+        self.visit_HdlOp(o.range)
+        w("\n")
+        with Indent(self.out):
+            w("units\n")
+            with Indent(self.out):
+                for k, v in iter_with_last(o.members):
+                    w(k)
+                    if v is not None:
+                        self.visit_HdlOp(v)
+                    w(";\n")
+            w("end units\n")
 
     def visit_HdlEnumDef(self, o):
         """

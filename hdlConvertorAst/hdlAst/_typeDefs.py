@@ -146,6 +146,35 @@ class HdlClassDef(iHdlTypeDef):
         self.members = []  # type: List[HdlIdDef]
 
 
+class HdlPhysicalDef(iHdlTypeDef):
+    """
+    Definition of VHDL Physical Type
+
+    :note: name may be None
+    :note: equivalent of vhdl:
+
+        .. code-block:: vhdl
+
+           type p_name is range 0 to 100 
+               units 
+                   u1;
+                   u2 = 10 u1;
+                   u3 = 100 u2;
+               end units;
+
+        .. code-block:: python
+           
+           HdlIdDef(name="p_name", type=HdlTypeType,
+                       value=HdlPhysicalDef(...))
+    """
+    __slots__ = ["name", "range", "members"]
+
+    def __init__(self):
+        super(HdlPhysicalDef, self).__init__()
+        self.range = None
+        self.members = []  # type: List[Tuple[str, Optional[iHdlExpr]]]
+
+
 class HdlEnumDef(iHdlTypeDef):
     """
     Definition of VHDL Enumeration Type or SystemVerilog enum

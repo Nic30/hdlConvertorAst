@@ -1,7 +1,7 @@
 from itertools import chain
 
 from hdlConvertorAst.hdlAst import HdlIdDef, HdlOp, HdlOpType,\
-    HdlDirection, HdlValueId, HdlCompInst, HdlEnumDef, HdlClassDef
+    HdlDirection, HdlValueId, HdlCompInst, HdlPhysicalDef, HdlEnumDef, HdlClassDef
 from hdlConvertorAst.to.basic_hdl_sim_model.stm import ToBasicHdlSimModelStm
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 from hdlConvertorAst.to.basic_hdl_sim_model.utils import sensitivityByOp
@@ -64,6 +64,7 @@ class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
         components = []
         obj_type_containers = {
             HdlClassDef: types,
+            HdlPhysicalDef: types,
             HdlEnumDef: types,
             HdlIdDef: variables,
             HdlCompInst: components,
@@ -214,6 +215,9 @@ class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
         w(t.name)
         w(" = ")
         val = t.value
+        if isinstance(val, HdlPhysicalDef):
+            # I don't get what this is, TODO
+            raise NotImplementedError()
         if isinstance(val, HdlEnumDef):
             w('define_Enum3t("')
             w(t.name)

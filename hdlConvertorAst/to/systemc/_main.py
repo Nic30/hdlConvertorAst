@@ -1,6 +1,6 @@
 from hdlConvertorAst.hdlAst import HdlIdDef, iHdlExpr, HdlOp, HdlOpType,\
     HdlDirection, HdlValueId, HdlStmProcess, HdlCompInst, HdlModuleDec,\
-    HdlEnumDef, HdlClassDef
+    HdlPhysicalDef, HdlEnumDef, HdlClassDef
 from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
 from hdlConvertorAst.to.basic_hdl_sim_model._main import ToBasicHdlSimModel
 from hdlConvertorAst.to.common import ToHdlCommon
@@ -179,4 +179,7 @@ class ToSystemc(ToSystemcStm):
         raise NotImplementedError()
 
     def visit_HdlEnumDef(self, o):
+        raise NotImplementedError()
+
+    def visit_HdlPhysicalDef(self, o):
         raise NotImplementedError()

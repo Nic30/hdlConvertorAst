@@ -1,6 +1,6 @@
 from hdlConvertorAst.hdlAst import HdlIdDef, iHdlExpr, HdlOp, HdlOpType,\
     HdlDirection, HdlValueId, HdlStmProcess, HdlCompInst, HdlModuleDec,\
-    HdlEnumDef, HdlClassDef
+    HdlPhysicalDef, HdlEnumDef, HdlClassDef
 from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
 from hdlConvertorAst.py_ver_compatibility import method_as_function
 from hdlConvertorAst.to.basic_hdl_sim_model._main import ToBasicHdlSimModel

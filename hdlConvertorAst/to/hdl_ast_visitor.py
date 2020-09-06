@@ -5,7 +5,7 @@ from hdlConvertorAst.hdlAst import HdlImport, HdlStmProcess, HdlStmIf,\
     HdlStmWhile, HdlStmBlock, iHdlStatement, HdlModuleDec, HdlModuleDef,\
     HdlValueIdspace, HdlIdDef, HdlFunctionDef, HdlOp, HdlCompInst, \
     HdlValueInt, HdlStmBreak, HdlStmContinue, HdlStmRepeat, HdlLibrary, HdlContext,\
-    HdlClassDef, HdlEnumDef
+    HdlClassDef, HdlPhysicalDef, HdlEnumDef
 
 
 class HdlAstVisitor(object):
@@ -15,7 +15,7 @@ class HdlAstVisitor(object):
             for cls in [
                 HdlContext, HdlImport, HdlLibrary, HdlModuleDec, HdlModuleDef,
                 HdlValueIdspace, HdlIdDef, HdlFunctionDef,
-                HdlClassDef, HdlEnumDef,
+                HdlClassDef, HdlPhysicalDef, HdlEnumDef,
                 HdlCompInst, HdlStmProcess, HdlStmIf, HdlStmAssign,
                 HdlStmCase, HdlStmWait, HdlStmRepeat, HdlStmReturn,
                 HdlStmBreak, HdlStmContinue, HdlStmFor, HdlStmForIn,
@@ -166,6 +166,12 @@ class HdlAstVisitor(object):
 
         return o
 
+    def visit_HdlPhysicalDef(self, o):
+        """
+        :type o: HdlPhysicalDef
+        """
+        return o
+    
     def visit_HdlEnumDef(self, o):
         """
         :type o: HdlEnumDef
