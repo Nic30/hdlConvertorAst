@@ -125,7 +125,6 @@ class FromJsonToHdlTC(unittest.TestCase):
         self.check_file("GroupOfBlockrams", ToHwt)
 
     def test_GroupOfBlockrams_sim_model(self):
-        self.maxDiff = None
         self.check_file("GroupOfBlockrams", ToBasicHdlSimModel)
 
     def test_GroupOfBlockrams_systemc(self):
