@@ -37,9 +37,9 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
         HdlOpType.MUL: (6, L),
         HdlOpType.MOD: (6, L),
 
-        HdlOpType.NEG_LOG: (5, L),
-        HdlOpType.NEG: (5, L),
-        HdlOpType.MINUS_UNARY: (5, L),
+        HdlOpType.NEG_LOG: (5, R),
+        HdlOpType.NEG: (5, R),
+        HdlOpType.MINUS_UNARY: (5, R),
         HdlOpType.POW: (4, R),
 
         HdlOpType.INDEX: (1, L),

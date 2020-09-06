@@ -422,7 +422,7 @@ class Showcase0(BasicRtlSimModel):
 
     # sensitivity: e, r
     def assig_process_r_next_1(self):
-        (c, cVld, ) = sim_eval_cond((~(self.io.r.val))._eq(self.const_1_1))
+        (c, cVld, ) = sim_eval_cond((~self.io.r.val)._eq(self.const_1_1))
         if not cVld:
             self.io.r_next.val_next = (self.const_0_6, 0, )
         elif c:

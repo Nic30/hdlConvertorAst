@@ -97,11 +97,11 @@ class ToHdlCommon(HdlAstVisitor):
             op_str = self.GENERIC_UNARY_OPS.get(o, None)
             if op_str is not None:
                 w(op_str)
-                self._visit_operand(op.ops[0], 0, op, True, False)
+                self._visit_operand(op.ops[0], 0, op, False, False)
                 return
             op_str = self.GENERIC_UNARY_OPS_POSTFIX.get(o, None)
             if op_str is not None:
-                self._visit_operand(op.ops[0], 0, op, True, False)
+                self._visit_operand(op.ops[0], 0, op, False, False)
                 w(op_str)
                 return
 
@@ -174,22 +174,26 @@ class ToHdlCommon(HdlAstVisitor):
                     argc = len(parent.ops)
                     assert argc, parent
                     if argc == 1:
-                        pass
+                        if asoc_parent == ASSOCIATIVITY.L_TO_R:
+                            # post fix
+                            left = parent.ops[0]
+                        else:
+                            assert asoc_parent == ASSOCIATIVITY.R_TO_L, asoc_parent
+                            right = parent.ops[0]
                     else:
                         if i == 0:
                             right = parent.ops[1]
                         else:
                             left = parent.ops[i - 1]
+                            if argc > i + 2:
+                                right = parent.ops[i + 1]
 
                     if self._visit_operand_parentheses_extra_check(
                             op_my, precedence_my, asoc_my, parent.fn,
                             precedence_parent, asoc_parent, left, right):
                         use_parenthesis = True
                     else:
-                        # if argc > 1 and asoc_my is ASSOCIATIVITY.R_TO_L:
-                        #     right, left = left, right
-
-                        if left is not None:  # "operand" is right
+                        if left is not None:  # "operand" is on right side of parent operator
                             # same precedence -> parenthesis on right (this) if it is expression
                             # a + (b + c)
                             # a + b + c = (a + b) + c
@@ -197,10 +201,13 @@ class ToHdlCommon(HdlAstVisitor):
                             # a + b * c = a + (b * c)
                             # right with higher precedence -> parenthesis for right
                             # a * (b + c)
-                            if precedence_my >= precedence_parent:
+                            if precedence_my > precedence_parent:
                                 use_parenthesis = True
+                            elif precedence_my == precedence_parent:
+                                use_parenthesis = argc != 1 or asoc_parent != ASSOCIATIVITY.L_TO_R
+                                
                         if not use_parenthesis and right is not None:
-                            # "operand" is left
+                            # "operand" is on left side of parent operator
                             #if op_my == parent.fn:
                             #    right_prec, _, right_op = self._precedence_of_expr(right)
                             #    if right_op == op_my:

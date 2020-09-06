@@ -26,12 +26,13 @@ class ToSystemcExpr(ToHdlCommon):
         HdlOpType.PARAMETRIZATION: (2, L),
 
 
-        HdlOpType.INCR_PRE: (3, L),
-        HdlOpType.DECR_PRE: (3, L),
-        HdlOpType.MINUS_UNARY: (3, L),
-        HdlOpType.NEG_LOG: (3, L),
-        HdlOpType.NEG: (3, L),
-        HdlOpType.REFERENCE: (3, L),
+        HdlOpType.INCR_PRE: (3, R),
+        HdlOpType.DECR_PRE: (3, R),
+        HdlOpType.MINUS_UNARY: (3, R),
+        HdlOpType.PLUS_UNARY: (3, R),
+        HdlOpType.NEG_LOG: (3, R),
+        HdlOpType.NEG: (3, R),
+        HdlOpType.REFERENCE: (3, R),
 
         HdlOpType.DIV: (5, L),
         HdlOpType.MUL: (5, L),
@@ -68,6 +69,7 @@ class ToSystemcExpr(ToHdlCommon):
         HdlOpType.NEG_LOG: "!",
         HdlOpType.NEG: "~",
         HdlOpType.MINUS_UNARY: "-",
+        HdlOpType.PLUS_UNARY: "+",
         HdlOpType.INCR_PRE: "++",
         HdlOpType.DECR_PRE: "--",
     }
