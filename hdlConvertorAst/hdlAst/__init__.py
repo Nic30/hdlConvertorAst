@@ -29,5 +29,5 @@ from hdlConvertorAst.hdlAst._structural import (
     HdlCompInst, HdlContext, HdlModuleDec, HdlModuleDef, HdlValueIdspace,
     HdlLibrary)
 from hdlConvertorAst.hdlAst._typeDefs import (
-    iHdlTypeDef, HdlClassType, HdlClassDef, HdlEnumDef, HdlTypeBitsDef)
+    iHdlTypeDef, HdlClassType, HdlClassDef, HdlPhysicalDef, HdlEnumDef, HdlTypeBitsDef)
 from hdlConvertorAst.hdlAst.utils import CodePosition

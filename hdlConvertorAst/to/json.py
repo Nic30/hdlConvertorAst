@@ -165,6 +165,15 @@ class ToJson(HdlAstVisitor):
         d["is_packed"] = o.is_packed
         return d
 
+    def visit_HdlPhysicalDef(self, o):
+        """
+        :type o: HdlPhysicalDef
+        """
+        d = self.visit_iHdlObjWithName(o)
+        d["range"] = self.visit_iHdlExpr(o.range)
+        d["members"] = [self.visit_iHdlExpr(v) for v in o.members]
+        return d
+    
     def visit_HdlEnumDef(self, o):
         """
         :type o: HdlEnumDef
