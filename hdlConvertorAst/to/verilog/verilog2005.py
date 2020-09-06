@@ -193,6 +193,9 @@ class ToVerilog2005(ToVerilog2005Stm):
     def visit_HdlClassDef(self, o):
         raise NotImplementedError()
 
+    def visit_HdlPhysicalDef(self, o):
+        raise NotImplementedError()
+    
     def visit_HdlEnumDef(self, o):
         raise NotImplementedError()
 
