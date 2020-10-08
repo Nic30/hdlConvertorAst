@@ -121,10 +121,15 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
         """
         self.visit_doc(o)
         w = self.out.write
-
+        if o.labels:
+            w(o.labels[0])
+            w(": ")
         w("IF ")
         self.visit_iHdlExpr(o.cond)
-        w(" THEN")
+        if o.in_preproc:
+            w(" GENERATE")
+        else:
+            w(" THEN")
         need_space = self.visit_HdlStmBlock(o.if_true, begin_end=False)
 
         for cond, stms in o.elifs:
@@ -132,7 +137,10 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
                 w(" ")
             w("ELSIF ")
             self.visit_iHdlExpr(cond)
-            w(" THEN")
+            if o.in_preproc:
+                w(" GENERATE")
+            else:
+                w(" THEN")
             need_space = self.visit_HdlStmBlock(stms, begin_end=False)
 
         ifFalse = o.if_false
@@ -140,10 +148,15 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
             if need_space:
                 w(" ")
             w("ELSE")
+            if o.in_preproc:
+                w(" GENERATE")
             self.visit_HdlStmBlock(ifFalse, begin_end=False)
         if need_space:
             w("\n")
-        w("END IF;\n")
+        if o.in_preproc:
+            w("END GENERATE;\n")
+        else:
+            w("END IF;\n")
 
     def visit_HdlStmAssign(self, o):
         """
