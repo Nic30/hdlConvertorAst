@@ -51,6 +51,8 @@ def pop_signed_flag(o):
 class ToVerilog2005Expr(ToHdlCommon):
 
     GENERIC_BIN_OPS = {
+        HdlOpType.APOSTROPHE: "'",
+
         HdlOpType.AND: " & ",
         HdlOpType.AND_LOG: " && ",
         HdlOpType.OR: " | ",
@@ -90,6 +92,7 @@ class ToVerilog2005Expr(ToHdlCommon):
     GENERIC_BIN_OPS.update(ASSIGN_OPERATORS_SYMBOLS_C)
 
     OP_PRECEDENCE = {
+        HdlOpType.APOSTROPHE: (1, L),
         HdlOpType.DOT: (1, L),
         HdlOpType.INDEX: (1, L),
 
