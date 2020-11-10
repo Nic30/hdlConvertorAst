@@ -24,6 +24,7 @@ class Language(Enum):
 
     # json produced by hdlConvertor.to.json.ToJson
     HDLCONVERTOR_JSON = "hdlConvertor_JSON"
+    HWT = "hwt"
 
     def is_vhdl(self):
         return self in [Language.VHDL_2002,
