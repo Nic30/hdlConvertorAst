@@ -1,28 +1,29 @@
-from hdlConvertorAst.hdlAst._expr import HdlTypeAuto
+from typing import Union
+
+from hdlConvertorAst.hdlAst import HdlOp, HdlOpType, iHdlTypeDef, iHdlExpr, \
+    HdlTypeBitsDef
 from hdlConvertorAst.to.hwt.utils import BitsT
-from hdlConvertorAst.to.verilog.utils import collect_array_dims, get_wire_t_params
-from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.verilog_types_to_basic_hdl_sim_model import VerilogTypesToBasicHdlSimModel
+from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_index
+from hdlConvertorAst.translate.verilog_resolve_types import VerilogResolveTypes
 
 
-class VerilogTypesToHwt(VerilogTypesToBasicHdlSimModel):
-    """
-    Translate Verilog HDL types to HWT HDL types
-    """
+class VerilogTypesToHwt(VerilogResolveTypes):
+
+    def _visit_type(self, t):
+        """
+        :type t: Union[iHdlExpr, iHdlTypeDef]
+        """
+        if isinstance(t, HdlOp) and t.fn == HdlOpType.INDEX:
+            o0, o1 = t.ops
+            return hdl_index(self._visit_type(o0), o1)
+        elif isinstance(t, HdlTypeBitsDef):
+            return BitsT(t.msb, t.signed)
+        else:
+            raise NotImplementedError(t)
 
     def visit_type(self, t):
         """
         :type t: iHdlExpr
         """
-        t, array_dims = collect_array_dims(t)
-        wire_params = get_wire_t_params(t)
-        if wire_params is None:
-            if t == HdlTypeAuto:
-                t = BitsT(1)
-        else:
-            base_t, width, is_signed, _ = wire_params
-            if width is None:
-                width = 1
-            t = BitsT(width, is_signed)
-        for i in array_dims:
-            t = apply_index(t, i)
-        return t
+        t = VerilogResolveTypes.visit_type(self, t)
+        return self._visit_type(t)
