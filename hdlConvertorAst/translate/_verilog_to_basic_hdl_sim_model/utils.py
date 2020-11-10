@@ -48,6 +48,19 @@ def hdl_index(o, i):
     return HdlOp(HdlOpType.INDEX, [o, i])
 
 
+def hdl_or(*args):
+    first = True
+    res = None
+    for o in args:
+        if first:
+            res = o
+            first = False
+        else:
+            res = HdlOp(HdlOpType.OR, [res, o])
+    assert res is not None
+    return res
+
+
 def hdl_downto(msb, lsb):
     return HdlOp(HdlOpType.DOWNTO, [msb, lsb])
 
