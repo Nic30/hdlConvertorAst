@@ -1,16 +1,10 @@
 from hdlConvertorAst.hdlAst._expr import HdlOpType, HdlOp, HdlValueId
-from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
+from hdlConvertorAst.to.hdl_ast_modifier import HdlAstModifier
 from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import \
     to_property_call
 
 
-class BasicHdlSimModelTranslateVerilogOperands(HdlAstVisitor):
-    def visit_iHdlExpr(self, o):
-        """
-        :type o: iHdlExpr
-        """
-        if isinstance(o, HdlOp):
-            return self.visit_HdlOp(o)
+class BasicHdlSimModelTranslateVerilogOperands(HdlAstModifier):
 
     def visit_HdlOp(self, o):
         """
@@ -32,3 +26,4 @@ class BasicHdlSimModelTranslateVerilogOperands(HdlAstVisitor):
             raise NotImplementedError(o)
         elif op == HdlOpType.CALL:
             raise NotImplementedError("inline", o)
+        return o
