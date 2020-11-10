@@ -217,8 +217,9 @@ class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
         val = t.value
         if isinstance(val, HdlPhysicalDef):
             # I don't get what this is, TODO
-            raise NotImplementedError()
-        if isinstance(val, HdlEnumDef):
+            raise NotImplementedError("HdlPhysicalDef is a VHDL specific type"
+                                      " and does not have direct equivalet in this format")
+        elif isinstance(val, HdlEnumDef):
             w('define_Enum3t("')
             w(t.name)
             w('", [')
