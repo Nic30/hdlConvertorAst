@@ -106,7 +106,7 @@ class HdlAstVisitor(object):
         self.visit_doc(o)
         self.visit_type(o.type)
         if o.value is not None:
-            self.visit_iHdlExr(o.value)
+            self.visit_iHdlExpr(o.value)
         return o
 
     def visit_iHdlExpr(self, o):
@@ -152,6 +152,8 @@ class HdlAstVisitor(object):
                 self.visit_HdlIdDef(_o)
             elif isinstance(_o, HdlCompInst):
                 self.visit_HdlCompInst(_o)
+            elif isinstance(_o, HdlFunctionDef):
+                self.visit_HdlFunctionDef(_o)
             else:
                 raise NotImplementedError(_o)
         return o

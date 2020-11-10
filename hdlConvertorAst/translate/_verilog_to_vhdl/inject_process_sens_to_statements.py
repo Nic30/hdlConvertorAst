@@ -56,25 +56,26 @@
         if(gated_clk)
              latch_data <= new_data;
 """
-from hdlConvertorAst.hdlAst._expr import HdlOp, HdlOpType
 from hdlConvertorAst.hdlAst._statements import HdlStmIf
 from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
 from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_or
 
 
 class InjectProcessSensToStatements(HdlAstVisitor):
+    def visit_iHdlExpr(self, o):
+        pass
 
     def visit_HdlStmProcess(self, o):
         """
         :type o: HdlStmProcess
         """
         sens = o.sensitivity
-        if sens:
-            s = hdl_or(*sens)
-            if isinstance(s, HdlOp):
-                i = HdlStmIf()
-                i.cond = s
-                i.if_true = o.body
-                o.body = i
-            else:
-                raise NotImplementedError()
+        if not sens:
+            return
+        
+        s = hdl_or(*sens)
+        i = HdlStmIf()
+        i.cond = s
+        i.if_true = o.body
+        o.body = i
+    

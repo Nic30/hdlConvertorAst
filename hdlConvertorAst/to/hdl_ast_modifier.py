@@ -56,7 +56,7 @@ class HdlAstModifier(HdlAstVisitor):
         self.visit_doc(o)
         o.type = self.visit_type(o.type)
         if o.value is not None:
-            o.value = self.visit_iHdlExr(o.value)
+            o.value = self.visit_iHdlExpr(o.value)
         
         return o
 

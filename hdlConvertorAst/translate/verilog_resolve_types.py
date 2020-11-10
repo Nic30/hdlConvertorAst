@@ -17,7 +17,7 @@ class VerilogResolveTypes(HdlAstVisitor):
         """
         o.type = self.visit_type(o.type)
         if o.value is not None:
-            self.visit_iHdlExr(o.value)
+            self.visit_iHdlExpr(o.value)
 
     def visit_type(self, t):
         """
