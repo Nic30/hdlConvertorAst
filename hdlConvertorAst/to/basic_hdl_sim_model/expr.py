@@ -109,8 +109,10 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
                     f = "0x{0:x}"
                 else:
                     raise NotImplementedError(b)
-
-                w(f.format(o.val))
+                v = o.val
+                if is_str(o.val):
+                    v = int(v, b)
+                w(f.format(v))
 
     def visit_iHdlExpr(self, o):
         """
