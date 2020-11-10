@@ -34,6 +34,7 @@ class AssignmentToUpdateAssignment(HdlAstVisitor):
         """
         :type o: HdlStmAssign
         """
+        # [TODO]
         return HdlValueInt(0, 1, None)
 
     def visit_HdlStmAssign(self, o):
