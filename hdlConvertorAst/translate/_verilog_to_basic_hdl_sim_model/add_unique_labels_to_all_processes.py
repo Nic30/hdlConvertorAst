@@ -1,5 +1,5 @@
 from hdlConvertorAst.hdlAst._statements import HdlStmProcess
-from hdlConvertorAst.hdlAst._structural import HdlModuleDef, HdlModuleDec
+from hdlConvertorAst.hdlAst._structural import HdlModuleDef
 
 
 class AddUniqueLabelsToAllProcesses():
