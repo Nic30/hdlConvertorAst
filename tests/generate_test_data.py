@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 '''
 :attention: this script is used to re-generate files for tests,
     it is mostly the documentation of origin of files
