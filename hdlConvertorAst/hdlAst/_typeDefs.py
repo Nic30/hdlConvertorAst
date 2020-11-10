@@ -43,7 +43,7 @@ class HdlTypeBitsDef(iHdlTypeDef):
 
     :ivar ~.msb: index of most significant bit
     :ivar ~.lsb: index of least significant bit
-    :ivar ~.signed: True for SV/VDHL signed type, False for unsigned,
+    :ivar ~.signed: True for SV/VDHL signed type, False for unsigned, None if signed/unsigned is not specified (VHDL std_logic_vector)
         None if not specified (std_logic_vector, wire, reg)
     :ivar ~.bit_order_bigendian: if True in VHDL std_logic_vector(msb downto lsb)
         becomes (msb to lsb)
@@ -70,8 +70,8 @@ class HdlTypeBitsDef(iHdlTypeDef):
 
     def __init__(self, msb, lsb=0, signed=False):
         super(HdlTypeBitsDef, self).__init__()
-        self.msb = msb  # type: int
-        self.lsb = lsb  # type: int
+        self.msb = msb  # type: iHdlExpr
+        self.lsb = lsb  # type: iHdlExpr
         self.signed = signed  # type: Optional[bool]
         self.bit_order_bigendian = False  # type: bool
         self.force_vector = True  # type: bool
