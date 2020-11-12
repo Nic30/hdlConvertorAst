@@ -321,6 +321,14 @@ class HdlAstVisitor(object):
         self.visit_doc(o)
         return o
 
+    def visit_HdlStmThrow(self, o):
+        """
+        :type o: HdlStmThrow
+        """
+        self.visit_doc(o)
+        self.visit_iHdlExpr(o.val)
+        return o
+
     def visit_HdlStmAssign(self, o):
         """
         :type o: HdlStmAssign
