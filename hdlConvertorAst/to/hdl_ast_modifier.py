@@ -103,6 +103,8 @@ class HdlAstModifier(HdlAstVisitor):
                 _o = self.visit_HdlIdDef(_o)
             elif isinstance(_o, HdlCompInst):
                 _o = self.visit_HdlCompInst(_o)
+            elif isinstance(_o, HdlFunctionDef):
+                _o = self.visit_HdlFunctionDef(_o)
             else:
                 raise NotImplementedError(_o)
             objs[i] = _o
