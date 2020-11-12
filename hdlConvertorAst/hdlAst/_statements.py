@@ -243,6 +243,18 @@ class HdlStmContinue(iHdlStatement):
     """
     __slots__ = []
 
+
+class HdlStmThrow(iHdlStatement):
+    """
+    HDL throw (raise) statement
+    """
+    __slots__ = ["val"]
+
+    def __init__(self):
+        super(HdlStmThrow, self).__init__()
+        self.val = None  # type: iHdlExpr
+
+
 ALL_STATEMENT_CLASSES = (
     HdlStmNop,
     HdlStmBlock,
@@ -258,4 +270,5 @@ ALL_STATEMENT_CLASSES = (
     HdlStmWait,
     HdlStmBreak,
     HdlStmContinue,
+    HdlStmThrow,
 )

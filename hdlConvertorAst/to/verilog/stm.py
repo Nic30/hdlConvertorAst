@@ -366,3 +366,9 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         self.visit_doc(o)
         self.out.write("break")
         return True
+
+    def visit_HdlStmThrow(self, o):
+        """
+        :type o: HdlStmThrow
+        """
+        raise ValueError("SystemVerilog does not have exceptions")

@@ -108,3 +108,15 @@ class ToBasicHdlSimModelStm(ToBasicHdlSimModelExpr):
         if a.event_delay is not None:
             raise NotImplementedError()
         self.visit_iHdlExpr(a.src)
+
+    def visit_HdlStmThrow(self, o):
+        """
+        :type o: HdlStmThrow
+        """
+        self.visit_doc(o)
+        w = self.out.write
+        w("raise")
+        if o.val is not None:
+            w(" ")
+            self.visit_iHdlExpr(o.val)
+        w("\n")

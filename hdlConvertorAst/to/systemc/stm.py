@@ -121,3 +121,14 @@ class ToSystemcStm(ToSystemcExpr):
     def visit_HdlStmBreak(self, o):
         return method_as_function(ToVerilog2005Stm.visit_HdlStmBreak)(self, o)
 
+    def visit_HdlStmThrow(self, o):
+        """
+        :type o: HdlStmThrow
+        """
+        self.visit_doc(o)
+        w = self.out.write
+        w("throw")
+        if o.val is not None:
+            w(" ")
+            self.visit_iHdlExpr(o.val)
+        w(";\n")

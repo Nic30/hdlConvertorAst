@@ -297,3 +297,10 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
                 self.visit_iHdlExpr(e)
 
         w(";\n")
+
+    def visit_HdlStmThrow(self, o):
+        """
+        :type o: HdlStmThrow
+        """
+        raise ValueError("VHDL does not have exceptions")
+
