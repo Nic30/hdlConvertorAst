@@ -1,9 +1,18 @@
 from itertools import chain
 
-from hdlConvertorAst.hdlAst import iHdlStatement, HdlIdDef,\
-    HdlModuleDec, HdlModuleDef, HdlCompInst
+from hdlConvertorAst.hdlAst import iHdlStatement, HdlIdDef, \
+    HdlModuleDec, HdlModuleDef, HdlCompInst, HdlFunctionDef
 from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
 from hdlConvertorAst.translate.common.name_scope import WithNameScope
+
+
+class BuiltIn(object):
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return "<%s %s>" % (self.__class__.__name__, self.name)
 
 
 class DiscoverDeclarations(HdlAstVisitor):
@@ -54,6 +63,18 @@ class DiscoverDeclarations(HdlAstVisitor):
             self.name_scope.register_name(o.name, o)
         # name_scope = name_scope.get_object_by_name(o.module_name)
 
+    def visit_HdlFunctionDef(self, o):
+        """
+        :type o: HdlFunctionDef
+        """
+        ns = self.name_scope
+        ns.register_name(o.name, o)
+        with WithNameScope(self, ns.level_push(o.name)):
+            for p in o.params:
+                self.discover_declarations(p)
+            self.discover_declarations(o.body)
+        return o
+
     def _discover_declarations(self, o):
         if isinstance(o, HdlIdDef):
             self.visit_HdlIdDef(o)
@@ -65,6 +86,8 @@ class DiscoverDeclarations(HdlAstVisitor):
             pass
         elif isinstance(o, HdlCompInst):
             self.visit_HdlCompInst(o)
+        elif isinstance(o, HdlFunctionDef):
+            self.visit_HdlFunctionDef(o)
         else:
             raise NotImplementedError(o)
 
