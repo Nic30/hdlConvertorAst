@@ -1,7 +1,7 @@
 from typing import Union
 
 from hdlConvertorAst.hdlAst import HdlOp, HdlOpType, iHdlTypeDef, iHdlExpr, \
-    HdlTypeBitsDef
+    HdlTypeBitsDef, HdlValueId
 from hdlConvertorAst.to.hwt.utils import BitsT
 from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_index
 from hdlConvertorAst.translate.verilog_resolve_types import VerilogResolveTypes
@@ -18,8 +18,10 @@ class VerilogTypesToHwt(VerilogResolveTypes):
             return hdl_index(self._visit_type(o0), o1)
         elif isinstance(t, HdlTypeBitsDef):
             return BitsT(t.msb, t.signed)
-        else:
-            raise NotImplementedError(t)
+        elif isinstance(t, HdlValueId):
+            if t == HdlValueId("integer"):
+                return HdlValueId("INT")
+        raise NotImplementedError(t)
 
     def visit_type(self, t):
         """
