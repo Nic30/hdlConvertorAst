@@ -1,6 +1,7 @@
 from hdlConvertorAst.hdlAst._expr import HdlOp, HdlValueId, HdlOpType
 from hdlConvertorAst.hdlAst._statements import HdlStmAssign, HdlStmProcess
 from hdlConvertorAst.hdlAst._structural import HdlModuleDec, HdlModuleDef
+from hdlConvertorAst.hdlAst import HdlValueInt
 
 
 def collect_hdl_ids(expr, res):
@@ -13,6 +14,8 @@ def collect_hdl_ids(expr, res):
             collect_hdl_ids(o, res)
     elif isinstance(expr, HdlValueId):
         res.add(expr)
+    elif isinstance(expr, (HdlValueInt, bool, int, str, float)):
+        pass
     else:
         raise NotImplementedError(expr)
 
@@ -44,7 +47,7 @@ def wrap_module_statements_to_processes(context):
                     p = HdlStmProcess()
                     p.body = obj
                     p.sensitivity = set()
-                    for i in collect_indexes(obj.dst):
-                        collect_hdl_ids(i, p.sensitivity)
+                    for _i in collect_indexes(obj.dst):
+                        collect_hdl_ids(_i, p.sensitivity)
                     collect_hdl_ids(obj.src, p.sensitivity)
                     objs[i] = p
