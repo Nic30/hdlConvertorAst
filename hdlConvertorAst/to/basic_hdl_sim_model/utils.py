@@ -14,13 +14,22 @@ def BitsT(width, is_signed=False, bits_cls_name="Bits3t"):
     if isinstance(width, HdlOp):
         if width.fn == HdlOpType.DOWNTO:
             high, low = width.ops
-            assert int(low) == 0
-            width = int(high) + 1
+            if isinstance(low, (int, HdlValueInt)) and isinstance(high, (int, HdlValueInt)):
+                assert int(low) == 0
+                width = int(high) + 1
+            else:
+                width = HdlOp(HdlOpType.ADD,
+                              [HdlOp(HdlOpType.SUB, [high, low]),
+                              HdlValueInt(1, None, None)])
         else:
             raise NotImplementedError(width)
+
+    if isinstance(width, int):
+        width = HdlValueInt(width, None, None)
+
     c = HdlOp(HdlOpType.CALL, [
         HdlValueId(bits_cls_name, obj=LanguageKeyword()),
-        HdlValueInt(width, None, None),
+        width,
         NONE if is_signed is None else HdlValueInt(int(is_signed), None, None)
     ])
     return c
