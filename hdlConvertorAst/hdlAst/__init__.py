@@ -24,13 +24,16 @@ from hdlConvertorAst.hdlAst._expr import (
 from hdlConvertorAst.hdlAst._statements import (
     HdlImport, HdlStmAssign, HdlStmBlockJoinType, HdlStmBlock, HdlStmBreak,
     HdlStmCaseType, HdlStmCase, HdlStmContinue, HdlStmFor, HdlStmForIn, HdlStmIf,
-    HdlStmProcess, HdlStmRepeat, HdlStmReturn, HdlStmWait, HdlStmWhile, HdlStmThrow)
+    HdlStmProcess, HdlStmRepeat, HdlStmReturn, HdlStmWait, HdlStmWhile, HdlStmThrow,
+    HdlStmNop)
 from hdlConvertorAst.hdlAst._structural import (
     HdlCompInst, HdlContext, HdlModuleDec, HdlModuleDef, HdlValueIdspace,
     HdlLibrary)
 from hdlConvertorAst.hdlAst._typeDefs import (
     iHdlTypeDef, HdlClassType, HdlClassDef, HdlPhysicalDef, HdlEnumDef, HdlTypeBitsDef)
 from hdlConvertorAst.hdlAst.utils import CodePosition
+from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
+
 
 NON_INSTANCIABLE_NODES = {
     HdlAll,
