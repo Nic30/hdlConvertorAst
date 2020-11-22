@@ -120,3 +120,20 @@ class ToBasicHdlSimModelStm(ToBasicHdlSimModelExpr):
             w(" ")
             self.visit_iHdlExpr(o.val)
         w("\n")
+
+    def visit_HdlStmWait(self, o):
+        """
+        :type o: HdlStmWait
+        """
+        self.visit_doc(o)
+        w = self.out.write
+        w("yield Timer(")
+        self.visit_iHdlExpr(o.val)
+        w(")")
+
+    def visit_HdlStmNop(self, o):
+        """
+        :type o: HdlStmNop
+        """
+        self.visit_doc(o)
+        self.out.write("pass")
