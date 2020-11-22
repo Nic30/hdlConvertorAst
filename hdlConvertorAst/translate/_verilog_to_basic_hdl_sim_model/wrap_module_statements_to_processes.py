@@ -1,6 +1,6 @@
 from hdlConvertorAst.hdlAst._expr import HdlOp, HdlValueId, HdlOpType
 from hdlConvertorAst.hdlAst._statements import HdlStmAssign, HdlStmProcess
-from hdlConvertorAst.hdlAst._structural import HdlModuleDec, HdlModuleDef
+from hdlConvertorAst.hdlAst._structural import HdlModuleDef
 from hdlConvertorAst.hdlAst import HdlValueInt
 
 
