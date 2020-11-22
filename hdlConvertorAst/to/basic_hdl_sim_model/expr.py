@@ -27,8 +27,11 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
         HdlOpType.IS_NOT:  (11, L),
 
         HdlOpType.OR: (10, L),
-        HdlOpType.XOR: (9, L),
-        HdlOpType.AND: (8, L),
+        HdlOpType.XOR: (10, L),
+        HdlOpType.AND: (9, L),
+
+        HdlOpType.SLL: (8, L),
+        HdlOpType.SRL: (8, L),
 
         HdlOpType.ADD: (7, L),
         HdlOpType.SUB: (7, L),
@@ -101,18 +104,34 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
                 w(str(o.val))
             else:
                 b = o.base
-                if b == 2:
-                    f = "0b{0:b}"
-                elif b == 8:
-                    f = "0o{0:o}"
-                elif b == 16:
-                    f = "0x{0:x}"
-                else:
-                    raise NotImplementedError(b)
                 v = o.val
-                if is_str(o.val):
-                    v = int(v, b)
-                w(f.format(v))
+                if is_str(v):
+                    if set(v) == set('x'):
+                        v = None
+                        f = "{0}"
+                    elif b == 2:
+                        f = "0b{0}"
+                    elif b == 8:
+                        f = "0o{0}"
+                    elif b == 10:
+                        f = "{0}"
+                    elif b == 16:
+                        f = "0x{0}"
+                    else:
+                        raise NotImplementedError(b)
+                else:
+                    if b == 2:
+                        f = "0b{0:b}"
+                    elif b == 8:
+                        f = "0o{0:o}"
+                    elif b == 10:
+                        f = "{0:d}"
+                    elif b == 16:
+                        f = "0x{0:x}"
+                    else:
+                        raise NotImplementedError(b)
+                v = f.format(v)
+                w(v)
 
     def visit_iHdlExpr(self, o):
         """
@@ -158,6 +177,10 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
                         w("\n")
             w("}")
             return
+        elif isinstance(o, float):
+            w("%f" % o)
+            return
+        print(o.__class__)
         raise NotImplementedError(o.__class__, o)
 
     def visit_HdlOp(self, o):
@@ -178,5 +201,14 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
             self._visit_operand(o.ops[0], 0, o, False, False)
             w("=")
             self._visit_operand(o.ops[1], 1, o, False, False)
+        elif op == HdlOpType.TERNARY:
+            # not that this is not a ternary in hdl epxression but in python wich is evaluated
+            # during object construction, the hdl ternary is _ternary function
+            c, o1, o2 = o.ops
+            self._visit_operand(o1, 0, o, False, False)
+            w(" if ")
+            self._visit_operand(c, 0, o, False, False)
+            w(" else ")
+            self._visit_operand(o2, 0, o, False, False)
         else:
             return super(ToBasicHdlSimModelExpr, self).visit_HdlOp(o)
