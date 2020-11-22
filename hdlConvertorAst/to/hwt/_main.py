@@ -1,6 +1,6 @@
 from hdlConvertorAst.hdlAst import HdlIdDef, iHdlExpr, HdlOp, HdlOpType,\
     HdlDirection, HdlValueId, HdlStmProcess, HdlCompInst, HdlModuleDec,\
-    HdlPhysicalDef, HdlEnumDef, HdlClassDef
+    HdlPhysicalDef, HdlEnumDef, HdlClassDef, HdlFunctionDef, iHdlTypeDef
 from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
 from hdlConvertorAst.py_ver_compatibility import method_as_function
 from hdlConvertorAst.to.basic_hdl_sim_model._main import ToBasicHdlSimModel
@@ -13,7 +13,7 @@ DEFAULT_IMPORTS = """\
 from hwt.code import power, If, Switch, Concat
 from hwt.hdl.types.array import HArray
 from hwt.hdl.types.bits import Bits
-from hwt.hdl.types.defs import INT, SLICE
+from hwt.hdl.types.defs import INT, SLICE, STR, BIT
 from hwt.hdl.types.enum import HEnum
 from hwt.interfaces.std import Signal
 from hwt.synthesizer.param import Param
@@ -38,6 +38,7 @@ class ToHwt(ToHwtStm):
     :ivar _is_port: flag which specifies if the current HdlIdDef is a port
     """
     ALL_STATEMENT_CLASSES = ALL_STATEMENT_CLASSES
+    VAR_PER_LINE_LIMIT = 10
 
     def __init__(self, out_stream):
         ToHdlCommon.__init__(self, out_stream)
@@ -91,7 +92,7 @@ class ToHwt(ToHwtStm):
                 self.add_imports = False
 
         split_HdlModuleDefObjs = method_as_function(ToBasicHdlSimModel.split_HdlModuleDefObjs)
-        types, variables, processes, components = \
+        otherDefs, variables, processes, components = \
             split_HdlModuleDefObjs(self, mod_def.objs)
 
         method_as_function(ToBasicHdlSimModel.visit_component_imports)(self, components)
@@ -114,6 +115,15 @@ class ToHwt(ToHwtStm):
                     finally:
                         self._is_param = False
                 w("\n")
+
+            types = []
+            for d in otherDefs:
+                if isinstance(d, HdlFunctionDef):
+                    self.visit_HdlFunctionDef(d)
+                elif isinstance(d, iHdlTypeDef):
+                    types.append(d)
+                else:
+                    raise NotImplementedError(d)
 
             w('def _declr(self):\n')
             with Indent(self.out):
@@ -155,17 +165,24 @@ class ToHwt(ToHwtStm):
             with Indent(self.out):
                 w("# internal signals\n")
                 if port_params_comp_names:
+                    VAR_PER_LINE_LIMIT = self.VAR_PER_LINE_LIMIT
                     # ports and params to locals
-                    for last, name in iter_with_last(port_params_comp_names):
+                    for i, (last, name) in enumerate(iter_with_last(port_params_comp_names)):
                         w(name)
                         if not last:
                             w(", ")
+                        if i % VAR_PER_LINE_LIMIT == 0 and i > 0:
+                            # jump to new line to have reasonably long variable list
+                            w("\\\n")
                     w(" = \\\n")
-                    for last, name in iter_with_last(port_params_comp_names):
+                    for i, (last, name) in enumerate(iter_with_last(port_params_comp_names)):
                         w("self.")
                         w(name)
                         if not last:
                             w(", ")
+                        if i % VAR_PER_LINE_LIMIT == 0 and i > 0:
+                                # jump to new line to have reasonably long variable list
+                                w("\\\n")
                     w("\n")
                 for v in variables:
                     self.visit_HdlIdDef(v)
@@ -206,6 +223,25 @@ class ToHwt(ToHwtStm):
         # w("\n")
         # self.add_module_exampe_serialization(mod_dec.name)
 
+    def visit_HdlFunctionDef(self, o):
+        """
+        :type o: HdlFunctionDef
+        """
+        w = self.out.write
+        w("def ")
+        w(o.name)
+        w("(self")
+        for p in o.params:
+            w(", ")
+            w(p.name)
+        w("):\n")
+        with Indent(self.out):
+            self.visit_doc(o, doc_string=True)
+            for stm in o.body:
+                self.visit_iHdlStatement(stm)
+                w("\n")
+        w("\n")
+
     def visit_HdlIdDef(self, var):
         """
         :type var: HdlIdDef
@@ -216,7 +252,7 @@ class ToHwt(ToHwtStm):
             w("self.")
         w(var.name)
         if self._is_port:
-            w(" = Signal(dtype=")
+            w(" = Signal(")
             self.visit_type(var.type)
             w(")")
             if var.direction == HdlDirection.OUT:
@@ -226,6 +262,14 @@ class ToHwt(ToHwtStm):
                 assert var.direction == HdlDirection.IN, var.direction
         elif self._is_param:
             w(" = Param(")
+            self.visit_type(var.type)
+            w(".from_py(")
+            self.visit_iHdlExpr(var.value)
+            w("))\n")
+        elif var.is_const:
+            w(" = ")
+            self.visit_type(var.type)
+            w(".from_py(")
             self.visit_iHdlExpr(var.value)
             w(")\n")
         else:
