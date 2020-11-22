@@ -4,6 +4,39 @@ from hdlConvertorAst.translate.common.name_scope import LanguageKeyword
 NONE = HdlValueId("None")
 
 
+def verilog_slice_to_width(width):
+    """
+    :type width: iHdlExpr
+    :return: Union[int, iHdlExpr]
+    """
+    if isinstance(width, HdlOp):
+        if width.fn in (HdlOpType.DOWNTO, HdlOpType.TO):
+            if width.fn == HdlOpType.DOWNTO:
+                high, low = width.ops
+            else:
+                low, high = width.ops
+            return _verilog_slice_to_width(high, low)
+
+    return width
+
+def _verilog_slice_to_width(high, low):
+    """
+    :type high: Union[int, iHdlExpr]
+    :type low: Union[int, iHdlExpr]
+    :return: Union[int, iHdlExpr]
+    """
+    if isinstance(low, (int, HdlValueInt)) and isinstance(high, (int, HdlValueInt)):
+        assert int(low) == 0
+        return int(high) + 1
+
+    if isinstance(low, (int, HdlValueInt)) and int(low) == 0:
+        w = high
+    else:
+        w = HdlOp(HdlOpType.SUB, [high, low])
+
+    return HdlOp(HdlOpType.ADD, [w, HdlValueInt(1, None, None)])
+
+
 def BitsT(width, is_signed=False, bits_cls_name="Bits3t"):
     """
     Create an AST expression of Bits type constructor
@@ -11,18 +44,7 @@ def BitsT(width, is_signed=False, bits_cls_name="Bits3t"):
 
     :type width: iHdlExpr
     """
-    if isinstance(width, HdlOp):
-        if width.fn == HdlOpType.DOWNTO:
-            high, low = width.ops
-            if isinstance(low, (int, HdlValueInt)) and isinstance(high, (int, HdlValueInt)):
-                assert int(low) == 0
-                width = int(high) + 1
-            else:
-                width = HdlOp(HdlOpType.ADD,
-                              [HdlOp(HdlOpType.SUB, [high, low]),
-                              HdlValueInt(1, None, None)])
-        else:
-            raise NotImplementedError(width)
+    width = verilog_slice_to_width(width)
 
     if isinstance(width, int):
         width = HdlValueInt(width, None, None)
