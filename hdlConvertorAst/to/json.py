@@ -321,6 +321,15 @@ class ToJson(HdlAstVisitor):
         """
         return self._visit_iHdlStatement(o)
 
+    def visit_HdlStmThrow(self, o):
+        """
+        :type o: HdlStmThrow
+        """
+        d = self._visit_iHdlStatement(o)
+        if o.val is not None:
+            d["val"] = self.visit_iHdlExpr(o.val)
+        return d
+
     def visit_iHdlExpr(self, o):
         """
         :type o: iHdlExpr
