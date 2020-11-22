@@ -1,4 +1,6 @@
 from hdlConvertorAst.hdlAst._expr import HdlOp, HdlOpType, HdlValueId
+from hdlConvertorAst.hdlAst import HdlValueInt
+from builtins import isinstance
 
 
 def to_property_call(o, prop_name):
@@ -72,3 +74,48 @@ def hdl_map_asoc(o1, o2):
     :return: HdlOp
     """
     return HdlOp(HdlOpType.MAP_ASSOCIATION, [o1, o2])
+
+
+def hdl_add_int(a, b):
+    """
+    :type a: iHdlExpr
+    :type b: int
+    :return: iHdlExpr
+    """
+    if b == 0:
+        return a
+    elif isinstance(a, HdlValueInt):
+        return HdlValueInt(int(a.val) + b, a.val, a.base)
+    elif isinstance(a, HdlOp) and a.fn == HdlOpType.ADD:
+        o0, o1 = a.ops
+        if isinstance(o1, HdlValueInt):
+            return hdl_add_int(o0, int(o1) + b)
+    elif isinstance(a, HdlOp) and a.fn == HdlOpType.SUB:
+        o0, o1 = a.ops
+        if isinstance(o1, HdlValueInt):
+            return hdl_sub_int(o0, int(o1) - b)
+
+    return HdlOp(HdlOpType.ADD, [a, HdlValueInt(b, None, None)])
+
+
+def hdl_sub_int(a, b):
+    """
+    :type a: iHdlExpr
+    :type b: int
+    :return: iHdlExpr
+    """
+    if b == 0:
+        return a
+    elif isinstance(a, HdlValueInt):
+        return HdlValueInt(int(a.val) - b, a.val, a.base)
+    elif isinstance(a, HdlOp) and a.fn == HdlOpType.ADD:
+        o0, o1 = a.ops
+        if isinstance(o1, HdlValueInt):
+            return hdl_add_int(o0, int(o1) - b)
+    elif isinstance(a, HdlOp) and a.fn == HdlOpType.SUB:
+        o0, o1 = a.ops
+        if isinstance(o1, HdlValueInt):
+            return hdl_sub_int(o0, int(o1) + b)
+
+    return HdlOp(HdlOpType.SUB, [a, HdlValueInt(b, None, None)])
+
