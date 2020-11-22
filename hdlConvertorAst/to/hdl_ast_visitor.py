@@ -5,7 +5,7 @@ from hdlConvertorAst.hdlAst import HdlImport, HdlStmProcess, HdlStmIf, \
     HdlStmWhile, HdlStmBlock, iHdlStatement, HdlModuleDec, HdlModuleDef, \
     HdlValueIdspace, HdlIdDef, HdlFunctionDef, HdlOp, HdlCompInst, \
     HdlValueInt, HdlStmBreak, HdlStmContinue, HdlStmRepeat, HdlLibrary, HdlContext, \
-    HdlClassDef, HdlPhysicalDef, HdlEnumDef
+    HdlClassDef, HdlPhysicalDef, HdlEnumDef, ALL_STATEMENT_CLASSES, HdlStmNop
 
 
 class HdlAstVisitor(object):
@@ -21,11 +21,7 @@ class HdlAstVisitor(object):
                 HdlContext, HdlImport, HdlLibrary, HdlModuleDec, HdlModuleDef,
                 HdlValueIdspace, HdlIdDef, HdlFunctionDef,
                 HdlClassDef, HdlPhysicalDef, HdlEnumDef,
-                HdlCompInst, HdlStmProcess, HdlStmIf, HdlStmAssign,
-                HdlStmCase, HdlStmWait, HdlStmRepeat, HdlStmReturn,
-                HdlStmBreak, HdlStmContinue, HdlStmFor, HdlStmForIn,
-                HdlStmWhile, HdlStmBlock, HdlOp, HdlValueInt,
-            ]
+                HdlCompInst, HdlOp, HdlValueInt] + list(ALL_STATEMENT_CLASSES)
         }
 
     def visit_iHdlObj(self, o):
@@ -83,6 +79,8 @@ class HdlAstVisitor(object):
         visit_fn = self._visit_call_dispatch_dict.get(o.__class__, None)
         if visit_fn is not None:
             return visit_fn(o)
+        elif o is None:
+            return self.visit_HdlStmNop(HdlStmNop())
         else:
             return self.visit_iHdlExpr(o)
 
@@ -132,9 +130,15 @@ class HdlAstVisitor(object):
         return o
 
     def visit_port(self, o):
+        """
+        :type o: HdlIdDef
+        """
         return self.visit_HdlIdDef(o)
 
     def visit_param(self, o):
+        """
+        :type o: HdlIdDef
+        """
         return self.visit_HdlIdDef(o)
 
     def visit_HdlModuleDef(self, o):
@@ -310,6 +314,13 @@ class HdlAstVisitor(object):
     def visit_HdlStmBreak(self, o):
         """
         :type o: HdlStmBreak
+        """
+        self.visit_doc(o)
+        return o
+
+    def visit_HdlStmNop(self, o):
+        """
+        :type o: HdlStmNop
         """
         self.visit_doc(o)
         return o
