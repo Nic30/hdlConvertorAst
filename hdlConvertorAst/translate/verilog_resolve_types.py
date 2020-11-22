@@ -1,10 +1,11 @@
 
-from hdlConvertorAst.hdlAst import HdlTypeBitsDef
+from hdlConvertorAst.hdlAst import HdlTypeBitsDef, HdlOp, HdlOpType, HdlValueId
 from hdlConvertorAst.hdlAst._defs import HdlIdDef
 from hdlConvertorAst.hdlAst._expr import HdlTypeAuto
 from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
 from hdlConvertorAst.to.verilog.utils import collect_array_dims, get_wire_t_params
-from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_index
+from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_index, \
+    hdl_sub_int
 
 
 class VerilogResolveTypes(HdlAstVisitor):
@@ -29,10 +30,20 @@ class VerilogResolveTypes(HdlAstVisitor):
             if t == HdlTypeAuto:
                 t = HdlTypeBitsDef(1)
         else:
-            base_t, width, is_signed, _ = wire_params
-            if width is None:
-                width = 1
-            t = HdlTypeBitsDef(width, is_signed)
+            base_t, msb, is_signed, _ = wire_params
+            lsb = 0
+            if msb is None:
+                msb = 0
+            elif isinstance(msb, HdlOp):
+                if msb.fn == HdlOpType.DOWNTO:
+                    msb, lsb = msb.ops
+                elif msb.fn == HdlOpType.TO:
+                    lsb, msb = msb.ops
+                elif msb.fn == HdlOpType.CALL and msb.ops[0] == HdlValueId("slice"):
+                    lsb = msb.ops[2]
+                    msb = hdl_sub_int(msb.ops[1], 1)
+                    
+            t = HdlTypeBitsDef(msb, lsb=lsb, signed=is_signed)
 
         for i in array_dims:
             t = hdl_index(t, i)
