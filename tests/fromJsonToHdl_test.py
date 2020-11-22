@@ -96,6 +96,9 @@ class FromJsonToHdlTC(unittest.TestCase):
         res_str = buff.getvalue()
 
         ref_file = os.path.join(ROOT, "ref", name + ref_file_suffix)
+        # with open(ref_file, "w", encoding="utf-8") as f:
+        #     f.write(res_str)
+
         with open(ref_file, encoding="utf-8") as f:
             ref = f.read()
 
