@@ -29,6 +29,8 @@ class HdlValueId(object):
         (has to be explicitly discovered and is not available imediately
         after parsing)
     """
+    __weakref__ = ["obj"]
+    __slots__ = ["val", "obj"]
 
     def __init__(self, val, obj=None):
         assert is_str(val), val
