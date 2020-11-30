@@ -112,6 +112,8 @@ class HdlAstVisitor(object):
         :type o: iHdlExpr
         :return: iHdlExpr
         """
+        if isinstance(o, HdlOp):
+            return self.visit_HdlOp(o)
         return o
 
     def visit_HdlOp(self, o):
