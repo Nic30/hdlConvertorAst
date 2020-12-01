@@ -44,6 +44,10 @@ class ToBasicHdlSimModelStm(ToBasicHdlSimModelExpr):
         :type stm: HdlStmBlock
         """
         w = self.out.write
+        if not stm.body:
+            self.out.write("pass")
+            return
+
         for is_last, i in iter_with_last(stm.body):
             self.visit_iHdlStatement_in_statement(i)
             if not is_last:
@@ -54,16 +58,6 @@ class ToBasicHdlSimModelStm(ToBasicHdlSimModelExpr):
         :type stm: HdlStmIf
 
         if cond:
-            ...
-        else:
-            ...
-
-        will become
-
-        c, cVld = sim_eval_cond(cond)
-        if not cVld:
-            # ivalidate outputs
-        elif c:
             ...
         else:
             ...
