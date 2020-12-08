@@ -6,7 +6,7 @@
    "declaration_only": false,
    "doc": {
     "__class__": "str",
-    "val": "\n    True dual port RAM.\n    :note: write-first variant \n\n    .. hwt-schematic::\n    "
+    "val": "\n    True dual port RAM.\n    :note: write-first variant \n\n    .. hwt-autodoc::\n    "
    },
    "name": {
     "__class__": "str",
@@ -536,7 +536,7 @@
    "declaration_only": false,
    "doc": {
     "__class__": "str",
-    "val": "\n    .. hwt-schematic::\n    "
+    "val": "\n    .. hwt-autodoc::\n    "
    },
    "name": {
     "__class__": "str",

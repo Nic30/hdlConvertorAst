@@ -10,7 +10,7 @@ from pycocotb.basic_hdl_simulator.sim_utils import sim_eval_cond
 #
 #    Every HW component class has to be derived from Unit class
 #
-#    .. hwt-schematic::
+#    .. hwt-autodoc::
 #    
 class Showcase0(BasicRtlSimModel):
     arr_t_0 = Bits3t(8, 1)[4]

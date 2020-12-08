@@ -12,7 +12,7 @@ class Ram_dp(Unit):
         True dual port RAM.
         :note: write-first variant 
     
-        .. hwt-schematic::
+        .. hwt-autodoc::
         
     """
     def _config(self):
@@ -58,7 +58,7 @@ class Ram_dp(Unit):
         )
 class GroupOfBlockrams(Unit):
     """
-        .. hwt-schematic::
+        .. hwt-autodoc::
         
     """
     def _config(self):

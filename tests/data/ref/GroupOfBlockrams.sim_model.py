@@ -11,7 +11,7 @@ from pycocotb.basic_hdl_simulator.sim_utils import sim_eval_cond
 #    True dual port RAM.
 #    :note: write-first variant 
 #
-#    .. hwt-schematic::
+#    .. hwt-autodoc::
 #    
 class Ram_dp(BasicRtlSimModel):
     arr_t_0 = Bits3t(64, 0)[256]
@@ -133,7 +133,7 @@ class Ram_dp(BasicRtlSimModel):
             pass
 
 #
-#    .. hwt-schematic::
+#    .. hwt-autodoc::
 #    
 class GroupOfBlockrams(BasicRtlSimModel):
     def __init__(self, sim: "BasicRtlSimulator", name="GroupOfBlockrams"):

@@ -39,7 +39,7 @@
    "declaration_only": false,
    "doc": {
     "__class__": "str",
-    "val": "\n    Every HW component class has to be derived from Unit class\n\n    .. hwt-schematic::\n    "
+    "val": "\n    Every HW component class has to be derived from Unit class\n\n    .. hwt-autodoc::\n    "
    },
    "name": {
     "__class__": "str",

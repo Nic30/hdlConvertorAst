@@ -2,7 +2,7 @@
 //    True dual port RAM.
 //    :note: write-first variant 
 //
-//    .. hwt-schematic::
+//    .. hwt-autodoc::
 //    
 module Ram_dp #(
     parameter ADDR_WIDTH = 8,
@@ -36,7 +36,7 @@ module Ram_dp #(
 
 endmodule
 //
-//    .. hwt-schematic::
+//    .. hwt-autodoc::
 //    
 module GroupOfBlockrams #(
     parameter ADDR_WIDTH = 8,

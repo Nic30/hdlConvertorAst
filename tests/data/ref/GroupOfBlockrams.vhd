@@ -5,7 +5,7 @@ USE IEEE.numeric_std.ALL;
 --    True dual port RAM.
 --    :note: write-first variant 
 --
---    .. hwt-schematic::
+--    .. hwt-autodoc::
 --    
 ENTITY Ram_dp IS
     GENERIC(
@@ -55,7 +55,7 @@ LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
 USE IEEE.numeric_std.ALL;
 --
---    .. hwt-schematic::
+--    .. hwt-autodoc::
 --    
 ENTITY GroupOfBlockrams IS
     GENERIC(
@@ -83,7 +83,7 @@ ARCHITECTURE rtl OF GroupOfBlockrams IS
     --    True dual port RAM.
     --    :note: write-first variant 
     --
-    --    .. hwt-schematic::
+    --    .. hwt-autodoc::
     --    
     COMPONENT Ram_dp IS
         GENERIC(

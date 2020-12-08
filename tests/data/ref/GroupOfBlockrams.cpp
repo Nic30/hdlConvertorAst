@@ -4,7 +4,7 @@
 //    True dual port RAM.
 //    :note: write-first variant 
 //
-//    .. hwt-schematic::
+//    .. hwt-autodoc::
 //    
 SC_MODULE(Ram_dp) {
     // ports
@@ -46,7 +46,7 @@ SC_MODULE(Ram_dp) {
 #include <systemc.h>
 
 //
-//    .. hwt-schematic::
+//    .. hwt-autodoc::
 //    
 SC_MODULE(GroupOfBlockrams) {
     // ports
