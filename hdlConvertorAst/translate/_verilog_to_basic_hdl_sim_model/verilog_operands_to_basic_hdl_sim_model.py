@@ -1,7 +1,8 @@
 from hdlConvertorAst.hdlAst import HdlOpType, HdlOp, HdlValueId, HdlStmThrow
 from hdlConvertorAst.to.hdl_ast_modifier import HdlAstModifier
 from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import \
-    to_property_call, hdl_call, hdl_getattr, hdl_add_int
+    to_property_call, hdl_call, hdl_getattr, hdl_add_int, hdl_sub_int
+from copy import deepcopy
 
 
 class BasicHdlSimModelTranslateVerilogOperands(HdlAstModifier):
@@ -21,7 +22,7 @@ class BasicHdlSimModelTranslateVerilogOperands(HdlAstModifier):
             to_property_call(o, "_ternary__val")
         elif op == HdlOpType.DOWNTO:
             o.fn = HdlOpType.CALL
-            o.ops = [HdlValueId("slice"), hdl_add_int(o.ops[0], 1), o.ops[1]] 
+            o.ops = [HdlValueId("slice"), hdl_add_int(o.ops[0], 1), o.ops[1]]
         elif op == HdlOpType.TO:
             raise NotImplementedError(o)
         elif op == HdlOpType.CALL:
@@ -49,5 +50,14 @@ class BasicHdlSimModelTranslateVerilogOperands(HdlAstModifier):
                 assert op == HdlOpType.NEG_LOG
                 new_o_fn = HdlOpType.NEG
             return HdlOp(new_o_fn, ops)
-            
+        elif op == HdlOpType.PART_SELECT_POST:
+            # logic [31: 0] a;
+            # a[ 0 +: 8] == a[ 7 : 0];
+            # logic [0 :31] b;
+            # b[ 0 +: 8] == b[0 : 7]
+            high, width = o.ops
+            o.fn = HdlOpType.CALL
+            o.ops = [HdlValueId("slice"),
+                    high,
+                    HdlOp(HdlOpType.SUB, [deepcopy(high), width])]
         return o
