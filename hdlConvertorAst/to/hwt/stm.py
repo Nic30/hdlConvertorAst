@@ -49,7 +49,7 @@ class ToHwtStm(ToHwtExpr):
         """
         self.visit_doc(o)
         w = self.out.write
-        
+
         in_preproc = o.in_preproc
         if in_preproc:
             w("if ")
@@ -80,7 +80,7 @@ class ToHwtStm(ToHwtExpr):
             w("\n")
             if not in_preproc:
                 w(")")
-    
+
         ifFalse = o.if_false
         if ifFalse is not None:
             if in_preproc:
@@ -137,8 +137,8 @@ class ToHwtStm(ToHwtExpr):
                 w("else:\n")
                 with Indent(self.out):
                     self.visit_iHdlStatement(o.default)
-            
-        else: 
+
+        else:
             # if o.type != HdlStmCaseType.CASE:
             #    raise NotImplementedError(o.type)
             w("Switch(")
@@ -160,11 +160,27 @@ class ToHwtStm(ToHwtExpr):
                         self.visit_iHdlStatement(o.default)
                         w(")")
 
+    def visit_HdlStmFor(self, o):
+        """
+        :type o: HdlStmFor
+        """
+        if not o.in_preproc:
+            raise TypeError("does not support HdlStmFor", self, o)
+        self.visit_doc(o)
+        w = self.out.write
+        self.visit_iHdlObj(o.init)
+        w("while ")
+        self.visit_iHdlExpr(o.cond)
+        w(":\n")
+        with Indent(self.out):
+            self.visit_iHdlObj(o.body)
+
+
     def visit_HdlStmThrow(self, o):
         ToBasicHdlSimModel.visit_HdlStmThrow(self, o)
 
     def visit_HdlStmWait(self, o):
         ToBasicHdlSimModel.visit_HdlStmWait(self, o)
-        
+
     def visit_HdlStmNop(self, o):
         ToBasicHdlSimModel.visit_HdlStmNop(self, o)
