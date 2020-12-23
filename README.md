@@ -45,3 +45,7 @@ sudo python3 setup.py install
 # old library first if required
 # sudo pip3 uninstall hdlConvertorAst
 ```
+
+### Similar projects
+
+   * [fasm](https://github.com/SymbiFlow/fasm) - Python, FPGA Assembly (FASM) Parser and Generator  
