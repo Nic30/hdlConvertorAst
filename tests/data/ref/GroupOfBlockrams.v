@@ -8,18 +8,18 @@ module Ram_dp #(
     parameter ADDR_WIDTH = 8,
     parameter DATA_WIDTH = 64
 ) (
-    input [7:0] a_addr,
-    input  a_clk,
-    input [63:0] a_din,
+    input wire[7:0] a_addr,
+    input wire a_clk,
+    input wire[63:0] a_din,
     output reg[63:0] a_dout,
-    input  a_en,
-    input  a_we,
-    input [7:0] b_addr,
-    input  b_clk,
-    input [63:0] b_din,
+    input wire a_en,
+    input wire a_we,
+    input wire[7:0] b_addr,
+    input wire b_clk,
+    input wire[63:0] b_din,
     output reg[63:0] b_dout,
-    input  b_en,
-    input  b_we
+    input wire b_en,
+    input wire b_we
 );
     reg[63:0] ram_memory[0:255];
     always @(posedge a_clk) begin: assig_process_a_dout
@@ -42,18 +42,18 @@ module GroupOfBlockrams #(
     parameter ADDR_WIDTH = 8,
     parameter DATA_WIDTH = 64
 ) (
-    input [7:0] addr,
-    input  clk,
-    input  en,
-    input [63:0] in_r_a,
-    input [63:0] in_r_b,
-    input [63:0] in_w_a,
-    input [63:0] in_w_b,
-    output [63:0] out_r_a,
-    output [63:0] out_r_b,
-    output [63:0] out_w_a,
-    output [63:0] out_w_b,
-    input  we
+    input wire[7:0] addr,
+    input wire clk,
+    input wire en,
+    input wire[63:0] in_r_a,
+    input wire[63:0] in_r_b,
+    input wire[63:0] in_w_a,
+    input wire[63:0] in_w_b,
+    output wire[63:0] out_r_a,
+    output wire[63:0] out_r_b,
+    output wire[63:0] out_w_a,
+    output wire[63:0] out_w_b,
+    input wire we
 );
     wire[7:0] sig_bramR_a_addr = 8'bxxxxxxxx;
     wire sig_bramR_a_clk = 1'bx;
