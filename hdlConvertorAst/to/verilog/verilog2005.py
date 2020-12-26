@@ -14,6 +14,9 @@ class ToVerilog2005(ToVerilog2005Stm):
         HdlDirection.OUT: "output",
         HdlDirection.INOUT: "inout",
     }
+    def __init__(self, out_stream):
+        ToVerilog2005Stm.__init__(self, out_stream)
+        self._type_requires_nettype = True
 
     def visit_doc(self, obj):
         return super(ToVerilog2005, self).visit_doc(obj, "//")
@@ -56,6 +59,7 @@ class ToVerilog2005(ToVerilog2005Stm):
 
         t = p.type
         if t is HdlTypeAuto:
+            w("wire ")
             is_array = False
         else:
             is_array = self.visit_type_first_part(t)
@@ -79,6 +83,8 @@ class ToVerilog2005(ToVerilog2005Stm):
             assert var.value is not None, var.name
 
         if t is HdlTypeAuto:
+            if self._type_requires_nettype and not var.is_const:
+                w("wire ")
             is_array = False
         else:
             is_array = self.visit_type_first_part(t)
@@ -151,12 +157,18 @@ class ToVerilog2005(ToVerilog2005Stm):
             w("automatic ")
 
         if not o.is_task:
-            self.visit_type_first_part(o.return_t)
-            self.visit_type_array_part(o.return_t)
-
+            trnt = self._type_requires_nettype
+            try:
+                self._type_requires_nettype = False
+                self.visit_type_first_part(o.return_t)
+                self.visit_type_array_part(o.return_t)
+            finally:
+                self._type_requires_nettype = trnt
         if o.is_virtual or o.is_operator:
             raise NotImplementedError(o)
-        w(" ")
+        if not o.is_task and o.return_t is not HdlTypeAuto:
+            # because " " is already written by previous string
+            w(" ")
         w(o.name)
         ps = o.params
         if ps:
@@ -195,7 +207,7 @@ class ToVerilog2005(ToVerilog2005Stm):
 
     def visit_HdlPhysicalDef(self, o):
         raise NotImplementedError()
-    
+
     def visit_HdlEnumDef(self, o):
         raise NotImplementedError()
 
@@ -258,7 +270,7 @@ class ToVerilog2005(ToVerilog2005Stm):
                     w("\n\n")
                 elif o is None:
                     w(";\n")
-                else:    
+                else:
                     raise NotImplementedError(o)
 
         self.out.write("endmodule\n")

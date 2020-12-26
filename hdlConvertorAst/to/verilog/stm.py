@@ -185,7 +185,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         """
         self.visit_doc(o)
         w = self.out.write
-        ts = self.top_stm 
+        ts = self.top_stm
         if ts is o or (ts is not None and ts.in_preproc):
             w("assign ")
             self.visit_iHdlExpr(o.dst)
@@ -279,10 +279,16 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         else:
             init_stms = [o.init, ]
 
-        for is_last, stm in iter_with_last(init_stms):
-            self.visit_iHdlStatement(stm)
-            if not is_last:
-                w(", ")
+        trnt = self._type_requires_nettype
+        try:
+            self._type_requires_nettype = False
+            for is_last, stm in iter_with_last(init_stms):
+                self.visit_iHdlStatement(stm)
+                if not is_last:
+                    w(", ")
+        finally:
+            self._type_requires_nettype = trnt
+
         w("; ")
         self.visit_iHdlExpr(o.cond)
         w("; ")
