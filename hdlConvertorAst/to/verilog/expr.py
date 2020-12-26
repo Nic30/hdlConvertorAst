@@ -123,16 +123,16 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.GE: (11, L),
         HdlOpType.LE: (11, L),
 
-        HdlOpType.EQ:  (12, L),
+        HdlOpType.EQ: (12, L),
         HdlOpType.NE: (12, L),
-        HdlOpType.IS:  (12, L),
+        HdlOpType.IS: (12, L),
         HdlOpType.IS_NOT: (12, L),
         HdlOpType.EQ_MATCH: (12, L),
         HdlOpType.NE_MATCH: (12, L),
 
-        HdlOpType.AND:  (13, L),
-        HdlOpType.XOR:  (13, L),
-        HdlOpType.OR:   (13, L),
+        HdlOpType.AND: (13, L),
+        HdlOpType.XOR: (13, L),
+        HdlOpType.OR: (13, L),
         HdlOpType.NAND: (13, L),
         HdlOpType.XNOR: (13, L),
 
@@ -249,6 +249,22 @@ class ToVerilog2005Expr(ToHdlCommon):
             raise NotImplementedError(o.__class__, o)
         return True
 
+    def _visit_operand(self, operand, i,
+                           parent,
+                           expr_requires_parenthesis,
+                           cancel_parenthesis):
+
+        if isinstance(operand, HdlOp) and \
+               (operand.fn in self.GENERIC_UNARY_OPS or operand.fn in self.GENERIC_UNARY_OPS_POSTFIX) and \
+               (parent.fn in self.GENERIC_UNARY_OPS or parent.fn in self.GENERIC_UNARY_OPS_POSTFIX):
+            # unary operator in unary operator
+            expr_requires_parenthesis = True
+
+        return super(ToVerilog2005Expr, self)._visit_operand(operand, i,
+                           parent,
+                           expr_requires_parenthesis,
+                           cancel_parenthesis)
+
     def visit_HdlOp(self, o):
         """
         :type o: HdlOp
@@ -305,10 +321,15 @@ class ToVerilog2005Expr(ToHdlCommon):
                 if isinstance(t, HdlOp) and t.fn == HdlOpType.TYPE_OF:
                     w("var ")
                 self.visit_iHdlExpr(t)
+            elif self._type_requires_nettype:
+                w("wire")
         else:
             base_t, width, is_signed, _ = wire_params
             if base_t is not HdlTypeAuto:
                 w(base_t.val)
+            elif self._type_requires_nettype:
+                w("wire")
+
             if is_signed is None:
                 pass
             elif is_signed:
@@ -321,6 +342,7 @@ class ToVerilog2005Expr(ToHdlCommon):
                 w("[")
                 self.visit_iHdlExpr(width)
                 w("]")
+
         return len(array_dims) > 0
 
     def visit_type_array_part(self, t):
