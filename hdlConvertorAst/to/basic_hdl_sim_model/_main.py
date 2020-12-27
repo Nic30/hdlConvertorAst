@@ -15,17 +15,17 @@ from pyMathBitPrecise.array3t import Array3t, Array3val
 from pyMathBitPrecise.bits3t import Bits3t, Bits3val
 from pyMathBitPrecise.enum3t import define_Enum3t
 
-from pycocotb.basic_hdl_simulator.model import BasicRtlSimModel
-from pycocotb.basic_hdl_simulator.model_utils import sensitivity, connectSimPort
-from pycocotb.basic_hdl_simulator.proxy import BasicRtlSimProxy
-from pycocotb.basic_hdl_simulator.sim_utils import sim_eval_cond
+from hwtSimApi.basic_hdl_simulator.model import BasicRtlSimModel
+from hwtSimApi.basic_hdl_simulator.model_utils import sensitivity, connectSimPort
+from hwtSimApi.basic_hdl_simulator.proxy import BasicRtlSimProxy
+from hwtSimApi.basic_hdl_simulator.sim_utils import sim_eval_cond
 """
 
 
 class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
     """
     Convert hdlObject AST to BasicHdlSimModel
-    (Python simulation model used by pycocotb simulator)
+    (Python simulation model used by hwtSimApi simulator)
 
     :ivar ~.module_path_prefix: if None serialized output will be in a single file
         and no imports of components are produced, else

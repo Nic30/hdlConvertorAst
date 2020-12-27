@@ -17,7 +17,7 @@ SIMMODEL_KEYWORDS = keyword.kwlist + [
     '__setattribute__',
     # imports
     'pyMathBitPrecise',
-    'pycocotb',
+    'hwtSimApi',
     'Array3t',
     'Array3val',
     'Bits3t',

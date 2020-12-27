@@ -22,7 +22,7 @@ Doc shared with [hdlConvertor](https://github.com/Nic30/hdlConvertor).
   * [IEEE 1800-2017 (SystemVerilog 2017)](https://ieeexplore.ieee.org/document/8299595) and all previous standards.
   * SystemC 2.3.3
   * HdlConvertor JSON
-  * pycocotb basic_rtl_sim_model (python interpreted RTL simulator)
+  * hwtSimApi basic_rtl_sim_model (python interpreted RTL simulator)
   * hwt (hardware construction framework (HCL) with algorithmic synthesis (HLS))
 
 

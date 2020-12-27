@@ -19,7 +19,7 @@ DEFAULT_IMPORTS = """\
 class ToSystemc(ToSystemcStm):
     """
     Convert hdlObject AST to BasicHdlSimModel
-    (Python simulation model used by pycocotb simulator)
+    (Python simulation model used by hwtSimApi simulator)
 
     :ivar _is_param: flag which specifies if the current HdlIdDef is a param/generic
     :ivar _is_port: flag which specifies if the current HdlIdDef is a port
