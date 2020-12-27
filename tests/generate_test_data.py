@@ -10,8 +10,10 @@
 import json
 import os
 
+from hdlConvertorAst.hdlAst._structural import HdlContext
 from hdlConvertorAst.to.json import ToJson
 from hwt.serializer.hwt import HwtSerializer
+from hwt.serializer.simModel import SimModelSerializer
 from hwt.serializer.store_manager import StoreManager, SaveToStream
 from hwt.serializer.systemC import SystemCSerializer
 from hwt.serializer.verilog import VerilogSerializer
@@ -20,10 +22,7 @@ from hwt.synthesizer.unit import Unit, HdlConstraintList
 from hwt.synthesizer.utils import to_rtl
 from hwtLib.examples.hierarchy.groupOfBlockrams import GroupOfBlockrams
 from hwtLib.examples.showcase0 import Showcase0
-from builtins import isinstance
-from hdlConvertorAst.hdlAst._structural import HdlContext
 from tests.fromJsonToHdl_test import FromJsonToHdlTC
-from hwt.serializer.simModel import SimModelSerializer
 
 
 class SaveHwtToJson(StoreManager):
