@@ -34,7 +34,7 @@ setup(
         'Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)',
     ],
     license="MIT",
-    packages=[p for p in find_packages() if p != "tests"],
+    packages=find_packages(exclude=["tests", ]),
     test_suite='tests.all.suite',
     install_requires=deps,
     test_require=deps,
