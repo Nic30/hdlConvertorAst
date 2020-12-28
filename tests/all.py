@@ -20,7 +20,6 @@ def main_test_suite():
 
 suite = main_test_suite()
 
-
 if __name__ == "__main__":
     runner = TextTestRunner(verbosity=3)
     runner.run(suite)
