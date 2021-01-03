@@ -14,7 +14,6 @@ Doc shared with [hdlConvertor](https://github.com/Nic30/hdlConvertor).
 ### Intended as a support library for
   * code generators
   * code parsers
-  * document generators
   * compilers/transpilers
 
 ### Supported languages
