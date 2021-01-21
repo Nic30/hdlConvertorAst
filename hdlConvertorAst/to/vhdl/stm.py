@@ -251,29 +251,38 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
         """
         :type o: HdlStmForIn
         """
+        self.visit_doc(o)
+        w = self.out.write
+        if o.labels:
+            w(o.labels[0])
+            w(": ")
+        w("FOR ")
+        assert len(o.var_defs) == 1, o.var_defs
+        self.visit_iHdlExpr(o.var_defs[0])
+        w(" IN ")
+        self.visit_iHdlExpr(o.collection)
         if o.in_preproc:
-            self.visit_doc(o)
-            w = self.out.write
-            if o.labels:
-                w(o.labels[0])
-                w(": ")
-            w("FOR ")
-            assert len(o.var_defs) == 1, o.var_defs
-            self.visit_iHdlExpr(o.var_defs[0])
-            w(" IN ")
-            self.visit_iHdlExpr(o.collection)
             w(" GENERATE\n")
-            with Indent(self.out):
+        else:
+            w(" LOOP\n")
+        with Indent(self.out):
+            if o.in_preproc:
                 has_begin_end = self.visit_iHdlObj(o.body)
+            else:
+                if isinstance(o.body, HdlStmBlock):
+                    for _stm in o.body.body:
+                        self.visit_iHdlObj(_stm)
+                else:
+                    self.visit_iHdlObj(o.body)
 
+        if o.in_preproc:
             if has_begin_end:
                 w(" GENERATE;\n")
             else:
                 w("\n")
                 w("END GENERATE;\n")
-
         else:
-            raise TypeError("does not support HdlStmForIn", self, o)
+            w("END LOOP;\n")
 
     def visit_HdlStmWait(self, o):
         """
