@@ -173,7 +173,7 @@ class ToJson(HdlAstVisitor):
         d["range"] = self.visit_iHdlExpr(o.range)
         d["members"] = [self.visit_iHdlExpr(v) for v in o.members]
         return d
-    
+
     def visit_HdlEnumDef(self, o):
         """
         :type o: HdlEnumDef
@@ -328,6 +328,13 @@ class ToJson(HdlAstVisitor):
         d = self._visit_iHdlStatement(o)
         if o.val is not None:
             d["val"] = self.visit_iHdlExpr(o.val)
+        return d
+
+    def visit_HdlStmNop(self, o):
+        """
+        :type o: HdlStmNop
+        """
+        d = self._visit_iHdlStatement(o)
         return d
 
     def visit_iHdlExpr(self, o):
