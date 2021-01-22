@@ -222,14 +222,14 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
         :type o: HdlStmContinue
         """
         self.visit_doc(o)
-        self.out.write("CONTINUE")
+        self.out.write("CONTINUE;\n")
 
     def visit_HdlStmBreak(self, o):
         """
         :type o: HdlStmBreak
         """
         self.visit_doc(o)
-        self.out.write("BREAK")
+        self.out.write("BREAK;\n")
 
     def visit_HdlStmFor(self, o):
         """
@@ -313,3 +313,9 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
         """
         raise ValueError("VHDL does not have exceptions")
 
+    def visit_HdlStmNop(self, o):
+        """
+        :type o: HdlStmNop
+        """
+        self.visit_doc(o)
+        self.out.write("NULL;\n")
