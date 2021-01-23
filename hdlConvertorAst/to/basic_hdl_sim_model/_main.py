@@ -1,13 +1,13 @@
 from itertools import chain
 
-from hdlConvertorAst.hdlAst import HdlIdDef, HdlOp, HdlOpType,\
-    HdlDirection, HdlValueId, HdlCompInst, HdlPhysicalDef, HdlEnumDef, HdlClassDef,\
+from hdlConvertorAst.hdlAst import HdlIdDef, HdlOp, HdlOpType, \
+    HdlDirection, HdlValueId, HdlCompInst, HdlPhysicalDef, HdlEnumDef, HdlClassDef, \
     HdlFunctionDef
-from hdlConvertorAst.to.basic_hdl_sim_model.stm import ToBasicHdlSimModelStm
-from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
-from hdlConvertorAst.to.basic_hdl_sim_model.utils import sensitivityByOp
-from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
 from hdlConvertorAst.hdlAst._expr import HdlTypeType
+from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
+from hdlConvertorAst.to.basic_hdl_sim_model.stm import ToBasicHdlSimModelStm
+from hdlConvertorAst.to.basic_hdl_sim_model.utils import sensitivityByOp
+from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 
 
 DEFAULT_IMPORTS = """\

@@ -1,4 +1,3 @@
-import sys
 from hdlConvertorAst.hdlAst._expr import HdlValueInt
 
 
