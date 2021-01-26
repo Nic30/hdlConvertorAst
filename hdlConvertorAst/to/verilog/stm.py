@@ -378,3 +378,18 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         :type o: HdlStmThrow
         """
         raise ValueError("SystemVerilog does not have exceptions")
+
+    # [TODO] SV only
+    def visit_HdlImport(self, o):
+        """
+        :type o: HdlImport
+        """
+        self.visit_doc(o)
+        w = self.out.write
+        w("import ")
+        package, name = o.path
+        self.visit_iHdlExpr(package)
+        w("::")
+        self.visit_iHdlExpr(name)
+
+        return True
