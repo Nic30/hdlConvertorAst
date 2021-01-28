@@ -10,7 +10,7 @@ from hdlConvertorAst.to.hwt.stm import ToHwtStm
 
 
 DEFAULT_IMPORTS = """\
-from hwt.code import power, If, Switch, Concat
+from hwt.code import If, Switch, Concat
 from hwt.hdl.types.array import HArray
 from hwt.hdl.types.bits import Bits
 from hwt.hdl.types.defs import INT, SLICE, STR, BIT
