@@ -17,11 +17,22 @@ class NameOccupiedErr(Exception):
     object in current scope
     """
 
-    def __init__(self, name, usedOn):
+    def __init__(self, nameScope, name, usedOn):
         super(NameOccupiedErr, self).__init__()
+        self.nameScope = nameScope
         self.name = name
         self.usedOn = usedOn
-        self.args = (name, usedOn)
+
+    def __str__(self):
+        path = [self.name, ]
+        ns = self.nameScope
+        while ns is not None:
+            n = ns.name
+            if n is None:
+                n = "<DEFAULT>"
+            path.append(n)
+            ns = ns.parent
+        return "<%s in %s, usedOn=%r" % (self.__class__.__name__, "/".join(reversed(path)), self.usedOn)
 
 
 class ObjectForNameNotFound(KeyError):
@@ -45,7 +56,7 @@ class NameScope(dict):
     if name is discovered in scope it is converted to name_id
     where id is sequential number for prefix name\_
 
-    :ivar ~.level: describes how deeply nested is this NameScopeItem in 
+    :ivar ~.level: describes how deeply nested is this NameScopeItem in
         name hierarchy
     :ivar ~.cntrsForPrefixNames: conters for prefix names (for each name which
         has to be renamed there is a counter which is used to find a non occupied
@@ -133,7 +144,7 @@ class NameScope(dict):
             self[_name] = obj
             self.reversed[obj] = _name
         else:
-            raise NameOccupiedErr(name, o)
+            raise NameOccupiedErr(self, name, o)
 
     def get_child(self, name):
         assert is_str(name), name
