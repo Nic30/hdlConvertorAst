@@ -6,7 +6,7 @@ from itertools import chain
 
 from hdlConvertorAst.hdlAst import HdlOp, HdlOpType, HdlValueId, HdlAll,\
     HdlValueInt, HdlIdDef, HdlStmAssign, HdlModuleDec, HdlModuleDef,\
-    HdlCompInst, iHdlStatement
+    HdlCompInst, iHdlStatement, HdlTypeAuto
 from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
 from hdlConvertorAst.translate.common.discover_declarations import WithNameScope
 
@@ -81,6 +81,20 @@ class ResolveNames(HdlAstVisitor):
         self.visit_port_param_map(mod_name_scope, o.param_map)
         self.visit_port_param_map(mod_name_scope, o.port_map)
 
+    def visit_HdlFunctionDef(self, o):
+        """
+        :type o: HdlFunctionDef
+        """
+        with WithNameScope(self, self.name_scope.level_push(o.name)):
+            for p in o.params:
+                self.visit_HdlIdDef(p)
+
+            if o.return_t is not None:
+                self.visit_iHdlExpr(o.return_t)
+            for o2 in o.body:
+                self.visit_main_obj(o2)
+        return o
+
     def visit_iHdlExpr(self, o):
         """
         :type o: iHdlExpr
@@ -123,6 +137,7 @@ class ResolveNames(HdlAstVisitor):
         elif isinstance(o, (list, tuple)):
             for o2 in o:
                 self.visit_iHdlExpr(o2)
-
+        elif o is HdlTypeAuto:
+            pass
         else:
             raise NotImplementedError(o)
