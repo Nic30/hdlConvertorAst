@@ -1,7 +1,7 @@
 from hwt.code import power, If, Switch, Concat
 from hwt.hdl.types.array import HArray
 from hwt.hdl.types.bits import Bits
-from hwt.hdl.types.defs import INT, SLICE, STR, BIT
+from hwt.hdl.types.defs import INT, SLICE, STR, BIT, FLOAT64
 from hwt.hdl.types.enum import HEnum
 from hwt.interfaces.std import Signal
 from hwt.synthesizer.param import Param
@@ -10,10 +10,10 @@ from hwt.synthesizer.unit import Unit
 class Ram_dp(Unit):
     """
         True dual port RAM.
-        :note: write-first variant 
-    
+        :note: write-first variant
+
         .. hwt-autodoc::
-        
+
     """
     def _config(self):
         self.ADDR_WIDTH = Param(INT.from_py(8))
@@ -59,7 +59,7 @@ class Ram_dp(Unit):
 class GroupOfBlockrams(Unit):
     """
         .. hwt-autodoc::
-        
+
     """
     def _config(self):
         self.ADDR_WIDTH = Param(INT.from_py(8))
