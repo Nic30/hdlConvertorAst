@@ -70,8 +70,7 @@ class DiscoverDeclarations(HdlAstVisitor):
         ns = self.name_scope
         ns.register_name(o.name, o)
         with WithNameScope(self, ns.level_push(o.name)):
-            for p in o.params:
-                self.discover_declarations(p)
+            self.discover_declarations(o.params)
             self.discover_declarations(o.body)
         return o
 
