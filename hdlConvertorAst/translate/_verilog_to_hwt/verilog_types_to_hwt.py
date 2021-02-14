@@ -25,4 +25,8 @@ class VerilogTypesToHwt(VerilogTypesToBasicHdlSimModel):
         elif isinstance(t, HdlValueId):
             if t == HdlValueId("integer"):
                 return HdlValueId("INT")
+            elif t == HdlValueId("real"):
+                return HdlValueId("FLOAT64")
+            elif t == HdlValueId("time"):
+                return HdlValueId("int")
         raise NotImplementedError(t)

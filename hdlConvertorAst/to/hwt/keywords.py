@@ -6,7 +6,7 @@ HWT_KEYWORDS = keyword.kwlist + [
     # imports
     'hwt', 'Unit', "Param", "Signal",
     "Concat", "If", "Switch",
-    "HArray", "HArrayVal", "Bits", "INT", "SLICE",
+    "HArray", "HArrayVal", "Bits", "INT", "SLICE", "FLOAT64",
     "HEnum", "SliceVal", "_",
 ]
 
