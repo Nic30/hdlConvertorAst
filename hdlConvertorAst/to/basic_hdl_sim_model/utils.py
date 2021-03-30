@@ -26,7 +26,7 @@ def _verilog_slice_to_width(high, low):
     :return: Union[int, iHdlExpr]
     """
     if isinstance(low, (int, HdlValueInt)) and isinstance(high, (int, HdlValueInt)):
-        assert int(low) == 0
+        assert int(low) == 0, low
         return int(high) + 1
 
     if isinstance(low, (int, HdlValueInt)) and int(low) == 0:
