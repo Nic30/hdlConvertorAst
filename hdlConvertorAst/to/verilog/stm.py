@@ -23,6 +23,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
     def __init__(self, out_stream):
         super(ToVerilog2005Stm, self).__init__(out_stream)
         self.top_stm = None
+        self.is_in_loop_spec = False
 
     def visit_iHdlStatement(self, stm):
         """
@@ -186,7 +187,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         self.visit_doc(o)
         w = self.out.write
         ts = self.top_stm
-        if ts is o or (ts is not None and ts.in_preproc):
+        if not self.is_in_loop_spec and (ts is o or (ts is not None and ts.in_preproc)):
             w("assign ")
             self.visit_iHdlExpr(o.dst)
             w(" = ")
@@ -280,13 +281,16 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
             init_stms = [o.init, ]
 
         trnt = self._type_requires_nettype
+        in_in_loop_spec = self.is_in_loop_spec
         try:
             self._type_requires_nettype = False
+            self.is_in_loop_spec = True
             for is_last, stm in iter_with_last(init_stms):
                 self.visit_iHdlStatement(stm)
                 if not is_last:
                     w(", ")
         finally:
+            self.is_in_loop_spec = in_in_loop_spec
             self._type_requires_nettype = trnt
 
         w("; ")
