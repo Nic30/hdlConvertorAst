@@ -7,7 +7,7 @@ HWT_KEYWORDS = keyword.kwlist + [
     'hwt', 'Unit', "Param", "Signal",
     "Concat", "If", "Switch",
     "HArray", "HArrayVal", "Bits", "INT", "SLICE", "FLOAT64",
-    "HEnum", "SliceVal", "_",
+    "HEnum", "SliceVal", "_", "rename_signal",
 ]
 
 if sys.version_info[0] <= 2:
