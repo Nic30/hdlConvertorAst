@@ -52,13 +52,13 @@ class Showcase0(Unit):
         self.output, self.rst_n, self.sc_signal
         # internal signals
         const_private_signal = Bits(32, signed=False).from_py(123)
-        fallingEdgeRam = rename_signal(self, None, "fallingEdgeRam")
+        fallingEdgeRam = self._sig("fallingEdgeRam", Bits(8, signed=True)[4], def_val=None)
         r = self._sig("r", Bits(1), def_val=0)
         r_0 = self._sig("r_0", Bits(2), def_val=0)
         r_1 = self._sig("r_1", Bits(2), def_val=0)
-        r_next = rename_signal(self, None, "r_next")
-        r_next_0 = rename_signal(self, None, "r_next_0")
-        r_next_1 = rename_signal(self, None, "r_next_1")
+        r_next = self._sig("r_next", Bits(1), def_val=None)
+        r_next_0 = self._sig("r_next_0", Bits(2), def_val=None)
+        r_next_1 = self._sig("r_next_1", Bits(2), def_val=None)
         rom = Bits(8, signed=False)[4].from_py({0: 0,
             1: 1,
             2: 2,

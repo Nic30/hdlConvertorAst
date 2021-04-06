@@ -309,7 +309,7 @@ class ToHwt(ToHwtStm):
                 w(")\n")
         else:
             # body signal
-            if var.value is not None and is_not_const(var.value, names_of_constants):
+            if var.value is not None and var.value != HdlValueId("None") and is_not_const(var.value, names_of_constants):
                 w(' = rename_signal(self, ')
                 self.visit_iHdlExpr(var.value)
                 w(', "')
