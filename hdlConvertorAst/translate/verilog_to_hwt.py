@@ -26,7 +26,7 @@ def verilog_to_hwt(context):
     ResolveNames(name_scope).visit_HdlContext(context)
     DetectCompileTimeStatements().visit_HdlContext(context)
     InjectProcessSensToStatements().visit_HdlContext(context)
-    BasicHdlSimModelTranslateVerilogOperands().visit_HdlContext(context)
+    BasicHdlSimModelTranslateVerilogOperands(downto_to_slice_fn=False).visit_HdlContext(context)
     VerilogTypesToHwt().visit_HdlContext(context)
     AddCallOperatorForCallWithoutParenthesis().visit_HdlContext(context)
     wrap_module_statements_to_processes(context)

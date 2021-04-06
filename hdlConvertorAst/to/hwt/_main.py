@@ -1,5 +1,5 @@
-from hdlConvertorAst.hdlAst import HdlIdDef, iHdlExpr, HdlOp, HdlOpType,\
-    HdlDirection, HdlValueId, HdlStmProcess, HdlCompInst, HdlModuleDec,\
+from hdlConvertorAst.hdlAst import HdlIdDef, iHdlExpr, HdlOp, HdlOpType, \
+    HdlDirection, HdlValueId, HdlStmProcess, HdlCompInst, HdlModuleDec, \
     HdlPhysicalDef, HdlEnumDef, HdlClassDef, HdlFunctionDef, iHdlTypeDef
 from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
 from hdlConvertorAst.py_ver_compatibility import method_as_function
@@ -7,7 +7,6 @@ from hdlConvertorAst.to.basic_hdl_sim_model._main import ToBasicHdlSimModel
 from hdlConvertorAst.to.common import ToHdlCommon
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 from hdlConvertorAst.to.hwt.stm import ToHwtStm
-
 
 DEFAULT_IMPORTS = """\
 from hwt.code import If, Switch, Concat
@@ -29,6 +28,22 @@ def pop_port_or_param_map(o):
     return mod_p, connected_p
 
 
+def is_not_const(e, names_of_constants):
+    """
+    :param e: expression to check
+    """
+    if e is None:
+        return False
+    elif isinstance(e, HdlOp):
+        for o in e.ops:
+            if is_not_const(o, names_of_constants):
+                return True
+        return False
+    elif isinstance(e, HdlValueId):
+        return e.val not in names_of_constants
+    return False
+
+
 class ToHwt(ToHwtStm):
     """
     Convert hdlObject AST to BasicHdlSimModel
@@ -39,6 +54,7 @@ class ToHwt(ToHwtStm):
     """
     ALL_STATEMENT_CLASSES = ALL_STATEMENT_CLASSES
     VAR_PER_LINE_LIMIT = 10
+    TYPES_WHICH_CAN_BE_OMMITED = (HdlValueId("INT"), HdlValueId("STR"), HdlValueId("BOOL"), HdlValueId("FLOAT"))
 
     def __init__(self, out_stream):
         ToHdlCommon.__init__(self, out_stream)
@@ -77,6 +93,29 @@ class ToHwt(ToHwtStm):
             w("()\n")
             w("print(to_rtl_str(u))\n")
 
+    def ivars_to_local_vars(self, var_names):
+        if var_names:
+            w = self.out.write
+            VAR_PER_LINE_LIMIT = self.VAR_PER_LINE_LIMIT
+            # ports and params to locals
+            for i, (last, name) in enumerate(iter_with_last(var_names)):
+                w(name)
+                if not last:
+                    w(", ")
+                if i % VAR_PER_LINE_LIMIT == 0 and i > 0:
+                    # jump to new line to have reasonably long variable list
+                    w("\\\n")
+            w(" = \\\n")
+            for i, (last, name) in enumerate(iter_with_last(var_names)):
+                w("self.")
+                w(name)
+                if not last:
+                    w(", ")
+                if i % VAR_PER_LINE_LIMIT == 0 and i > 0:
+                        # jump to new line to have reasonably long variable list
+                        w("\\\n")
+            w("\n")
+
     def visit_HdlModuleDef(self, mod_def):
         """
         :type mod_def: HdlModuleDef
@@ -100,18 +139,18 @@ class ToHwt(ToHwtStm):
         w("class ")
         w(mod_dec.name)
         w("(Unit):\n")
-        port_params_comp_names = []
         with Indent(self.out):
             self.visit_doc(mod_dec, doc_string=True)
 
+            params_names = []
             if mod_dec.params:
                 w('def _config(self):\n')
                 with Indent(self.out):
                     try:
                         self._is_param = True
                         for p in mod_dec.params:
-                            self.visit_HdlIdDef(p)
-                            port_params_comp_names.append(p.name)
+                            self.visit_HdlIdDef(p, None)
+                            params_names.append(p.name)
                     finally:
                         self._is_param = False
                 w("\n")
@@ -125,8 +164,11 @@ class ToHwt(ToHwtStm):
                 else:
                     raise NotImplementedError(d)
 
+            names_of_constants = set(params_names)
+            port_params_comp_names = [*params_names]
             w('def _declr(self):\n')
             with Indent(self.out):
+                self.ivars_to_local_vars(port_params_comp_names)
                 for t in types:
                     self.visit_type_declr(t)
 
@@ -134,7 +176,7 @@ class ToHwt(ToHwtStm):
                 try:
                     self._is_port = True
                     for p in mod_dec.ports:
-                        self.visit_HdlIdDef(p)
+                        self.visit_HdlIdDef(p, names_of_constants)
                         port_params_comp_names.append(p.name)
                 finally:
                     self._is_port = False
@@ -163,29 +205,10 @@ class ToHwt(ToHwtStm):
 
             w("def _impl(self):\n")
             with Indent(self.out):
+                self.ivars_to_local_vars(port_params_comp_names)
                 w("# internal signals\n")
-                if port_params_comp_names:
-                    VAR_PER_LINE_LIMIT = self.VAR_PER_LINE_LIMIT
-                    # ports and params to locals
-                    for i, (last, name) in enumerate(iter_with_last(port_params_comp_names)):
-                        w(name)
-                        if not last:
-                            w(", ")
-                        if i % VAR_PER_LINE_LIMIT == 0 and i > 0:
-                            # jump to new line to have reasonably long variable list
-                            w("\\\n")
-                    w(" = \\\n")
-                    for i, (last, name) in enumerate(iter_with_last(port_params_comp_names)):
-                        w("self.")
-                        w(name)
-                        if not last:
-                            w(", ")
-                        if i % VAR_PER_LINE_LIMIT == 0 and i > 0:
-                                # jump to new line to have reasonably long variable list
-                                w("\\\n")
-                    w("\n")
                 for v in variables:
-                    self.visit_HdlIdDef(v)
+                    self.visit_HdlIdDef(v, names_of_constants)
 
                 for c in components:
                     for pm in c.port_map:
@@ -242,7 +265,7 @@ class ToHwt(ToHwtStm):
                 w("\n")
         w("\n")
 
-    def visit_HdlIdDef(self, var):
+    def visit_HdlIdDef(self, var, names_of_constants):
         """
         :type var: HdlIdDef
         """
@@ -253,7 +276,8 @@ class ToHwt(ToHwtStm):
         w(var.name)
         if self._is_port:
             w(" = Signal(")
-            self.visit_type(var.type)
+            if var.type != HdlValueId("BIT"):
+                self.visit_type(var.type)
             w(")")
             if var.direction == HdlDirection.OUT:
                 w("._m()\n")
@@ -262,27 +286,47 @@ class ToHwt(ToHwtStm):
                 assert var.direction == HdlDirection.IN, var.direction
         elif self._is_param:
             w(" = Param(")
-            self.visit_type(var.type)
-            w(".from_py(")
-            self.visit_iHdlExpr(var.value)
-            w("))\n")
-        elif var.is_const:
-            w(" = ")
-            self.visit_type(var.type)
-            w(".from_py(")
-            self.visit_iHdlExpr(var.value)
-            w(")\n")
-        else:
-            # body signal
-            w(' = self._sig(')
-            with Indent(self.out):
-                w('"')
-                w(var.name)
-                w('", ')
-                self.visit_type(var.type)
-            if var.value is None:
-                w(")\n")
-            else:
-                w(", def_val=")
+            if var.type in self.TYPES_WHICH_CAN_BE_OMMITED:
+                # ommit the type specification in the case where the type can be resolved from value type
                 self.visit_iHdlExpr(var.value)
                 w(")\n")
+            else:
+                self.visit_type(var.type)
+                w(".from_py(")
+                self.visit_iHdlExpr(var.value)
+                w("))\n")
+        elif var.is_const:
+            names_of_constants.add(var.name)
+            w(" = ")
+            if var.type in self.TYPES_WHICH_CAN_BE_OMMITED:
+                self.visit_iHdlExpr(var.value)
+                w("\n")
+            else:
+                self.visit_type(var.type)
+                w(".from_py(")
+                self.visit_iHdlExpr(var.value)
+                w(")\n")
+        else:
+            # body signal
+            if var.value is not None and is_not_const(var.value, names_of_constants):
+                w(' = rename_signal(self, ')
+                self.visit_iHdlExpr(var.value)
+                w(', "')
+                w(var.name)
+                w('")\n')
+            else:
+                w(' = self._sig(')
+                with Indent(self.out):
+                    w('"')
+                    w(var.name)
+                    if var.type == HdlValueId("BIT"):
+                        w('"')
+                    else:
+                        w('", ')
+                        self.visit_type(var.type)
+                if var.value is None:
+                    w(")\n")
+                else:
+                    w(", def_val=")
+                    self.visit_iHdlExpr(var.value)
+                    w(")\n")

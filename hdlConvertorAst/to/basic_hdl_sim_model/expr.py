@@ -180,7 +180,7 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
         elif isinstance(o, float):
             w("%f" % o)
             return
-        print(o.__class__)
+
         raise NotImplementedError(o.__class__, o)
 
     def visit_HdlOp(self, o):

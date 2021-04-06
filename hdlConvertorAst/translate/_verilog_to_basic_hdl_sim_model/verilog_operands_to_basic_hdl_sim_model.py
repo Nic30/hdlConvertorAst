@@ -8,6 +8,10 @@ from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import \
 
 class BasicHdlSimModelTranslateVerilogOperands(HdlAstModifier):
 
+    def __init__(self, downto_to_slice_fn=True):
+        super(BasicHdlSimModelTranslateVerilogOperands, self).__init__()
+        self.downto_to_slice_fn = downto_to_slice_fn
+
     def visit_HdlOp(self, o):
         """
         :type o: HdlOp
@@ -22,8 +26,11 @@ class BasicHdlSimModelTranslateVerilogOperands(HdlAstModifier):
         elif op == HdlOpType.TERNARY:
             to_property_call(o, "_ternary__val")
         elif op == HdlOpType.DOWNTO:
-            o.fn = HdlOpType.CALL
-            o.ops = [HdlValueId("slice"), hdl_add_int(o.ops[0], 1), o.ops[1]]
+            if self.downto_to_slice_fn:
+                o.fn = HdlOpType.CALL
+                o.ops = [HdlValueId("slice"), hdl_add_int(o.ops[0], 1), o.ops[1]]
+            else:
+                o.ops = [hdl_add_int(o.ops[0], 1), o.ops[1]]
         elif op == HdlOpType.TO:
             raise NotImplementedError(o)
         elif op == HdlOpType.CALL:

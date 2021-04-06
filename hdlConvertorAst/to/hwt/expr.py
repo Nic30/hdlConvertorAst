@@ -2,9 +2,14 @@ from copy import copy
 
 from hdlConvertorAst.hdlAst import HdlOpType
 from hdlConvertorAst.to.basic_hdl_sim_model.expr import ToBasicHdlSimModelExpr
+from hdlConvertorAst.to.common import ASSOCIATIVITY
 
 
 class ToHwtExpr(ToBasicHdlSimModelExpr):
+    OP_PRECEDENCE = copy(ToBasicHdlSimModelExpr.OP_PRECEDENCE)
+    OP_PRECEDENCE.update({
+        HdlOpType.DOWNTO: (1, ASSOCIATIVITY.L_TO_R),
+    })
     GENERIC_BIN_OPS = copy(ToBasicHdlSimModelExpr.GENERIC_BIN_OPS)
     GENERIC_BIN_OPS.update({
         HdlOpType.DOWNTO: ":",
@@ -30,5 +35,5 @@ class ToHwtExpr(ToBasicHdlSimModelExpr):
             self.visit_iHdlExpr(ops[0])
             w("))")
             return
-            
+
         return ToBasicHdlSimModelExpr.visit_HdlOp(self, o)

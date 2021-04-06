@@ -164,11 +164,14 @@ class ToHwtStm(ToHwtExpr):
         """
         :type o: HdlStmFor
         """
-        if not o.in_preproc:
-            raise TypeError("does not support HdlStmFor", self, o)
+        #if not o.in_preproc:
+        #    raise TypeError("does not support HdlStmFor", self, o)
         self.visit_doc(o)
         w = self.out.write
+        # [todo] if is a simple for in range()
+        
         self.visit_iHdlObj(o.init)
+        w("\n")
         w("while ")
         self.visit_iHdlExpr(o.cond)
         w(":\n")

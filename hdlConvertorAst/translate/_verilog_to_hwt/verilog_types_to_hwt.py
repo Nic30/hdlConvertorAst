@@ -1,7 +1,7 @@
 from typing import Union
 
 from hdlConvertorAst.hdlAst import HdlOp, HdlOpType, iHdlTypeDef, iHdlExpr, \
-    HdlTypeBitsDef, HdlValueId
+    HdlTypeBitsDef, HdlValueId, HdlIdDef
 from hdlConvertorAst.to.basic_hdl_sim_model.utils import _verilog_slice_to_width
 from hdlConvertorAst.to.hwt.utils import BitsT
 from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_index
@@ -9,6 +9,17 @@ from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.verilog_types_to_
 
 
 class VerilogTypesToHwt(VerilogTypesToBasicHdlSimModel):
+
+    def visit_HdlModuleDef(self, o):
+        """
+        Remove genvar instances as they do not need forward declarations
+
+        :type o: HdlModuleDef
+        """
+        genvar = HdlValueId("genvar")
+        o.objs = [_o for _o in o.objs if not isinstance(_o, HdlIdDef) or _o.type != genvar ]
+        super(VerilogTypesToHwt, self).visit_HdlModuleDef(o)
+        return o
 
     def _visit_type(self, t):
         """

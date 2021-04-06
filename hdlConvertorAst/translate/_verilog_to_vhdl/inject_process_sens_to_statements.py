@@ -59,6 +59,7 @@
 from hdlConvertorAst.hdlAst._statements import HdlStmIf
 from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
 from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_or
+from hdlConvertorAst.hdlAst import HdlAll
 
 
 class InjectProcessSensToStatements(HdlAstVisitor):
@@ -70,12 +71,11 @@ class InjectProcessSensToStatements(HdlAstVisitor):
         :type o: HdlStmProcess
         """
         sens = o.sensitivity
-        if not sens:
+        if not sens or sens == [HdlAll, ]:
             return
-        
+
         s = hdl_or(*sens)
         i = HdlStmIf()
         i.cond = s
         i.if_true = o.body
         o.body = i
-    
