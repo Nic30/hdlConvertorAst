@@ -97,6 +97,8 @@ class ToVerilog2005(ToVerilog2005Stm):
             w(" = ")
             self.visit_iHdlExpr(var.value)
 
+        return True
+
     def visit_map_item(self, item):
         if isinstance(item, HdlOp)\
                 and item.fn == HdlOpType.MAP_ASSOCIATION:
