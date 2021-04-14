@@ -182,7 +182,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
     def visit_HdlStmAssign(self, o):
         """
         :type o: HdlStmAssign
-        :return: True if requires ;\n after end
+        :return: True if requires ;\\n after end
         """
         self.visit_doc(o)
         w = self.out.write
@@ -221,7 +221,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         """
         :type o: HdlStmCase
 
-        :return: True if requires ;\n after end
+        :return: True if requires ;\\n after end
         """
         self.visit_doc(o)
         w = self.out.write
@@ -254,7 +254,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         """
         :type o: HdlStmWait
 
-        :return: True if requires ;\n after end
+        :return: True if requires ;\\n after end
         """
         self.visit_doc(o)
         w = self.out.write
@@ -267,7 +267,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         """
         :type o: HdlStmFor
 
-        :return: True if requires ;\n after end
+        :return: True if requires ;\\n after end
         """
         self.visit_doc(o)
         w = self.out.write
@@ -320,7 +320,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
     def visit_HdlStmForIn(self, o):
         """
         :type o: HdlStmForIn
-        :return: True if requires ;\n after end
+        :return: True if requires ;\\n after end
         """
         self.visit_doc(o)
         raise NotImplementedError()
@@ -328,7 +328,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
     def visit_HdlStmWhile(self, o):
         """
         :type o: HdlStmWhile
-        :return: True if requires ;\n after end
+        :return: True if requires ;\\n after end
         """
         self.visit_doc(o)
         w = self.out.write
@@ -340,7 +340,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
     def visit_HdlStmRepeat(self, o):
         """
         :type o: HdlStmRepeat
-        :return: True if requires ;\n after end
+        :return: True if requires ;\\n after end
         """
         self.visit_doc(o)
         w = self.out.write
