@@ -22,7 +22,7 @@ import sys
 from sphinx.ext.apidoc import main as apidoc_main
 import sphinx_bootstrap_theme
 
-sys.path.insert(0, os.path.abspath('../'))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 # -- General configuration ------------------------------------------------
 
