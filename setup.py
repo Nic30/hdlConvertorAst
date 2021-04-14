@@ -14,7 +14,7 @@ deps = ["typing", "future"] if sys.version_info[0] == 2 else None
 
 setup(
     name='hdlConvertorAst',
-    version='0.6',
+    version='0.7',
     description='A library of AST nodes for HDL languages (Verilog, VHDL, ...) and transpiler/compiler utilities',
     long_description=long_description,
     long_description_content_type="text/markdown",
