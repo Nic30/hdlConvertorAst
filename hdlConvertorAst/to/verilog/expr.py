@@ -87,6 +87,7 @@ class ToVerilog2005Expr(ToHdlCommon):
 
         HdlOpType.ARITH_SHIFT_LEFT_ASSIGN: ' <<<= ',
         HdlOpType.ARITH_SHIFT_RIGHT_ASSIGN: ' >>>= ',
+        HdlOpType.DOUBLE_COLON: "::",
     }
     GENERIC_BIN_OPS.update(ToHdlCommon.GENERIC_BIN_OPS)
     GENERIC_BIN_OPS.update(ASSIGN_OPERATORS_SYMBOLS_C)
