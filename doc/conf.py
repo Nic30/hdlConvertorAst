@@ -22,8 +22,6 @@ import sys
 from sphinx.ext.apidoc import main as apidoc_main
 import sphinx_bootstrap_theme
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
-os.environ["PYTHONPATH"] = ";".join(sys.path)
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -192,6 +190,10 @@ def setup(app):
     app.connect("autodoc-skip-member", skip)
 
 
+root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, root)
+sys.path.insert(0, os.path.join(root, project))
+os.environ["PYTHONPATH"] = ";".join(sys.path)
 # update *.rst pages
 apidoc_main(["--module-first", "--full",
              "--output-dir", "../doc", "../hdlConvertorAst"])
