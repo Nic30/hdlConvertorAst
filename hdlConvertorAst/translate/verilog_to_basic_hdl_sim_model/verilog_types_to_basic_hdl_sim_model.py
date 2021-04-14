@@ -3,8 +3,8 @@ from hdlConvertorAst.hdlAst import HdlTypeBitsDef, HdlOpType, HdlOp, HdlValueId,
     HdlTypeAuto, HdlValueInt
 from hdlConvertorAst.to.basic_hdl_sim_model.utils import BitsT,\
     _verilog_slice_to_width
-from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_index
-from hdlConvertorAst.translate.verilog_resolve_types import VerilogResolveTypes
+from hdlConvertorAst.translate.verilog_to_basic_hdl_sim_model.utils import hdl_index
+from hdlConvertorAst.translate.verilog_to_basic_hdl_sim_model.verilog_resolve_types import VerilogResolveTypes
 from hdlConvertorAst.py_ver_compatibility import is_str
 
 
@@ -42,7 +42,7 @@ class VerilogTypesToBasicHdlSimModel(VerilogResolveTypes):
                 else:
                     o.type =  HdlValueId("INT")
                 return o
-                
+
         return VerilogResolveTypes.visit_HdlIdDef(self, o)
 
     def visit_type(self, t):

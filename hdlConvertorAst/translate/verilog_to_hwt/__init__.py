@@ -1,0 +1,1 @@
+from hdlConvertorAst.translate.verilog_to_hwt.main import verilog_to_hwt

@@ -1,0 +1,1 @@
+from hdlConvertorAst.translate.verilog_to_basic_hdl_sim_model.main import verilog_to_basic_hdl_sim_model

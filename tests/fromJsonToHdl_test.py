@@ -12,7 +12,7 @@ from hdlConvertorAst.to.hwt.keywords import HWT_KEYWORDS
 from hdlConvertorAst.to.systemc._main import ToSystemc
 from hdlConvertorAst.to.verilog.verilog2005 import ToVerilog2005
 from hdlConvertorAst.to.vhdl.vhdl2008 import ToVhdl2008
-from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.discover_stm_outputs\
+from hdlConvertorAst.translate.verilog_to_basic_hdl_sim_model.discover_stm_outputs\
     import discover_stm_outputs_context
 from hdlConvertorAst.translate.common.discover_declarations import DiscoverDeclarations
 from hdlConvertorAst.translate.common.name_scope import NameScope,\

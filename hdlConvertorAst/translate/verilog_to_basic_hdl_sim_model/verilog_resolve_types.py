@@ -4,7 +4,7 @@ from hdlConvertorAst.hdlAst._defs import HdlIdDef
 from hdlConvertorAst.hdlAst._expr import HdlTypeAuto
 from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
 from hdlConvertorAst.to.verilog.utils import collect_array_dims, get_wire_t_params
-from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_index, \
+from hdlConvertorAst.translate.verilog_to_basic_hdl_sim_model.utils import hdl_index, \
     hdl_sub_int
 
 
@@ -42,7 +42,7 @@ class VerilogResolveTypes(HdlAstVisitor):
                 elif msb.fn == HdlOpType.CALL and msb.ops[0] == HdlValueId("slice"):
                     lsb = msb.ops[2]
                     msb = hdl_sub_int(msb.ops[1], 1)
-                    
+
             t = HdlTypeBitsDef(msb, lsb=lsb, signed=is_signed)
 
         for i in array_dims:

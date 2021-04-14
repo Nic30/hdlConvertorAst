@@ -2,7 +2,7 @@ from copy import deepcopy
 
 from hdlConvertorAst.hdlAst import HdlOpType, HdlOp, HdlValueId, HdlStmThrow
 from hdlConvertorAst.to.hdl_ast_modifier import HdlAstModifier
-from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import \
+from hdlConvertorAst.translate.verilog_to_basic_hdl_sim_model.utils import \
     to_property_call, hdl_call, hdl_getattr, hdl_add_int, hdl_sub_int
 
 

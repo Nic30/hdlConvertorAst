@@ -67,7 +67,7 @@ class ToSystemcStm(ToSystemcExpr):
     def visit_HdlStmAssign(self, o):
         """
         :type o: HdlStmAssign
-        :return: True if requires ;\n after end
+        :return: True if requires ;\\n after end
         """
         self.visit_doc(o)
         w = self.out.write
@@ -80,7 +80,7 @@ class ToSystemcStm(ToSystemcExpr):
         """
         :type o: HdlStmCase
 
-        :return: True if requires ;\n after end
+        :return: True if requires ;\\n after end
         """
         self.visit_doc(o)
         w = self.out.write

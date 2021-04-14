@@ -4,8 +4,8 @@ from hdlConvertorAst.hdlAst import HdlOp, HdlOpType, iHdlTypeDef, iHdlExpr, \
     HdlTypeBitsDef, HdlValueId, HdlIdDef
 from hdlConvertorAst.to.basic_hdl_sim_model.utils import _verilog_slice_to_width
 from hdlConvertorAst.to.hwt.utils import BitsT
-from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_index
-from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.verilog_types_to_basic_hdl_sim_model import VerilogTypesToBasicHdlSimModel
+from hdlConvertorAst.translate.verilog_to_basic_hdl_sim_model.utils import hdl_index
+from hdlConvertorAst.translate.verilog_to_basic_hdl_sim_model.verilog_types_to_basic_hdl_sim_model import VerilogTypesToBasicHdlSimModel
 
 
 class VerilogTypesToHwt(VerilogTypesToBasicHdlSimModel):

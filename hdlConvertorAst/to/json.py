@@ -226,7 +226,7 @@ class ToJson(HdlAstVisitor):
         """
         :type o: HdlStmCase
 
-        :return: True if requires ;\n after end
+        :return: True if requires ;\\n after end
         """
         d = self._visit_iHdlStatement(o)
         d["type"] = o.type.name

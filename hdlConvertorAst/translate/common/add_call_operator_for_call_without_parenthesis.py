@@ -1,6 +1,6 @@
 from hdlConvertorAst.hdlAst import HdlOp, HdlValueId, HdlFunctionDef, HdlOpType
 from hdlConvertorAst.to.hdl_ast_modifier import HdlAstModifier
-from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.utils import hdl_call
+from hdlConvertorAst.translate.verilog_to_basic_hdl_sim_model.utils import hdl_call
 
 
 class AddCallOperatorForCallWithoutParenthesis(HdlAstModifier):
@@ -20,7 +20,7 @@ class AddCallOperatorForCallWithoutParenthesis(HdlAstModifier):
         """
         if isinstance(o, HdlOp):
             prev_par_expr = self._parentExpr
-            self._parentExpr = o 
+            self._parentExpr = o
             try:
                 self.visit_HdlOp(o)
             finally:

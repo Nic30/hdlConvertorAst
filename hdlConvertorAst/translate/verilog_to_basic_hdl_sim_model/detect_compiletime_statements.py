@@ -1,5 +1,5 @@
 from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
-from hdlConvertorAst.translate._verilog_to_basic_hdl_sim_model.wrap_module_statements_to_processes import collect_hdl_ids
+from hdlConvertorAst.translate.verilog_to_basic_hdl_sim_model.wrap_module_statements_to_processes import collect_hdl_ids
 from hdlConvertorAst.hdlAst import HdlIdDef
 
 def all_ids_constant(expr):
@@ -29,7 +29,7 @@ class DetectCompileTimeStatements(HdlAstVisitor):
         """
         if not o.in_preproc:
             o.in_preproc = all_ids_constant(o.switch_on)
-        
+
         return HdlAstVisitor.visit_HdlStmCase(self, o)
 
     def visit_iHdlExpr(self, o):
