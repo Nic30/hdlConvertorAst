@@ -12,6 +12,11 @@ Main container is HdlContext which can store all other objects.
     but such a module generally can not be synthetised to a hardware
 
 :attention: classes in his module are used from C++
+
+
+.. uml:: hdlConvertorAst.hdlAst
+    :classes:
+    :packages:
 """
 
 from hdlConvertorAst.hdlAst._bases import (
