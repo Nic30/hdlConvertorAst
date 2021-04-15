@@ -11,6 +11,9 @@ This documentation is automatically generated from actual source code.
    hdlConvertorAst
 
 
+.. uml:: hdlConvertorAst
+    :packages:
+
 
 Indices and tables
 ==================
