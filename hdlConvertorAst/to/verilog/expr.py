@@ -84,6 +84,7 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.TO: ":",
         HdlOpType.PART_SELECT_POST: " +: ",
         HdlOpType.PART_SELECT_PRE: " -: ",
+        HdlOpType.MAP_ASSOCIATION: ":",
 
         HdlOpType.ARITH_SHIFT_LEFT_ASSIGN: ' <<<= ',
         HdlOpType.ARITH_SHIFT_RIGHT_ASSIGN: ' >>>= ',
@@ -148,6 +149,7 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.TO: (17, L),
         HdlOpType.PART_SELECT_PRE: (17, L),
         HdlOpType.PART_SELECT_POST: (17, L),
+        HdlOpType.MAP_ASSOCIATION: (17, L),
 
     }
     OP_PRECEDENCE.update({k: (3, R) for k in [
@@ -246,6 +248,13 @@ class ToVerilog2005Expr(ToHdlCommon):
             w("null")
         elif isinstance(o, float):
             w(str(o))
+        elif isinstance(o, list):
+            w("'{")
+            for last, e in iter_with_last(o):
+                self.visit_iHdlExpr(e)
+                if not last:
+                    w(", ")
+            w("}")
         else:
             raise NotImplementedError(o.__class__, o)
         return True
