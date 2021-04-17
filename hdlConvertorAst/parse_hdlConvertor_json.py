@@ -3,7 +3,7 @@ import json
 from hdlConvertorAst import hdlAst
 from hdlConvertorAst.hdlAst import HdlContext, CodePosition, HdlOpType,\
     HdlDirection, HdlStmBlockJoinType, HdlValueInt, HdlValueId, HdlStmCase, HdlStmCaseType,\
-    NON_INSTANCIABLE_NODES
+    NON_INSTANCIABLE_NODES, HdlStmProcessTriggerConstrain
 from hdlConvertorAst.py_ver_compatibility import is_str
 
 
@@ -96,6 +96,8 @@ def _parse_hdlConvertor_json(j):
                     _v = getattr(HdlDirection, v)
             elif k == "join_t":
                 _v = getattr(HdlStmBlockJoinType, v)
+            elif k == "trigger_constrain":
+                _v = getattr(HdlStmProcessTriggerConstrain, v)
             elif cls is HdlStmCase and k == "type":
                 _v = getattr(HdlStmCaseType, v)
             else:

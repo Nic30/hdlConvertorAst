@@ -102,6 +102,15 @@ class HdlStmIf(iHdlStatement):
         self.elifs = []  # type: List[Tuple[iHdlExpr, iHdlStatement]]
         self.if_false = None  # type: Optional[iHdlStatement]
 
+class HdlStmProcessTriggerConstrain(Enum):
+    """
+    This enum is used to mark SystemVerilog always construct type variants.
+
+    :note: just always is marked with None, this enum specifies only special always construct variants
+        namely always_comb, always_ff, always_latch
+    """
+    (COMB, FF, LATCH) = range(3)
+
 
 class HdlStmProcess(iHdlStatement):
     """
@@ -115,11 +124,12 @@ class HdlStmProcess(iHdlStatement):
     :note: Verilog always #time construct is translated to process
            without sensitivity and wait #time as a first statement in body.
     """
-    __slots__ = ["sensitivity", "body"]
+    __slots__ = ["sensitivity", "body", "trigger_constrain"]
 
     def __init__(self):
         super(HdlStmProcess, self).__init__()
         self.sensitivity = None  # type: Optional[List[iHdlExpr]]
+        self.trigger_constrain = None # type: Optional[HdlStmProcessTriggerConstrain]
         self.body = None  # type: iHdlStatement
 
 

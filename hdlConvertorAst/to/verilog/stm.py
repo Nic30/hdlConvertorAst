@@ -1,4 +1,5 @@
-from hdlConvertorAst.hdlAst import HdlOpType, HdlStmWait, HdlStmBlock
+from hdlConvertorAst.hdlAst import HdlOpType, HdlStmWait, HdlStmBlock,\
+    HdlStmProcessTriggerConstrain
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 from hdlConvertorAst.to.verilog.expr import ToVerilog2005Expr
 
@@ -80,7 +81,17 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
             body = _body
         else:
             if self.top_stm is proc:
-                w("always ")
+                tr = proc.trigger_constrain
+                if tr is None:
+                    w("always ")
+                elif tr is HdlStmProcessTriggerConstrain.FF:
+                    w("always_ff ")
+                elif tr is HdlStmProcessTriggerConstrain.COMB:
+                    w("always_comb ")
+                elif tr is HdlStmProcessTriggerConstrain.LATCH:
+                    w("always_latch ")
+                else:
+                    raise ValueError(proc.trigger_constrain)
             w("@(")
             for last, item in iter_with_last(sens):
                 self.visit_iHdlExpr(item)

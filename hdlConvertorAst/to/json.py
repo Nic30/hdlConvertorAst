@@ -189,6 +189,8 @@ class ToJson(HdlAstVisitor):
         d = self._visit_iHdlStatement(o)
         if o.sensitivity is not None:
             d["sensitivity"] = [self.visit_iHdlExpr(x) for x in o.sensitivity]
+        if o.trigger_constrain is not None:
+            d["trigger_constrain"] = o.trigger_constrain.name
         d["body"] = self.visit_iHdlStatement(o.body)
         return d
 
