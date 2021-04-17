@@ -48,7 +48,7 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         body = proc.body
         w = self.out.write
         skip_body = False
-        if sens is None:
+        if sens is None and proc.trigger_constrain is None:
             if isinstance(body, HdlStmWait):
                 skip_body = True
                 wait = body
@@ -80,8 +80,8 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
             _body.body = body
             body = _body
         else:
+            tr = proc.trigger_constrain
             if self.top_stm is proc:
-                tr = proc.trigger_constrain
                 if tr is None:
                     w("always ")
                 elif tr is HdlStmProcessTriggerConstrain.FF:
@@ -92,12 +92,15 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
                     w("always_latch ")
                 else:
                     raise ValueError(proc.trigger_constrain)
-            w("@(")
-            for last, item in iter_with_last(sens):
-                self.visit_iHdlExpr(item)
-                if not last:
-                    w(", ")
-            w(")")
+            if tr is None:
+                w("@(")
+                for last, item in iter_with_last(sens):
+                    self.visit_iHdlExpr(item)
+                    if not last:
+                        w(", ")
+                w(")")
+            else:
+                assert not sens
 
         # to prevent useless newline for empty always/time waits
         if skip_body:
