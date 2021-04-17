@@ -43,6 +43,8 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
             w(o.labels[0])
             w(": ")
         w("PROCESS")
+        if o.trigger_constrain is not None:
+            raise NotImplementedError()
         if sens:
             w("(")
             for last, item in iter_with_last(sens):
@@ -184,6 +186,8 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
         self.visit_doc(o)
         w = self.out.write
         if o.type != HdlStmCaseType.CASE:
+            raise NotImplementedError()
+        if o.uniq_constrain is not None:
             raise NotImplementedError()
         w("CASE ")
         self.visit_iHdlExpr(o.switch_on)

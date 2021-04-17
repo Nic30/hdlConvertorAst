@@ -28,7 +28,7 @@ from hdlConvertorAst.hdlAst._expr import (
     iHdlExpr)
 from hdlConvertorAst.hdlAst._statements import (
     HdlImport, HdlStmAssign, HdlStmBlockJoinType, HdlStmBlock, HdlStmBreak,
-    HdlStmCaseType, HdlStmCase, HdlStmContinue, HdlStmFor, HdlStmForIn, HdlStmIf,
+    HdlStmCaseUniqConstrain, HdlStmCaseType, HdlStmCase, HdlStmContinue, HdlStmFor, HdlStmForIn, HdlStmIf,
     HdlStmProcessTriggerConstrain, HdlStmProcess, HdlStmRepeat, HdlStmReturn, HdlStmWait,
     HdlStmWhile, HdlStmThrow, HdlStmNop)
 from hdlConvertorAst.hdlAst._structural import (

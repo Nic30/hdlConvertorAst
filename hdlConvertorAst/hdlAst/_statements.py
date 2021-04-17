@@ -136,17 +136,23 @@ class HdlStmProcess(iHdlStatement):
 class HdlStmCaseType(Enum):
     (CASE, CASEX, CASEZ) = range(3)
 
+class HdlStmCaseUniqConstrain(Enum):
+    """
+    Used to desinguis between system verilog case variants
+    """
+    (UNIQUE, UNIQUE0, PRIORITY) = range(3)
 
 class HdlStmCase(iHdlStatement):
     """
     HDL case statement
     """
-    __slots__ = ["type", "switch_on", "cases", "default"]
+    __slots__ = ["type", "switch_on", "cases", "default", "uniq_constrain"]
 
     def __init__(self):
         super(HdlStmCase, self).__init__()
         self.type = HdlStmCaseType.CASE
         self.switch_on = None  # type: iHdlExpr
+        self.uniq_constrain = None # type: Optional[HdlStmCaseUniqConstrain]
         self.cases = []  # type: List[Tuple[iHdlExpr, iHdlStatement]]
         self.default = None  # type: Optional[iHdlStatement]
 

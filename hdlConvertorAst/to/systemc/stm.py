@@ -50,6 +50,8 @@ class ToSystemcStm(ToSystemcExpr):
         self.visit_doc(o)
         w("void ")
         w(o.labels[0])
+        if o.trigger_constrain is not None:
+            raise NotImplementedError()
         if isinstance(o.body, HdlStmBlock):
             w("() ")
             self.visit_HdlStmBlock(o.body)
@@ -85,6 +87,8 @@ class ToSystemcStm(ToSystemcExpr):
         self.visit_doc(o)
         w = self.out.write
         if o.type != HdlStmCaseType.CASE:
+            raise NotImplementedError()
+        if o.uniq_constrain is not None:
             raise NotImplementedError()
         w("switch(")
         self.visit_iHdlExpr(o.switch_on)

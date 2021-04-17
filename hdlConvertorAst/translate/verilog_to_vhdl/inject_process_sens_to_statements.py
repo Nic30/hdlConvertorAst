@@ -71,6 +71,8 @@ class InjectProcessSensToStatements(HdlAstVisitor):
         :type o: HdlStmProcess
         """
         sens = o.sensitivity
+        if o.trigger_constrain is not None:
+            raise NotImplementedError()
         if not sens or sens == [HdlAll, ]:
             return
 

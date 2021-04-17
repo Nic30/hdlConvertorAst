@@ -24,6 +24,8 @@ class ToBasicHdlSimModelStm(ToBasicHdlSimModelExpr):
         w("def ")
         w(proc.labels[0])
         w("(self):\n")
+        if proc.trigger_constrain is not None:
+            raise NotImplementedError()
         body = proc.body
         with Indent(self.out):
             self.visit_iHdlStatement_in_statement(body)

@@ -236,6 +236,10 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         """
         self.visit_doc(o)
         w = self.out.write
+        if o.uniq_constrain is not None:
+            w(o.uniq_constrain.name.lower())
+            w(" ")
+
         w(o.type.name.lower())
         w("(")
         self.visit_iHdlExpr(o.switch_on)

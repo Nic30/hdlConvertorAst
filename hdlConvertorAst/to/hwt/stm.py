@@ -29,6 +29,8 @@ class ToHwtStm(ToHwtExpr):
         #            w(", ")
         w("\n")
         self.visit_doc(o)
+        if o.trigger_constrain is not None:
+            raise NotImplementedError()
         self.visit_iHdlStatement(o.body)
         # w("\n")
 
@@ -115,6 +117,8 @@ class ToHwtStm(ToHwtExpr):
         :type o: HdlStmCase
         """
         self.visit_doc(o)
+        if o.uniq_constrain is not None:
+            raise NotImplementedError()
         w = self.out.write
         if o.in_preproc:
             assert o.cases
@@ -169,7 +173,7 @@ class ToHwtStm(ToHwtExpr):
         self.visit_doc(o)
         w = self.out.write
         # [todo] if is a simple for in range()
-        
+
         self.visit_iHdlObj(o.init)
         w("\n")
         w("while ")
