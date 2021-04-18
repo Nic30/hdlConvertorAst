@@ -58,7 +58,7 @@ class NameScope(dict):
 
     :ivar ~.level: describes how deeply nested is this NameScopeItem in
         name hierarchy
-    :ivar ~.cntrsForPrefixNames: conters for prefix names (for each name which
+    :ivar ~.cntrsForPrefixNames: counters for prefix names (for each name which
         has to be renamed there is a counter which is used to find a non occupied
         name faster)
     :ivar ~.reversed: a reverse dict to this dict ({obj: name})
@@ -205,7 +205,7 @@ class NameScope(dict):
                 suggested_name, cntrVal)
         else:
             # parrents and self does not have such a prefix counter
-            # delete potentially existing prefix conterrs from children
+            # delete potentially existing prefix counterrs from children
             # and add prefix counter to self
             cntrVal = self.__discard_prefix_cntrs_from_children(suggested_name)
             usableName = self.__incrPrefixCntr(
@@ -216,7 +216,7 @@ class NameScope(dict):
 
     def __discard_prefix_cntrs_from_children(self, prefix):
         """
-        Discard all prefix conters from all childrens in order to prevent
+        Discard all prefix counters from all childrens in order to prevent
         children from looping trought all occupied names.
         """
         cntr_val = self.cntrsForPrefixNames.pop(prefix, -1)
