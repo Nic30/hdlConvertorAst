@@ -1,7 +1,8 @@
 from hdlConvertorAst.hdlAst import HdlDirection, iHdlStatement, \
     HdlIdDef, HdlModuleDec, HdlFunctionDef, HdlCompInst, \
     HdlTypeType, HdlOp, HdlOpType, HdlValueIdspace, HdlPhysicalDef, \
-    HdlEnumDef, HdlTypeSubtype, HdlValueInt, HdlClassDef, HdlClassType
+    HdlEnumDef, HdlTypeSubtype, HdlValueInt, HdlClassDef, HdlClassType, \
+    HdlValueId
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last, UnIndent
 from hdlConvertorAst.to.vhdl.stm import ToVhdl2008Stm
 
@@ -130,6 +131,8 @@ class ToVhdl2008(ToVhdl2008Stm):
         w = self.out.write
         w(c.name.val)
         w(": ")
+        if not isinstance(c.module_name, HdlValueId):
+            w("ENTITY ")
         self.visit_iHdlExpr(c.module_name)
         gms = c.param_map
         if gms:
@@ -317,7 +320,7 @@ class ToVhdl2008(ToVhdl2008Stm):
             if not last:
                 w(", ")
         w(")")
-        
+
     def visit_HdlFunctionDef(self, o):
         """
         :type o: HdlFunctionDef
@@ -331,14 +334,14 @@ class ToVhdl2008(ToVhdl2008Stm):
             w("FUNCTION ")
 
         w(o.name)
-
-        w(" (")
-        with Indent(self.out):
-            for is_last, par in iter_with_last(o.params):
-                self.visit_HdlIdDef(par, end="")
-                if not is_last:
-                    w(";\n")
-        w(")")
+        if o.params:
+            w(" (")
+            with Indent(self.out):
+                for is_last, par in iter_with_last(o.params):
+                    self.visit_HdlIdDef(par, end="")
+                    if not is_last:
+                        w(";\n")
+            w(")")
         if not is_procedure:
             w(" RETURN ")
             self.visit_type(o.return_t)
@@ -392,3 +395,53 @@ class ToVhdl2008(ToVhdl2008Stm):
 
         w("END PACKAGE;\n")
 
+    def _visit_HdlStmExitOrNext(self, o, stm_name):
+        """
+        :type o: HdlOp
+        :type stm_name: str
+
+        :attention: next/exit statement is represented as a call of next/exit function
+            and does not have a specific object, as it is expression it does not render
+            the ending ;
+        """
+        assert o.fn == HdlOpType.CALL and o.ops[0] == HdlValueId(stm_name), o
+        w = self.out.write
+        w(stm_name)
+        if len(o.ops) == 1:
+            pass
+        elif len(o.ops) == 2:
+            # label
+            w(" ")
+            self.visit_iHdlExpr(o.ops[1])
+        elif len(o.ops) == 3:
+            # label, condition
+            w(" ")
+            _, label, cond = o.ops
+            self.visit_iHdlExpr(label)
+            w(" WHEN (")
+            self.visit_iHdlExpr(cond)
+            w(")")
+        else:
+            raise ValueError(o)
+
+    def visit_HdlOp(self, o):
+        arg0 = o.ops[0]
+        if o.fn == HdlOpType.CALL and isinstance(arg0, HdlValueId):
+            if arg0.val == "EXIT":
+                return self.visit_HdlStmExit(o)
+            elif arg0.val == "NEXT":
+                return self.visit_HdlStmNext(o)
+
+        return ToVhdl2008Stm.visit_HdlOp(self, o)
+
+    def visit_HdlStmExit(self, o):
+        """
+        :type o: HdlOp
+        """
+        return self._visit_HdlStmExitOrNext(o, "EXIT")
+
+    def visit_HdlStmNext(self, o):
+        """
+        :type o: HdlOp
+        """
+        return self._visit_HdlStmExitOrNext(o, "NEXT")
