@@ -5,13 +5,14 @@ from hdlConvertorAst.hdlAst import HdlImport, HdlStmProcess, HdlStmIf, \
     HdlStmWhile, HdlStmBlock, iHdlStatement, HdlModuleDec, HdlModuleDef, \
     HdlValueIdspace, HdlIdDef, HdlFunctionDef, HdlOp, HdlCompInst, \
     HdlValueInt, HdlStmBreak, HdlStmContinue, HdlStmRepeat, HdlLibrary, HdlContext, \
-    HdlClassDef, HdlPhysicalDef, HdlEnumDef, ALL_STATEMENT_CLASSES, HdlStmNop
+    HdlClassDef, HdlPhysicalDef, HdlEnumDef, ALL_STATEMENT_CLASSES, HdlStmNop,\
+    HdlValueId
 
 
 class HdlAstVisitor(object):
     """
     A visitor which can be used to traverse AST (Abstract Syntax Tree) made of objects from `hdlConvertorAst.hdlAst` module.
-    
+
     """
 
     def __init__(self):
@@ -40,7 +41,7 @@ class HdlAstVisitor(object):
         """
         for o in context.objs:
             self.visit_main_obj(o)
-            
+
         return context
 
     def visit_HdlImport(self, o):
@@ -160,6 +161,12 @@ class HdlAstVisitor(object):
                 self.visit_HdlCompInst(_o)
             elif isinstance(_o, HdlFunctionDef):
                 self.visit_HdlFunctionDef(_o)
+            elif isinstance(_o, HdlModuleDec):
+                # vhdl components
+                self.visit_HdlModuleDec(_o)
+            elif isinstance(_o, HdlOp):
+                assert _o.ops[0] == HdlValueId("assert"), _o
+                self.visit_HdlOp(_o)
             else:
                 raise NotImplementedError(_o)
         return o
@@ -191,7 +198,7 @@ class HdlAstVisitor(object):
         :type o: HdlPhysicalDef
         """
         return o
-    
+
     def visit_HdlEnumDef(self, o):
         """
         :type o: HdlEnumDef
