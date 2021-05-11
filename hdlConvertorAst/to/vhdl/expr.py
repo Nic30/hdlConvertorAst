@@ -293,8 +293,11 @@ class ToVhdl2008Expr(ToHdlCommon):
             w("ALL")
         elif expr is HdlOthers:
             w("OTHERS")
-        elif self.in_typedef and expr is None:
-            w("<>")
+        elif expr is None:
+            if self.in_typedef:
+                w("<>")
+            else:
+                w("OPEN")
         elif is_str(expr):
             self.visit_str(expr)
         elif isinstance(expr, list):
