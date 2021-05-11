@@ -323,3 +323,23 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
         """
         self.visit_doc(o)
         self.out.write("NULL;\n")
+
+    def visit_HdlStmWhile(self, o):
+        """
+        :type o: HdlStmWhile
+        :note: vhdl loop statement
+        """
+        self.visit_doc(o)
+        w = self.out.write
+        if o.labels:
+            w(o.labels[0])
+            w(": ")
+        w("LOOP\n")
+        with Indent(self.out):
+            if not o.in_preproc and isinstance(o.body, HdlStmBlock):
+                for _stm in o.body.body:
+                    self.visit_iHdlObj(_stm)
+            else:
+                self.visit_iHdlObj(o.body)
+        w("END LOOP;\n")
+
