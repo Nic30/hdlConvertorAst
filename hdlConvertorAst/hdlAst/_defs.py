@@ -15,12 +15,13 @@ class HdlIdDef(iHdlObjWithName, iHdlObjInModule):
     :ivar ~.is_const: flag if true the value is constants
     :ivar ~.is_latched: flag if true the object corresponds to VHDL variable/Verilog reg
     :ivar ~.is_static: flag if true static (same meaning as in C/C++)
+    :ivar ~.is_shared: flag if true the variable is VHDL shared variable
     :ivar ~.is_virtual: flag if true the variable stores virtual type
         (corresponds to System Verilog virtual parameter)
     :ivar ~.direction: direction if the variable is port
     """
     __slots__ = ["name", "type", "value", "is_latched", "is_const", "is_static",
-                 "is_virtual", "direction"]
+                 "is_shared", "is_virtual", "direction"]
 
     def __init__(self):
         iHdlObjWithName.__init__(self)
@@ -31,6 +32,7 @@ class HdlIdDef(iHdlObjWithName, iHdlObjInModule):
         self.is_latched = False  # type: bool
         self.is_static = False  # type: bool
         self.is_virtual = False  # type: bool
+        self.is_shared = False  # type: bool
         self.direction = None  # type: HdlDirection
 
 

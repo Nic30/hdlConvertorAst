@@ -209,6 +209,7 @@ class ToVhdl2008(ToVhdl2008Stm):
         name = var.name
         t = var.type
         if t == HdlTypeType:
+            assert not var.is_shared
             orig_in_typedef = self.in_typedef
             try:
                 self.in_typedef = True
@@ -244,6 +245,7 @@ class ToVhdl2008(ToVhdl2008Stm):
             finally:
                 self.in_typedef = orig_in_typedef
         elif t == HdlTypeSubtype:
+            assert not var.is_shared
             orig_in_typedef = self.in_typedef
             try:
                 self.in_typedef = True
@@ -259,10 +261,14 @@ class ToVhdl2008(ToVhdl2008Stm):
                 latch = var.is_latched
                 c = var.is_const
                 if c:
+                    assert not var.is_shared
                     w("CONSTANT ")
                 elif latch:
+                    if var.is_shared:
+                        w("SHARED ")
                     w("VARIABLE ")
                 else:
+                    assert not var.is_shared
                     w("SIGNAL ")
             w(name)
             w(" : ")
