@@ -1,5 +1,5 @@
-from hdlConvertorAst.hdlAst import HdlDirection, HdlOpType,\
-    HdlOp, HdlCompInst, HdlIdDef, iHdlStatement,\
+from hdlConvertorAst.hdlAst import HdlDirection, HdlOpType, \
+    HdlOp, HdlCompInst, HdlIdDef, iHdlStatement, \
     HdlTypeAuto, HdlFunctionDef
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 from hdlConvertorAst.to.verilog.stm import ToVerilog2005Stm
@@ -14,6 +14,7 @@ class ToVerilog2005(ToVerilog2005Stm):
         HdlDirection.OUT: "output",
         HdlDirection.INOUT: "inout",
     }
+
     def __init__(self, out_stream):
         ToVerilog2005Stm.__init__(self, out_stream)
         self._type_requires_nettype = True
@@ -180,17 +181,22 @@ class ToVerilog2005(ToVerilog2005Stm):
             w(" ")
         w(o.name)
         ps = o.params
-        if ps:
-            w(" (\n")
-            with Indent(self.out):
-                for last, p in iter_with_last(ps):
-                    self.visit_port_declr(p)
-                    if last:
-                        w("\n")
-                    else:
-                        w(",\n")
-            w(")")
-        w(";\n")
+        trnt = self._type_requires_nettype
+        try:
+            self._type_requires_nettype = False
+            if ps:
+                w(" (\n")
+                with Indent(self.out):
+                    for last, p in iter_with_last(ps):
+                        self.visit_port_declr(p)
+                        if last:
+                            w("\n")
+                        else:
+                            w(",\n")
+                w(")")
+            w(";\n")
+        finally:
+            self._type_requires_nettype = trnt
         with Indent(self.out):
             for s in o.body:
                 if isinstance(s, HdlIdDef):
@@ -205,7 +211,6 @@ class ToVerilog2005(ToVerilog2005Stm):
                 else:
                     self.visit_iHdlExpr(s)
                     w(";\n")
-
         if o.is_task:
             w("endtask")
         else:
