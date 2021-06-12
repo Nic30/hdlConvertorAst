@@ -4,8 +4,7 @@ from hdlConvertorAst.py_ver_compatibility import is_str
 from hdlConvertorAst.to.common import ToHdlCommon, ASSOCIATIVITY, \
     ASSIGN_OPERATORS_SYMBOLS_C
 from hdlConvertorAst.to.hdlUtils import iter_with_last
-from hdlConvertorAst.to.verilog.utils import collect_array_dims, get_wire_t_params, \
-    PRIMITIVE_TYPES
+from hdlConvertorAst.to.verilog.utils import collect_array_dims, get_wire_t_params
 
 L = ASSOCIATIVITY.L_TO_R
 R = ASSOCIATIVITY.R_TO_L
@@ -336,9 +335,7 @@ class ToVerilog2005Expr(ToHdlCommon):
                 w("wire")
         else:
             base_t, width, is_signed, _ = wire_params
-            if base_t is not HdlTypeAuto and base_t and (
-                    not self._type_requires_nettype and
-                    base_t not in (HdlValueId("wire"), HdlValueId("reg"))):
+            if base_t is not HdlTypeAuto:
                 w(base_t.val)
             elif self._type_requires_nettype:
                 w("wire")

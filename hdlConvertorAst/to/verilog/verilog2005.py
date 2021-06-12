@@ -1,5 +1,5 @@
-from hdlConvertorAst.hdlAst import HdlDirection, HdlOpType, \
-    HdlOp, HdlCompInst, HdlIdDef, iHdlStatement, \
+from hdlConvertorAst.hdlAst import HdlDirection, HdlOpType,\
+    HdlOp, HdlCompInst, HdlIdDef, iHdlStatement,\
     HdlTypeAuto, HdlFunctionDef
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 from hdlConvertorAst.to.verilog.stm import ToVerilog2005Stm
@@ -14,7 +14,6 @@ class ToVerilog2005(ToVerilog2005Stm):
         HdlDirection.OUT: "output",
         HdlDirection.INOUT: "inout",
     }
-
     def __init__(self, out_stream):
         ToVerilog2005Stm.__init__(self, out_stream)
         self._type_requires_nettype = True
@@ -88,14 +87,7 @@ class ToVerilog2005(ToVerilog2005Stm):
                 w("wire ")
             is_array = False
         else:
-            trnt = self._type_requires_nettype
-            try:
-                if var.is_const:
-                    self._type_requires_nettype = False
-
-                is_array = self.visit_type_first_part(t)
-            finally:
-                self._type_requires_nettype = trnt
+            is_array = self.visit_type_first_part(t)
             w(" ")
         w(name)
         if is_array:
