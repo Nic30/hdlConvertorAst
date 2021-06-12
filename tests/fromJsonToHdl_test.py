@@ -105,6 +105,7 @@ class FromJsonToHdlTC(unittest.TestCase):
         self.assertEqual(ref, res_str)
 
     def test_Showcase0_verilog(self):
+        self.maxDiff = None
         self.check_file("Showcase0", ToVerilog2005)
 
     def test_Showcase0_vhdl(self):

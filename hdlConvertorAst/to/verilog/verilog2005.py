@@ -87,7 +87,14 @@ class ToVerilog2005(ToVerilog2005Stm):
                 w("wire ")
             is_array = False
         else:
-            is_array = self.visit_type_first_part(t)
+            trnt = self._type_requires_nettype
+            try:
+                if var.is_const:
+                    self._type_requires_nettype = False
+
+                is_array = self.visit_type_first_part(t)
+            finally:
+                self._type_requires_nettype = trnt
             w(" ")
         w(name)
         if is_array:

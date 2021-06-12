@@ -29,7 +29,7 @@ module Showcase0 (
     input wire rst_n,
     output reg[7:0] sc_signal
 );
-    localparam reg unsigned[31:0] const_private_signal = 32'h0000007b;
+    localparam unsigned[31:0] const_private_signal = 32'h0000007b;
     reg signed[7:0] fallingEdgeRam[0:3];
     reg r = 1'b0;
     reg[1:0] r_0 = 2'b00;

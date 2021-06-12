@@ -335,17 +335,24 @@ class ToVerilog2005Expr(ToHdlCommon):
                 w("wire")
         else:
             base_t, width, is_signed, _ = wire_params
-            if base_t is not HdlTypeAuto:
-                w(base_t.val)
+            space_required = False
+            if base_t is not HdlTypeAuto and base_t:
+                if not (not self._type_requires_nettype and base_t in (HdlValueId("wire"), HdlValueId("reg"))):
+                    w(base_t.val)
+                    space_required = True
             elif self._type_requires_nettype:
                 w("wire")
+                space_required = True
 
             if is_signed is None:
                 pass
-            elif is_signed:
-                w(" signed")
             else:
-                w(" unsigned")
+                if space_required:
+                    w(" ")
+                if is_signed:
+                    w("signed")
+                else:
+                    w("unsigned")
 
             if width is not None:
                 # 1D vector
