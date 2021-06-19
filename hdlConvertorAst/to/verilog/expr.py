@@ -226,7 +226,7 @@ class ToVerilog2005Expr(ToHdlCommon):
         if isinstance(o, HdlValueId):
             w(o.val)
         elif is_str(o):
-            w('"%s"' % o)
+            w('"%s"' % o.replace("\n", "\\\n"))
         elif isinstance(o, HdlValueInt):
             self.visit_HdlValueInt(o)
         elif isinstance(o, HdlOp):
