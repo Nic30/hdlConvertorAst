@@ -34,20 +34,25 @@ class ToVerilog2005(ToVerilog2005Stm):
         :type g: HdlIdDef
         """
         self.visit_doc(g)
-        w = self.out.write
-        w("parameter ")
-        if g.type is HdlTypeAuto:
-            is_array = False
-        else:
-            is_array = self.visit_type_first_part(g.type)
-            w(" ")
-        w(g.name)
-        if is_array:
-            self.visit_type_array_part(g.type)
-        v = g.value
-        if v is not None:
-            w(" = ")
-            self.visit_iHdlExpr(v)
+        trnt = self._type_requires_nettype
+        try:
+            self._type_requires_nettype = False
+            w = self.out.write
+            w("parameter ")
+            if g.type is HdlTypeAuto:
+                is_array = False
+            else:
+                is_array = self.visit_type_first_part(g.type)
+                w(" ")
+            w(g.name)
+            if is_array:
+                self.visit_type_array_part(g.type)
+            v = g.value
+            if v is not None:
+                w(" = ")
+                self.visit_iHdlExpr(v)
+        finally:
+            self._type_requires_nettype = trnt
 
     def visit_port_declr(self, p):
         """
