@@ -1,10 +1,9 @@
-from hdlConvertorAst.hdlAst._expr import HdlOpType, HdlValueId, HdlValueInt,\
+from hdlConvertorAst.hdlAst._expr import HdlOpType, HdlValueId, HdlValueInt, \
     HdlAll, HdlOp, HdlOthers
 from hdlConvertorAst.py_ver_compatibility import is_str
 from hdlConvertorAst.to.common import ToHdlCommon, ASSOCIATIVITY
 from hdlConvertorAst.to.hdlUtils import iter_with_last, Indent
 from copy import copy
-
 
 L = ASSOCIATIVITY.L_TO_R
 R = ASSOCIATIVITY.R_TO_L
@@ -16,7 +15,7 @@ class ToVhdl2008Expr(ToHdlCommon):
     GENERIC_UNARY_OPS.update({
         HdlOpType.NEG: "NOT ",
         HdlOpType.NEG_LOG: "NOT ",
-        HdlOpType.RANGE: "RANGE ", # used in HdlPhysicalDef
+        HdlOpType.RANGE: "RANGE ",  # used in HdlPhysicalDef
     })
     BITWISE_BIN_OPS = {
         HdlOpType.AND, HdlOpType.AND_LOG,
@@ -59,6 +58,10 @@ class ToVhdl2008Expr(ToHdlCommon):
         HdlOpType.SRL: " SRL ",
         HdlOpType.UNIT_SPEC: " ",
     }
+    EQ_NEQ_OPS = (
+        HdlOpType.EQ,
+        HdlOpType.NE
+    )
     GENERIC_BIN_OPS.update(ToHdlCommon.GENERIC_BIN_OPS)
     NUM_BASES = {
         2: "",
@@ -99,12 +102,12 @@ class ToVhdl2008Expr(ToHdlCommon):
         HdlOpType.ROL: (6, L),
         HdlOpType.ROR: (6, L),
 
-        HdlOpType.EQ:  (7, L),
+        HdlOpType.EQ: (7, L),
         HdlOpType.NE: (7, L),
-        HdlOpType.GT:  (7, L),
-        HdlOpType.LT:  (7, L),
-        HdlOpType.GE:  (7, L),
-        HdlOpType.LE:  (7, L),
+        HdlOpType.GT: (7, L),
+        HdlOpType.LT: (7, L),
+        HdlOpType.GE: (7, L),
+        HdlOpType.LE: (7, L),
         HdlOpType.EQ_MATCH: (7, L),
         HdlOpType.NE_MATCH: (7, L),
         HdlOpType.LT_MATCH: (7, L),
@@ -112,11 +115,11 @@ class ToVhdl2008Expr(ToHdlCommon):
         HdlOpType.GT_MATCH: (7, L),
         HdlOpType.GE_MATCH: (7, L),
 
-        HdlOpType.AND:  (8, L),
-        HdlOpType.OR:   (8, L),
+        HdlOpType.AND: (8, L),
+        HdlOpType.OR: (8, L),
         HdlOpType.NAND: (8, ASSOCIATIVITY.NONE),
-        HdlOpType.NOR:  (8, ASSOCIATIVITY.NONE),
-        HdlOpType.XOR:  (8, L),
+        HdlOpType.NOR: (8, ASSOCIATIVITY.NONE),
+        HdlOpType.XOR: (8, L),
         HdlOpType.XNOR: (8, ASSOCIATIVITY.NONE),
 
         HdlOpType.DOWNTO: (9, L),
@@ -174,6 +177,16 @@ class ToVhdl2008Expr(ToHdlCommon):
             return True
         else:
             return False
+
+    def _visit_operand(self, operand, i,
+        parent,
+        expr_requires_parenthesis,
+        cancel_parenthesis):
+        if parent.fn in self.EQ_NEQ_OPS and isinstance(operand, HdlOp) and operand.fn in self.EQ_NEQ_OPS:
+            # handle the case (a = b) = (c = d) where to boolean conversion is applied during a = b evaluation
+            expr_requires_parenthesis = True
+
+        return ToHdlCommon._visit_operand(self, operand, i, parent, expr_requires_parenthesis, cancel_parenthesis)
 
     def visit_HdlOp(self, o):
         """
