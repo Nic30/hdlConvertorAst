@@ -126,7 +126,7 @@ class ToHdlCommon(HdlAstVisitor):
             w(o.val)
             return
         elif is_str(o):
-            w('"%s"' % o)
+            w('"%s"' % o.replace("\n", "\\\n"))
             return
         elif isinstance(o, HdlValueInt):
             self.visit_HdlValueInt(o)
@@ -205,7 +205,7 @@ class ToHdlCommon(HdlAstVisitor):
                                 use_parenthesis = True
                             elif precedence_my == precedence_parent:
                                 use_parenthesis = argc != 1 or asoc_parent != ASSOCIATIVITY.L_TO_R
-                                
+
                         if not use_parenthesis and right is not None:
                             # "operand" is on left side of parent operator
                             #if op_my == parent.fn:
