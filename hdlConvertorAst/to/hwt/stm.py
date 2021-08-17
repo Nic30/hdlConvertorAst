@@ -1,4 +1,4 @@
-from hdlConvertorAst.hdlAst import HdlOp, HdlStmIf, HdlStmBlock, HdlStmAssign, HdlStmCaseType
+from hdlConvertorAst.hdlAst import HdlOp, HdlStmIf, HdlStmWhile, HdlStmBlock, HdlStmAssign, HdlStmCaseType
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 from hdlConvertorAst.to.hwt.expr import ToHwtExpr
 from hdlConvertorAst.to.basic_hdl_sim_model import ToBasicHdlSimModel
@@ -182,6 +182,18 @@ class ToHwtStm(ToHwtExpr):
         with Indent(self.out):
             self.visit_iHdlObj(o.body)
 
+    def visit_HdlStmWhile(self, o):
+        """
+        :type o: HdlStmWhile
+        """
+        self.visit_doc(o)
+        assert o.in_preproc
+        w = self.out.write
+        w("while ")
+        self.visit_iHdlExpr(o.cond)
+        w(":\n")
+        with Indent(self.out):
+            self.visit_iHdlObj(o.body)
 
     def visit_HdlStmThrow(self, o):
         ToBasicHdlSimModel.visit_HdlStmThrow(self, o)
