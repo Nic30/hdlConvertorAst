@@ -43,7 +43,10 @@ class ToHwtStm(ToHwtExpr):
         for is_last, i in iter_with_last(o.body):
             self.visit_iHdlStatement(i)
             if not is_last:
-                w(",\n")
+                if o.in_preproc:
+                    w("\n")
+                else:
+                    w(",\n")
 
     def visit_HdlStmIf(self, o):
         """
@@ -108,9 +111,13 @@ class ToHwtStm(ToHwtExpr):
             raise NotImplementedError()
         if o.event_delay is not None:
             raise NotImplementedError()
-        w("(")
-        self.visit_iHdlExpr(o.src)
-        w(")")
+        if o.in_preproc:
+            w(" = ")
+            self.visit_iHdlExpr(o.src)
+        else:
+            w("(")
+            self.visit_iHdlExpr(o.src)
+            w(")")
 
     def visit_HdlStmCase(self, o):
         """
@@ -168,7 +175,7 @@ class ToHwtStm(ToHwtExpr):
         """
         :type o: HdlStmFor
         """
-        #if not o.in_preproc:
+        # if not o.in_preproc:
         #    raise TypeError("does not support HdlStmFor", self, o)
         self.visit_doc(o)
         w = self.out.write
