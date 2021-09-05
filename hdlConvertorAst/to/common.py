@@ -1,10 +1,10 @@
 from enum import Enum
 
 from hdlConvertorAst.hdlAst import HdlModuleDec, HdlOp
-from hdlConvertorAst.to.hdlUtils import AutoIndentingStream, iter_with_last
-from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
 from hdlConvertorAst.hdlAst._expr import HdlOpType, HdlValueId, HdlValueInt
 from hdlConvertorAst.py_ver_compatibility import is_str
+from hdlConvertorAst.to.hdlUtils import AutoIndentingStream, iter_with_last
+from hdlConvertorAst.to.hdl_ast_visitor import HdlAstVisitor
 
 
 # https://www.geeksforgeeks.org/operator-precedence-and-associativity-in-c/
@@ -33,6 +33,7 @@ ASSIGN_OPERATORS_SYMBOLS_C = {
 
 
 class ToHdlCommon(HdlAstVisitor):
+
     INDENT_STEP = "    "
     ALL_UNARY_OPS = {
         getattr(HdlOpType, name) for name in dir(HdlOpType)
@@ -84,7 +85,7 @@ class ToHdlCommon(HdlAstVisitor):
         # not id or value
         if not isinstance(o, HdlOp):
             return (-1, ASSOCIATIVITY.NONE, None)
-        return self.OP_PRECEDENCE[o.fn] + (o.fn, )
+        return self.OP_PRECEDENCE[o.fn] + (o.fn,)
 
     def visit_HdlOp(self, op):
         """
@@ -208,7 +209,7 @@ class ToHdlCommon(HdlAstVisitor):
 
                         if not use_parenthesis and right is not None:
                             # "operand" is on left side of parent operator
-                            #if op_my == parent.fn:
+                            # if op_my == parent.fn:
                             #    right_prec, _, right_op = self._precedence_of_expr(right)
                             #    if right_op == op_my:
                             #        # right and left with same precedence -> parenthesis on both sides
