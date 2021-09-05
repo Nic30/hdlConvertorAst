@@ -1,4 +1,6 @@
+import re
 from typing import Optional
+
 from hdlConvertorAst.py_ver_compatibility import is_str
 
 
@@ -42,7 +44,10 @@ class ObjectForNameNotFound(KeyError):
     pass
 
 
-_INVALID = object()
+class _INVALID():
+
+    def __init__(self):
+        raise AssertionError("This class meant to be used as a constant")
 
 
 class NameScope(dict):
@@ -66,6 +71,17 @@ class NameScope(dict):
         serializer
     :ivar ~.children: a dictionary {object which caused a NameScope fork: new NameScope}
     """
+    RE_NON_ID_CHAR = re.compile('[^A-Za-z_$0-9]', re.MULTILINE)
+    RE_LETTER = re.compile("[A-Za-z]")
+
+    @classmethod
+    def _sanitize_name(self, suggested_name: str) -> str:
+        name = self.RE_NON_ID_CHAR.sub("_", suggested_name)
+        if not self.RE_LETTER.match(name[0]):
+            return "v" + name
+        else:
+            return name
+
     @classmethod
     def make_top(cls, ignorecase):
         """
@@ -184,6 +200,7 @@ class NameScope(dict):
         :return: str
         """
         assert is_str(suggested_name), suggested_name
+        suggested_name = self._sanitize_name(suggested_name)
         if not suggested_name.endswith("_"):
             try:
                 self.register_name(suggested_name, obj)
