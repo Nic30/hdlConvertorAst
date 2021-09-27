@@ -2,13 +2,12 @@ from itertools import chain
 
 from hdlConvertorAst.hdlAst import HdlIdDef, HdlOp, HdlOpType, \
     HdlDirection, HdlValueId, HdlCompInst, HdlPhysicalDef, HdlEnumDef, HdlClassDef, \
-    HdlFunctionDef
+    HdlFunctionDef, iHdlStatement
 from hdlConvertorAst.hdlAst._expr import HdlTypeType
 from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
 from hdlConvertorAst.to.basic_hdl_sim_model.stm import ToBasicHdlSimModelStm
 from hdlConvertorAst.to.basic_hdl_sim_model.utils import sensitivityByOp
 from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
-
 
 DEFAULT_IMPORTS = """\
 from pyMathBitPrecise.array3t import Array3t, Array3val
@@ -63,6 +62,7 @@ class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
         variables = []
         processes = []
         components = []
+        others = []
         obj_type_containers = {
             HdlClassDef: definitions,
             HdlPhysicalDef: definitions,
@@ -70,15 +70,22 @@ class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
             HdlFunctionDef: definitions,
             HdlIdDef: variables,
             HdlCompInst: components,
+            HdlOp: others,
         }
+
         for stmCls in self.ALL_STATEMENT_CLASSES:
             obj_type_containers[stmCls] = processes
+
         for o in objs:
             if o.__class__ is HdlIdDef and o.type == HdlTypeType:
                 definitions.append(o)
             else:
-                obj_type_containers[o.__class__].append(o)
-        return definitions, variables, processes, components
+                if isinstance(o, iHdlStatement) and o.in_preproc:
+                    others.append(o)
+                else:
+                    obj_type_containers[o.__class__].append(o)
+
+        return definitions, variables, processes, components, others
 
     def visit_HdlModuleDef(self, mod_def):
         """
@@ -93,7 +100,7 @@ class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
             if self.module_path_prefix is None:
                 self.add_imports = False
 
-        types, variables, processes, components = self.split_HdlModuleDefObjs(mod_def.objs)
+        types, variables, processes, components, others = self.split_HdlModuleDefObjs(mod_def.objs)
 
         self.visit_component_imports(components)
         self.visit_doc(mod_dec)
@@ -126,6 +133,11 @@ class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
                     w('(sim, "')
                     w(c.name.val)
                     w('")\n')
+
+                if others:
+                    w("# others")
+                    for o in others:
+                        self.visit_iHdlObj(o)
 
             w("def _init_body(self):\n")
             with Indent(self.out):

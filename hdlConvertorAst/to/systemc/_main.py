@@ -46,7 +46,7 @@ class ToSystemc(ToSystemcStm):
         w("\n")
 
         split_HdlModuleDefObjs = method_as_function(ToBasicHdlSimModel.split_HdlModuleDefObjs)
-        types, variables, processes, components = \
+        types, variables, processes, components, others = \
             split_HdlModuleDefObjs(self, mod_def.objs)
 
         self.visit_doc(mod_dec)
@@ -131,6 +131,10 @@ class ToSystemc(ToSystemcStm):
                         w("(")
                         self.visit_iHdlExpr(connected_sig)
                         w(");\n")
+                if others:
+                    w("// others")
+                    for o in others:
+                        self.visit_iHdlObj(o)
 
             w("}\n")
         w("};\n")

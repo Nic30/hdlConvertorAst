@@ -132,7 +132,7 @@ class ToHwt(ToHwtStm):
                 self.add_imports = False
 
         split_HdlModuleDefObjs = method_as_function(ToBasicHdlSimModel.split_HdlModuleDefObjs)
-        otherDefs, variables, processes, components = \
+        otherDefs, variables, processes, components, others = \
             split_HdlModuleDefObjs(self, mod_def.objs)
 
         method_as_function(ToBasicHdlSimModel.visit_component_imports)(self, components)
@@ -210,6 +210,11 @@ class ToHwt(ToHwtStm):
                 w("# internal signals\n")
                 for v in variables:
                     self.visit_HdlIdDef(v, names_of_constants)
+
+                if others:
+                    w("# others")
+                    for o in others:
+                        self.visit_iHdlObj(o)
 
                 for c in components:
                     for pm in c.port_map:
