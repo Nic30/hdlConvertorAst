@@ -72,7 +72,7 @@ class ToHwtStm(ToHwtExpr):
             w(")")
         for (c, _stm) in o.elifs:
             if in_preproc:
-                w("elif")
+                w("elif ")
             else:
                 w(".Elif(")
             self.visit_iHdlExpr(c)
