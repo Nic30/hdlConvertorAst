@@ -65,6 +65,9 @@ class AutoIndentingStream():
         w(s)
         self.requires_indent = s.endswith("\n")
 
+    def close(self):
+        self.stream.close()
+
 
 def iter_with_last(it):
     # Ensure it's an iterator and get the first field
