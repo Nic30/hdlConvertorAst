@@ -175,8 +175,8 @@ class ToHwtStm(ToHwtExpr):
         """
         :type o: HdlStmFor
         """
-        # if not o.in_preproc:
-        #    raise TypeError("does not support HdlStmFor", self, o)
+        if not o.in_preproc:
+            raise TypeError("does not support HdlStmFor", self, o)
         self.visit_doc(o)
         w = self.out.write
         # [todo] if is a simple for in range()
@@ -202,6 +202,20 @@ class ToHwtStm(ToHwtExpr):
         with Indent(self.out):
             self.visit_iHdlObj(o.body)
 
+    def visit_HdlStmBreak(self, o):
+        """
+        :type o: HdlStmBreak
+        """
+        assert o.in_preproc, o
+        self.out.write("break")
+    
+    def visit_HdlStmContinue(self, o):
+        """
+        :type o: HdlStmContinue
+        """
+        assert o.in_preproc, o
+        self.out.write("continue")
+    
     def visit_HdlStmThrow(self, o):
         ToBasicHdlSimModel.visit_HdlStmThrow(self, o)
 
