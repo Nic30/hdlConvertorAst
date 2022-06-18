@@ -128,6 +128,7 @@ class ToVhdl2008Expr(ToHdlCommon):
 
         HdlOpType.RANGE: (10, L),
         HdlOpType.ARROW: (11, L),
+        HdlOpType.MAP_ASSOCIATION: (11, L),
     }
 
     def visit_HdlValueInt(self, o):
