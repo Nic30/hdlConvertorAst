@@ -8,12 +8,12 @@ from tests.fromJsonToHdl_test import FromJsonToHdlTC
 
 
 def main_test_suite():
-    suite = unittest.TestSuite()
     tcs = [
         FromJsonToHdlTC,
     ]
-    for tc in tcs:
-        suite.addTest(unittest.makeSuite(tc))
+    loader = unittest.TestLoader()
+    loadedTcs = [loader.loadTestsFromTestCase(tc) for tc in tcs]
+    suite = unittest.TestSuite(loadedTcs)
 
     return suite
 
