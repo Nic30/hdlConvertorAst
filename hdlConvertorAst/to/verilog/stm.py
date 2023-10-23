@@ -25,11 +25,33 @@ class ToVerilog2005Stm(ToVerilog2005Expr):
         super(ToVerilog2005Stm, self).__init__(out_stream)
         self.top_stm = None
         self.is_in_loop_spec = False
+    
+    def visit_hdlAttributes(self, o):
+        """
+        :type o: List[Tuple[str, Optional[iHdlExpr]]]
+        """
+        if not o:
+            return
+        w = self.out.write
+        w("(* ")
+        for last, (aId, aVal) in iter_with_last(o):
+            w(aId)
+            if aVal is not None:
+                w("=")
+                self.visit_iHdlExpr(aVal)
+
+            if not last:
+                w(", ")
+        w(" *)")
 
     def visit_iHdlStatement(self, stm):
         """
         :type stm: iHdlStatement
         """
+        if stm.hdlAttributes:
+            self.visit_hdlAttributes(stm.hdlAttributes)
+            self.out.write("\n")
+
         if self.top_stm is None:
             self.top_stm = stm
             try:

@@ -17,12 +17,13 @@ class iHdlObj(object):
     :ivar ~.origin: an object which is responsible for this HdlObject
         (not used by this library, used in user code)
     """
-    __slots__ = ["doc", "position", "origin"]
+    __slots__ = ["doc", "position", "origin", "hdlAttributes"]
 
     def __init__(self):
         self.doc = ""  # type: str
         self.position = None  # type: Optional[CodePosition]
         self.origin = None
+        self.hdlAttributes = None # type: Optional[List[Tuple[str, Optional[iHdlExpr]]]
 
     def __repr__(self):
         from hdlConvertorAst.to.json_debug import ToJsonDebug

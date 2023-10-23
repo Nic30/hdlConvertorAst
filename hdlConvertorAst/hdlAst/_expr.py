@@ -20,7 +20,7 @@ class HdlDirection(Enum):
     ) = range(7)
 
 
-class HdlValueId(object):
+class HdlValueId(iHdlObj):
     """
     String which is id in HDL
 
@@ -33,6 +33,7 @@ class HdlValueId(object):
     __slots__ = ["val", "obj"]
 
     def __init__(self, val, obj=None):
+        iHdlObj.__init__(self)
         assert is_str(val), val
         self.val = val
         self.obj = obj
@@ -232,6 +233,7 @@ class HdlOp(iHdlObj):
         :type fn: Union[HdlOpType, iHdlExpr]
         :type ops: List[iHdlExpr]
         """
+        iHdlObj.__init__(self)
         self.fn = fn
         self.ops = ops
 
@@ -260,6 +262,7 @@ class HdlValueInt(iHdlObj):
     __slots__ = ["val", "bits", "base"]
 
     def __init__(self, val, bits, base):
+        iHdlObj.__init__(self)
         self.val = val  # type: Union[int, str]
         self.bits = bits  # type: Optional[int]
         self.base = base  # type: Optional[Union[2, 8, 10, 16, 256]]

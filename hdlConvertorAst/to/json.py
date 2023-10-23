@@ -48,8 +48,16 @@ class ToJson(HdlAstVisitor):
             d["doc"] = self.visit_iHdlExpr(o.doc)
         if o.position:
             d["position"] = self.visit_CodePosition(o.position)
+        if o.hdlAttributes:
+            d["hdlAttributes"] = self.visit_hdlAttributes(o.hdlAttributes)
         return d
 
+    def visit_hdlAttributes(self, o):
+        """
+        :type o: List[Tuple[str, Optional[iHdlExpr]]]
+        """
+        return [(aId, None if aVal is None else self.visit_iHdlExpr(aVal)) for aId, aVal in o]
+        
     def visit_HdlImport(self, o):
         """
         :type o: HdlImport
