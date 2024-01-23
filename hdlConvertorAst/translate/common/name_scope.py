@@ -67,7 +67,7 @@ class NameScope(dict):
         has to be renamed there is a counter which is used to find a non occupied
         name faster)
     :ivar ~.reversed: a reverse dict to this dict ({obj: name})
-    :ivar ~.serializer_ctx: an object with metainformations private to a current
+    :ivar ~.serializer_ctx: an object with meta-informations private to a current
         serializer
     :ivar ~.children: a dictionary {object which caused a NameScope fork: new NameScope}
     """
@@ -85,7 +85,7 @@ class NameScope(dict):
     @classmethod
     def make_top(cls, ignorecase):
         """
-        Syntax shugar, call constructor with argument prefilled for a top NameScope
+        Syntax sugar, call constructor with argument pre-filled for a top NameScope
 
         :type ignorecase: bool
         :return: NameScope
@@ -272,7 +272,7 @@ class NameScope(dict):
 
 class WithNameScope():
     """
-    A syntax shugar, context manager which temporarly swaps the name_scope property on object
+    A syntax sugar, context manager which temporally swaps the name_scope property on object
     """
 
     def __init__(self, obj, name_scope):
