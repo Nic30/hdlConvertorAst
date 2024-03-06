@@ -3,6 +3,7 @@ import sys
 
 
 HWT_KEYWORDS = keyword.kwlist + [
+    '__debug__',
     # imports
     'hwt', 'Unit', "Param", "Signal",
     "Concat", "If", "Switch",

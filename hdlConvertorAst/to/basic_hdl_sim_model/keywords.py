@@ -9,6 +9,7 @@ SIMMODEL_KEYWORDS = keyword.kwlist + [
     '_units',
     '_outputs',
     '_init_body',
+    '__debug__',
     '__init__',
     '__new__',
     '__getattr__',
