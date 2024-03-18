@@ -1,3 +1,5 @@
+from typing import Optional
+
 from hdlConvertorAst.hdlAst._expr import HdlValueInt
 
 
@@ -85,17 +87,25 @@ def iter_with_last(it):
     yield True, prev
 
 
-def bit_string(v, width, vld_mask=None):
+def to_unsigned(val: int, width: int) -> int:
+    if val < 0:
+        mask = (1 << width) - 1
+        return val & mask
+    else:
+        return val
+
+
+def bit_string(v: int, width: int, vld_mask:Optional[int]=None):
     """
-    :type v: int
-    :type width: int
-    :type vld_mask: Optional[int]
     :param v: integer value of bitstring
     :param widht: number of bits in value
     :param vld_mask: mask which has 1 for every valid bit in value
     :return: HdlValueInt
     """
     all_mask = (1 << width) - 1
+    if v < 0:
+        v = to_unsigned(v, width)
+
     if vld_mask is None:
         vld_mask = all_mask
 
