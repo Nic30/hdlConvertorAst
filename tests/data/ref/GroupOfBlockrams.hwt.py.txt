@@ -19,15 +19,15 @@ class RamMultiClock(HwModule):
         .. hwt-autodoc::
         
     """
-    def _config(self):
-        self.ADDR_WIDTH = HdlParam(8)
-        self.DATA_WIDTH = HdlParam(64)
-        self.HAS_BE = HdlParam(0)
-        self.INIT_DATA = HdlParam("None")
-        self.MAX_BLOCK_DATA_WIDTH = HdlParam("None")
-        self.PORT_CNT = HdlParam(2)
+    def hwConfig(self):
+        self.ADDR_WIDTH = HwParam(8)
+        self.DATA_WIDTH = HwParam(64)
+        self.HAS_BE = HwParam(0)
+        self.INIT_DATA = HwParam("None")
+        self.MAX_BLOCK_DATA_WIDTH = HwParam("None")
+        self.PORT_CNT = HwParam(2)
 
-    def _declr(self):
+    def hwDeclr(self):
         ADDR_WIDTH, DATA_WIDTH, HAS_BE, INIT_DATA, MAX_BLOCK_DATA_WIDTH, PORT_CNT = \
         self.ADDR_WIDTH, self.DATA_WIDTH, self.HAS_BE, self.INIT_DATA, self.MAX_BLOCK_DATA_WIDTH, self.PORT_CNT
         # ports
@@ -45,7 +45,7 @@ class RamMultiClock(HwModule):
         self.port_1_we = HwIOSignal(HBits(1))
         # component instances
 
-    def _impl(self):
+    def hwImpl(self):
         ADDR_WIDTH, DATA_WIDTH, HAS_BE, INIT_DATA, MAX_BLOCK_DATA_WIDTH, PORT_CNT, port_0_addr, port_0_clk, port_0_din, port_0_dout, port_0_en, \
         port_0_we, port_1_addr, port_1_clk, port_1_din, port_1_dout, port_1_en, port_1_we = \
         self.ADDR_WIDTH, self.DATA_WIDTH, self.HAS_BE, self.INIT_DATA, self.MAX_BLOCK_DATA_WIDTH, self.PORT_CNT, self.port_0_addr, self.port_0_clk, self.port_0_din, self.port_0_dout, self.port_0_en, \
@@ -79,11 +79,11 @@ class GroupOfBlockrams(HwModule):
         .. hwt-autodoc::
         
     """
-    def _config(self):
-        self.ADDR_WIDTH = HdlParam(8)
-        self.DATA_WIDTH = HdlParam(64)
+    def hwConfig(self):
+        self.ADDR_WIDTH = HwParam(8)
+        self.DATA_WIDTH = HwParam(64)
 
-    def _declr(self):
+    def hwDeclr(self):
         ADDR_WIDTH, DATA_WIDTH = \
         self.ADDR_WIDTH, self.DATA_WIDTH
         # ports
@@ -115,7 +115,7 @@ class GroupOfBlockrams(HwModule):
         bramW_inst.MAX_BLOCK_DATA_WIDTH = "None"
         bramW_inst.PORT_CNT = 2
 
-    def _impl(self):
+    def hwImpl(self):
         ADDR_WIDTH, DATA_WIDTH, addr, clk, en, in_r_a, in_r_b, in_w_a, in_w_b, out_r_a, out_r_b, \
         out_w_a, out_w_b, we, bramR_inst, bramW_inst = \
         self.ADDR_WIDTH, self.DATA_WIDTH, self.addr, self.clk, self.en, self.in_r_a, self.in_r_b, self.in_w_a, self.in_w_b, self.out_r_a, self.out_r_b, \

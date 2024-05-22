@@ -145,7 +145,7 @@ class ToHwt(ToHwtStm):
 
             params_names = []
             if mod_dec.params:
-                w('def _config(self):\n')
+                w('def hwConfig(self):\n')
                 with Indent(self.out):
                     try:
                         self._is_param = True
@@ -167,7 +167,7 @@ class ToHwt(ToHwtStm):
 
             names_of_constants = set(params_names)
             port_params_comp_names = [*params_names]
-            w('def _declr(self):\n')
+            w('def hwDeclr(self):\n')
             with Indent(self.out):
                 self.ivars_to_local_vars(port_params_comp_names)
                 for t in types:
@@ -204,7 +204,7 @@ class ToHwt(ToHwtStm):
 
                 w("\n")
 
-            w("def _impl(self):\n")
+            w("def hwImpl(self):\n")
             with Indent(self.out):
                 self.ivars_to_local_vars(port_params_comp_names)
                 w("# internal signals\n")
