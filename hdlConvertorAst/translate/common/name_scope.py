@@ -156,7 +156,7 @@ class NameScope(dict):
             pass
         elif o is None:
             # we can use use the name, because it is not used
-            # in any parent and that means we are not redefinig the symbol
+            # in any parent and that means we are not redefining the symbol
             self[_name] = obj
             self.reversed[obj] = _name
         else:
@@ -217,12 +217,12 @@ class NameScope(dict):
                 actual = actual.parent
 
         if actual is not None:
-            # some parrent of self already have such a prefix counter
+            # some parent of self already have such a prefix counter
             usableName = actual.__incrPrefixCntr(
                 suggested_name, cntrVal)
         else:
-            # parrents and self does not have such a prefix counter
-            # delete potentially existing prefix counterrs from children
+            # parents and self does not have such a prefix counter
+            # delete potentially existing prefix counters from children
             # and add prefix counter to self
             cntrVal = self.__discard_prefix_cntrs_from_children(suggested_name)
             usableName = self.__incrPrefixCntr(
@@ -233,8 +233,8 @@ class NameScope(dict):
 
     def __discard_prefix_cntrs_from_children(self, prefix):
         """
-        Discard all prefix counters from all childrens in order to prevent
-        children from looping trought all occupied names.
+        Discard all prefix counters from all children in order to prevent
+        children from looping trough all occupied names.
         """
         cntr_val = self.cntrsForPrefixNames.pop(prefix, -1)
         for c in self.children.values():
