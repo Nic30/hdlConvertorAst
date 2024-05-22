@@ -1,7 +1,7 @@
 #include <systemc.h>
 
 //
-//    Every HW component class has to be derived from Unit class
+//    Every HW component class has to be derived from :class:`hwt.hwModule.HwModule` class
 //
 //    .. hwt-autodoc::
 //    
@@ -96,10 +96,10 @@ SC_MODULE(Showcase0) {
     }
 
     void assig_process_g() {
-        sc_signal<sc_uint<8>> tmpConcat_0;
         sc_signal<sc_uint<2>> tmpConcat_1;
-        tmpConcat_0.write((tmpConcat_1.read(), static_cast<sc_uint<6>>(a.read().range(sc_int<32>("0x00000006"), sc_int<32>("0x00000000"))), ));
+        sc_signal<sc_uint<8>> tmpConcat_0;
         tmpConcat_1.write((a.read()[sc_int<32>("0x00000001")] & b.read()[sc_int<32>("0x00000001")], a.read()[sc_int<32>("0x00000000")] ^ b.read()[sc_int<32>("0x00000000")] | a.read()[sc_int<32>("0x00000001")], ));
+        tmpConcat_0.write((tmpConcat_1.read(), static_cast<sc_uint<6>>(a.read().range(sc_int<32>("0x00000006"), sc_int<32>("0x00000000"))), ));
         g.write(tmpConcat_0.read());
     }
 
@@ -146,7 +146,7 @@ SC_MODULE(Showcase0) {
     }
 
     void assig_process_r_next_1() {
-        if (~r == sc_uint<1>("0b1"))
+        if (r == sc_uint<1>("0b0"))
             r_next.write(e.read());
         else
             r_next.write(r);

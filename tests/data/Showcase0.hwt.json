@@ -6,7 +6,7 @@
    "declaration_only": false,
    "doc": {
     "__class__": "str",
-    "val": "\n    Every HW component class has to be derived from Unit class\n\n    .. hwt-autodoc::\n    "
+    "val": "\n    Every HW component class has to be derived from :class:`hwt.hwModule.HwModule` class\n\n    .. hwt-autodoc::\n    "
    },
    "name": {
     "__class__": "str",
@@ -26,7 +26,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        32,
        {
         "__class__": "HdlOp",
@@ -50,7 +50,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        32,
        {
         "__class__": "HdlOp",
@@ -74,7 +74,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        32
       ]
      }
@@ -90,7 +90,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        1
       ]
      }
@@ -106,7 +106,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        1
       ]
      }
@@ -122,7 +122,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        1
       ]
      }
@@ -138,7 +138,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        1
       ]
      }
@@ -154,7 +154,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        1
       ]
      }
@@ -170,7 +170,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        1
       ]
      }
@@ -186,7 +186,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        1
       ]
      }
@@ -202,7 +202,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        32
       ]
      }
@@ -218,7 +218,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        32
       ]
      }
@@ -234,7 +234,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        1
       ]
      }
@@ -250,7 +250,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        1
       ]
      }
@@ -266,7 +266,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        16
       ]
      }
@@ -282,7 +282,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        8
       ]
      }
@@ -298,7 +298,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        8
       ]
      }
@@ -314,7 +314,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        2
       ]
      }
@@ -330,7 +330,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        8
       ]
      }
@@ -346,7 +346,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        32
       ]
      }
@@ -362,7 +362,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        1
       ]
      }
@@ -378,7 +378,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        1
       ]
      }
@@ -394,7 +394,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        1,
        {
         "__class__": "HdlOp",
@@ -418,7 +418,7 @@
       "__class__": "HdlOp",
       "fn": "CALL",
       "ops": [
-       "Bits",
+       "HBits",
        8
       ]
      }
@@ -443,7 +443,7 @@
      "__class__": "HdlOp",
      "fn": "CALL",
      "ops": [
-      "Bits",
+      "HBits",
       32,
       {
        "__class__": "HdlOp",
@@ -476,7 +476,7 @@
        "__class__": "HdlOp",
        "fn": "CALL",
        "ops": [
-        "Bits",
+        "HBits",
         8,
         {
          "__class__": "HdlOp",
@@ -504,7 +504,7 @@
      "__class__": "HdlOp",
      "fn": "CALL",
      "ops": [
-      "Bits",
+      "HBits",
       1
      ]
     },
@@ -525,7 +525,7 @@
      "__class__": "HdlOp",
      "fn": "CALL",
      "ops": [
-      "Bits",
+      "HBits",
       2
      ]
     },
@@ -546,7 +546,7 @@
      "__class__": "HdlOp",
      "fn": "CALL",
      "ops": [
-      "Bits",
+      "HBits",
       2
      ]
     },
@@ -567,7 +567,7 @@
      "__class__": "HdlOp",
      "fn": "CALL",
      "ops": [
-      "Bits",
+      "HBits",
       1
      ]
     },
@@ -584,7 +584,7 @@
      "__class__": "HdlOp",
      "fn": "CALL",
      "ops": [
-      "Bits",
+      "HBits",
       2
      ]
     },
@@ -601,7 +601,7 @@
      "__class__": "HdlOp",
      "fn": "CALL",
      "ops": [
-      "Bits",
+      "HBits",
       2
      ]
     },
@@ -623,7 +623,7 @@
        "__class__": "HdlOp",
        "fn": "CALL",
        "ops": [
-        "Bits",
+        "HBits",
         8,
         {
          "__class__": "HdlOp",
@@ -712,7 +712,7 @@
               "__class__": "HdlOp",
               "fn": "CALL",
               "ops": [
-               "Bits",
+               "HBits",
                32,
                {
                 "__class__": "HdlOp",
@@ -735,7 +735,7 @@
         "__class__": "HdlOp",
         "fn": "CALL",
         "ops": [
-         "Bits",
+         "HBits",
          32
         ]
        }
@@ -963,7 +963,7 @@
         "__class__": "HdlOp",
         "fn": "CALL",
         "ops": [
-         "Bits",
+         "HBits",
          32
         ]
        }
@@ -1054,7 +1054,7 @@
            "__class__": "HdlOp",
            "fn": "CALL",
            "ops": [
-            "Bits",
+            "HBits",
             8,
             {
              "__class__": "HdlOp",
@@ -1091,7 +1091,7 @@
                "__class__": "HdlOp",
                "fn": "CALL",
                "ops": [
-                "Bits",
+                "HBits",
                 24
                ]
               },
@@ -1136,7 +1136,7 @@
                  "__class__": "HdlOp",
                  "fn": "CALL",
                  "ops": [
-                  "Bits",
+                  "HBits",
                   8,
                   {
                    "__class__": "HdlOp",
@@ -1157,7 +1157,7 @@
              "__class__": "HdlOp",
              "fn": "CALL",
              "ops": [
-              "Bits",
+              "HBits",
               8
              ]
             }
@@ -1225,7 +1225,7 @@
         "__class__": "HdlOp",
         "fn": "CALL",
         "ops": [
-         "Bits",
+         "HBits",
          16
         ]
        }
@@ -1369,7 +1369,7 @@
           "__class__": "HdlOp",
           "fn": "CALL",
           "ops": [
-           "Bits",
+           "HBits",
            6
           ]
          }
@@ -1567,7 +1567,7 @@
          "__class__": "HdlOp",
          "fn": "CALL",
          "ops": [
-          "Bits",
+          "HBits",
           8
          ]
         }
@@ -1802,20 +1802,14 @@
         "__class__": "HdlOp",
         "fn": "DOT",
         "ops": [
-         {
-          "__class__": "HdlOp",
-          "fn": "NEG",
-          "ops": [
-           "r"
-          ]
-         },
+         "r",
          "_eq"
         ]
        },
        {
         "__class__": "HdlValueInt",
         "base": 16,
-        "val": 1
+        "val": 0
        }
       ]
      },
@@ -1851,7 +1845,6 @@
     "__class__": "HdlStmProcess",
     "body": {
      "__class__": "HdlStmCase",
-     "type": "CASE",
      "cases": [
       [
        {
@@ -1920,7 +1913,8 @@
       }
      },
      "labels": [],
-     "switch_on": "a"
+     "switch_on": "a",
+     "type": "CASE"
     },
     "labels": [
      {

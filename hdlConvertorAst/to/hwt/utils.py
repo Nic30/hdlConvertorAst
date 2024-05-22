@@ -3,7 +3,7 @@ from hdlConvertorAst.hdlAst import HdlValueInt, HdlOpType, HdlOp, HdlValueId
 from hdlConvertorAst.translate.common.name_scope import LanguageKeyword
 
 
-def BitsT(width, is_signed=False, bits_cls_name="Bits"):
+def BitsT(width, is_signed=False, bits_cls_name="HBits"):
     """
     Create an AST expression of Bits type constructor
     (reg/std_logic_vector equivalent for hwt)

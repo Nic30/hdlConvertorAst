@@ -1,0 +1,557 @@
+from pyMathBitPrecise.array3t import Array3t, Array3val
+from pyMathBitPrecise.bits3t import Bits3t, Bits3val
+from pyMathBitPrecise.enum3t import define_Enum3t
+
+from hwtSimApi.basic_hdl_simulator.model import BasicRtlSimModel
+from hwtSimApi.basic_hdl_simulator.model_utils import sensitivity, connectSimPort
+from hwtSimApi.basic_hdl_simulator.proxy import BasicRtlSimProxy
+from hwtSimApi.basic_hdl_simulator.sim_utils import sim_eval_cond
+
+#
+#    RAM where each port has an independet clock.
+#    It can be configured to true dual port RAM etc.
+#    It can also be configured to have write mask or to be composed from multiple smaller memories.
+#
+#    :note: write-first variant
+#
+#    .. hwt-autodoc::
+#    
+class RamMultiClock(BasicRtlSimModel):
+    arr_t_0 = Bits3t(64, 0)[256]
+    def __init__(self, sim: "BasicRtlSimulator", name="RamMultiClock"):
+        BasicRtlSimModel.__init__(self, sim, name=name)
+        # ports
+        self.io.port_0_addr = BasicRtlSimProxy(
+            sim, self, "port_0_addr",
+            Bits3t(8, 0), None)
+        self.io.port_0_clk = BasicRtlSimProxy(
+            sim, self, "port_0_clk",
+            Bits3t(1, 0), None)
+        self.io.port_0_din = BasicRtlSimProxy(
+            sim, self, "port_0_din",
+            Bits3t(64, 0), None)
+        self.io.port_0_dout = BasicRtlSimProxy(
+            sim, self, "port_0_dout",
+            Bits3t(64, 0), None)
+        self.io.port_0_en = BasicRtlSimProxy(
+            sim, self, "port_0_en",
+            Bits3t(1, 0), None)
+        self.io.port_0_we = BasicRtlSimProxy(
+            sim, self, "port_0_we",
+            Bits3t(1, 0), None)
+        self.io.port_1_addr = BasicRtlSimProxy(
+            sim, self, "port_1_addr",
+            Bits3t(8, 0), None)
+        self.io.port_1_clk = BasicRtlSimProxy(
+            sim, self, "port_1_clk",
+            Bits3t(1, 0), None)
+        self.io.port_1_din = BasicRtlSimProxy(
+            sim, self, "port_1_din",
+            Bits3t(64, 0), None)
+        self.io.port_1_dout = BasicRtlSimProxy(
+            sim, self, "port_1_dout",
+            Bits3t(64, 0), None)
+        self.io.port_1_en = BasicRtlSimProxy(
+            sim, self, "port_1_en",
+            Bits3t(1, 0), None)
+        self.io.port_1_we = BasicRtlSimProxy(
+            sim, self, "port_1_we",
+            Bits3t(1, 0), None)
+        # internal signals
+        self.io.ram_memory = BasicRtlSimProxy(
+            sim, self, "ram_memory",
+            self.arr_t_0, None)
+        self.const_0 = Array3val(self.arr_t_0, {}, 0)
+        self.const_0_0 = Bits3val(Bits3t(64, 0), 0, 0)
+        self.const_1_0 = Bits3val(Bits3t(1, 0), 1, 1)
+        # component instances
+    def _init_body(self):
+        self._hwIOs = (
+            self.io.port_0_addr,
+            self.io.port_0_clk,
+            self.io.port_0_din,
+            self.io.port_0_dout,
+            self.io.port_0_en,
+            self.io.port_0_we,
+            self.io.port_1_addr,
+            self.io.port_1_clk,
+            self.io.port_1_din,
+            self.io.port_1_dout,
+            self.io.port_1_en,
+            self.io.port_1_we,
+            self.io.ram_memory,
+        )
+        self._processes = (
+            self.assig_process_port_0_dout,
+            self.assig_process_port_1_dout,
+        )
+        self._subHwModules = ()
+        sensitivity(self.assig_process_port_0_dout, ((True, False), self.io.port_0_clk))
+        self._outputs[self.assig_process_port_0_dout] = (
+            self.io.port_0_dout,
+            self.io.ram_memory,
+        )
+        sensitivity(self.assig_process_port_1_dout, ((True, False), self.io.port_1_clk))
+        self._outputs[self.assig_process_port_1_dout] = (
+            self.io.port_1_dout,
+            self.io.ram_memory,
+        )
+        for u in self._subHwModules:
+            u._init_body()
+
+    # sensitivity: HdlOpType.RISING port_0_clk
+    def assig_process_port_0_dout(self):
+        (c, cVld, ) = sim_eval_cond(self.io.port_0_clk._onRisingEdge())
+        if not cVld:
+            self.io.ram_memory.val_next = (self.const_0, 1, )
+            self.io.port_0_dout.val_next = (self.const_0_0, 1, )
+        elif c:
+            (c, cVld, ) = sim_eval_cond(self.io.port_0_en.val._eq(self.const_1_0))
+            if not cVld:
+                self.io.ram_memory.val_next = (self.const_0, 1, )
+                self.io.port_0_dout.val_next = (self.const_0_0, 1, )
+            elif c:
+                (c, cVld, ) = sim_eval_cond(self.io.port_0_we.val._eq(self.const_1_0))
+                if not cVld:
+                    self.io.ram_memory.val_next = (self.const_0, 1, )
+                elif c:
+                    self.io.ram_memory.val_next = (self.io.port_0_din.val, (self.io.port_0_addr.val, ), 1, )
+                else:
+                    pass
+                self.io.port_0_dout.val_next = (self.io.ram_memory.val[self.io.port_0_addr.val], 1, )
+            else:
+                self.io.port_0_dout.val_next = (self.const_0_0, 1, )
+        else:
+            pass
+
+    # sensitivity: HdlOpType.RISING port_1_clk
+    def assig_process_port_1_dout(self):
+        (c, cVld, ) = sim_eval_cond(self.io.port_1_clk._onRisingEdge())
+        if not cVld:
+            self.io.ram_memory.val_next = (self.const_0, 1, )
+            self.io.port_1_dout.val_next = (self.const_0_0, 1, )
+        elif c:
+            (c, cVld, ) = sim_eval_cond(self.io.port_1_en.val._eq(self.const_1_0))
+            if not cVld:
+                self.io.ram_memory.val_next = (self.const_0, 1, )
+                self.io.port_1_dout.val_next = (self.const_0_0, 1, )
+            elif c:
+                (c, cVld, ) = sim_eval_cond(self.io.port_1_we.val._eq(self.const_1_0))
+                if not cVld:
+                    self.io.ram_memory.val_next = (self.const_0, 1, )
+                elif c:
+                    self.io.ram_memory.val_next = (self.io.port_1_din.val, (self.io.port_1_addr.val, ), 1, )
+                else:
+                    pass
+                self.io.port_1_dout.val_next = (self.io.ram_memory.val[self.io.port_1_addr.val], 1, )
+            else:
+                self.io.port_1_dout.val_next = (self.const_0_0, 1, )
+        else:
+            pass
+
+#
+#    .. hwt-autodoc::
+#    
+class GroupOfBlockrams(BasicRtlSimModel):
+    def __init__(self, sim: "BasicRtlSimulator", name="GroupOfBlockrams"):
+        BasicRtlSimModel.__init__(self, sim, name=name)
+        # ports
+        self.io.addr = BasicRtlSimProxy(
+            sim, self, "addr",
+            Bits3t(8, 0), None)
+        self.io.clk = BasicRtlSimProxy(
+            sim, self, "clk",
+            Bits3t(1, 0), None)
+        self.io.en = BasicRtlSimProxy(
+            sim, self, "en",
+            Bits3t(1, 0), None)
+        self.io.in_r_a = BasicRtlSimProxy(
+            sim, self, "in_r_a",
+            Bits3t(64, 0), None)
+        self.io.in_r_b = BasicRtlSimProxy(
+            sim, self, "in_r_b",
+            Bits3t(64, 0), None)
+        self.io.in_w_a = BasicRtlSimProxy(
+            sim, self, "in_w_a",
+            Bits3t(64, 0), None)
+        self.io.in_w_b = BasicRtlSimProxy(
+            sim, self, "in_w_b",
+            Bits3t(64, 0), None)
+        self.io.out_r_a = BasicRtlSimProxy(
+            sim, self, "out_r_a",
+            Bits3t(64, 0), None)
+        self.io.out_r_b = BasicRtlSimProxy(
+            sim, self, "out_r_b",
+            Bits3t(64, 0), None)
+        self.io.out_w_a = BasicRtlSimProxy(
+            sim, self, "out_w_a",
+            Bits3t(64, 0), None)
+        self.io.out_w_b = BasicRtlSimProxy(
+            sim, self, "out_w_b",
+            Bits3t(64, 0), None)
+        self.io.we = BasicRtlSimProxy(
+            sim, self, "we",
+            Bits3t(1, 0), None)
+        # internal signals
+        self.io.sig_bramR_port_0_addr = BasicRtlSimProxy(
+            sim, self, "sig_bramR_port_0_addr",
+            Bits3t(8, 0), None)
+        self.io.sig_bramR_port_0_clk = BasicRtlSimProxy(
+            sim, self, "sig_bramR_port_0_clk",
+            Bits3t(1, 0), None)
+        self.io.sig_bramR_port_0_din = BasicRtlSimProxy(
+            sim, self, "sig_bramR_port_0_din",
+            Bits3t(64, 0), None)
+        self.io.sig_bramR_port_0_dout = BasicRtlSimProxy(
+            sim, self, "sig_bramR_port_0_dout",
+            Bits3t(64, 0), None)
+        self.io.sig_bramR_port_0_en = BasicRtlSimProxy(
+            sim, self, "sig_bramR_port_0_en",
+            Bits3t(1, 0), None)
+        self.io.sig_bramR_port_0_we = BasicRtlSimProxy(
+            sim, self, "sig_bramR_port_0_we",
+            Bits3t(1, 0), None)
+        self.io.sig_bramR_port_1_addr = BasicRtlSimProxy(
+            sim, self, "sig_bramR_port_1_addr",
+            Bits3t(8, 0), None)
+        self.io.sig_bramR_port_1_clk = BasicRtlSimProxy(
+            sim, self, "sig_bramR_port_1_clk",
+            Bits3t(1, 0), None)
+        self.io.sig_bramR_port_1_din = BasicRtlSimProxy(
+            sim, self, "sig_bramR_port_1_din",
+            Bits3t(64, 0), None)
+        self.io.sig_bramR_port_1_dout = BasicRtlSimProxy(
+            sim, self, "sig_bramR_port_1_dout",
+            Bits3t(64, 0), None)
+        self.io.sig_bramR_port_1_en = BasicRtlSimProxy(
+            sim, self, "sig_bramR_port_1_en",
+            Bits3t(1, 0), None)
+        self.io.sig_bramR_port_1_we = BasicRtlSimProxy(
+            sim, self, "sig_bramR_port_1_we",
+            Bits3t(1, 0), None)
+        self.io.sig_bramW_port_0_addr = BasicRtlSimProxy(
+            sim, self, "sig_bramW_port_0_addr",
+            Bits3t(8, 0), None)
+        self.io.sig_bramW_port_0_clk = BasicRtlSimProxy(
+            sim, self, "sig_bramW_port_0_clk",
+            Bits3t(1, 0), None)
+        self.io.sig_bramW_port_0_din = BasicRtlSimProxy(
+            sim, self, "sig_bramW_port_0_din",
+            Bits3t(64, 0), None)
+        self.io.sig_bramW_port_0_dout = BasicRtlSimProxy(
+            sim, self, "sig_bramW_port_0_dout",
+            Bits3t(64, 0), None)
+        self.io.sig_bramW_port_0_en = BasicRtlSimProxy(
+            sim, self, "sig_bramW_port_0_en",
+            Bits3t(1, 0), None)
+        self.io.sig_bramW_port_0_we = BasicRtlSimProxy(
+            sim, self, "sig_bramW_port_0_we",
+            Bits3t(1, 0), None)
+        self.io.sig_bramW_port_1_addr = BasicRtlSimProxy(
+            sim, self, "sig_bramW_port_1_addr",
+            Bits3t(8, 0), None)
+        self.io.sig_bramW_port_1_clk = BasicRtlSimProxy(
+            sim, self, "sig_bramW_port_1_clk",
+            Bits3t(1, 0), None)
+        self.io.sig_bramW_port_1_din = BasicRtlSimProxy(
+            sim, self, "sig_bramW_port_1_din",
+            Bits3t(64, 0), None)
+        self.io.sig_bramW_port_1_dout = BasicRtlSimProxy(
+            sim, self, "sig_bramW_port_1_dout",
+            Bits3t(64, 0), None)
+        self.io.sig_bramW_port_1_en = BasicRtlSimProxy(
+            sim, self, "sig_bramW_port_1_en",
+            Bits3t(1, 0), None)
+        self.io.sig_bramW_port_1_we = BasicRtlSimProxy(
+            sim, self, "sig_bramW_port_1_we",
+            Bits3t(1, 0), None)
+        # component instances
+        self.bramR_inst = RamMultiClock(sim, "bramR_inst")
+        self.bramW_inst = RamMultiClock(sim, "bramW_inst")
+    def _init_body(self):
+        connectSimPort(self, self.bramR_inst, "sig_bramR_port_0_addr", "port_0_addr")
+        connectSimPort(self, self.bramR_inst, "sig_bramR_port_0_clk", "port_0_clk")
+        connectSimPort(self, self.bramR_inst, "sig_bramR_port_0_din", "port_0_din")
+        connectSimPort(self, self.bramR_inst, "sig_bramR_port_0_dout", "port_0_dout")
+        connectSimPort(self, self.bramR_inst, "sig_bramR_port_0_en", "port_0_en")
+        connectSimPort(self, self.bramR_inst, "sig_bramR_port_0_we", "port_0_we")
+        connectSimPort(self, self.bramR_inst, "sig_bramR_port_1_addr", "port_1_addr")
+        connectSimPort(self, self.bramR_inst, "sig_bramR_port_1_clk", "port_1_clk")
+        connectSimPort(self, self.bramR_inst, "sig_bramR_port_1_din", "port_1_din")
+        connectSimPort(self, self.bramR_inst, "sig_bramR_port_1_dout", "port_1_dout")
+        connectSimPort(self, self.bramR_inst, "sig_bramR_port_1_en", "port_1_en")
+        connectSimPort(self, self.bramR_inst, "sig_bramR_port_1_we", "port_1_we")
+        connectSimPort(self, self.bramW_inst, "sig_bramW_port_0_addr", "port_0_addr")
+        connectSimPort(self, self.bramW_inst, "sig_bramW_port_0_clk", "port_0_clk")
+        connectSimPort(self, self.bramW_inst, "sig_bramW_port_0_din", "port_0_din")
+        connectSimPort(self, self.bramW_inst, "sig_bramW_port_0_dout", "port_0_dout")
+        connectSimPort(self, self.bramW_inst, "sig_bramW_port_0_en", "port_0_en")
+        connectSimPort(self, self.bramW_inst, "sig_bramW_port_0_we", "port_0_we")
+        connectSimPort(self, self.bramW_inst, "sig_bramW_port_1_addr", "port_1_addr")
+        connectSimPort(self, self.bramW_inst, "sig_bramW_port_1_clk", "port_1_clk")
+        connectSimPort(self, self.bramW_inst, "sig_bramW_port_1_din", "port_1_din")
+        connectSimPort(self, self.bramW_inst, "sig_bramW_port_1_dout", "port_1_dout")
+        connectSimPort(self, self.bramW_inst, "sig_bramW_port_1_en", "port_1_en")
+        connectSimPort(self, self.bramW_inst, "sig_bramW_port_1_we", "port_1_we")
+        self._hwIOs = (
+            self.io.addr,
+            self.io.clk,
+            self.io.en,
+            self.io.in_r_a,
+            self.io.in_r_b,
+            self.io.in_w_a,
+            self.io.in_w_b,
+            self.io.out_r_a,
+            self.io.out_r_b,
+            self.io.out_w_a,
+            self.io.out_w_b,
+            self.io.we,
+            self.io.sig_bramR_port_0_addr,
+            self.io.sig_bramR_port_0_clk,
+            self.io.sig_bramR_port_0_din,
+            self.io.sig_bramR_port_0_dout,
+            self.io.sig_bramR_port_0_en,
+            self.io.sig_bramR_port_0_we,
+            self.io.sig_bramR_port_1_addr,
+            self.io.sig_bramR_port_1_clk,
+            self.io.sig_bramR_port_1_din,
+            self.io.sig_bramR_port_1_dout,
+            self.io.sig_bramR_port_1_en,
+            self.io.sig_bramR_port_1_we,
+            self.io.sig_bramW_port_0_addr,
+            self.io.sig_bramW_port_0_clk,
+            self.io.sig_bramW_port_0_din,
+            self.io.sig_bramW_port_0_dout,
+            self.io.sig_bramW_port_0_en,
+            self.io.sig_bramW_port_0_we,
+            self.io.sig_bramW_port_1_addr,
+            self.io.sig_bramW_port_1_clk,
+            self.io.sig_bramW_port_1_din,
+            self.io.sig_bramW_port_1_dout,
+            self.io.sig_bramW_port_1_en,
+            self.io.sig_bramW_port_1_we,
+        )
+        self._processes = (
+            self.assig_process_out_r_a,
+            self.assig_process_out_r_b,
+            self.assig_process_out_w_a,
+            self.assig_process_out_w_b,
+            self.assig_process_sig_bramR_port_0_addr,
+            self.assig_process_sig_bramR_port_0_clk,
+            self.assig_process_sig_bramR_port_0_din,
+            self.assig_process_sig_bramR_port_0_en,
+            self.assig_process_sig_bramR_port_0_we,
+            self.assig_process_sig_bramR_port_1_addr,
+            self.assig_process_sig_bramR_port_1_clk,
+            self.assig_process_sig_bramR_port_1_din,
+            self.assig_process_sig_bramR_port_1_en,
+            self.assig_process_sig_bramR_port_1_we,
+            self.assig_process_sig_bramW_port_0_addr,
+            self.assig_process_sig_bramW_port_0_clk,
+            self.assig_process_sig_bramW_port_0_din,
+            self.assig_process_sig_bramW_port_0_en,
+            self.assig_process_sig_bramW_port_0_we,
+            self.assig_process_sig_bramW_port_1_addr,
+            self.assig_process_sig_bramW_port_1_clk,
+            self.assig_process_sig_bramW_port_1_din,
+            self.assig_process_sig_bramW_port_1_en,
+            self.assig_process_sig_bramW_port_1_we,
+        )
+        self._subHwModules = (self.bramR_inst,
+            self.bramW_inst,
+        )
+        sensitivity(self.assig_process_out_r_a, self.io.sig_bramR_port_0_dout)
+        self._outputs[self.assig_process_out_r_a] = (
+            self.io.out_r_a,
+        )
+        sensitivity(self.assig_process_out_r_b, self.io.sig_bramR_port_1_dout)
+        self._outputs[self.assig_process_out_r_b] = (
+            self.io.out_r_b,
+        )
+        sensitivity(self.assig_process_out_w_a, self.io.sig_bramW_port_0_dout)
+        self._outputs[self.assig_process_out_w_a] = (
+            self.io.out_w_a,
+        )
+        sensitivity(self.assig_process_out_w_b, self.io.sig_bramW_port_1_dout)
+        self._outputs[self.assig_process_out_w_b] = (
+            self.io.out_w_b,
+        )
+        sensitivity(self.assig_process_sig_bramR_port_0_addr, self.io.addr)
+        self._outputs[self.assig_process_sig_bramR_port_0_addr] = (
+            self.io.sig_bramR_port_0_addr,
+        )
+        sensitivity(self.assig_process_sig_bramR_port_0_clk, self.io.clk)
+        self._outputs[self.assig_process_sig_bramR_port_0_clk] = (
+            self.io.sig_bramR_port_0_clk,
+        )
+        sensitivity(self.assig_process_sig_bramR_port_0_din, self.io.in_r_a)
+        self._outputs[self.assig_process_sig_bramR_port_0_din] = (
+            self.io.sig_bramR_port_0_din,
+        )
+        sensitivity(self.assig_process_sig_bramR_port_0_en, self.io.en)
+        self._outputs[self.assig_process_sig_bramR_port_0_en] = (
+            self.io.sig_bramR_port_0_en,
+        )
+        sensitivity(self.assig_process_sig_bramR_port_0_we, self.io.we)
+        self._outputs[self.assig_process_sig_bramR_port_0_we] = (
+            self.io.sig_bramR_port_0_we,
+        )
+        sensitivity(self.assig_process_sig_bramR_port_1_addr, self.io.addr)
+        self._outputs[self.assig_process_sig_bramR_port_1_addr] = (
+            self.io.sig_bramR_port_1_addr,
+        )
+        sensitivity(self.assig_process_sig_bramR_port_1_clk, self.io.clk)
+        self._outputs[self.assig_process_sig_bramR_port_1_clk] = (
+            self.io.sig_bramR_port_1_clk,
+        )
+        sensitivity(self.assig_process_sig_bramR_port_1_din, self.io.in_r_b)
+        self._outputs[self.assig_process_sig_bramR_port_1_din] = (
+            self.io.sig_bramR_port_1_din,
+        )
+        sensitivity(self.assig_process_sig_bramR_port_1_en, self.io.en)
+        self._outputs[self.assig_process_sig_bramR_port_1_en] = (
+            self.io.sig_bramR_port_1_en,
+        )
+        sensitivity(self.assig_process_sig_bramR_port_1_we, self.io.we)
+        self._outputs[self.assig_process_sig_bramR_port_1_we] = (
+            self.io.sig_bramR_port_1_we,
+        )
+        sensitivity(self.assig_process_sig_bramW_port_0_addr, self.io.addr)
+        self._outputs[self.assig_process_sig_bramW_port_0_addr] = (
+            self.io.sig_bramW_port_0_addr,
+        )
+        sensitivity(self.assig_process_sig_bramW_port_0_clk, self.io.clk)
+        self._outputs[self.assig_process_sig_bramW_port_0_clk] = (
+            self.io.sig_bramW_port_0_clk,
+        )
+        sensitivity(self.assig_process_sig_bramW_port_0_din, self.io.in_w_a)
+        self._outputs[self.assig_process_sig_bramW_port_0_din] = (
+            self.io.sig_bramW_port_0_din,
+        )
+        sensitivity(self.assig_process_sig_bramW_port_0_en, self.io.en)
+        self._outputs[self.assig_process_sig_bramW_port_0_en] = (
+            self.io.sig_bramW_port_0_en,
+        )
+        sensitivity(self.assig_process_sig_bramW_port_0_we, self.io.we)
+        self._outputs[self.assig_process_sig_bramW_port_0_we] = (
+            self.io.sig_bramW_port_0_we,
+        )
+        sensitivity(self.assig_process_sig_bramW_port_1_addr, self.io.addr)
+        self._outputs[self.assig_process_sig_bramW_port_1_addr] = (
+            self.io.sig_bramW_port_1_addr,
+        )
+        sensitivity(self.assig_process_sig_bramW_port_1_clk, self.io.clk)
+        self._outputs[self.assig_process_sig_bramW_port_1_clk] = (
+            self.io.sig_bramW_port_1_clk,
+        )
+        sensitivity(self.assig_process_sig_bramW_port_1_din, self.io.in_w_b)
+        self._outputs[self.assig_process_sig_bramW_port_1_din] = (
+            self.io.sig_bramW_port_1_din,
+        )
+        sensitivity(self.assig_process_sig_bramW_port_1_en, self.io.en)
+        self._outputs[self.assig_process_sig_bramW_port_1_en] = (
+            self.io.sig_bramW_port_1_en,
+        )
+        sensitivity(self.assig_process_sig_bramW_port_1_we, self.io.we)
+        self._outputs[self.assig_process_sig_bramW_port_1_we] = (
+            self.io.sig_bramW_port_1_we,
+        )
+        for u in self._subHwModules:
+            u._init_body()
+
+    # sensitivity: sig_bramR_port_0_dout
+    def assig_process_out_r_a(self):
+        self.io.out_r_a.val_next = (self.io.sig_bramR_port_0_dout.val, 0, )
+
+    # sensitivity: sig_bramR_port_1_dout
+    def assig_process_out_r_b(self):
+        self.io.out_r_b.val_next = (self.io.sig_bramR_port_1_dout.val, 0, )
+
+    # sensitivity: sig_bramW_port_0_dout
+    def assig_process_out_w_a(self):
+        self.io.out_w_a.val_next = (self.io.sig_bramW_port_0_dout.val, 0, )
+
+    # sensitivity: sig_bramW_port_1_dout
+    def assig_process_out_w_b(self):
+        self.io.out_w_b.val_next = (self.io.sig_bramW_port_1_dout.val, 0, )
+
+    # sensitivity: addr
+    def assig_process_sig_bramR_port_0_addr(self):
+        self.io.sig_bramR_port_0_addr.val_next = (self.io.addr.val, 0, )
+
+    # sensitivity: clk
+    def assig_process_sig_bramR_port_0_clk(self):
+        self.io.sig_bramR_port_0_clk.val_next = (self.io.clk.val, 0, )
+
+    # sensitivity: in_r_a
+    def assig_process_sig_bramR_port_0_din(self):
+        self.io.sig_bramR_port_0_din.val_next = (self.io.in_r_a.val, 0, )
+
+    # sensitivity: en
+    def assig_process_sig_bramR_port_0_en(self):
+        self.io.sig_bramR_port_0_en.val_next = (self.io.en.val, 0, )
+
+    # sensitivity: we
+    def assig_process_sig_bramR_port_0_we(self):
+        self.io.sig_bramR_port_0_we.val_next = (self.io.we.val, 0, )
+
+    # sensitivity: addr
+    def assig_process_sig_bramR_port_1_addr(self):
+        self.io.sig_bramR_port_1_addr.val_next = (self.io.addr.val, 0, )
+
+    # sensitivity: clk
+    def assig_process_sig_bramR_port_1_clk(self):
+        self.io.sig_bramR_port_1_clk.val_next = (self.io.clk.val, 0, )
+
+    # sensitivity: in_r_b
+    def assig_process_sig_bramR_port_1_din(self):
+        self.io.sig_bramR_port_1_din.val_next = (self.io.in_r_b.val, 0, )
+
+    # sensitivity: en
+    def assig_process_sig_bramR_port_1_en(self):
+        self.io.sig_bramR_port_1_en.val_next = (self.io.en.val, 0, )
+
+    # sensitivity: we
+    def assig_process_sig_bramR_port_1_we(self):
+        self.io.sig_bramR_port_1_we.val_next = (self.io.we.val, 0, )
+
+    # sensitivity: addr
+    def assig_process_sig_bramW_port_0_addr(self):
+        self.io.sig_bramW_port_0_addr.val_next = (self.io.addr.val, 0, )
+
+    # sensitivity: clk
+    def assig_process_sig_bramW_port_0_clk(self):
+        self.io.sig_bramW_port_0_clk.val_next = (self.io.clk.val, 0, )
+
+    # sensitivity: in_w_a
+    def assig_process_sig_bramW_port_0_din(self):
+        self.io.sig_bramW_port_0_din.val_next = (self.io.in_w_a.val, 0, )
+
+    # sensitivity: en
+    def assig_process_sig_bramW_port_0_en(self):
+        self.io.sig_bramW_port_0_en.val_next = (self.io.en.val, 0, )
+
+    # sensitivity: we
+    def assig_process_sig_bramW_port_0_we(self):
+        self.io.sig_bramW_port_0_we.val_next = (self.io.we.val, 0, )
+
+    # sensitivity: addr
+    def assig_process_sig_bramW_port_1_addr(self):
+        self.io.sig_bramW_port_1_addr.val_next = (self.io.addr.val, 0, )
+
+    # sensitivity: clk
+    def assig_process_sig_bramW_port_1_clk(self):
+        self.io.sig_bramW_port_1_clk.val_next = (self.io.clk.val, 0, )
+
+    # sensitivity: in_w_b
+    def assig_process_sig_bramW_port_1_din(self):
+        self.io.sig_bramW_port_1_din.val_next = (self.io.in_w_b.val, 0, )
+
+    # sensitivity: en
+    def assig_process_sig_bramW_port_1_en(self):
+        self.io.sig_bramW_port_1_en.val_next = (self.io.en.val, 0, )
+
+    # sensitivity: we
+    def assig_process_sig_bramW_port_1_we(self):
+        self.io.sig_bramW_port_1_we.val_next = (self.io.we.val, 0, )
+

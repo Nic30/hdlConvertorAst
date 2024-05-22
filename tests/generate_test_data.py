@@ -12,14 +12,14 @@ import os
 
 from hdlConvertorAst.hdlAst._structural import HdlContext
 from hdlConvertorAst.to.json import ToJson
+from hwt.hwModule import HwModule, HdlConstraintList
 from hwt.serializer.hwt import HwtSerializer
 from hwt.serializer.simModel import SimModelSerializer
 from hwt.serializer.store_manager import StoreManager, SaveToStream
 from hwt.serializer.systemC import SystemCSerializer
 from hwt.serializer.verilog import VerilogSerializer
 from hwt.serializer.vhdl import Vhdl2008Serializer
-from hwt.synthesizer.unit import Unit, HdlConstraintList
-from hwt.synthesizer.utils import to_rtl
+from hwt.synth import to_rtl
 from hwtLib.examples.hierarchy.groupOfBlockrams import GroupOfBlockrams
 from hwtLib.examples.showcase0 import Showcase0
 from tests.fromJsonToHdl_test import FromJsonToHdlTC
@@ -57,7 +57,7 @@ class SaveHwtToJson(StoreManager):
                 self.ctx.append(j)
 
 
-def hwt_to_json(u: Unit, to_hdl_ast):
+def hwt_to_json(u: HwModule, to_hdl_ast):
     store_manager = SaveHwtToJson(to_hdl_ast)
     to_rtl(u, store_manager)
     return store_manager.ctx
@@ -74,20 +74,20 @@ HDLCONVERTOAST_TO_HWT = {
 }
 
 
-def generate_hwt_examples(u_cls, data_root):
+def generate_hwt_examples(hwModuleCls: HwModule, dataRoot: str):
     for _ser, (json_suffix, ref_file_suffix) in FromJsonToHdlTC.FILE_SUFFIX.items():
-        u = u_cls()
+        m = hwModuleCls()
 
         ser = HDLCONVERTOAST_TO_HWT[_ser]
-        j = hwt_to_json(u, ser.TO_HDL_AST)
-        u_name = u._name
-        with open(os.path.join(data_root, f"{u_name}{json_suffix}"), "w") as f:
+        j = hwt_to_json(m, ser.TO_HDL_AST)
+        u_name = m._name
+        with open(os.path.join(dataRoot, f"{u_name}{json_suffix}"), "w") as f:
             json.dump(j, f, sort_keys=True, indent=1)
 
-        u = u_cls()
-        with open(os.path.join(data_root, "ref", f"{u_name}{ref_file_suffix}"), "w") as f:
+        m = hwModuleCls()
+        with open(os.path.join(dataRoot, "ref", f"{u_name}{ref_file_suffix}"), "w") as f:
             store_man = SaveToStream(ser, f)
-            to_rtl(u, store_man)
+            to_rtl(m, store_man)
 
 
 if __name__ == '__main__':

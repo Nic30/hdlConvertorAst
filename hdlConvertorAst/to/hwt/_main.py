@@ -11,13 +11,13 @@ from hdlConvertorAst.to.hwt.stm import ToHwtStm
 DEFAULT_IMPORTS = """\
 from hwt.code import If, Switch, Concat
 from hwt.code_utils import rename_signal
+from hwt.hwIOs.std import HwIOSignal
+from hwt.hwModule import HwModule
+from hwt.hwParam import HwParam
 from hwt.hdl.types.array import HArray
-from hwt.hdl.types.bits import Bits
+from hwt.hdl.types.bits import HBits
 from hwt.hdl.types.defs import INT, SLICE, STR, BIT, FLOAT64
 from hwt.hdl.types.enum import HEnum
-from hwt.interfaces.std import Signal
-from hwt.synthesizer.param import Param
-from hwt.synthesizer.unit import Unit
 """
 
 
@@ -88,11 +88,11 @@ class ToHwt(ToHwtStm):
         w = self.out.write
         w('if __name__ == "__main__":\n')
         with Indent(self.out):
-            w("from hwt.synthesizer.utils import to_rtl_str\n")
-            w("u = ")
+            w("from hwt.synth import to_rtl_str\n")
+            w("m = ")
             w(module_name)
             w("()\n")
-            w("print(to_rtl_str(u))\n")
+            w("print(to_rtl_str(m))\n")
 
     def ivars_to_local_vars(self, var_names):
         if var_names:
@@ -139,7 +139,7 @@ class ToHwt(ToHwtStm):
 
         w("class ")
         w(mod_dec.name)
-        w("(Unit):\n")
+        w("(HwModule):\n")
         with Indent(self.out):
             self.visit_doc(mod_dec, doc_string=True)
 
@@ -224,7 +224,7 @@ class ToHwt(ToHwtStm):
                         p = mod_port.obj
                         assert p is not None, (
                             "HdlValueId to module ports "
-                            "shoudl have been discovered before")
+                            "should have been discovered before")
                         d = p.direction
                         assert d.name in (HdlDirection.IN.name,
                                           HdlDirection.OUT.name), d
@@ -281,7 +281,7 @@ class ToHwt(ToHwtStm):
             w("self.")
         w(var.name)
         if self._is_port:
-            w(" = Signal(")
+            w(" = HwIOSignal(")
             if var.type != HdlValueId("BIT"):
                 self.visit_type(var.type)
             w(")")
@@ -291,9 +291,9 @@ class ToHwt(ToHwtStm):
                 w("\n")
                 assert var.direction == HdlDirection.IN, var.direction
         elif self._is_param:
-            w(" = Param(")
+            w(" = HwParam(")
             if var.type in self.TYPES_WHICH_CAN_BE_OMMITED:
-                # ommit the type specification in the case where the type can be resolved from value type
+                # omit the type specification in the case where the type can be resolved from value type
                 self.visit_iHdlExpr(var.value)
                 w(")\n")
             else:

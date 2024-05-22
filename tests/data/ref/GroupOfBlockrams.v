@@ -1,38 +1,75 @@
 //
-//    True dual port RAM.
-//    :note: write-first variant 
+//    RAM where each port has an independet clock.
+//    It can be configured to true dual port RAM etc.
+//    It can also be configured to have write mask or to be composed from multiple smaller memories.
+//
+//    :note: write-first variant
 //
 //    .. hwt-autodoc::
 //    
-module Ram_dp #(
+module RamMultiClock #(
     parameter ADDR_WIDTH = 8,
-    parameter DATA_WIDTH = 64
+    parameter DATA_WIDTH = 64,
+    parameter HAS_BE = 0,
+    parameter INIT_DATA = "None",
+    parameter MAX_BLOCK_DATA_WIDTH = "None",
+    parameter PORT_CNT = 2
 ) (
-    input wire[7:0] a_addr,
-    input wire a_clk,
-    input wire[63:0] a_din,
-    output reg[63:0] a_dout,
-    input wire a_en,
-    input wire a_we,
-    input wire[7:0] b_addr,
-    input wire b_clk,
-    input wire[63:0] b_din,
-    output reg[63:0] b_dout,
-    input wire b_en,
-    input wire b_we
+    input wire[7:0] port_0_addr,
+    input wire port_0_clk,
+    input wire[63:0] port_0_din,
+    output reg[63:0] port_0_dout,
+    input wire port_0_en,
+    input wire port_0_we,
+    input wire[7:0] port_1_addr,
+    input wire port_1_clk,
+    input wire[63:0] port_1_din,
+    output reg[63:0] port_1_dout,
+    input wire port_1_en,
+    input wire port_1_we
 );
     reg[63:0] ram_memory[0:255];
-    always @(posedge a_clk) begin: assig_process_a_dout
-        if (a_we)
-            ram_memory[a_addr] <= a_din;
-        a_dout <= ram_memory[a_addr];
+    always @(posedge port_0_clk) begin: assig_process_port_0_dout
+        if (port_0_en) begin
+            if (port_0_we)
+                ram_memory[port_0_addr] <= port_0_din;
+            port_0_dout <= ram_memory[port_0_addr];
+        end else
+            port_0_dout <= 64'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
     end
 
-    always @(posedge b_clk) begin: assig_process_b_dout
-        if (b_we)
-            ram_memory[b_addr] <= b_din;
-        b_dout <= ram_memory[b_addr];
+    always @(posedge port_1_clk) begin: assig_process_port_1_dout
+        if (port_1_en) begin
+            if (port_1_we)
+                ram_memory[port_1_addr] <= port_1_din;
+            port_1_dout <= ram_memory[port_1_addr];
+        end else
+            port_1_dout <= 64'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
     end
+
+    generate if (ADDR_WIDTH != 8)
+        $error("%m Generated only for this param value");
+    endgenerate
+
+    generate if (DATA_WIDTH != 64)
+        $error("%m Generated only for this param value");
+    endgenerate
+
+    generate if (HAS_BE != 0)
+        $error("%m Generated only for this param value");
+    endgenerate
+
+    generate if (INIT_DATA != "None")
+        $error("%m Generated only for this param value");
+    endgenerate
+
+    generate if (MAX_BLOCK_DATA_WIDTH != "None")
+        $error("%m Generated only for this param value");
+    endgenerate
+
+    generate if (PORT_CNT != 2)
+        $error("%m Generated only for this param value");
+    endgenerate
 
 endmodule
 //
@@ -55,88 +92,104 @@ module GroupOfBlockrams #(
     output wire[63:0] out_w_b,
     input wire we
 );
-    wire[7:0] sig_bramR_a_addr = 8'bxxxxxxxx;
-    wire sig_bramR_a_clk = 1'bx;
-    wire[63:0] sig_bramR_a_din = 64'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    wire[63:0] sig_bramR_a_dout = 64'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    wire sig_bramR_a_en = 1'bx;
-    wire sig_bramR_a_we = 1'bx;
-    wire[7:0] sig_bramR_b_addr = 8'bxxxxxxxx;
-    wire sig_bramR_b_clk = 1'bx;
-    wire[63:0] sig_bramR_b_din = 64'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    wire[63:0] sig_bramR_b_dout = 64'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    wire sig_bramR_b_en = 1'bx;
-    wire sig_bramR_b_we = 1'bx;
-    wire[7:0] sig_bramW_a_addr = 8'bxxxxxxxx;
-    wire sig_bramW_a_clk = 1'bx;
-    wire[63:0] sig_bramW_a_din = 64'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    wire[63:0] sig_bramW_a_dout = 64'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    wire sig_bramW_a_en = 1'bx;
-    wire sig_bramW_a_we = 1'bx;
-    wire[7:0] sig_bramW_b_addr = 8'bxxxxxxxx;
-    wire sig_bramW_b_clk = 1'bx;
-    wire[63:0] sig_bramW_b_din = 64'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    wire[63:0] sig_bramW_b_dout = 64'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-    wire sig_bramW_b_en = 1'bx;
-    wire sig_bramW_b_we = 1'bx;
-    Ram_dp #(
+    wire[7:0] sig_bramR_port_0_addr;
+    wire sig_bramR_port_0_clk;
+    wire[63:0] sig_bramR_port_0_din;
+    wire[63:0] sig_bramR_port_0_dout;
+    wire sig_bramR_port_0_en;
+    wire sig_bramR_port_0_we;
+    wire[7:0] sig_bramR_port_1_addr;
+    wire sig_bramR_port_1_clk;
+    wire[63:0] sig_bramR_port_1_din;
+    wire[63:0] sig_bramR_port_1_dout;
+    wire sig_bramR_port_1_en;
+    wire sig_bramR_port_1_we;
+    wire[7:0] sig_bramW_port_0_addr;
+    wire sig_bramW_port_0_clk;
+    wire[63:0] sig_bramW_port_0_din;
+    wire[63:0] sig_bramW_port_0_dout;
+    wire sig_bramW_port_0_en;
+    wire sig_bramW_port_0_we;
+    wire[7:0] sig_bramW_port_1_addr;
+    wire sig_bramW_port_1_clk;
+    wire[63:0] sig_bramW_port_1_din;
+    wire[63:0] sig_bramW_port_1_dout;
+    wire sig_bramW_port_1_en;
+    wire sig_bramW_port_1_we;
+    RamMultiClock #(
         .ADDR_WIDTH(8),
-        .DATA_WIDTH(64)
+        .DATA_WIDTH(64),
+        .HAS_BE(0),
+        .INIT_DATA("None"),
+        .MAX_BLOCK_DATA_WIDTH("None"),
+        .PORT_CNT(2)
     ) bramR_inst (
-        .a_addr(sig_bramR_a_addr),
-        .a_clk(sig_bramR_a_clk),
-        .a_din(sig_bramR_a_din),
-        .a_dout(sig_bramR_a_dout),
-        .a_en(sig_bramR_a_en),
-        .a_we(sig_bramR_a_we),
-        .b_addr(sig_bramR_b_addr),
-        .b_clk(sig_bramR_b_clk),
-        .b_din(sig_bramR_b_din),
-        .b_dout(sig_bramR_b_dout),
-        .b_en(sig_bramR_b_en),
-        .b_we(sig_bramR_b_we)
+        .port_0_addr(sig_bramR_port_0_addr),
+        .port_0_clk(sig_bramR_port_0_clk),
+        .port_0_din(sig_bramR_port_0_din),
+        .port_0_dout(sig_bramR_port_0_dout),
+        .port_0_en(sig_bramR_port_0_en),
+        .port_0_we(sig_bramR_port_0_we),
+        .port_1_addr(sig_bramR_port_1_addr),
+        .port_1_clk(sig_bramR_port_1_clk),
+        .port_1_din(sig_bramR_port_1_din),
+        .port_1_dout(sig_bramR_port_1_dout),
+        .port_1_en(sig_bramR_port_1_en),
+        .port_1_we(sig_bramR_port_1_we)
     );
 
-    Ram_dp #(
+    RamMultiClock #(
         .ADDR_WIDTH(8),
-        .DATA_WIDTH(64)
+        .DATA_WIDTH(64),
+        .HAS_BE(0),
+        .INIT_DATA("None"),
+        .MAX_BLOCK_DATA_WIDTH("None"),
+        .PORT_CNT(2)
     ) bramW_inst (
-        .a_addr(sig_bramW_a_addr),
-        .a_clk(sig_bramW_a_clk),
-        .a_din(sig_bramW_a_din),
-        .a_dout(sig_bramW_a_dout),
-        .a_en(sig_bramW_a_en),
-        .a_we(sig_bramW_a_we),
-        .b_addr(sig_bramW_b_addr),
-        .b_clk(sig_bramW_b_clk),
-        .b_din(sig_bramW_b_din),
-        .b_dout(sig_bramW_b_dout),
-        .b_en(sig_bramW_b_en),
-        .b_we(sig_bramW_b_we)
+        .port_0_addr(sig_bramW_port_0_addr),
+        .port_0_clk(sig_bramW_port_0_clk),
+        .port_0_din(sig_bramW_port_0_din),
+        .port_0_dout(sig_bramW_port_0_dout),
+        .port_0_en(sig_bramW_port_0_en),
+        .port_0_we(sig_bramW_port_0_we),
+        .port_1_addr(sig_bramW_port_1_addr),
+        .port_1_clk(sig_bramW_port_1_clk),
+        .port_1_din(sig_bramW_port_1_din),
+        .port_1_dout(sig_bramW_port_1_dout),
+        .port_1_en(sig_bramW_port_1_en),
+        .port_1_we(sig_bramW_port_1_we)
     );
 
-    assign out_r_a = sig_bramR_a_dout;
-    assign out_r_b = sig_bramR_b_dout;
-    assign out_w_a = sig_bramW_a_dout;
-    assign out_w_b = sig_bramW_b_dout;
-    assign sig_bramR_a_addr = addr;
-    assign sig_bramR_a_clk = clk;
-    assign sig_bramR_a_din = in_r_a;
-    assign sig_bramR_a_en = en;
-    assign sig_bramR_a_we = we;
-    assign sig_bramR_b_addr = addr;
-    assign sig_bramR_b_clk = clk;
-    assign sig_bramR_b_din = in_r_b;
-    assign sig_bramR_b_en = en;
-    assign sig_bramR_b_we = we;
-    assign sig_bramW_a_addr = addr;
-    assign sig_bramW_a_clk = clk;
-    assign sig_bramW_a_din = in_w_a;
-    assign sig_bramW_a_en = en;
-    assign sig_bramW_a_we = we;
-    assign sig_bramW_b_addr = addr;
-    assign sig_bramW_b_clk = clk;
-    assign sig_bramW_b_din = in_w_b;
-    assign sig_bramW_b_en = en;
-    assign sig_bramW_b_we = we;
+    assign out_r_a = sig_bramR_port_0_dout;
+    assign out_r_b = sig_bramR_port_1_dout;
+    assign out_w_a = sig_bramW_port_0_dout;
+    assign out_w_b = sig_bramW_port_1_dout;
+    assign sig_bramR_port_0_addr = addr;
+    assign sig_bramR_port_0_clk = clk;
+    assign sig_bramR_port_0_din = in_r_a;
+    assign sig_bramR_port_0_en = en;
+    assign sig_bramR_port_0_we = we;
+    assign sig_bramR_port_1_addr = addr;
+    assign sig_bramR_port_1_clk = clk;
+    assign sig_bramR_port_1_din = in_r_b;
+    assign sig_bramR_port_1_en = en;
+    assign sig_bramR_port_1_we = we;
+    assign sig_bramW_port_0_addr = addr;
+    assign sig_bramW_port_0_clk = clk;
+    assign sig_bramW_port_0_din = in_w_a;
+    assign sig_bramW_port_0_en = en;
+    assign sig_bramW_port_0_we = we;
+    assign sig_bramW_port_1_addr = addr;
+    assign sig_bramW_port_1_clk = clk;
+    assign sig_bramW_port_1_din = in_w_b;
+    assign sig_bramW_port_1_en = en;
+    assign sig_bramW_port_1_we = we;
+    generate if (ADDR_WIDTH != 8)
+        $error("%m Generated only for this param value");
+    endgenerate
+
+    generate if (DATA_WIDTH != 64)
+        $error("%m Generated only for this param value");
+    endgenerate
+
 endmodule

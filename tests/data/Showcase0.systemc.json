@@ -6,7 +6,7 @@
    "declaration_only": false,
    "doc": {
     "__class__": "str",
-    "val": "\n    Every HW component class has to be derived from Unit class\n\n    .. hwt-autodoc::\n    "
+    "val": "\n    Every HW component class has to be derived from :class:`hwt.hwModule.HwModule` class\n\n    .. hwt-autodoc::\n    "
    },
    "name": {
     "__class__": "str",
@@ -1878,30 +1878,6 @@
        "is_latched": true,
        "name": {
         "__class__": "str",
-        "val": "tmpConcat_0"
-       },
-       "type": {
-        "__class__": "HdlOp",
-        "fn": "PARAMETRIZATION",
-        "ops": [
-         "sc_signal",
-         {
-          "__class__": "HdlOp",
-          "fn": "PARAMETRIZATION",
-          "ops": [
-           "sc_uint",
-           8
-          ]
-         }
-        ]
-       }
-      },
-      {
-       "__class__": "HdlIdDef",
-       "direction": null,
-       "is_latched": true,
-       "name": {
-        "__class__": "str",
         "val": "tmpConcat_1"
        },
        "type": {
@@ -1921,125 +1897,28 @@
        }
       },
       {
-       "__class__": "HdlOp",
-       "fn": "CALL",
-       "ops": [
-        {
-         "__class__": "HdlOp",
-         "fn": "DOT",
-         "ops": [
-          "tmpConcat_0",
-          "write"
-         ]
-        },
-        {
-         "__class__": "tuple",
-         "items": [
-          {
-           "__class__": "HdlOp",
-           "fn": "CALL",
-           "ops": [
-            {
-             "__class__": "HdlOp",
-             "fn": "DOT",
-             "ops": [
-              "tmpConcat_1",
-              "read"
-             ]
-            }
-           ]
-          },
-          {
-           "__class__": "HdlOp",
-           "fn": "CALL",
-           "ops": [
-            {
-             "__class__": "HdlOp",
-             "fn": "PARAMETRIZATION",
-             "ops": [
-              "static_cast",
-              {
-               "__class__": "HdlOp",
-               "fn": "PARAMETRIZATION",
-               "ops": [
-                "sc_uint",
-                6
-               ]
-              }
-             ]
-            },
-            {
-             "__class__": "HdlOp",
-             "fn": "CALL",
-             "ops": [
-              {
-               "__class__": "HdlOp",
-               "fn": "DOT",
-               "ops": [
-                {
-                 "__class__": "HdlOp",
-                 "fn": "CALL",
-                 "ops": [
-                  {
-                   "__class__": "HdlOp",
-                   "fn": "DOT",
-                   "ops": [
-                    "a",
-                    "read"
-                   ]
-                  }
-                 ]
-                },
-                "range"
-               ]
-              },
-              {
-               "__class__": "HdlOp",
-               "fn": "CALL",
-               "ops": [
-                {
-                 "__class__": "HdlOp",
-                 "fn": "PARAMETRIZATION",
-                 "ops": [
-                  "sc_int",
-                  32
-                 ]
-                },
-                {
-                 "__class__": "HdlValueInt",
-                 "base": 16,
-                 "bits": 32,
-                 "val": "00000006"
-                }
-               ]
-              },
-              {
-               "__class__": "HdlOp",
-               "fn": "CALL",
-               "ops": [
-                {
-                 "__class__": "HdlOp",
-                 "fn": "PARAMETRIZATION",
-                 "ops": [
-                  "sc_int",
-                  32
-                 ]
-                },
-                {
-                 "__class__": "HdlValueInt",
-                 "base": 16,
-                 "bits": 32,
-                 "val": "00000000"
-                }
-               ]
-              }
-             ]
-            }
-           ]
-          }
-         ]
-        }
-       ]
+       "__class__": "HdlIdDef",
+       "direction": null,
+       "is_latched": true,
+       "name": {
+        "__class__": "str",
+        "val": "tmpConcat_0"
+       },
+       "type": {
+        "__class__": "HdlOp",
+        "fn": "PARAMETRIZATION",
+        "ops": [
+         "sc_signal",
+         {
+          "__class__": "HdlOp",
+          "fn": "PARAMETRIZATION",
+          "ops": [
+           "sc_uint",
+           8
+          ]
+         }
+        ]
+       }
       },
       {
        "__class__": "HdlOp",
@@ -2267,6 +2146,127 @@
                  "base": 16,
                  "bits": 32,
                  "val": "00000001"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "HdlOp",
+       "fn": "CALL",
+       "ops": [
+        {
+         "__class__": "HdlOp",
+         "fn": "DOT",
+         "ops": [
+          "tmpConcat_0",
+          "write"
+         ]
+        },
+        {
+         "__class__": "tuple",
+         "items": [
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "DOT",
+             "ops": [
+              "tmpConcat_1",
+              "read"
+             ]
+            }
+           ]
+          },
+          {
+           "__class__": "HdlOp",
+           "fn": "CALL",
+           "ops": [
+            {
+             "__class__": "HdlOp",
+             "fn": "PARAMETRIZATION",
+             "ops": [
+              "static_cast",
+              {
+               "__class__": "HdlOp",
+               "fn": "PARAMETRIZATION",
+               "ops": [
+                "sc_uint",
+                6
+               ]
+              }
+             ]
+            },
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              {
+               "__class__": "HdlOp",
+               "fn": "DOT",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "CALL",
+                 "ops": [
+                  {
+                   "__class__": "HdlOp",
+                   "fn": "DOT",
+                   "ops": [
+                    "a",
+                    "read"
+                   ]
+                  }
+                 ]
+                },
+                "range"
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "PARAMETRIZATION",
+                 "ops": [
+                  "sc_int",
+                  32
+                 ]
+                },
+                {
+                 "__class__": "HdlValueInt",
+                 "base": 16,
+                 "bits": 32,
+                 "val": "00000006"
+                }
+               ]
+              },
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                {
+                 "__class__": "HdlOp",
+                 "fn": "PARAMETRIZATION",
+                 "ops": [
+                  "sc_int",
+                  32
+                 ]
+                },
+                {
+                 "__class__": "HdlValueInt",
+                 "base": 16,
+                 "bits": 32,
+                 "val": "00000000"
                 }
                ]
               }
@@ -3039,13 +3039,7 @@
       "__class__": "HdlOp",
       "fn": "EQ",
       "ops": [
-       {
-        "__class__": "HdlOp",
-        "fn": "NEG",
-        "ops": [
-         "r"
-        ]
-       },
+       "r",
        {
         "__class__": "HdlOp",
         "fn": "CALL",
@@ -3062,7 +3056,7 @@
           "__class__": "HdlValueInt",
           "base": 2,
           "bits": 1,
-          "val": "1"
+          "val": "0"
          }
         ]
        }
@@ -3129,7 +3123,6 @@
     "__class__": "HdlStmProcess",
     "body": {
      "__class__": "HdlStmCase",
-     "type": "CASE",
      "cases": [
       [
        {
@@ -3381,7 +3374,8 @@
         ]
        }
       ]
-     }
+     },
+     "type": "CASE"
     },
     "labels": [
      {

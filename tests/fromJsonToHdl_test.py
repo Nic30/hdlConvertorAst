@@ -59,8 +59,8 @@ class FromJsonToHdlTC(unittest.TestCase):
     FILE_SUFFIX = {
         ToVerilog2005: (".Verilog.json", ".v"),
         ToVhdl2008: (".Vhdl2008.json", ".vhd"),
-        ToHwt: (".hwt.json", ".hwt.py"),
-        ToBasicHdlSimModel: (".sim_model.json", ".sim_model.py"),
+        ToHwt: (".hwt.json", ".hwt.py.txt"),
+        ToBasicHdlSimModel: (".sim_model.json", ".sim_model.py.txt"),
         ToSystemc: (".systemc.json", ".cpp"),
     }
 

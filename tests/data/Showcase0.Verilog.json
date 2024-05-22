@@ -6,7 +6,7 @@
    "declaration_only": false,
    "doc": {
     "__class__": "str",
-    "val": "\n    Every HW component class has to be derived from Unit class\n\n    .. hwt-autodoc::\n    "
+    "val": "\n    Every HW component class has to be derived from :class:`hwt.hwModule.HwModule` class\n\n    .. hwt-autodoc::\n    "
    },
    "name": {
     "__class__": "str",
@@ -37,7 +37,10 @@
          0
         ]
        },
-       0
+       {
+        "__class__": "str",
+        "val": null
+       }
       ]
      }
     },
@@ -70,6 +73,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "c"
@@ -122,6 +126,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "cmp_0"
@@ -145,6 +150,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "cmp_1"
@@ -168,6 +174,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "cmp_2"
@@ -191,6 +198,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "cmp_3"
@@ -214,6 +222,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "cmp_4"
@@ -237,6 +246,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "cmp_5"
@@ -260,6 +270,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "contOut"
@@ -366,6 +377,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "fitted"
@@ -393,6 +405,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "g"
@@ -420,6 +433,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "h"
@@ -476,6 +490,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "j"
@@ -503,6 +518,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "k"
@@ -605,6 +621,7 @@
     {
      "__class__": "HdlIdDef",
      "direction": "OUT",
+     "is_latched": true,
      "name": {
       "__class__": "str",
       "val": "sc_signal"
@@ -658,7 +675,10 @@
         0
        ]
       },
-      0
+      {
+       "__class__": "str",
+       "val": null
+      }
      ]
     },
     "value": {
@@ -822,12 +842,6 @@
        "val": null
       }
      ]
-    },
-    "value": {
-     "__class__": "HdlValueInt",
-     "base": 2,
-     "bits": 1,
-     "val": "x"
     }
    },
    {
@@ -855,12 +869,6 @@
        "val": null
       }
      ]
-    },
-    "value": {
-     "__class__": "HdlValueInt",
-     "base": 2,
-     "bits": 2,
-     "val": "xx"
     }
    },
    {
@@ -888,12 +896,6 @@
        "val": null
       }
      ]
-    },
-    "value": {
-     "__class__": "HdlValueInt",
-     "base": 2,
-     "bits": 2,
-     "val": "xx"
     }
    },
    {
@@ -920,7 +922,10 @@
           0
          ]
         },
-        0
+        {
+         "__class__": "str",
+         "val": null
+        }
        ]
       },
       {
@@ -1840,7 +1845,6 @@
      "body": [
       {
        "__class__": "HdlStmCase",
-       "type": "CASE",
        "cases": [
         [
          {
@@ -1916,7 +1920,8 @@
         }
        },
        "labels": [],
-       "switch_on": "a"
+       "switch_on": "a",
+       "type": "CASE"
       }
      ],
      "join_t": "SEQ",

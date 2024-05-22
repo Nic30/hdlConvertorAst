@@ -4,9 +4,9 @@ import sys
 SIMMODEL_KEYWORDS = keyword.kwlist + [
     # BasicRtlSimModel properties
     'sim',
-    '_interfaces',
+    '_hwIOs',
     '_processes',
-    '_units',
+    '_subHwModules',
     '_outputs',
     '_init_body',
     '__debug__',

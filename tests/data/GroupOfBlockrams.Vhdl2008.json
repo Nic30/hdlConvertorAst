@@ -39,11 +39,11 @@
    "declaration_only": false,
    "doc": {
     "__class__": "str",
-    "val": "\n    True dual port RAM.\n    :note: write-first variant \n\n    .. hwt-autodoc::\n    "
+    "val": "\n    RAM where each port has an independet clock.\n    It can be configured to true dual port RAM etc.\n    It can also be configured to have write mask or to be composed from multiple smaller memories.\n\n    :note: write-first variant\n\n    .. hwt-autodoc::\n    "
    },
    "name": {
     "__class__": "str",
-    "val": "Ram_dp"
+    "val": "RamMultiClock"
    },
    "objs": [],
    "params": [
@@ -66,6 +66,52 @@
      },
      "type": "INTEGER",
      "value": 64
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": null,
+     "name": {
+      "__class__": "str",
+      "val": "HAS_BE"
+     },
+     "type": "BOOLEAN",
+     "value": "FALSE"
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": null,
+     "name": {
+      "__class__": "str",
+      "val": "INIT_DATA"
+     },
+     "type": "STRING",
+     "value": {
+      "__class__": "str",
+      "val": "None"
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": null,
+     "name": {
+      "__class__": "str",
+      "val": "MAX_BLOCK_DATA_WIDTH"
+     },
+     "type": "STRING",
+     "value": {
+      "__class__": "str",
+      "val": "None"
+     }
+    },
+    {
+     "__class__": "HdlIdDef",
+     "direction": null,
+     "name": {
+      "__class__": "str",
+      "val": "PORT_CNT"
+     },
+     "type": "INTEGER",
+     "value": 2
     }
    ],
    "ports": [
@@ -74,7 +120,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "a_addr"
+      "val": "port_0_addr"
      },
      "type": {
       "__class__": "HdlOp",
@@ -97,7 +143,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "a_clk"
+      "val": "port_0_clk"
      },
      "type": "STD_LOGIC"
     },
@@ -106,7 +152,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "a_din"
+      "val": "port_0_din"
      },
      "type": {
       "__class__": "HdlOp",
@@ -129,7 +175,7 @@
      "direction": "OUT",
      "name": {
       "__class__": "str",
-      "val": "a_dout"
+      "val": "port_0_dout"
      },
      "type": {
       "__class__": "HdlOp",
@@ -152,7 +198,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "a_en"
+      "val": "port_0_en"
      },
      "type": "STD_LOGIC"
     },
@@ -161,7 +207,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "a_we"
+      "val": "port_0_we"
      },
      "type": "STD_LOGIC"
     },
@@ -170,7 +216,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "b_addr"
+      "val": "port_1_addr"
      },
      "type": {
       "__class__": "HdlOp",
@@ -193,7 +239,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "b_clk"
+      "val": "port_1_clk"
      },
      "type": "STD_LOGIC"
     },
@@ -202,7 +248,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "b_din"
+      "val": "port_1_din"
      },
      "type": {
       "__class__": "HdlOp",
@@ -225,7 +271,7 @@
      "direction": "OUT",
      "name": {
       "__class__": "str",
-      "val": "b_dout"
+      "val": "port_1_dout"
      },
      "type": {
       "__class__": "HdlOp",
@@ -248,7 +294,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "b_en"
+      "val": "port_1_en"
      },
      "type": "STD_LOGIC"
     },
@@ -257,13 +303,13 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "b_we"
+      "val": "port_1_we"
      },
      "type": "STD_LOGIC"
     }
    ]
   },
-  "module_name": "Ram_dp",
+  "module_name": "RamMultiClock",
   "name": {
    "__class__": "str",
    "val": "rtl"
@@ -324,53 +370,95 @@
      "__class__": "HdlStmIf",
      "cond": {
       "__class__": "HdlOp",
-      "fn": "AND",
+      "fn": "RISING",
       "ops": [
-       {
-        "__class__": "HdlOp",
-        "fn": "RISING",
-        "ops": [
-         "a_clk"
-        ]
-       },
-       {
-        "__class__": "HdlOp",
-        "fn": "EQ",
-        "ops": [
-         "a_en",
-         {
-          "__class__": "HdlValueInt",
-          "base": 256,
-          "bits": 1,
-          "val": "1"
-         }
-        ]
-       }
+       "port_0_clk"
       ]
      },
      "elifs": [],
      "if_true": {
-      "__class__": "HdlStmBlock",
-      "body": [
-       {
-        "__class__": "HdlStmIf",
-        "cond": {
-         "__class__": "HdlOp",
-         "fn": "EQ",
-         "ops": [
-          "a_we",
-          {
-           "__class__": "HdlValueInt",
-           "base": 256,
-           "bits": 1,
-           "val": "1"
-          }
-         ]
+      "__class__": "HdlStmIf",
+      "cond": {
+       "__class__": "HdlOp",
+       "fn": "EQ",
+       "ops": [
+        "port_0_en",
+        {
+         "__class__": "HdlValueInt",
+         "base": 256,
+         "bits": 1,
+         "val": "1"
+        }
+       ]
+      },
+      "elifs": [],
+      "if_false": {
+       "__class__": "HdlStmAssign",
+       "dst": "port_0_dout",
+       "is_blocking": false,
+       "labels": [],
+       "src": {
+        "__class__": "HdlValueInt",
+        "base": 2,
+        "bits": 64,
+        "val": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+       }
+      },
+      "if_true": {
+       "__class__": "HdlStmBlock",
+       "body": [
+        {
+         "__class__": "HdlStmIf",
+         "cond": {
+          "__class__": "HdlOp",
+          "fn": "EQ",
+          "ops": [
+           "port_0_we",
+           {
+            "__class__": "HdlValueInt",
+            "base": 256,
+            "bits": 1,
+            "val": "1"
+           }
+          ]
+         },
+         "elifs": [],
+         "if_true": {
+          "__class__": "HdlStmAssign",
+          "dst": {
+           "__class__": "HdlOp",
+           "fn": "INDEX",
+           "ops": [
+            "ram_memory",
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              "TO_INTEGER",
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                "UNSIGNED",
+                "port_0_addr"
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          "is_blocking": false,
+          "labels": [],
+          "src": "port_0_din"
+         },
+         "labels": []
         },
-        "elifs": [],
-        "if_true": {
+        {
          "__class__": "HdlStmAssign",
-         "dst": {
+         "dst": "port_0_dout",
+         "is_blocking": false,
+         "labels": [],
+         "src": {
           "__class__": "HdlOp",
           "fn": "INDEX",
           "ops": [
@@ -385,49 +473,18 @@
               "fn": "CALL",
               "ops": [
                "UNSIGNED",
-               "a_addr"
+               "port_0_addr"
               ]
              }
             ]
            }
           ]
-         },
-         "is_blocking": false,
-         "labels": [],
-         "src": "a_din"
-        },
-        "labels": []
-       },
-       {
-        "__class__": "HdlStmAssign",
-        "dst": "a_dout",
-        "is_blocking": false,
-        "labels": [],
-        "src": {
-         "__class__": "HdlOp",
-         "fn": "INDEX",
-         "ops": [
-          "ram_memory",
-          {
-           "__class__": "HdlOp",
-           "fn": "CALL",
-           "ops": [
-            "TO_INTEGER",
-            {
-             "__class__": "HdlOp",
-             "fn": "CALL",
-             "ops": [
-              "UNSIGNED",
-              "a_addr"
-             ]
-            }
-           ]
-          }
-         ]
+         }
         }
-       }
-      ],
-      "join_t": "SEQ",
+       ],
+       "join_t": "SEQ",
+       "labels": []
+      },
       "labels": []
      },
      "labels": []
@@ -435,11 +492,11 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_a_dout"
+      "val": "assig_process_port_0_dout"
      }
     ],
     "sensitivity": [
-     "a_clk"
+     "port_0_clk"
     ]
    },
    {
@@ -448,53 +505,95 @@
      "__class__": "HdlStmIf",
      "cond": {
       "__class__": "HdlOp",
-      "fn": "AND",
+      "fn": "RISING",
       "ops": [
-       {
-        "__class__": "HdlOp",
-        "fn": "RISING",
-        "ops": [
-         "b_clk"
-        ]
-       },
-       {
-        "__class__": "HdlOp",
-        "fn": "EQ",
-        "ops": [
-         "b_en",
-         {
-          "__class__": "HdlValueInt",
-          "base": 256,
-          "bits": 1,
-          "val": "1"
-         }
-        ]
-       }
+       "port_1_clk"
       ]
      },
      "elifs": [],
      "if_true": {
-      "__class__": "HdlStmBlock",
-      "body": [
-       {
-        "__class__": "HdlStmIf",
-        "cond": {
-         "__class__": "HdlOp",
-         "fn": "EQ",
-         "ops": [
-          "b_we",
-          {
-           "__class__": "HdlValueInt",
-           "base": 256,
-           "bits": 1,
-           "val": "1"
-          }
-         ]
+      "__class__": "HdlStmIf",
+      "cond": {
+       "__class__": "HdlOp",
+       "fn": "EQ",
+       "ops": [
+        "port_1_en",
+        {
+         "__class__": "HdlValueInt",
+         "base": 256,
+         "bits": 1,
+         "val": "1"
+        }
+       ]
+      },
+      "elifs": [],
+      "if_false": {
+       "__class__": "HdlStmAssign",
+       "dst": "port_1_dout",
+       "is_blocking": false,
+       "labels": [],
+       "src": {
+        "__class__": "HdlValueInt",
+        "base": 2,
+        "bits": 64,
+        "val": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+       }
+      },
+      "if_true": {
+       "__class__": "HdlStmBlock",
+       "body": [
+        {
+         "__class__": "HdlStmIf",
+         "cond": {
+          "__class__": "HdlOp",
+          "fn": "EQ",
+          "ops": [
+           "port_1_we",
+           {
+            "__class__": "HdlValueInt",
+            "base": 256,
+            "bits": 1,
+            "val": "1"
+           }
+          ]
+         },
+         "elifs": [],
+         "if_true": {
+          "__class__": "HdlStmAssign",
+          "dst": {
+           "__class__": "HdlOp",
+           "fn": "INDEX",
+           "ops": [
+            "ram_memory",
+            {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              "TO_INTEGER",
+              {
+               "__class__": "HdlOp",
+               "fn": "CALL",
+               "ops": [
+                "UNSIGNED",
+                "port_1_addr"
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          "is_blocking": false,
+          "labels": [],
+          "src": "port_1_din"
+         },
+         "labels": []
         },
-        "elifs": [],
-        "if_true": {
+        {
          "__class__": "HdlStmAssign",
-         "dst": {
+         "dst": "port_1_dout",
+         "is_blocking": false,
+         "labels": [],
+         "src": {
           "__class__": "HdlOp",
           "fn": "INDEX",
           "ops": [
@@ -509,49 +608,18 @@
               "fn": "CALL",
               "ops": [
                "UNSIGNED",
-               "b_addr"
+               "port_1_addr"
               ]
              }
             ]
            }
           ]
-         },
-         "is_blocking": false,
-         "labels": [],
-         "src": "b_din"
-        },
-        "labels": []
-       },
-       {
-        "__class__": "HdlStmAssign",
-        "dst": "b_dout",
-        "is_blocking": false,
-        "labels": [],
-        "src": {
-         "__class__": "HdlOp",
-         "fn": "INDEX",
-         "ops": [
-          "ram_memory",
-          {
-           "__class__": "HdlOp",
-           "fn": "CALL",
-           "ops": [
-            "TO_INTEGER",
-            {
-             "__class__": "HdlOp",
-             "fn": "CALL",
-             "ops": [
-              "UNSIGNED",
-              "b_addr"
-             ]
-            }
-           ]
-          }
-         ]
+         }
         }
-       }
-      ],
-      "join_t": "SEQ",
+       ],
+       "join_t": "SEQ",
+       "labels": []
+      },
       "labels": []
      },
      "labels": []
@@ -559,11 +627,137 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_b_dout"
+      "val": "assig_process_port_1_dout"
      }
     ],
     "sensitivity": [
-     "b_clk"
+     "port_1_clk"
+    ]
+   },
+   {
+    "__class__": "HdlOp",
+    "fn": "CALL",
+    "ops": [
+     "assert",
+     {
+      "__class__": "HdlOp",
+      "fn": "EQ",
+      "ops": [
+       "ADDR_WIDTH",
+       8
+      ]
+     },
+     {
+      "__class__": "str",
+      "val": "Generated only for this value"
+     },
+     "failure"
+    ]
+   },
+   {
+    "__class__": "HdlOp",
+    "fn": "CALL",
+    "ops": [
+     "assert",
+     {
+      "__class__": "HdlOp",
+      "fn": "EQ",
+      "ops": [
+       "DATA_WIDTH",
+       64
+      ]
+     },
+     {
+      "__class__": "str",
+      "val": "Generated only for this value"
+     },
+     "failure"
+    ]
+   },
+   {
+    "__class__": "HdlOp",
+    "fn": "CALL",
+    "ops": [
+     "assert",
+     {
+      "__class__": "HdlOp",
+      "fn": "EQ",
+      "ops": [
+       "HAS_BE",
+       "FALSE"
+      ]
+     },
+     {
+      "__class__": "str",
+      "val": "Generated only for this value"
+     },
+     "failure"
+    ]
+   },
+   {
+    "__class__": "HdlOp",
+    "fn": "CALL",
+    "ops": [
+     "assert",
+     {
+      "__class__": "HdlOp",
+      "fn": "EQ",
+      "ops": [
+       "INIT_DATA",
+       {
+        "__class__": "str",
+        "val": "None"
+       }
+      ]
+     },
+     {
+      "__class__": "str",
+      "val": "Generated only for this value"
+     },
+     "failure"
+    ]
+   },
+   {
+    "__class__": "HdlOp",
+    "fn": "CALL",
+    "ops": [
+     "assert",
+     {
+      "__class__": "HdlOp",
+      "fn": "EQ",
+      "ops": [
+       "MAX_BLOCK_DATA_WIDTH",
+       {
+        "__class__": "str",
+        "val": "None"
+       }
+      ]
+     },
+     {
+      "__class__": "str",
+      "val": "Generated only for this value"
+     },
+     "failure"
+    ]
+   },
+   {
+    "__class__": "HdlOp",
+    "fn": "CALL",
+    "ops": [
+     "assert",
+     {
+      "__class__": "HdlOp",
+      "fn": "EQ",
+      "ops": [
+       "PORT_CNT",
+       2
+      ]
+     },
+     {
+      "__class__": "str",
+      "val": "Generated only for this value"
+     },
+     "failure"
     ]
    }
   ]
@@ -885,11 +1079,11 @@
     "declaration_only": false,
     "doc": {
      "__class__": "str",
-     "val": "\n    True dual port RAM.\n    :note: write-first variant \n\n    .. hwt-autodoc::\n    "
+     "val": "\n    RAM where each port has an independet clock.\n    It can be configured to true dual port RAM etc.\n    It can also be configured to have write mask or to be composed from multiple smaller memories.\n\n    :note: write-first variant\n\n    .. hwt-autodoc::\n    "
     },
     "name": {
      "__class__": "str",
-     "val": "Ram_dp"
+     "val": "RamMultiClock"
     },
     "objs": [],
     "params": [
@@ -912,6 +1106,52 @@
       },
       "type": "INTEGER",
       "value": 64
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": null,
+      "name": {
+       "__class__": "str",
+       "val": "HAS_BE"
+      },
+      "type": "BOOLEAN",
+      "value": "FALSE"
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": null,
+      "name": {
+       "__class__": "str",
+       "val": "INIT_DATA"
+      },
+      "type": "STRING",
+      "value": {
+       "__class__": "str",
+       "val": "None"
+      }
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": null,
+      "name": {
+       "__class__": "str",
+       "val": "MAX_BLOCK_DATA_WIDTH"
+      },
+      "type": "STRING",
+      "value": {
+       "__class__": "str",
+       "val": "None"
+      }
+     },
+     {
+      "__class__": "HdlIdDef",
+      "direction": null,
+      "name": {
+       "__class__": "str",
+       "val": "PORT_CNT"
+      },
+      "type": "INTEGER",
+      "value": 2
      }
     ],
     "ports": [
@@ -920,7 +1160,7 @@
       "direction": "IN",
       "name": {
        "__class__": "str",
-       "val": "a_addr"
+       "val": "port_0_addr"
       },
       "type": {
        "__class__": "HdlOp",
@@ -943,7 +1183,7 @@
       "direction": "IN",
       "name": {
        "__class__": "str",
-       "val": "a_clk"
+       "val": "port_0_clk"
       },
       "type": "STD_LOGIC"
      },
@@ -952,7 +1192,7 @@
       "direction": "IN",
       "name": {
        "__class__": "str",
-       "val": "a_din"
+       "val": "port_0_din"
       },
       "type": {
        "__class__": "HdlOp",
@@ -975,7 +1215,7 @@
       "direction": "OUT",
       "name": {
        "__class__": "str",
-       "val": "a_dout"
+       "val": "port_0_dout"
       },
       "type": {
        "__class__": "HdlOp",
@@ -998,7 +1238,7 @@
       "direction": "IN",
       "name": {
        "__class__": "str",
-       "val": "a_en"
+       "val": "port_0_en"
       },
       "type": "STD_LOGIC"
      },
@@ -1007,7 +1247,7 @@
       "direction": "IN",
       "name": {
        "__class__": "str",
-       "val": "a_we"
+       "val": "port_0_we"
       },
       "type": "STD_LOGIC"
      },
@@ -1016,7 +1256,7 @@
       "direction": "IN",
       "name": {
        "__class__": "str",
-       "val": "b_addr"
+       "val": "port_1_addr"
       },
       "type": {
        "__class__": "HdlOp",
@@ -1039,7 +1279,7 @@
       "direction": "IN",
       "name": {
        "__class__": "str",
-       "val": "b_clk"
+       "val": "port_1_clk"
       },
       "type": "STD_LOGIC"
      },
@@ -1048,7 +1288,7 @@
       "direction": "IN",
       "name": {
        "__class__": "str",
-       "val": "b_din"
+       "val": "port_1_din"
       },
       "type": {
        "__class__": "HdlOp",
@@ -1071,7 +1311,7 @@
       "direction": "OUT",
       "name": {
        "__class__": "str",
-       "val": "b_dout"
+       "val": "port_1_dout"
       },
       "type": {
        "__class__": "HdlOp",
@@ -1094,7 +1334,7 @@
       "direction": "IN",
       "name": {
        "__class__": "str",
-       "val": "b_en"
+       "val": "port_1_en"
       },
       "type": "STD_LOGIC"
      },
@@ -1103,7 +1343,7 @@
       "direction": "IN",
       "name": {
        "__class__": "str",
-       "val": "b_we"
+       "val": "port_1_we"
       },
       "type": "STD_LOGIC"
      }
@@ -1114,7 +1354,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_a_addr"
+     "val": "sig_bramR_port_0_addr"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1137,7 +1377,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_a_clk"
+     "val": "sig_bramR_port_0_clk"
     },
     "type": "STD_LOGIC"
    },
@@ -1146,7 +1386,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_a_din"
+     "val": "sig_bramR_port_0_din"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1169,7 +1409,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_a_dout"
+     "val": "sig_bramR_port_0_dout"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1192,7 +1432,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_a_en"
+     "val": "sig_bramR_port_0_en"
     },
     "type": "STD_LOGIC"
    },
@@ -1201,7 +1441,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_a_we"
+     "val": "sig_bramR_port_0_we"
     },
     "type": "STD_LOGIC"
    },
@@ -1210,7 +1450,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_b_addr"
+     "val": "sig_bramR_port_1_addr"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1233,7 +1473,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_b_clk"
+     "val": "sig_bramR_port_1_clk"
     },
     "type": "STD_LOGIC"
    },
@@ -1242,7 +1482,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_b_din"
+     "val": "sig_bramR_port_1_din"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1265,7 +1505,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_b_dout"
+     "val": "sig_bramR_port_1_dout"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1288,7 +1528,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_b_en"
+     "val": "sig_bramR_port_1_en"
     },
     "type": "STD_LOGIC"
    },
@@ -1297,7 +1537,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_b_we"
+     "val": "sig_bramR_port_1_we"
     },
     "type": "STD_LOGIC"
    },
@@ -1306,7 +1546,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_a_addr"
+     "val": "sig_bramW_port_0_addr"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1329,7 +1569,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_a_clk"
+     "val": "sig_bramW_port_0_clk"
     },
     "type": "STD_LOGIC"
    },
@@ -1338,7 +1578,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_a_din"
+     "val": "sig_bramW_port_0_din"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1361,7 +1601,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_a_dout"
+     "val": "sig_bramW_port_0_dout"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1384,7 +1624,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_a_en"
+     "val": "sig_bramW_port_0_en"
     },
     "type": "STD_LOGIC"
    },
@@ -1393,7 +1633,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_a_we"
+     "val": "sig_bramW_port_0_we"
     },
     "type": "STD_LOGIC"
    },
@@ -1402,7 +1642,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_b_addr"
+     "val": "sig_bramW_port_1_addr"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1425,7 +1665,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_b_clk"
+     "val": "sig_bramW_port_1_clk"
     },
     "type": "STD_LOGIC"
    },
@@ -1434,7 +1674,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_b_din"
+     "val": "sig_bramW_port_1_din"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1457,7 +1697,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_b_dout"
+     "val": "sig_bramW_port_1_dout"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1480,7 +1720,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_b_en"
+     "val": "sig_bramW_port_1_en"
     },
     "type": "STD_LOGIC"
    },
@@ -1489,13 +1729,13 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_b_we"
+     "val": "sig_bramW_port_1_we"
     },
     "type": "STD_LOGIC"
    },
    {
     "__class__": "HdlCompInst",
-    "module_name": "Ram_dp",
+    "module_name": "RamMultiClock",
     "name": "bramR_inst",
     "param_map": [
      {
@@ -1513,6 +1753,44 @@
        "DATA_WIDTH",
        64
       ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "HAS_BE",
+       "FALSE"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "INIT_DATA",
+       {
+        "__class__": "str",
+        "val": "None"
+       }
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "MAX_BLOCK_DATA_WIDTH",
+       {
+        "__class__": "str",
+        "val": "None"
+       }
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "PORT_CNT",
+       2
+      ]
      }
     ],
     "port_map": [
@@ -1520,103 +1798,103 @@
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_addr",
-       "sig_bramR_a_addr"
+       "port_0_addr",
+       "sig_bramR_port_0_addr"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_clk",
-       "sig_bramR_a_clk"
+       "port_0_clk",
+       "sig_bramR_port_0_clk"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_din",
-       "sig_bramR_a_din"
+       "port_0_din",
+       "sig_bramR_port_0_din"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_dout",
-       "sig_bramR_a_dout"
+       "port_0_dout",
+       "sig_bramR_port_0_dout"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_en",
-       "sig_bramR_a_en"
+       "port_0_en",
+       "sig_bramR_port_0_en"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_we",
-       "sig_bramR_a_we"
+       "port_0_we",
+       "sig_bramR_port_0_we"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_addr",
-       "sig_bramR_b_addr"
+       "port_1_addr",
+       "sig_bramR_port_1_addr"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_clk",
-       "sig_bramR_b_clk"
+       "port_1_clk",
+       "sig_bramR_port_1_clk"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_din",
-       "sig_bramR_b_din"
+       "port_1_din",
+       "sig_bramR_port_1_din"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_dout",
-       "sig_bramR_b_dout"
+       "port_1_dout",
+       "sig_bramR_port_1_dout"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_en",
-       "sig_bramR_b_en"
+       "port_1_en",
+       "sig_bramR_port_1_en"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_we",
-       "sig_bramR_b_we"
+       "port_1_we",
+       "sig_bramR_port_1_we"
       ]
      }
     ]
    },
    {
     "__class__": "HdlCompInst",
-    "module_name": "Ram_dp",
+    "module_name": "RamMultiClock",
     "name": "bramW_inst",
     "param_map": [
      {
@@ -1634,6 +1912,44 @@
        "DATA_WIDTH",
        64
       ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "HAS_BE",
+       "FALSE"
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "INIT_DATA",
+       {
+        "__class__": "str",
+        "val": "None"
+       }
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "MAX_BLOCK_DATA_WIDTH",
+       {
+        "__class__": "str",
+        "val": "None"
+       }
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "PORT_CNT",
+       2
+      ]
      }
     ],
     "port_map": [
@@ -1641,96 +1957,96 @@
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_addr",
-       "sig_bramW_a_addr"
+       "port_0_addr",
+       "sig_bramW_port_0_addr"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_clk",
-       "sig_bramW_a_clk"
+       "port_0_clk",
+       "sig_bramW_port_0_clk"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_din",
-       "sig_bramW_a_din"
+       "port_0_din",
+       "sig_bramW_port_0_din"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_dout",
-       "sig_bramW_a_dout"
+       "port_0_dout",
+       "sig_bramW_port_0_dout"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_en",
-       "sig_bramW_a_en"
+       "port_0_en",
+       "sig_bramW_port_0_en"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_we",
-       "sig_bramW_a_we"
+       "port_0_we",
+       "sig_bramW_port_0_we"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_addr",
-       "sig_bramW_b_addr"
+       "port_1_addr",
+       "sig_bramW_port_1_addr"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_clk",
-       "sig_bramW_b_clk"
+       "port_1_clk",
+       "sig_bramW_port_1_clk"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_din",
-       "sig_bramW_b_din"
+       "port_1_din",
+       "sig_bramW_port_1_din"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_dout",
-       "sig_bramW_b_dout"
+       "port_1_dout",
+       "sig_bramW_port_1_dout"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_en",
-       "sig_bramW_b_en"
+       "port_1_en",
+       "sig_bramW_port_1_en"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_we",
-       "sig_bramW_b_we"
+       "port_1_we",
+       "sig_bramW_port_1_we"
       ]
      }
     ]
@@ -1740,168 +2056,208 @@
     "dst": "out_r_a",
     "is_blocking": false,
     "labels": [],
-    "src": "sig_bramR_a_dout"
+    "src": "sig_bramR_port_0_dout"
    },
    {
     "__class__": "HdlStmAssign",
     "dst": "out_r_b",
     "is_blocking": false,
     "labels": [],
-    "src": "sig_bramR_b_dout"
+    "src": "sig_bramR_port_1_dout"
    },
    {
     "__class__": "HdlStmAssign",
     "dst": "out_w_a",
     "is_blocking": false,
     "labels": [],
-    "src": "sig_bramW_a_dout"
+    "src": "sig_bramW_port_0_dout"
    },
    {
     "__class__": "HdlStmAssign",
     "dst": "out_w_b",
     "is_blocking": false,
     "labels": [],
-    "src": "sig_bramW_b_dout"
+    "src": "sig_bramW_port_1_dout"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramR_a_addr",
+    "dst": "sig_bramR_port_0_addr",
     "is_blocking": false,
     "labels": [],
     "src": "addr"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramR_a_clk",
+    "dst": "sig_bramR_port_0_clk",
     "is_blocking": false,
     "labels": [],
     "src": "clk"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramR_a_din",
+    "dst": "sig_bramR_port_0_din",
     "is_blocking": false,
     "labels": [],
     "src": "in_r_a"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramR_a_en",
+    "dst": "sig_bramR_port_0_en",
     "is_blocking": false,
     "labels": [],
     "src": "en"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramR_a_we",
+    "dst": "sig_bramR_port_0_we",
     "is_blocking": false,
     "labels": [],
     "src": "we"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramR_b_addr",
+    "dst": "sig_bramR_port_1_addr",
     "is_blocking": false,
     "labels": [],
     "src": "addr"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramR_b_clk",
+    "dst": "sig_bramR_port_1_clk",
     "is_blocking": false,
     "labels": [],
     "src": "clk"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramR_b_din",
+    "dst": "sig_bramR_port_1_din",
     "is_blocking": false,
     "labels": [],
     "src": "in_r_b"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramR_b_en",
+    "dst": "sig_bramR_port_1_en",
     "is_blocking": false,
     "labels": [],
     "src": "en"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramR_b_we",
+    "dst": "sig_bramR_port_1_we",
     "is_blocking": false,
     "labels": [],
     "src": "we"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramW_a_addr",
+    "dst": "sig_bramW_port_0_addr",
     "is_blocking": false,
     "labels": [],
     "src": "addr"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramW_a_clk",
+    "dst": "sig_bramW_port_0_clk",
     "is_blocking": false,
     "labels": [],
     "src": "clk"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramW_a_din",
+    "dst": "sig_bramW_port_0_din",
     "is_blocking": false,
     "labels": [],
     "src": "in_w_a"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramW_a_en",
+    "dst": "sig_bramW_port_0_en",
     "is_blocking": false,
     "labels": [],
     "src": "en"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramW_a_we",
+    "dst": "sig_bramW_port_0_we",
     "is_blocking": false,
     "labels": [],
     "src": "we"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramW_b_addr",
+    "dst": "sig_bramW_port_1_addr",
     "is_blocking": false,
     "labels": [],
     "src": "addr"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramW_b_clk",
+    "dst": "sig_bramW_port_1_clk",
     "is_blocking": false,
     "labels": [],
     "src": "clk"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramW_b_din",
+    "dst": "sig_bramW_port_1_din",
     "is_blocking": false,
     "labels": [],
     "src": "in_w_b"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramW_b_en",
+    "dst": "sig_bramW_port_1_en",
     "is_blocking": false,
     "labels": [],
     "src": "en"
    },
    {
     "__class__": "HdlStmAssign",
-    "dst": "sig_bramW_b_we",
+    "dst": "sig_bramW_port_1_we",
     "is_blocking": false,
     "labels": [],
     "src": "we"
+   },
+   {
+    "__class__": "HdlOp",
+    "fn": "CALL",
+    "ops": [
+     "assert",
+     {
+      "__class__": "HdlOp",
+      "fn": "EQ",
+      "ops": [
+       "ADDR_WIDTH",
+       8
+      ]
+     },
+     {
+      "__class__": "str",
+      "val": "Generated only for this value"
+     },
+     "failure"
+    ]
+   },
+   {
+    "__class__": "HdlOp",
+    "fn": "CALL",
+    "ops": [
+     "assert",
+     {
+      "__class__": "HdlOp",
+      "fn": "EQ",
+      "ops": [
+       "DATA_WIDTH",
+       64
+      ]
+     },
+     {
+      "__class__": "str",
+      "val": "Generated only for this value"
+     },
+     "failure"
+    ]
    }
   ]
  }

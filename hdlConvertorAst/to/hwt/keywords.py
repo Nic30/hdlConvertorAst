@@ -5,9 +5,9 @@ import sys
 HWT_KEYWORDS = keyword.kwlist + [
     '__debug__',
     # imports
-    'hwt', 'Unit', "Param", "Signal",
+    'hwt', 'HwModule', "HwParam", "HwIOSignal",
     "Concat", "If", "Switch",
-    "HArray", "Bits", "INT", "SLICE", "STR", "BIT", "FLOAT64",
+    "HArray", "HBits", "INT", "SLICE", "STR", "BIT", "FLOAT64",
     "HEnum", "_", "rename_signal",
 ]
 

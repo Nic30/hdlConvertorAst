@@ -6,7 +6,7 @@
    "declaration_only": false,
    "doc": {
     "__class__": "str",
-    "val": "\n    Every HW component class has to be derived from Unit class\n\n    .. hwt-autodoc::\n    "
+    "val": "\n    Every HW component class has to be derived from :class:`hwt.hwModule.HwModule` class\n\n    .. hwt-autodoc::\n    "
    },
    "name": {
     "__class__": "str",
@@ -1783,7 +1783,7 @@
              "cast_sign"
             ]
            },
-           "True"
+           "False"
           ]
          }
         ]
@@ -2557,7 +2557,7 @@
                   "cast_sign"
                  ]
                 },
-                "False"
+                "True"
                ]
               },
               {
@@ -2700,7 +2700,7 @@
                     "cast_sign"
                    ]
                   },
-                  "True"
+                  "False"
                  ]
                 }
                ]
@@ -4955,7 +4955,7 @@
             "ops": [
              {
               "__class__": "HdlOp",
-              "fn": "NEG",
+              "fn": "DOT",
               "ops": [
                {
                 "__class__": "HdlOp",
@@ -4965,20 +4965,14 @@
                   "__class__": "HdlOp",
                   "fn": "DOT",
                   "ops": [
-                   {
-                    "__class__": "HdlOp",
-                    "fn": "DOT",
-                    "ops": [
-                     "self",
-                     "io"
-                    ]
-                   },
-                   "r"
+                   "self",
+                   "io"
                   ]
                  },
-                 "val"
+                 "r"
                 ]
-               }
+               },
+               "val"
               ]
              },
              "_eq"
@@ -4989,7 +4983,7 @@
             "fn": "DOT",
             "ops": [
              "self",
-             "const_1_1"
+             "const_0_5"
             ]
            }
           ]

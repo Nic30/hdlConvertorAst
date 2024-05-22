@@ -8,7 +8,7 @@ from hwtSimApi.basic_hdl_simulator.proxy import BasicRtlSimProxy
 from hwtSimApi.basic_hdl_simulator.sim_utils import sim_eval_cond
 
 #
-#    Every HW component class has to be derived from Unit class
+#    Every HW component class has to be derived from :class:`hwt.hwModule.HwModule` class
 #
 #    .. hwt-autodoc::
 #    
@@ -145,7 +145,7 @@ class Showcase0(BasicRtlSimModel):
         self.const_4_2 = Bits3val(Bits3t(8, 0), 4, 255)
         # component instances
     def _init_body(self):
-        self._interfaces = (
+        self._hwIOs = (
             self.io.a,
             self.io.b,
             self.io.c,
@@ -201,7 +201,7 @@ class Showcase0(BasicRtlSimModel):
             self.assig_process_r_next_1,
             self.assig_process_sc_signal,
         )
-        self._units = ()
+        self._subHwModules = ()
         sensitivity(self.assig_process_c, self.io.a, self.io.b)
         self._outputs[self.assig_process_c] = (
             self.io.c,
@@ -289,12 +289,12 @@ class Showcase0(BasicRtlSimModel):
         self._outputs[self.assig_process_sc_signal] = (
             self.io.sc_signal,
         )
-        for u in self._units:
+        for u in self._subHwModules:
             u._init_body()
 
     # sensitivity: a, b
     def assig_process_c(self):
-        self.io.c.val_next = (self.io.a.val + self.io.b.val.cast_sign(True), 0, )
+        self.io.c.val_next = (self.io.a.val + self.io.b.val.cast_sign(False), 0, )
 
     # sensitivity: a
     def assig_process_cmp_0(self):
@@ -335,8 +335,8 @@ class Showcase0(BasicRtlSimModel):
             self.io.fallingEdgeRam.val_next = (self.const_0, 1, )
             self.io.k.val_next = (self.const_0_0, 1, )
         elif c:
-            self.io.fallingEdgeRam.val_next = (self.io.a.val[self.const_1].cast_sign(False), (self.io.r_1.val, ), 1, )
-            self.io.k.val_next = (self.const_0_1._concat(self.io.fallingEdgeRam.val[self.io.r_1.val].cast_sign(True)), 1, )
+            self.io.fallingEdgeRam.val_next = (self.io.a.val[self.const_1].cast_sign(True), (self.io.r_1.val, ), 1, )
+            self.io.k.val_next = (self.const_0_1._concat(self.io.fallingEdgeRam.val[self.io.r_1.val].cast_sign(False)), 1, )
         else:
             pass
 
@@ -422,7 +422,7 @@ class Showcase0(BasicRtlSimModel):
 
     # sensitivity: e, r
     def assig_process_r_next_1(self):
-        (c, cVld, ) = sim_eval_cond((~self.io.r.val)._eq(self.const_1_1))
+        (c, cVld, ) = sim_eval_cond(self.io.r.val._eq(self.const_0_5))
         if not cVld:
             self.io.r_next.val_next = (self.const_0_6, 0, )
         elif c:

@@ -6,11 +6,11 @@
    "declaration_only": false,
    "doc": {
     "__class__": "str",
-    "val": "\n    True dual port RAM.\n    :note: write-first variant \n\n    .. hwt-autodoc::\n    "
+    "val": "\n    RAM where each port has an independet clock.\n    It can be configured to true dual port RAM etc.\n    It can also be configured to have write mask or to be composed from multiple smaller memories.\n\n    :note: write-first variant\n\n    .. hwt-autodoc::\n    "
    },
    "name": {
     "__class__": "str",
-    "val": "Ram_dp"
+    "val": "RamMultiClock"
    },
    "objs": [],
    "params": [],
@@ -20,7 +20,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "a_addr"
+      "val": "port_0_addr"
      },
      "type": {
       "__class__": "HdlOp",
@@ -37,7 +37,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "a_clk"
+      "val": "port_0_clk"
      },
      "type": {
       "__class__": "HdlOp",
@@ -54,7 +54,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "a_din"
+      "val": "port_0_din"
      },
      "type": {
       "__class__": "HdlOp",
@@ -71,7 +71,7 @@
      "direction": "OUT",
      "name": {
       "__class__": "str",
-      "val": "a_dout"
+      "val": "port_0_dout"
      },
      "type": {
       "__class__": "HdlOp",
@@ -88,7 +88,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "a_en"
+      "val": "port_0_en"
      },
      "type": {
       "__class__": "HdlOp",
@@ -105,7 +105,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "a_we"
+      "val": "port_0_we"
      },
      "type": {
       "__class__": "HdlOp",
@@ -122,7 +122,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "b_addr"
+      "val": "port_1_addr"
      },
      "type": {
       "__class__": "HdlOp",
@@ -139,7 +139,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "b_clk"
+      "val": "port_1_clk"
      },
      "type": {
       "__class__": "HdlOp",
@@ -156,7 +156,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "b_din"
+      "val": "port_1_din"
      },
      "type": {
       "__class__": "HdlOp",
@@ -173,7 +173,7 @@
      "direction": "OUT",
      "name": {
       "__class__": "str",
-      "val": "b_dout"
+      "val": "port_1_dout"
      },
      "type": {
       "__class__": "HdlOp",
@@ -190,7 +190,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "b_en"
+      "val": "port_1_en"
      },
      "type": {
       "__class__": "HdlOp",
@@ -207,7 +207,7 @@
      "direction": "IN",
      "name": {
       "__class__": "str",
-      "val": "b_we"
+      "val": "port_1_we"
      },
      "type": {
       "__class__": "HdlOp",
@@ -221,7 +221,7 @@
     }
    ]
   },
-  "module_name": "Ram_dp",
+  "module_name": "RamMultiClock",
   "name": {
    "__class__": "str",
    "val": "rtl"
@@ -405,11 +405,11 @@
          "sim_eval_cond",
          {
           "__class__": "HdlOp",
-          "fn": "AND",
+          "fn": "CALL",
           "ops": [
            {
             "__class__": "HdlOp",
-            "fn": "CALL",
+            "fn": "DOT",
             "ops": [
              {
               "__class__": "HdlOp",
@@ -419,63 +419,14 @@
                 "__class__": "HdlOp",
                 "fn": "DOT",
                 "ops": [
-                 {
-                  "__class__": "HdlOp",
-                  "fn": "DOT",
-                  "ops": [
-                   "self",
-                   "io"
-                  ]
-                 },
-                 "a_clk"
+                 "self",
+                 "io"
                 ]
                },
-               "_onRisingEdge"
-              ]
-             }
-            ]
-           },
-           {
-            "__class__": "HdlOp",
-            "fn": "CALL",
-            "ops": [
-             {
-              "__class__": "HdlOp",
-              "fn": "DOT",
-              "ops": [
-               {
-                "__class__": "HdlOp",
-                "fn": "DOT",
-                "ops": [
-                 {
-                  "__class__": "HdlOp",
-                  "fn": "DOT",
-                  "ops": [
-                   {
-                    "__class__": "HdlOp",
-                    "fn": "DOT",
-                    "ops": [
-                     "self",
-                     "io"
-                    ]
-                   },
-                   "a_en"
-                  ]
-                 },
-                 "val"
-                ]
-               },
-               "_eq"
+               "port_0_clk"
               ]
              },
-             {
-              "__class__": "HdlOp",
-              "fn": "DOT",
-              "ops": [
-               "self",
-               "const_1_0"
-              ]
-             }
+             "_onRisingEdge"
             ]
            }
           ]
@@ -499,33 +450,246 @@
           "__class__": "HdlStmBlock",
           "body": [
            {
-            "__class__": "HdlStmBlock",
-            "body": [
-             {
-              "__class__": "HdlStmAssign",
-              "dst": {
-               "__class__": "tuple",
-               "items": [
-                "c",
-                "cVld"
-               ]
-              },
-              "is_blocking": true,
-              "labels": [],
-              "src": {
+            "__class__": "HdlStmAssign",
+            "dst": {
+             "__class__": "tuple",
+             "items": [
+              "c",
+              "cVld"
+             ]
+            },
+            "is_blocking": true,
+            "labels": [],
+            "src": {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              "sim_eval_cond",
+              {
                "__class__": "HdlOp",
                "fn": "CALL",
                "ops": [
-                "sim_eval_cond",
                 {
                  "__class__": "HdlOp",
-                 "fn": "CALL",
+                 "fn": "DOT",
                  "ops": [
                   {
                    "__class__": "HdlOp",
                    "fn": "DOT",
                    "ops": [
                     {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      {
+                       "__class__": "HdlOp",
+                       "fn": "DOT",
+                       "ops": [
+                        "self",
+                        "io"
+                       ]
+                      },
+                      "port_0_en"
+                     ]
+                    },
+                    "val"
+                   ]
+                  },
+                  "_eq"
+                 ]
+                },
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  "self",
+                  "const_1_0"
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           },
+           {
+            "__class__": "HdlStmIf",
+            "cond": {
+             "__class__": "HdlOp",
+             "fn": "NEG_LOG",
+             "ops": [
+              "cVld"
+             ]
+            },
+            "elifs": [
+             [
+              "c",
+              {
+               "__class__": "HdlStmBlock",
+               "body": [
+                {
+                 "__class__": "HdlStmBlock",
+                 "body": [
+                  {
+                   "__class__": "HdlStmAssign",
+                   "dst": {
+                    "__class__": "tuple",
+                    "items": [
+                     "c",
+                     "cVld"
+                    ]
+                   },
+                   "is_blocking": true,
+                   "labels": [],
+                   "src": {
+                    "__class__": "HdlOp",
+                    "fn": "CALL",
+                    "ops": [
+                     "sim_eval_cond",
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "CALL",
+                      "ops": [
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         {
+                          "__class__": "HdlOp",
+                          "fn": "DOT",
+                          "ops": [
+                           {
+                            "__class__": "HdlOp",
+                            "fn": "DOT",
+                            "ops": [
+                             {
+                              "__class__": "HdlOp",
+                              "fn": "DOT",
+                              "ops": [
+                               "self",
+                               "io"
+                              ]
+                             },
+                             "port_0_we"
+                            ]
+                           },
+                           "val"
+                          ]
+                         },
+                         "_eq"
+                        ]
+                       },
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         "self",
+                         "const_1_0"
+                        ]
+                       }
+                      ]
+                     }
+                    ]
+                   }
+                  },
+                  {
+                   "__class__": "HdlStmIf",
+                   "cond": {
+                    "__class__": "HdlOp",
+                    "fn": "NEG_LOG",
+                    "ops": [
+                     "cVld"
+                    ]
+                   },
+                   "elifs": [
+                    [
+                     "c",
+                     {
+                      "__class__": "HdlStmAssign",
+                      "dst": {
+                       "__class__": "HdlOp",
+                       "fn": "DOT",
+                       "ops": [
+                        {
+                         "__class__": "HdlOp",
+                         "fn": "DOT",
+                         "ops": [
+                          {
+                           "__class__": "HdlOp",
+                           "fn": "DOT",
+                           "ops": [
+                            "self",
+                            "io"
+                           ]
+                          },
+                          "ram_memory"
+                         ]
+                        },
+                        "val_next"
+                       ]
+                      },
+                      "is_blocking": false,
+                      "labels": [],
+                      "src": {
+                       "__class__": "tuple",
+                       "items": [
+                        {
+                         "__class__": "HdlOp",
+                         "fn": "DOT",
+                         "ops": [
+                          {
+                           "__class__": "HdlOp",
+                           "fn": "DOT",
+                           "ops": [
+                            {
+                             "__class__": "HdlOp",
+                             "fn": "DOT",
+                             "ops": [
+                              "self",
+                              "io"
+                             ]
+                            },
+                            "port_0_din"
+                           ]
+                          },
+                          "val"
+                         ]
+                        },
+                        {
+                         "__class__": "list",
+                         "items": [
+                          {
+                           "__class__": "HdlOp",
+                           "fn": "DOT",
+                           "ops": [
+                            {
+                             "__class__": "HdlOp",
+                             "fn": "DOT",
+                             "ops": [
+                              {
+                               "__class__": "HdlOp",
+                               "fn": "DOT",
+                               "ops": [
+                                "self",
+                                "io"
+                               ]
+                              },
+                              "port_0_addr"
+                             ]
+                            },
+                            "val"
+                           ]
+                          }
+                         ]
+                        },
+                        1
+                       ]
+                      }
+                     }
+                    ]
+                   ],
+                   "if_true": {
+                    "__class__": "HdlStmAssign",
+                    "dst": {
                      "__class__": "HdlOp",
                      "fn": "DOT",
                      "ops": [
@@ -541,40 +705,35 @@
                           "io"
                          ]
                         },
-                        "a_we"
+                        "ram_memory"
                        ]
                       },
-                      "val"
+                      "val_next"
                      ]
                     },
-                    "_eq"
-                   ]
-                  },
-                  {
-                   "__class__": "HdlOp",
-                   "fn": "DOT",
-                   "ops": [
-                    "self",
-                    "const_1_0"
-                   ]
+                    "is_blocking": false,
+                    "labels": [],
+                    "src": {
+                     "__class__": "tuple",
+                     "items": [
+                      {
+                       "__class__": "HdlOp",
+                       "fn": "DOT",
+                       "ops": [
+                        "self",
+                        "const_0"
+                       ]
+                      },
+                      1
+                     ]
+                    }
+                   },
+                   "labels": []
                   }
-                 ]
-                }
-               ]
-              }
-             },
-             {
-              "__class__": "HdlStmIf",
-              "cond": {
-               "__class__": "HdlOp",
-               "fn": "NEG_LOG",
-               "ops": [
-                "cVld"
-               ]
-              },
-              "elifs": [
-               [
-                "c",
+                 ],
+                 "join_t": "SEQ",
+                 "labels": []
+                },
                 {
                  "__class__": "HdlStmAssign",
                  "dst": {
@@ -593,7 +752,7 @@
                        "io"
                       ]
                      },
-                     "ram_memory"
+                     "port_0_dout"
                     ]
                    },
                    "val_next"
@@ -606,29 +765,8 @@
                   "items": [
                    {
                     "__class__": "HdlOp",
-                    "fn": "DOT",
+                    "fn": "INDEX",
                     "ops": [
-                     {
-                      "__class__": "HdlOp",
-                      "fn": "DOT",
-                      "ops": [
-                       {
-                        "__class__": "HdlOp",
-                        "fn": "DOT",
-                        "ops": [
-                         "self",
-                         "io"
-                        ]
-                       },
-                       "a_din"
-                      ]
-                     },
-                     "val"
-                    ]
-                   },
-                   {
-                    "__class__": "list",
-                    "items": [
                      {
                       "__class__": "HdlOp",
                       "fn": "DOT",
@@ -645,7 +783,29 @@
                            "io"
                           ]
                          },
-                         "a_addr"
+                         "ram_memory"
+                        ]
+                       },
+                       "val"
+                      ]
+                     },
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         {
+                          "__class__": "HdlOp",
+                          "fn": "DOT",
+                          "ops": [
+                           "self",
+                           "io"
+                          ]
+                         },
+                         "port_0_addr"
                         ]
                        },
                        "val"
@@ -657,9 +817,57 @@
                   ]
                  }
                 }
-               ]
-              ],
-              "if_true": {
+               ],
+               "join_t": "SEQ",
+               "labels": []
+              }
+             ]
+            ],
+            "if_false": {
+             "__class__": "HdlStmAssign",
+             "dst": {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "io"
+                  ]
+                 },
+                 "port_0_dout"
+                ]
+               },
+               "val_next"
+              ]
+             },
+             "is_blocking": false,
+             "labels": [],
+             "src": {
+              "__class__": "tuple",
+              "items": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 "self",
+                 "const_0_0"
+                ]
+               },
+               1
+              ]
+             }
+            },
+            "if_true": {
+             "__class__": "HdlStmBlock",
+             "body": [
+              {
                "__class__": "HdlStmAssign",
                "dst": {
                 "__class__": "HdlOp",
@@ -700,94 +908,52 @@
                 ]
                }
               },
-              "labels": []
-             }
-            ],
-            "join_t": "SEQ",
-            "labels": []
-           },
-           {
-            "__class__": "HdlStmAssign",
-            "dst": {
-             "__class__": "HdlOp",
-             "fn": "DOT",
-             "ops": [
               {
-               "__class__": "HdlOp",
-               "fn": "DOT",
-               "ops": [
-                {
-                 "__class__": "HdlOp",
-                 "fn": "DOT",
-                 "ops": [
-                  "self",
-                  "io"
-                 ]
-                },
-                "a_dout"
-               ]
-              },
-              "val_next"
-             ]
+               "__class__": "HdlStmAssign",
+               "dst": {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "io"
+                    ]
+                   },
+                   "port_0_dout"
+                  ]
+                 },
+                 "val_next"
+                ]
+               },
+               "is_blocking": false,
+               "labels": [],
+               "src": {
+                "__class__": "tuple",
+                "items": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "const_0_0"
+                  ]
+                 },
+                 1
+                ]
+               }
+              }
+             ],
+             "join_t": "SEQ",
+             "labels": []
             },
-            "is_blocking": false,
-            "labels": [],
-            "src": {
-             "__class__": "tuple",
-             "items": [
-              {
-               "__class__": "HdlOp",
-               "fn": "INDEX",
-               "ops": [
-                {
-                 "__class__": "HdlOp",
-                 "fn": "DOT",
-                 "ops": [
-                  {
-                   "__class__": "HdlOp",
-                   "fn": "DOT",
-                   "ops": [
-                    {
-                     "__class__": "HdlOp",
-                     "fn": "DOT",
-                     "ops": [
-                      "self",
-                      "io"
-                     ]
-                    },
-                    "ram_memory"
-                   ]
-                  },
-                  "val"
-                 ]
-                },
-                {
-                 "__class__": "HdlOp",
-                 "fn": "DOT",
-                 "ops": [
-                  {
-                   "__class__": "HdlOp",
-                   "fn": "DOT",
-                   "ops": [
-                    {
-                     "__class__": "HdlOp",
-                     "fn": "DOT",
-                     "ops": [
-                      "self",
-                      "io"
-                     ]
-                    },
-                    "a_addr"
-                   ]
-                  },
-                  "val"
-                 ]
-                }
-               ]
-              },
-              1
-             ]
-            }
+            "labels": []
            }
           ],
           "join_t": "SEQ",
@@ -857,7 +1023,7 @@
                 "io"
                ]
               },
-              "a_dout"
+              "port_0_dout"
              ]
             },
             "val_next"
@@ -893,7 +1059,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_a_dout"
+      "val": "assig_process_port_0_dout"
      }
     ],
     "sensitivity": [
@@ -901,7 +1067,7 @@
       "__class__": "HdlOp",
       "fn": "RISING",
       "ops": [
-       "a_clk"
+       "port_0_clk"
       ]
      }
     ]
@@ -929,11 +1095,11 @@
          "sim_eval_cond",
          {
           "__class__": "HdlOp",
-          "fn": "AND",
+          "fn": "CALL",
           "ops": [
            {
             "__class__": "HdlOp",
-            "fn": "CALL",
+            "fn": "DOT",
             "ops": [
              {
               "__class__": "HdlOp",
@@ -943,63 +1109,14 @@
                 "__class__": "HdlOp",
                 "fn": "DOT",
                 "ops": [
-                 {
-                  "__class__": "HdlOp",
-                  "fn": "DOT",
-                  "ops": [
-                   "self",
-                   "io"
-                  ]
-                 },
-                 "b_clk"
+                 "self",
+                 "io"
                 ]
                },
-               "_onRisingEdge"
-              ]
-             }
-            ]
-           },
-           {
-            "__class__": "HdlOp",
-            "fn": "CALL",
-            "ops": [
-             {
-              "__class__": "HdlOp",
-              "fn": "DOT",
-              "ops": [
-               {
-                "__class__": "HdlOp",
-                "fn": "DOT",
-                "ops": [
-                 {
-                  "__class__": "HdlOp",
-                  "fn": "DOT",
-                  "ops": [
-                   {
-                    "__class__": "HdlOp",
-                    "fn": "DOT",
-                    "ops": [
-                     "self",
-                     "io"
-                    ]
-                   },
-                   "b_en"
-                  ]
-                 },
-                 "val"
-                ]
-               },
-               "_eq"
+               "port_1_clk"
               ]
              },
-             {
-              "__class__": "HdlOp",
-              "fn": "DOT",
-              "ops": [
-               "self",
-               "const_1_0"
-              ]
-             }
+             "_onRisingEdge"
             ]
            }
           ]
@@ -1023,33 +1140,246 @@
           "__class__": "HdlStmBlock",
           "body": [
            {
-            "__class__": "HdlStmBlock",
-            "body": [
-             {
-              "__class__": "HdlStmAssign",
-              "dst": {
-               "__class__": "tuple",
-               "items": [
-                "c",
-                "cVld"
-               ]
-              },
-              "is_blocking": true,
-              "labels": [],
-              "src": {
+            "__class__": "HdlStmAssign",
+            "dst": {
+             "__class__": "tuple",
+             "items": [
+              "c",
+              "cVld"
+             ]
+            },
+            "is_blocking": true,
+            "labels": [],
+            "src": {
+             "__class__": "HdlOp",
+             "fn": "CALL",
+             "ops": [
+              "sim_eval_cond",
+              {
                "__class__": "HdlOp",
                "fn": "CALL",
                "ops": [
-                "sim_eval_cond",
                 {
                  "__class__": "HdlOp",
-                 "fn": "CALL",
+                 "fn": "DOT",
                  "ops": [
                   {
                    "__class__": "HdlOp",
                    "fn": "DOT",
                    "ops": [
                     {
+                     "__class__": "HdlOp",
+                     "fn": "DOT",
+                     "ops": [
+                      {
+                       "__class__": "HdlOp",
+                       "fn": "DOT",
+                       "ops": [
+                        "self",
+                        "io"
+                       ]
+                      },
+                      "port_1_en"
+                     ]
+                    },
+                    "val"
+                   ]
+                  },
+                  "_eq"
+                 ]
+                },
+                {
+                 "__class__": "HdlOp",
+                 "fn": "DOT",
+                 "ops": [
+                  "self",
+                  "const_1_0"
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           },
+           {
+            "__class__": "HdlStmIf",
+            "cond": {
+             "__class__": "HdlOp",
+             "fn": "NEG_LOG",
+             "ops": [
+              "cVld"
+             ]
+            },
+            "elifs": [
+             [
+              "c",
+              {
+               "__class__": "HdlStmBlock",
+               "body": [
+                {
+                 "__class__": "HdlStmBlock",
+                 "body": [
+                  {
+                   "__class__": "HdlStmAssign",
+                   "dst": {
+                    "__class__": "tuple",
+                    "items": [
+                     "c",
+                     "cVld"
+                    ]
+                   },
+                   "is_blocking": true,
+                   "labels": [],
+                   "src": {
+                    "__class__": "HdlOp",
+                    "fn": "CALL",
+                    "ops": [
+                     "sim_eval_cond",
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "CALL",
+                      "ops": [
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         {
+                          "__class__": "HdlOp",
+                          "fn": "DOT",
+                          "ops": [
+                           {
+                            "__class__": "HdlOp",
+                            "fn": "DOT",
+                            "ops": [
+                             {
+                              "__class__": "HdlOp",
+                              "fn": "DOT",
+                              "ops": [
+                               "self",
+                               "io"
+                              ]
+                             },
+                             "port_1_we"
+                            ]
+                           },
+                           "val"
+                          ]
+                         },
+                         "_eq"
+                        ]
+                       },
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         "self",
+                         "const_1_0"
+                        ]
+                       }
+                      ]
+                     }
+                    ]
+                   }
+                  },
+                  {
+                   "__class__": "HdlStmIf",
+                   "cond": {
+                    "__class__": "HdlOp",
+                    "fn": "NEG_LOG",
+                    "ops": [
+                     "cVld"
+                    ]
+                   },
+                   "elifs": [
+                    [
+                     "c",
+                     {
+                      "__class__": "HdlStmAssign",
+                      "dst": {
+                       "__class__": "HdlOp",
+                       "fn": "DOT",
+                       "ops": [
+                        {
+                         "__class__": "HdlOp",
+                         "fn": "DOT",
+                         "ops": [
+                          {
+                           "__class__": "HdlOp",
+                           "fn": "DOT",
+                           "ops": [
+                            "self",
+                            "io"
+                           ]
+                          },
+                          "ram_memory"
+                         ]
+                        },
+                        "val_next"
+                       ]
+                      },
+                      "is_blocking": false,
+                      "labels": [],
+                      "src": {
+                       "__class__": "tuple",
+                       "items": [
+                        {
+                         "__class__": "HdlOp",
+                         "fn": "DOT",
+                         "ops": [
+                          {
+                           "__class__": "HdlOp",
+                           "fn": "DOT",
+                           "ops": [
+                            {
+                             "__class__": "HdlOp",
+                             "fn": "DOT",
+                             "ops": [
+                              "self",
+                              "io"
+                             ]
+                            },
+                            "port_1_din"
+                           ]
+                          },
+                          "val"
+                         ]
+                        },
+                        {
+                         "__class__": "list",
+                         "items": [
+                          {
+                           "__class__": "HdlOp",
+                           "fn": "DOT",
+                           "ops": [
+                            {
+                             "__class__": "HdlOp",
+                             "fn": "DOT",
+                             "ops": [
+                              {
+                               "__class__": "HdlOp",
+                               "fn": "DOT",
+                               "ops": [
+                                "self",
+                                "io"
+                               ]
+                              },
+                              "port_1_addr"
+                             ]
+                            },
+                            "val"
+                           ]
+                          }
+                         ]
+                        },
+                        1
+                       ]
+                      }
+                     }
+                    ]
+                   ],
+                   "if_true": {
+                    "__class__": "HdlStmAssign",
+                    "dst": {
                      "__class__": "HdlOp",
                      "fn": "DOT",
                      "ops": [
@@ -1065,40 +1395,35 @@
                           "io"
                          ]
                         },
-                        "b_we"
+                        "ram_memory"
                        ]
                       },
-                      "val"
+                      "val_next"
                      ]
                     },
-                    "_eq"
-                   ]
-                  },
-                  {
-                   "__class__": "HdlOp",
-                   "fn": "DOT",
-                   "ops": [
-                    "self",
-                    "const_1_0"
-                   ]
+                    "is_blocking": false,
+                    "labels": [],
+                    "src": {
+                     "__class__": "tuple",
+                     "items": [
+                      {
+                       "__class__": "HdlOp",
+                       "fn": "DOT",
+                       "ops": [
+                        "self",
+                        "const_0"
+                       ]
+                      },
+                      1
+                     ]
+                    }
+                   },
+                   "labels": []
                   }
-                 ]
-                }
-               ]
-              }
-             },
-             {
-              "__class__": "HdlStmIf",
-              "cond": {
-               "__class__": "HdlOp",
-               "fn": "NEG_LOG",
-               "ops": [
-                "cVld"
-               ]
-              },
-              "elifs": [
-               [
-                "c",
+                 ],
+                 "join_t": "SEQ",
+                 "labels": []
+                },
                 {
                  "__class__": "HdlStmAssign",
                  "dst": {
@@ -1117,7 +1442,7 @@
                        "io"
                       ]
                      },
-                     "ram_memory"
+                     "port_1_dout"
                     ]
                    },
                    "val_next"
@@ -1130,29 +1455,8 @@
                   "items": [
                    {
                     "__class__": "HdlOp",
-                    "fn": "DOT",
+                    "fn": "INDEX",
                     "ops": [
-                     {
-                      "__class__": "HdlOp",
-                      "fn": "DOT",
-                      "ops": [
-                       {
-                        "__class__": "HdlOp",
-                        "fn": "DOT",
-                        "ops": [
-                         "self",
-                         "io"
-                        ]
-                       },
-                       "b_din"
-                      ]
-                     },
-                     "val"
-                    ]
-                   },
-                   {
-                    "__class__": "list",
-                    "items": [
                      {
                       "__class__": "HdlOp",
                       "fn": "DOT",
@@ -1169,7 +1473,29 @@
                            "io"
                           ]
                          },
-                         "b_addr"
+                         "ram_memory"
+                        ]
+                       },
+                       "val"
+                      ]
+                     },
+                     {
+                      "__class__": "HdlOp",
+                      "fn": "DOT",
+                      "ops": [
+                       {
+                        "__class__": "HdlOp",
+                        "fn": "DOT",
+                        "ops": [
+                         {
+                          "__class__": "HdlOp",
+                          "fn": "DOT",
+                          "ops": [
+                           "self",
+                           "io"
+                          ]
+                         },
+                         "port_1_addr"
                         ]
                        },
                        "val"
@@ -1181,9 +1507,57 @@
                   ]
                  }
                 }
-               ]
-              ],
-              "if_true": {
+               ],
+               "join_t": "SEQ",
+               "labels": []
+              }
+             ]
+            ],
+            "if_false": {
+             "__class__": "HdlStmAssign",
+             "dst": {
+              "__class__": "HdlOp",
+              "fn": "DOT",
+              "ops": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "io"
+                  ]
+                 },
+                 "port_1_dout"
+                ]
+               },
+               "val_next"
+              ]
+             },
+             "is_blocking": false,
+             "labels": [],
+             "src": {
+              "__class__": "tuple",
+              "items": [
+               {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 "self",
+                 "const_0_0"
+                ]
+               },
+               1
+              ]
+             }
+            },
+            "if_true": {
+             "__class__": "HdlStmBlock",
+             "body": [
+              {
                "__class__": "HdlStmAssign",
                "dst": {
                 "__class__": "HdlOp",
@@ -1224,94 +1598,52 @@
                 ]
                }
               },
-              "labels": []
-             }
-            ],
-            "join_t": "SEQ",
-            "labels": []
-           },
-           {
-            "__class__": "HdlStmAssign",
-            "dst": {
-             "__class__": "HdlOp",
-             "fn": "DOT",
-             "ops": [
               {
-               "__class__": "HdlOp",
-               "fn": "DOT",
-               "ops": [
-                {
-                 "__class__": "HdlOp",
-                 "fn": "DOT",
-                 "ops": [
-                  "self",
-                  "io"
-                 ]
-                },
-                "b_dout"
-               ]
-              },
-              "val_next"
-             ]
+               "__class__": "HdlStmAssign",
+               "dst": {
+                "__class__": "HdlOp",
+                "fn": "DOT",
+                "ops": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   {
+                    "__class__": "HdlOp",
+                    "fn": "DOT",
+                    "ops": [
+                     "self",
+                     "io"
+                    ]
+                   },
+                   "port_1_dout"
+                  ]
+                 },
+                 "val_next"
+                ]
+               },
+               "is_blocking": false,
+               "labels": [],
+               "src": {
+                "__class__": "tuple",
+                "items": [
+                 {
+                  "__class__": "HdlOp",
+                  "fn": "DOT",
+                  "ops": [
+                   "self",
+                   "const_0_0"
+                  ]
+                 },
+                 1
+                ]
+               }
+              }
+             ],
+             "join_t": "SEQ",
+             "labels": []
             },
-            "is_blocking": false,
-            "labels": [],
-            "src": {
-             "__class__": "tuple",
-             "items": [
-              {
-               "__class__": "HdlOp",
-               "fn": "INDEX",
-               "ops": [
-                {
-                 "__class__": "HdlOp",
-                 "fn": "DOT",
-                 "ops": [
-                  {
-                   "__class__": "HdlOp",
-                   "fn": "DOT",
-                   "ops": [
-                    {
-                     "__class__": "HdlOp",
-                     "fn": "DOT",
-                     "ops": [
-                      "self",
-                      "io"
-                     ]
-                    },
-                    "ram_memory"
-                   ]
-                  },
-                  "val"
-                 ]
-                },
-                {
-                 "__class__": "HdlOp",
-                 "fn": "DOT",
-                 "ops": [
-                  {
-                   "__class__": "HdlOp",
-                   "fn": "DOT",
-                   "ops": [
-                    {
-                     "__class__": "HdlOp",
-                     "fn": "DOT",
-                     "ops": [
-                      "self",
-                      "io"
-                     ]
-                    },
-                    "b_addr"
-                   ]
-                  },
-                  "val"
-                 ]
-                }
-               ]
-              },
-              1
-             ]
-            }
+            "labels": []
            }
           ],
           "join_t": "SEQ",
@@ -1381,7 +1713,7 @@
                 "io"
                ]
               },
-              "b_dout"
+              "port_1_dout"
              ]
             },
             "val_next"
@@ -1417,7 +1749,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_b_dout"
+      "val": "assig_process_port_1_dout"
      }
     ],
     "sensitivity": [
@@ -1425,7 +1757,7 @@
       "__class__": "HdlOp",
       "fn": "RISING",
       "ops": [
-       "b_clk"
+       "port_1_clk"
       ]
      }
     ]
@@ -1665,7 +1997,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_a_addr"
+     "val": "sig_bramR_port_0_addr"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1682,7 +2014,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_a_clk"
+     "val": "sig_bramR_port_0_clk"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1699,7 +2031,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_a_din"
+     "val": "sig_bramR_port_0_din"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1716,7 +2048,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_a_dout"
+     "val": "sig_bramR_port_0_dout"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1733,7 +2065,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_a_en"
+     "val": "sig_bramR_port_0_en"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1750,7 +2082,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_a_we"
+     "val": "sig_bramR_port_0_we"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1767,7 +2099,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_b_addr"
+     "val": "sig_bramR_port_1_addr"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1784,7 +2116,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_b_clk"
+     "val": "sig_bramR_port_1_clk"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1801,7 +2133,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_b_din"
+     "val": "sig_bramR_port_1_din"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1818,7 +2150,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_b_dout"
+     "val": "sig_bramR_port_1_dout"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1835,7 +2167,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_b_en"
+     "val": "sig_bramR_port_1_en"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1852,7 +2184,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramR_b_we"
+     "val": "sig_bramR_port_1_we"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1869,7 +2201,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_a_addr"
+     "val": "sig_bramW_port_0_addr"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1886,7 +2218,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_a_clk"
+     "val": "sig_bramW_port_0_clk"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1903,7 +2235,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_a_din"
+     "val": "sig_bramW_port_0_din"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1920,7 +2252,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_a_dout"
+     "val": "sig_bramW_port_0_dout"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1937,7 +2269,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_a_en"
+     "val": "sig_bramW_port_0_en"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1954,7 +2286,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_a_we"
+     "val": "sig_bramW_port_0_we"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1971,7 +2303,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_b_addr"
+     "val": "sig_bramW_port_1_addr"
     },
     "type": {
      "__class__": "HdlOp",
@@ -1988,7 +2320,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_b_clk"
+     "val": "sig_bramW_port_1_clk"
     },
     "type": {
      "__class__": "HdlOp",
@@ -2005,7 +2337,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_b_din"
+     "val": "sig_bramW_port_1_din"
     },
     "type": {
      "__class__": "HdlOp",
@@ -2022,7 +2354,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_b_dout"
+     "val": "sig_bramW_port_1_dout"
     },
     "type": {
      "__class__": "HdlOp",
@@ -2039,7 +2371,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_b_en"
+     "val": "sig_bramW_port_1_en"
     },
     "type": {
      "__class__": "HdlOp",
@@ -2056,7 +2388,7 @@
     "direction": null,
     "name": {
      "__class__": "str",
-     "val": "sig_bramW_b_we"
+     "val": "sig_bramW_port_1_we"
     },
     "type": {
      "__class__": "HdlOp",
@@ -2070,7 +2402,7 @@
    },
    {
     "__class__": "HdlCompInst",
-    "module_name": "Ram_dp",
+    "module_name": "RamMultiClock",
     "name": "bramR_inst",
     "param_map": [
      {
@@ -2122,6 +2454,78 @@
         ]
        }
       ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "HAS_BE",
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         "Bits3val",
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           "Bits3t",
+           1,
+           0
+          ]
+         },
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "INIT_DATA",
+       {
+        "__class__": "str",
+        "val": "None"
+       }
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "MAX_BLOCK_DATA_WIDTH",
+       {
+        "__class__": "str",
+        "val": "None"
+       }
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "PORT_CNT",
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         "Bits3val",
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           "Bits3t",
+           32,
+           1
+          ]
+         },
+         2,
+         4294967295
+        ]
+       }
+      ]
      }
     ],
     "port_map": [
@@ -2129,103 +2533,103 @@
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_addr",
-       "sig_bramR_a_addr"
+       "port_0_addr",
+       "sig_bramR_port_0_addr"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_clk",
-       "sig_bramR_a_clk"
+       "port_0_clk",
+       "sig_bramR_port_0_clk"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_din",
-       "sig_bramR_a_din"
+       "port_0_din",
+       "sig_bramR_port_0_din"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_dout",
-       "sig_bramR_a_dout"
+       "port_0_dout",
+       "sig_bramR_port_0_dout"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_en",
-       "sig_bramR_a_en"
+       "port_0_en",
+       "sig_bramR_port_0_en"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_we",
-       "sig_bramR_a_we"
+       "port_0_we",
+       "sig_bramR_port_0_we"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_addr",
-       "sig_bramR_b_addr"
+       "port_1_addr",
+       "sig_bramR_port_1_addr"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_clk",
-       "sig_bramR_b_clk"
+       "port_1_clk",
+       "sig_bramR_port_1_clk"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_din",
-       "sig_bramR_b_din"
+       "port_1_din",
+       "sig_bramR_port_1_din"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_dout",
-       "sig_bramR_b_dout"
+       "port_1_dout",
+       "sig_bramR_port_1_dout"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_en",
-       "sig_bramR_b_en"
+       "port_1_en",
+       "sig_bramR_port_1_en"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_we",
-       "sig_bramR_b_we"
+       "port_1_we",
+       "sig_bramR_port_1_we"
       ]
      }
     ]
    },
    {
     "__class__": "HdlCompInst",
-    "module_name": "Ram_dp",
+    "module_name": "RamMultiClock",
     "name": "bramW_inst",
     "param_map": [
      {
@@ -2277,6 +2681,78 @@
         ]
        }
       ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "HAS_BE",
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         "Bits3val",
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           "Bits3t",
+           1,
+           0
+          ]
+         },
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "INIT_DATA",
+       {
+        "__class__": "str",
+        "val": "None"
+       }
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "MAX_BLOCK_DATA_WIDTH",
+       {
+        "__class__": "str",
+        "val": "None"
+       }
+      ]
+     },
+     {
+      "__class__": "HdlOp",
+      "fn": "MAP_ASSOCIATION",
+      "ops": [
+       "PORT_CNT",
+       {
+        "__class__": "HdlOp",
+        "fn": "CALL",
+        "ops": [
+         "Bits3val",
+         {
+          "__class__": "HdlOp",
+          "fn": "CALL",
+          "ops": [
+           "Bits3t",
+           32,
+           1
+          ]
+         },
+         2,
+         4294967295
+        ]
+       }
+      ]
      }
     ],
     "port_map": [
@@ -2284,96 +2760,96 @@
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_addr",
-       "sig_bramW_a_addr"
+       "port_0_addr",
+       "sig_bramW_port_0_addr"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_clk",
-       "sig_bramW_a_clk"
+       "port_0_clk",
+       "sig_bramW_port_0_clk"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_din",
-       "sig_bramW_a_din"
+       "port_0_din",
+       "sig_bramW_port_0_din"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_dout",
-       "sig_bramW_a_dout"
+       "port_0_dout",
+       "sig_bramW_port_0_dout"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_en",
-       "sig_bramW_a_en"
+       "port_0_en",
+       "sig_bramW_port_0_en"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "a_we",
-       "sig_bramW_a_we"
+       "port_0_we",
+       "sig_bramW_port_0_we"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_addr",
-       "sig_bramW_b_addr"
+       "port_1_addr",
+       "sig_bramW_port_1_addr"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_clk",
-       "sig_bramW_b_clk"
+       "port_1_clk",
+       "sig_bramW_port_1_clk"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_din",
-       "sig_bramW_b_din"
+       "port_1_din",
+       "sig_bramW_port_1_din"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_dout",
-       "sig_bramW_b_dout"
+       "port_1_dout",
+       "sig_bramW_port_1_dout"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_en",
-       "sig_bramW_b_en"
+       "port_1_en",
+       "sig_bramW_port_1_en"
       ]
      },
      {
       "__class__": "HdlOp",
       "fn": "MAP_ASSOCIATION",
       "ops": [
-       "b_we",
-       "sig_bramW_b_we"
+       "port_1_we",
+       "sig_bramW_port_1_we"
       ]
      }
     ]
@@ -2425,7 +2901,7 @@
              "io"
             ]
            },
-           "sig_bramR_a_dout"
+           "sig_bramR_port_0_dout"
           ]
          },
          "val"
@@ -2442,7 +2918,7 @@
      }
     ],
     "sensitivity": [
-     "sig_bramR_a_dout"
+     "sig_bramR_port_0_dout"
     ]
    },
    {
@@ -2492,7 +2968,7 @@
              "io"
             ]
            },
-           "sig_bramR_b_dout"
+           "sig_bramR_port_1_dout"
           ]
          },
          "val"
@@ -2509,7 +2985,7 @@
      }
     ],
     "sensitivity": [
-     "sig_bramR_b_dout"
+     "sig_bramR_port_1_dout"
     ]
    },
    {
@@ -2559,7 +3035,7 @@
              "io"
             ]
            },
-           "sig_bramW_a_dout"
+           "sig_bramW_port_0_dout"
           ]
          },
          "val"
@@ -2576,7 +3052,7 @@
      }
     ],
     "sensitivity": [
-     "sig_bramW_a_dout"
+     "sig_bramW_port_0_dout"
     ]
    },
    {
@@ -2626,7 +3102,7 @@
              "io"
             ]
            },
-           "sig_bramW_b_dout"
+           "sig_bramW_port_1_dout"
           ]
          },
          "val"
@@ -2643,7 +3119,7 @@
      }
     ],
     "sensitivity": [
-     "sig_bramW_b_dout"
+     "sig_bramW_port_1_dout"
     ]
    },
    {
@@ -2666,7 +3142,7 @@
            "io"
           ]
          },
-         "sig_bramR_a_addr"
+         "sig_bramR_port_0_addr"
         ]
        },
        "val_next"
@@ -2706,7 +3182,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramR_a_addr"
+      "val": "assig_process_sig_bramR_port_0_addr"
      }
     ],
     "sensitivity": [
@@ -2733,7 +3209,7 @@
            "io"
           ]
          },
-         "sig_bramR_a_clk"
+         "sig_bramR_port_0_clk"
         ]
        },
        "val_next"
@@ -2773,7 +3249,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramR_a_clk"
+      "val": "assig_process_sig_bramR_port_0_clk"
      }
     ],
     "sensitivity": [
@@ -2800,7 +3276,7 @@
            "io"
           ]
          },
-         "sig_bramR_a_din"
+         "sig_bramR_port_0_din"
         ]
        },
        "val_next"
@@ -2840,7 +3316,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramR_a_din"
+      "val": "assig_process_sig_bramR_port_0_din"
      }
     ],
     "sensitivity": [
@@ -2867,7 +3343,7 @@
            "io"
           ]
          },
-         "sig_bramR_a_en"
+         "sig_bramR_port_0_en"
         ]
        },
        "val_next"
@@ -2907,7 +3383,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramR_a_en"
+      "val": "assig_process_sig_bramR_port_0_en"
      }
     ],
     "sensitivity": [
@@ -2934,7 +3410,7 @@
            "io"
           ]
          },
-         "sig_bramR_a_we"
+         "sig_bramR_port_0_we"
         ]
        },
        "val_next"
@@ -2974,7 +3450,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramR_a_we"
+      "val": "assig_process_sig_bramR_port_0_we"
      }
     ],
     "sensitivity": [
@@ -3001,7 +3477,7 @@
            "io"
           ]
          },
-         "sig_bramR_b_addr"
+         "sig_bramR_port_1_addr"
         ]
        },
        "val_next"
@@ -3041,7 +3517,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramR_b_addr"
+      "val": "assig_process_sig_bramR_port_1_addr"
      }
     ],
     "sensitivity": [
@@ -3068,7 +3544,7 @@
            "io"
           ]
          },
-         "sig_bramR_b_clk"
+         "sig_bramR_port_1_clk"
         ]
        },
        "val_next"
@@ -3108,7 +3584,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramR_b_clk"
+      "val": "assig_process_sig_bramR_port_1_clk"
      }
     ],
     "sensitivity": [
@@ -3135,7 +3611,7 @@
            "io"
           ]
          },
-         "sig_bramR_b_din"
+         "sig_bramR_port_1_din"
         ]
        },
        "val_next"
@@ -3175,7 +3651,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramR_b_din"
+      "val": "assig_process_sig_bramR_port_1_din"
      }
     ],
     "sensitivity": [
@@ -3202,7 +3678,7 @@
            "io"
           ]
          },
-         "sig_bramR_b_en"
+         "sig_bramR_port_1_en"
         ]
        },
        "val_next"
@@ -3242,7 +3718,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramR_b_en"
+      "val": "assig_process_sig_bramR_port_1_en"
      }
     ],
     "sensitivity": [
@@ -3269,7 +3745,7 @@
            "io"
           ]
          },
-         "sig_bramR_b_we"
+         "sig_bramR_port_1_we"
         ]
        },
        "val_next"
@@ -3309,7 +3785,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramR_b_we"
+      "val": "assig_process_sig_bramR_port_1_we"
      }
     ],
     "sensitivity": [
@@ -3336,7 +3812,7 @@
            "io"
           ]
          },
-         "sig_bramW_a_addr"
+         "sig_bramW_port_0_addr"
         ]
        },
        "val_next"
@@ -3376,7 +3852,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramW_a_addr"
+      "val": "assig_process_sig_bramW_port_0_addr"
      }
     ],
     "sensitivity": [
@@ -3403,7 +3879,7 @@
            "io"
           ]
          },
-         "sig_bramW_a_clk"
+         "sig_bramW_port_0_clk"
         ]
        },
        "val_next"
@@ -3443,7 +3919,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramW_a_clk"
+      "val": "assig_process_sig_bramW_port_0_clk"
      }
     ],
     "sensitivity": [
@@ -3470,7 +3946,7 @@
            "io"
           ]
          },
-         "sig_bramW_a_din"
+         "sig_bramW_port_0_din"
         ]
        },
        "val_next"
@@ -3510,7 +3986,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramW_a_din"
+      "val": "assig_process_sig_bramW_port_0_din"
      }
     ],
     "sensitivity": [
@@ -3537,7 +4013,7 @@
            "io"
           ]
          },
-         "sig_bramW_a_en"
+         "sig_bramW_port_0_en"
         ]
        },
        "val_next"
@@ -3577,7 +4053,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramW_a_en"
+      "val": "assig_process_sig_bramW_port_0_en"
      }
     ],
     "sensitivity": [
@@ -3604,7 +4080,7 @@
            "io"
           ]
          },
-         "sig_bramW_a_we"
+         "sig_bramW_port_0_we"
         ]
        },
        "val_next"
@@ -3644,7 +4120,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramW_a_we"
+      "val": "assig_process_sig_bramW_port_0_we"
      }
     ],
     "sensitivity": [
@@ -3671,7 +4147,7 @@
            "io"
           ]
          },
-         "sig_bramW_b_addr"
+         "sig_bramW_port_1_addr"
         ]
        },
        "val_next"
@@ -3711,7 +4187,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramW_b_addr"
+      "val": "assig_process_sig_bramW_port_1_addr"
      }
     ],
     "sensitivity": [
@@ -3738,7 +4214,7 @@
            "io"
           ]
          },
-         "sig_bramW_b_clk"
+         "sig_bramW_port_1_clk"
         ]
        },
        "val_next"
@@ -3778,7 +4254,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramW_b_clk"
+      "val": "assig_process_sig_bramW_port_1_clk"
      }
     ],
     "sensitivity": [
@@ -3805,7 +4281,7 @@
            "io"
           ]
          },
-         "sig_bramW_b_din"
+         "sig_bramW_port_1_din"
         ]
        },
        "val_next"
@@ -3845,7 +4321,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramW_b_din"
+      "val": "assig_process_sig_bramW_port_1_din"
      }
     ],
     "sensitivity": [
@@ -3872,7 +4348,7 @@
            "io"
           ]
          },
-         "sig_bramW_b_en"
+         "sig_bramW_port_1_en"
         ]
        },
        "val_next"
@@ -3912,7 +4388,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramW_b_en"
+      "val": "assig_process_sig_bramW_port_1_en"
      }
     ],
     "sensitivity": [
@@ -3939,7 +4415,7 @@
            "io"
           ]
          },
-         "sig_bramW_b_we"
+         "sig_bramW_port_1_we"
         ]
        },
        "val_next"
@@ -3979,7 +4455,7 @@
     "labels": [
      {
       "__class__": "str",
-      "val": "assig_process_sig_bramW_b_we"
+      "val": "assig_process_sig_bramW_port_1_we"
      }
     ],
     "sensitivity": [

@@ -157,7 +157,7 @@ class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
                         self.visit_iHdlExpr(mod_port)
                         w('")\n')
 
-                w('self._interfaces = (\n')
+                w('self._hwIOs = (\n')
                 with Indent(self.out):
                     for p in chain(mod_dec.ports, variables):
                         if not p.is_const:
@@ -176,7 +176,7 @@ class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
                             raise
                         w(",\n")
                 w(")\n")
-                w('self._units = (')
+                w('self._subHwModules = (')
                 with Indent(self.out):
                     for c in components:
                         w("self.")
@@ -212,7 +212,7 @@ class ToBasicHdlSimModel(ToBasicHdlSimModelStm):
                             w(outp.val)
                             w(",\n")
                     w(")\n")
-                w("for u in self._units:\n")
+                w("for u in self._subHwModules:\n")
                 w("    u._init_body()\n\n")
             for p in processes:
                 self.visit_HdlStmProcess(p)
