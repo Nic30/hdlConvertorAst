@@ -8,4 +8,5 @@ build:
 python:
   install:
     - requirements: doc/requirements.doc.txt
-
+    - extra_requirements:
+        - pillow
