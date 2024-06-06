@@ -117,7 +117,7 @@ def bit_string(v: int, width: int, vld_mask:Optional[int]=None):
     #         base = 2
     #         bit_string = "".join(["x" for _ in range(width)])
 
-    elif width % 4 == 0 and vld_mask == (1 << width) - 1:
+    if width % 4 == 0 and vld_mask == (1 << width) - 1:
         # hex full valid
         base = 16
         bit_string = ("%0" + str(width // 4) + 'x') % (v)
