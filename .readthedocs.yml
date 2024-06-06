@@ -1,5 +1,7 @@
-python:
-  version: 3.8
-formats: []
+version: 2
+build:
+  os: ubuntu-lts-latest
+  tools:
+    python: "3.12"
 
 requirements_file: doc/requirements.doc.txt
