@@ -271,7 +271,7 @@ class ToVhdl2008Expr(ToHdlCommon):
         else:
             ESCAPES = {
                 '\n': 'LF\n',
-                '\c': 'CR'
+                '\r': 'CR'
             }
             CONC = self.GENERIC_BIN_OPS[HdlOpType.CONCAT]
             first = True
