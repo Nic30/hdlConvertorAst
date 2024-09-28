@@ -265,7 +265,7 @@ class HdlValueInt(iHdlObj):
         iHdlObj.__init__(self)
         self.val = val  # type: Union[int, str]
         self.bits = bits  # type: Optional[int]
-        self.base = base  # type: Optional[Union[2, 8, 10, 16, 256]]
+        self.base = base  # type: Optional[Literal[2, 8, 10, 16, 256]]
 
     def __int__(self):
         return int(self.val)
