@@ -221,6 +221,14 @@ class HdlOpType(Enum):
     ) = range(87)
     # note that in verilog bitewise operators can have only one argument
 
+HDLCONVERTAST_OPS_SHIFT_AND_ROT = {
+    HdlOpType.SLL, 
+    HdlOpType.SRL,
+    HdlOpType.SLA,
+    HdlOpType.SRA,
+    HdlOpType.ROL,
+    HdlOpType.ROR,
+} 
 
 class HdlOp(iHdlObj):
     """
