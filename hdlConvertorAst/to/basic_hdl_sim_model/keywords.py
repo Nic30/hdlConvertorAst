@@ -26,6 +26,7 @@ SIMMODEL_KEYWORDS = keyword.kwlist + [
     'define_Enum3t',
     'BasicRtlSimModel',
     'BasicRtlSimProxy',
+    'bitsBitOp__lshr',
     'sensitivity',
     'connectSimPort',
     'sim_eval_cond',

@@ -6,6 +6,7 @@ from hdlConvertorAst.to.common import ToHdlCommon, ASSOCIATIVITY, \
 from hdlConvertorAst.to.hdlUtils import iter_with_last
 from hdlConvertorAst.to.verilog.utils import collect_array_dims, get_wire_t_params
 
+
 L = ASSOCIATIVITY.L_TO_R
 R = ASSOCIATIVITY.R_TO_L
 

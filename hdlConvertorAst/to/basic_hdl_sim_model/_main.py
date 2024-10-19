@@ -1,7 +1,7 @@
 from itertools import chain
 
 from hdlConvertorAst.hdlAst import HdlIdDef, HdlOp, HdlOpType, \
-    HdlDirection, HdlValueId, HdlCompInst, HdlPhysicalDef, HdlEnumDef, HdlClassDef, \
+    HdlValueId, HdlCompInst, HdlPhysicalDef, HdlEnumDef, HdlClassDef, \
     HdlFunctionDef, iHdlStatement
 from hdlConvertorAst.hdlAst._expr import HdlTypeType
 from hdlConvertorAst.hdlAst._statements import ALL_STATEMENT_CLASSES
@@ -11,9 +11,8 @@ from hdlConvertorAst.to.hdlUtils import Indent, iter_with_last
 
 DEFAULT_IMPORTS = """\
 from pyMathBitPrecise.array3t import Array3t, Array3val
-from pyMathBitPrecise.bits3t import Bits3t, Bits3val
+from pyMathBitPrecise.bits3t import Bits3t, Bits3val, bitsBitOp__lshr
 from pyMathBitPrecise.enum3t import define_Enum3t
-
 from hwtSimApi.basic_hdl_simulator.model import BasicRtlSimModel
 from hwtSimApi.basic_hdl_simulator.model_utils import sensitivity, connectSimPort
 from hwtSimApi.basic_hdl_simulator.proxy import BasicRtlSimProxy

@@ -30,8 +30,9 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
         HdlOpType.XOR: (10, L),
         HdlOpType.AND: (9, L),
 
+        HdlOpType.SLA: (8, L),
         HdlOpType.SLL: (8, L),
-        HdlOpType.SRL: (8, L),
+        HdlOpType.SRA: (8, L),
 
         HdlOpType.ADD: (7, L),
         HdlOpType.SUB: (7, L),
@@ -46,7 +47,8 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
         HdlOpType.POW: (4, R),
 
         HdlOpType.INDEX: (1, L),
-
+        # operators translated to function call
+        HdlOpType.SRL: (1, L),
         HdlOpType.RISING: (1, L),
         HdlOpType.FALLING: (1, L),
 
