@@ -49,6 +49,9 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
         HdlOpType.INDEX: (1, L),
         # operators translated to function call
         HdlOpType.SRL: (1, L),
+        HdlOpType.ROL: (1, L),
+        HdlOpType.ROR: (1, L),
+
         HdlOpType.RISING: (1, L),
         HdlOpType.FALLING: (1, L),
 

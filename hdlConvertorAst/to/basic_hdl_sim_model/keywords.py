@@ -27,6 +27,8 @@ SIMMODEL_KEYWORDS = keyword.kwlist + [
     'BasicRtlSimModel',
     'BasicRtlSimProxy',
     'bitsBitOp__lshr',
+    'bitsBitOp__ror',
+    'bitsBitOp__rol',
     'sensitivity',
     'connectSimPort',
     'sim_eval_cond',
