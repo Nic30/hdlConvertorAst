@@ -77,7 +77,7 @@ class NameScope(dict):
     @classmethod
     def _sanitize_name(self, suggested_name: str) -> str:
         name = self.RE_NON_ID_CHAR.sub("_", suggested_name)
-        if not self.RE_LETTER.match(name[0]):
+        if not name or not self.RE_LETTER.match(name[0]):
             return "v" + name
         else:
             return name
