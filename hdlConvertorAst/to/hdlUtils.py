@@ -95,10 +95,26 @@ def to_unsigned(val: int, width: int) -> int:
         return val
 
 
+def _mask_fits_hex(width: int, vld_mask: Optional[int]):
+    # check bits for hex digit have all same value
+    if not vld_mask:
+        return True
+
+    while width:
+        m = vld_mask & 0xF
+        if m != 0 and m != 0xF:
+            return False
+        vld_mask >>= 4
+        width -= 4
+
+    assert width == 0, ("Width should have been multiple of 4", width)
+    return True
+
+
 def bit_string(v: int, width: int, vld_mask:Optional[int]=None):
     """
     :param v: integer value of bitstring
-    :param widht: number of bits in value
+    :param width: number of bits in value
     :param vld_mask: mask which has 1 for every valid bit in value
     :return: HdlValueInt
     """
@@ -116,23 +132,43 @@ def bit_string(v: int, width: int, vld_mask:Optional[int]=None):
     #     else:
     #         base = 2
     #         bit_string = "".join(["x" for _ in range(width)])
-
-    if width % 4 == 0 and vld_mask == (1 << width) - 1:
-        # hex full valid
-        base = 16
-        bit_string = ("%0" + str(width // 4) + 'x') % (v)
+    widthFitsHexFormat = width % 4 == 0
+    if vld_mask == (1 << width) - 1:
+        # completely valid value
+        if widthFitsHexFormat:
+            # hex full valid
+            base = 16
+            bit_string = ("%0" + str(width // 4) + 'x') % (v)
+        else:
+            base = 2
+            bit_string = ("{0:0" + str(width) + 'b}').format(v)
     else:
-        # binary
-        base = 2
         buff = []
-        for i in range(width - 1, -1, -1):
-            mask = (1 << i)
-            b = v & mask
+        if widthFitsHexFormat and _mask_fits_hex(width, vld_mask):
+            # hex with some "x"
+            base = 16
+            for i in range(width - 4, -1, -4):
+                mask = (1 << i)
+                maskNibble = vld_mask & mask
+                if maskNibble:
+                    vNibble = v & mask
+                    s = hex(vNibble >> i)
+                    assert len(s) == 1, s
+                else:
+                    s = "x"
+                buff.append(s)
 
-            if vld_mask & mask:
-                s = "1" if b else "0"
-            else:
-                s = "x"
-            buff.append(s)
+        else:
+            # binary with some "x"
+            base = 2
+            for i in range(width - 1, -1, -1):
+                mask = (1 << i)
+                b = v & mask
+
+                if vld_mask & mask:
+                    s = "1" if b else "0"
+                else:
+                    s = "x"
+                buff.append(s)
         bit_string = "".join(buff)
     return HdlValueInt(bit_string, width, base)
