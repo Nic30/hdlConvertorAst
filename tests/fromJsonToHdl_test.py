@@ -15,11 +15,10 @@ from hdlConvertorAst.to.vhdl.vhdl2008 import ToVhdl2008
 from hdlConvertorAst.translate.verilog_to_basic_hdl_sim_model.discover_stm_outputs\
     import discover_stm_outputs_context
 from hdlConvertorAst.translate.common.discover_declarations import DiscoverDeclarations
-from hdlConvertorAst.translate.common.name_scope import NameScope,\
+from hdlConvertorAst.translate.common.name_scope import NameScope, \
     LanguageKeyword
 from hdlConvertorAst.translate.common.resolve_names import ResolveNames
 from hdlConvertorAst.translate.vhdl_to_verilog import link_module_dec_def
-
 
 ROOT = os.path.join(os.path.dirname(__file__), "data")
 
@@ -94,10 +93,10 @@ class FromJsonToHdlTC(unittest.TestCase):
             ser.visit_HdlContext(d)
 
         res_str = buff.getvalue()
-
+        
         ref_file = os.path.join(ROOT, "ref", name + ref_file_suffix)
-        # with open(ref_file, "w", encoding="utf-8") as f:
-        #     f.write(res_str)
+        with open(ref_file, "w", encoding="utf-8") as f:
+            f.write(res_str)
 
         with open(ref_file, encoding="utf-8") as f:
             ref = f.read()
@@ -136,4 +135,8 @@ class FromJsonToHdlTC(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    testLoader = unittest.TestLoader()
+    # suite = unittest.TestSuite([FromJsonToHdlTC('test_GroupOfBlockrams_sim_model')])
+    suite = testLoader.loadTestsFromTestCase(FromJsonToHdlTC)
+    runner = unittest.TextTestRunner(verbosity=3)
+    runner.run(suite)
