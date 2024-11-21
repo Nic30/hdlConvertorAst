@@ -93,7 +93,7 @@ class ToVerilog2005Expr(ToHdlCommon):
     }
     GENERIC_BIN_OPS.update(ToHdlCommon.GENERIC_BIN_OPS)
     GENERIC_BIN_OPS.update(ASSIGN_OPERATORS_SYMBOLS_C)
-
+    # https://www.hdlworks.com/hdl_corner/verilog_ref/items/Operator.htm
     OP_PRECEDENCE = {
         HdlOpType.APOSTROPHE: (1, L),
         HdlOpType.DOT: (1, L),
@@ -134,23 +134,23 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.NE_MATCH: (12, L),
 
         HdlOpType.AND: (13, L),
-        HdlOpType.XOR: (13, L),
-        HdlOpType.OR: (13, L),
         HdlOpType.NAND: (13, L),
-        HdlOpType.XNOR: (13, L),
+        HdlOpType.XOR: (14, L),
+        HdlOpType.OR: (15, L),
+        HdlOpType.XNOR: (15, L),
 
-        HdlOpType.AND_LOG: (14, L),
-        HdlOpType.OR_LOG: (14, L),
+        HdlOpType.AND_LOG: (16, L),
+        HdlOpType.OR_LOG: (17, L),
 
-        HdlOpType.TERNARY: (15, R),
+        HdlOpType.TERNARY: (18, R),
 
-        HdlOpType.RISING: (16, R),
-        HdlOpType.FALLING: (16, R),
-        HdlOpType.DOWNTO: (17, L),
-        HdlOpType.TO: (17, L),
-        HdlOpType.PART_SELECT_PRE: (17, L),
-        HdlOpType.PART_SELECT_POST: (17, L),
-        HdlOpType.MAP_ASSOCIATION: (17, L),
+        HdlOpType.RISING: (19, R),
+        HdlOpType.FALLING: (19, R),
+        HdlOpType.DOWNTO: (20, L),
+        HdlOpType.TO: (20, L),
+        HdlOpType.PART_SELECT_PRE: (20, L),
+        HdlOpType.PART_SELECT_POST: (20, L),
+        HdlOpType.MAP_ASSOCIATION: (20, L),
 
     }
     OP_PRECEDENCE.update({k: (3, R) for k in [
@@ -169,7 +169,7 @@ class ToVerilog2005Expr(ToHdlCommon):
         HdlOpType.XOR_UNARY,
         HdlOpType.XNOR_UNARY
     ]})
-    OP_PRECEDENCE.update({k: (18, ASSOCIATIVITY.NONE)
+    OP_PRECEDENCE.update({k: (21, ASSOCIATIVITY.NONE)
                           for k in ASSIGN_OPERATORS})
 
     GENERIC_UNARY_OPS = {

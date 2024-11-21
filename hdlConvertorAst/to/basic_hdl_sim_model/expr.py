@@ -10,6 +10,7 @@ R = ASSOCIATIVITY.R_TO_L
 
 
 class ToBasicHdlSimModelExpr(ToHdlCommon):
+    # https://docs.python.org/3/reference/expressions.html
     OP_PRECEDENCE = {
         # TO/DOWNTO becomes a call to slice
         # HdlOpType.DOWNTO: 1,
@@ -17,16 +18,16 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
 
         # note that HdlExpressions in BasicHdlSimModel
         # do not use == but ._eq()
-        HdlOpType.EQ: (11, L),
-        HdlOpType.NE: (11, L),
-        HdlOpType.GT:  (11, L),
-        HdlOpType.LT:  (11, L),
-        HdlOpType.GE:  (11, L),
-        HdlOpType.LE:  (11, L),
-        HdlOpType.IS:  (11, L),
-        HdlOpType.IS_NOT:  (11, L),
+        HdlOpType.EQ: (12, L),
+        HdlOpType.NE: (12, L),
+        HdlOpType.GT:  (12, L),
+        HdlOpType.LT:  (12, L),
+        HdlOpType.GE:  (12, L),
+        HdlOpType.LE:  (12, L),
+        HdlOpType.IS:  (12, L),
+        HdlOpType.IS_NOT:  (12, L),
 
-        HdlOpType.OR: (10, L),
+        HdlOpType.OR: (11, L),
         HdlOpType.XOR: (10, L),
         HdlOpType.AND: (9, L),
 

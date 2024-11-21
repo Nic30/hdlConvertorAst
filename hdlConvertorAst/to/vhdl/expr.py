@@ -69,6 +69,7 @@ class ToVhdl2008Expr(ToHdlCommon):
         16: "X",
         256: "",  # 'X' literals
     }
+    # https://vhdlwhiz.com/operator-precedence-in-vhdl/
     OP_PRECEDENCE = {
         HdlOpType.UNIT_SPEC: (0, L),
         HdlOpType.DOT: (1, L),
