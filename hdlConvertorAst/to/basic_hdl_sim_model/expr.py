@@ -11,61 +11,66 @@ R = ASSOCIATIVITY.R_TO_L
 
 class ToBasicHdlSimModelExpr(ToHdlCommon):
     # https://docs.python.org/3/reference/expressions.html
-    OP_PRECEDENCE = {
-        # TO/DOWNTO becomes a call to slice
-        # HdlOpType.DOWNTO: 1,
-        # HdlOpType.TO: 1,
-
-        # note that HdlExpressions in BasicHdlSimModel
-        # do not use == but ._eq()
-        HdlOpType.EQ: (12, L),
-        HdlOpType.NE: (12, L),
-        HdlOpType.GT:  (12, L),
-        HdlOpType.LT:  (12, L),
-        HdlOpType.GE:  (12, L),
-        HdlOpType.LE:  (12, L),
-        HdlOpType.IS:  (12, L),
-        HdlOpType.IS_NOT:  (12, L),
-
-        HdlOpType.OR: (11, L),
-        HdlOpType.XOR: (10, L),
-        HdlOpType.AND: (9, L),
-
-        HdlOpType.SLA: (8, L),
-        HdlOpType.SLL: (8, L),
-        HdlOpType.SRA: (8, L),
-
-        HdlOpType.ADD: (7, L),
-        HdlOpType.SUB: (7, L),
-
-        HdlOpType.DIV: (6, L),
-        HdlOpType.MUL: (6, L),
-        HdlOpType.MOD: (6, L),
-
-        HdlOpType.NEG_LOG: (5, R),
-        HdlOpType.NEG: (5, R),
-        HdlOpType.MINUS_UNARY: (5, R),
-        HdlOpType.POW: (4, R),
-
-        HdlOpType.INDEX: (1, L),
-        # operators translated to function call
-        HdlOpType.SRL: (1, L),
-        HdlOpType.ROL: (1, L),
-        HdlOpType.ROR: (1, L),
-
-        HdlOpType.RISING: (1, L),
-        HdlOpType.FALLING: (1, L),
-
+    OP_PRECEDENCE = { # highest priority to lowest priority
+        HdlOpType.DOT: (1, L),
+        # parametrization values are parameters of component class
+        # constructor
+        HdlOpType.PARAMETRIZATION: (1, L),
         # concat/ternary become a call to _concat, _ternary__val function
         # HdlOpType.CONCAT: 2,
         # HdlOpType.TERNARY: 2,
         # rising/faling as ._onRisingEdge(), ._onFallingEdge()
         HdlOpType.CALL: (1, L),
-        # parametrization values are parameters of component class
-        # constructor
-        HdlOpType.PARAMETRIZATION: (1, L),
+        
+        HdlOpType.RISING: (1, L),
+        HdlOpType.FALLING: (1, L),
+        
+        # operators translated to function call
+        HdlOpType.SRL: (1, L),
+        HdlOpType.ROL: (1, L),
+        HdlOpType.ROR: (1, L),
+        
+        HdlOpType.INDEX: (1, L),
+        # TO/DOWNTO becomes a call to slice
+        # HdlOpType.DOWNTO: 1,
+        # HdlOpType.TO: 1,
 
-        HdlOpType.DOT: (1, L),
+        HdlOpType.POW: (4, R),
+
+        HdlOpType.NEG_LOG: (5, R),
+        HdlOpType.NEG: (5, R),
+        HdlOpType.MINUS_UNARY: (5, R),
+        HdlOpType.PLUS_UNARY: (5, R),
+
+        HdlOpType.MUL: (6, L),
+        HdlOpType.DIV: (6, L),
+        HdlOpType.MOD: (6, L),
+
+        HdlOpType.ADD: (7, L),
+        HdlOpType.SUB: (7, L),
+
+        HdlOpType.SLA: (8, L),
+        HdlOpType.SLL: (8, L),
+        HdlOpType.SRA: (8, L),
+
+        HdlOpType.AND: (9, L),
+        HdlOpType.XOR: (10, L),
+        HdlOpType.OR: (11, L),
+
+        # note that HdlExpressions in BasicHdlSimModel
+        # do not use == but ._eq()
+        HdlOpType.IS:  (12, L),
+        HdlOpType.IS_NOT:  (12, L),
+        HdlOpType.LT:  (12, L),
+        HdlOpType.LE:  (12, L),
+        HdlOpType.GT:  (12, L),
+        HdlOpType.GE:  (12, L),
+        HdlOpType.NE: (12, L),
+        HdlOpType.EQ: (12, L),
+        
+        HdlOpType.NEG_LOG: (13, L),
+        HdlOpType.AND_LOG: (14, L),
+        HdlOpType.OR_LOG: (15, L),
     }
     _unaryEventOps = {
         HdlOpType.RISING: "._onRisingEdge()",
