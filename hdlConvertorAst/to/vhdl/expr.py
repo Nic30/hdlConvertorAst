@@ -50,12 +50,18 @@ class ToVhdl2008Expr(ToHdlCommon):
         HdlOpType.MAP_ASSOCIATION: " => ",
         HdlOpType.RANGE: " RANGE ",
         HdlOpType.CONCAT: " & ",
+        
+        # shift and rotation operators were removed from vhdl https://jdebp.uk/FGA/bit-shifts-in-vhdl.html
+        # and are replaced by shift_left(), shift_right(), rotate_left(), and rotate_right() function
+        # https://portal.cs.umbc.edu/help/VHDL/numeric_std.vhdl
+        # :note: if operand is signed the shift is arithmetic
         HdlOpType.ROL: " ROL ",
         HdlOpType.ROR: " ROR ",
         HdlOpType.SLA: " SLA ",
         HdlOpType.SRA: " SRA ",
         HdlOpType.SLL: " SLL ",
         HdlOpType.SRL: " SRL ",
+
         HdlOpType.UNIT_SPEC: " ",
     }
     EQ_NEQ_OPS = (

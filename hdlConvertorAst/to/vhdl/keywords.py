@@ -11,6 +11,7 @@ VHLD2008_KEYWORDS = [
     "procedural", "pure", "quantity", "range", "reverse_range", "reject",
     "rem", "record", "reference", "register", "report", "return", "rol", "ror",
     "select", "severity", "shared", "signal", "sla", "sll", "spectrum", "sra",
-    "srl", "subnature", "subtype", "terminal", "then", "through", "to",
+    "srl", "shift_left", "shift_right", "rotate_left", "rotate_right",
+    "subnature", "subtype", "terminal", "then", "through", "to",
     "tolerance", "transport", "type", "unaffected", "units", "until", "use",
     "variable", "wait", "with", "when", "while", "xnor", "xor"]
