@@ -1,5 +1,5 @@
 from pyMathBitPrecise.array3t import Array3t, Array3val
-from pyMathBitPrecise.bits3t import Bits3t, Bits3val, bitsBitOp__lshr, bitsBitOp__ror, bitsBitOp__rol
+from pyMathBitPrecise.bits3t import Bits3t, Bits3val, bitsBitOp__ashr, bitsBitOp__lshr, bitsBitOp__ror, bitsBitOp__rol
 from pyMathBitPrecise.enum3t import define_Enum3t
 from hwtSimApi.basic_hdl_simulator.model import BasicRtlSimModel
 from hwtSimApi.basic_hdl_simulator.model_utils import sensitivity, connectSimPort
@@ -293,7 +293,7 @@ class Showcase0(BasicRtlSimModel):
 
     # sensitivity: a, b
     def assig_process_c(self):
-        self.io.c.val_next = (self.io.a.val + self.io.b.val.cast_sign(False), 0, )
+        self.io.c.val_next = (self.io.a.val + self.io.b.val._cast_sign(False), 0, )
 
     # sensitivity: a
     def assig_process_cmp_0(self):
@@ -334,8 +334,8 @@ class Showcase0(BasicRtlSimModel):
             self.io.fallingEdgeRam.val_next = (self.const_0, 1, )
             self.io.k.val_next = (self.const_0_0, 1, )
         elif c:
-            self.io.fallingEdgeRam.val_next = (self.io.a.val[self.const_1].cast_sign(True), (self.io.r_1.val, ), 1, )
-            self.io.k.val_next = (self.const_0_1._concat(self.io.fallingEdgeRam.val[self.io.r_1.val].cast_sign(False)), 1, )
+            self.io.fallingEdgeRam.val_next = (self.io.a.val[self.const_1]._cast_sign(True), (self.io.r_1.val, ), 1, )
+            self.io.k.val_next = (self.const_0_1._concat(self.io.fallingEdgeRam.val[self.io.r_1.val]._cast_sign(False)), 1, )
         else:
             pass
 

@@ -27,6 +27,7 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
         
         # operators translated to function call
         HdlOpType.SRL: (1, L),
+        HdlOpType.SRA: (1, L),
         HdlOpType.ROL: (1, L),
         HdlOpType.ROR: (1, L),
         
@@ -51,7 +52,6 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
 
         HdlOpType.SLA: (8, L),
         HdlOpType.SLL: (8, L),
-        HdlOpType.SRA: (8, L),
 
         HdlOpType.AND: (9, L),
         HdlOpType.XOR: (10, L),
@@ -99,7 +99,6 @@ class ToBasicHdlSimModelExpr(ToHdlCommon):
         HdlOpType.MOD: " % ",
 
         HdlOpType.SLL: " << ",
-        HdlOpType.SRL: " >> ",
     }
     GENERIC_BIN_OPS.update(ToHdlCommon.GENERIC_BIN_OPS)
 
