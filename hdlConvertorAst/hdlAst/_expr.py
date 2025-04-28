@@ -212,7 +212,7 @@ class HdlOpType(Enum):
         DOWNTO,  # downto for the slice specification
         TO,  # to for the slice specification
         PARAMETRIZATION,  # specification of template arguments
-        MAP_ASSOCIATION, # arg=val
+        MAP_ASSOCIATION, # arg=val, :note: vhdl agggregaes are list of MAP_ASSOCIATION expressions
         RANGE,  # range used in VHDL type specifications
         THROUGHOUT,  # SV throughout operator 
         DEFINE_RESOLVER,  # used in resolver specification in vhdl subtype definition
