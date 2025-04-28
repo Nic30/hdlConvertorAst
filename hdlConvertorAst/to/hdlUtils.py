@@ -152,7 +152,7 @@ def bit_string(v: int, width: int, vld_mask:Optional[int]=None):
                 maskNibble = vld_mask & mask
                 if maskNibble:
                     vNibble = v & mask
-                    s = hex(vNibble >> i)
+                    s = "%x" % (vNibble >> i)
                     assert len(s) == 1, s
                 else:
                     s = "x"

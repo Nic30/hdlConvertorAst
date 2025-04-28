@@ -110,6 +110,7 @@ class ToHdlCommon(HdlAstVisitor):
             op_str = self.GENERIC_BIN_OPS.get(o, None)
             if op_str is not None:
                 return self._visit_bin_op(op, op_str)
+
         if o == HdlOpType.INDEX:
             return self._visit_operator_index(op)
         elif o == HdlOpType.CALL or o == HdlOpType.PARAMETRIZATION:
