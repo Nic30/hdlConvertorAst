@@ -1,11 +1,12 @@
 version: 2
 build:
 version: 2
-os: ubuntu-lts-latest
-  tools:
-    python: "3.12"
-  apt_packages:
-    - graphviz
+build:
+  os: ubuntu-lts-latest
+    tools:
+      python: "3.12"
+    apt_packages:
+      - graphviz
 python:
   install:
     - requirements: doc/requirements.doc.txt
