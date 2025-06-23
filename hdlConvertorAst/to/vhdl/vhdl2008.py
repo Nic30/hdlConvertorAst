@@ -256,6 +256,7 @@ class ToVhdl2008(ToVhdl2008Stm):
             finally:
                 self.in_typedef = orig_in_typedef
         else:
+            is_alias = var.is_alias
             # signal/variable/port/generic
             if not self.in_typedef:
                 latch = var.is_latched
@@ -267,15 +268,21 @@ class ToVhdl2008(ToVhdl2008Stm):
                     if var.is_shared:
                         w("SHARED ")
                     w("VARIABLE ")
+                elif is_alias:
+                    w("ALIAS ")
                 else:
                     assert not var.is_shared
                     w("SIGNAL ")
             w(name)
-            w(" : ")
-            self.visit_type(t)
+            if t is not None:
+                w(" : ")
+                self.visit_type(t)
             v = var.value
             if v is not None:
-                w(" := ")
+                if is_alias:
+                    w(" IS ")
+                else:
+                    w(" := ")
                 self.visit_iHdlExpr(v)
         w(end)
 
