@@ -152,6 +152,7 @@ class ToJson(HdlAstVisitor):
                   "is_static",
                   "is_task",
                   "is_virtual",
+                  "is_impure",
                   ]:
             if getattr(o, f):
                 d[f] = True

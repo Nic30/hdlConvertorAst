@@ -54,6 +54,7 @@ class HdlFunctionDef(iHdlObjWithName, iHdlObjInModule):
         "is_static",
         "is_task",
         "is_virtual",
+        "is_impure",
         "return_t", "params", "body"]
 
     def __init__(self):
@@ -64,6 +65,7 @@ class HdlFunctionDef(iHdlObjWithName, iHdlObjInModule):
         self.is_static = False  # type: bool
         self.is_task = False  # type: bool
         self.is_virtual = False  # type: bool
+        self.is_impure = False # type: bool
         self.return_t = None  # type: Optional[iHdlExpr]
         self.params = []  # type: List[HdlIdDef]
         self.body = []  # type: List[Union[HdlIdDef, iHdlStatement, iHdlExpr]]

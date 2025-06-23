@@ -1,5 +1,5 @@
 from hdlConvertorAst.hdlAst import iHdlStatement, HdlStmCaseType, HdlIdDef, \
-    HdlOp, HdlOpType, HdlStmBlock
+    HdlOp, HdlOpType, HdlStmBlock, HdlFunctionDef
 from hdlConvertorAst.to.hdlUtils import iter_with_last, Indent, UnIndent
 from hdlConvertorAst.to.vhdl.expr import ToVhdl2008Expr
 
@@ -96,6 +96,8 @@ class ToVhdl2008Stm(ToVhdl2008Expr):
                     self.visit_iHdlStatement(s)
                 elif isinstance(s, HdlIdDef):
                     self.visit_HdlIdDef(s)
+                elif isinstance(s, HdlFunctionDef):
+                    self.visit_HdlFunctionDef(s)
                 else:
                     if not non_declarative_seen:
                         non_declarative_seen = True

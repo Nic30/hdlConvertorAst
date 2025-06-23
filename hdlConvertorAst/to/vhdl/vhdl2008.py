@@ -340,6 +340,8 @@ class ToVhdl2008(ToVhdl2008Stm):
         """
         self.visit_doc(o)
         w = self.out.write
+        if o.is_impure:
+            w("IMPURE ")
         is_procedure = o.return_t is None
         if is_procedure:
             w("PROCEDURE ")
