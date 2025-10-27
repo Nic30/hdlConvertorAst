@@ -18,10 +18,11 @@ class HdlIdDef(iHdlObjWithName, iHdlObjInModule):
     :ivar ~.is_shared: flag if true the variable is VHDL shared variable
     :ivar ~.is_virtual: flag if true the variable stores virtual type
         (corresponds to System Verilog virtual parameter)
+    :ivar ~.is_alias: flag if true the variable is an alias
     :ivar ~.direction: direction if the variable is port
     """
     __slots__ = ["name", "type", "value", "is_latched", "is_const", "is_static",
-                 "is_shared", "is_virtual", "direction"]
+                 "is_shared", "is_virtual", "is_alias", "direction"]
 
     def __init__(self):
         iHdlObjWithName.__init__(self)
@@ -33,6 +34,7 @@ class HdlIdDef(iHdlObjWithName, iHdlObjInModule):
         self.is_static = False  # type: bool
         self.is_virtual = False  # type: bool
         self.is_shared = False  # type: bool
+        self.is_alias = False # type: bool
         self.direction = None  # type: HdlDirection
 
 
@@ -52,6 +54,7 @@ class HdlFunctionDef(iHdlObjWithName, iHdlObjInModule):
         "is_static",
         "is_task",
         "is_virtual",
+        "is_impure",
         "return_t", "params", "body"]
 
     def __init__(self):
@@ -62,6 +65,7 @@ class HdlFunctionDef(iHdlObjWithName, iHdlObjInModule):
         self.is_static = False  # type: bool
         self.is_task = False  # type: bool
         self.is_virtual = False  # type: bool
+        self.is_impure = False # type: bool
         self.return_t = None  # type: Optional[iHdlExpr]
         self.params = []  # type: List[HdlIdDef]
         self.body = []  # type: List[Union[HdlIdDef, iHdlStatement, iHdlExpr]]

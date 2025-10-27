@@ -91,7 +91,7 @@ class ToJson(HdlAstVisitor):
         d = self.visit_iHdlObjWithName(o)
 
         for flag_name in ["is_latched", "is_const", "is_static",
-                          "is_virtual", ]:
+                          "is_virtual", "is_alias" ]:
             if getattr(o, flag_name):
                 d[flag_name] = True
         d["type"] = self.visit_iHdlExpr(o.type)
@@ -152,6 +152,7 @@ class ToJson(HdlAstVisitor):
                   "is_static",
                   "is_task",
                   "is_virtual",
+                  "is_impure",
                   ]:
             if getattr(o, f):
                 d[f] = True
