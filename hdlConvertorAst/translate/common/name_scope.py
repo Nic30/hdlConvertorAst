@@ -134,23 +134,23 @@ class NameScope(dict):
         return usableName
 
     # @internal
-    def register_name(self, name, obj):
-        # search if name is already defined on me and parents
-        actual = self
-        o = None
+    def register_name(self, name: str, obj):
 
         if self.ignorecase:
             _name = name.lower()
         else:
             _name = name
 
+        # search if name is already defined on me and parents
+        actual = self
+        o = None
         while actual is not None:
             try:
                 o = actual[_name]
+                break
             except KeyError:
                 actual = actual.parent
                 continue
-            break
 
         if o is obj:
             pass
