@@ -227,9 +227,15 @@ class NameScope(dict):
             cntrVal = self.__discard_prefix_cntrs_from_children(suggested_name)
             usableName = self.__incrPrefixCntr(
                 suggested_name, cntrVal)
+
         # setup for me and propagate to children
-        self.register_name(usableName, obj)
-        return usableName
+        try:
+            self.register_name(usableName, obj)
+            return usableName
+        except NameOccupiedErr:
+            # there may be the case that this f"{suggested_name:d}_{cntrVal:d}" was already registered,
+            # in this case add another prefix counter
+            return self.checked_name(usableName, obj)
 
     def __discard_prefix_cntrs_from_children(self, prefix):
         """
