@@ -38,7 +38,7 @@ Doc shared with [hdlConvertor](https://github.com/Nic30/hdlConvertor).
 sudo pip3 install hdlConvertorAst
 
 # or download repository and run
-sudo python3 setup.py install
+sudo pip3 install .
 
 # if you are using version from git rather uninstall
 # old library first if required
