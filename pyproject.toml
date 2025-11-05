@@ -31,6 +31,6 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/Nic30/hdlConvertorAst"
-Documentation = "https://readthedocs.org"
+Documentation = "https://hdlconvertorast.readthedocs.io/en/latest/?badge=latest"
 Repository = "https://github.com/Nic30/hdlConvertorAst.git"
 "Bug Tracker" = "https://github.com/Nic30/hdlConvertorAst/issues"
