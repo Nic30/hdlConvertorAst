@@ -137,6 +137,9 @@ class ToVhdl2008Expr(ToHdlCommon):
         HdlOpType.ARROW: (11, L),
         HdlOpType.MAP_ASSOCIATION: (11, L),
     }
+    _ASSERT = HdlValueId("assert")
+    _REPORT = HdlValueId("report")
+    
 
     def visit_HdlValueInt(self, o):
         w = self.out.write
@@ -201,10 +204,10 @@ class ToVhdl2008Expr(ToHdlCommon):
         :type o: HdlOp
         """
         fn = o.ops[0]
-        if fn == HdlValueId("assert"):
+        if fn == self._ASSERT:
             self.visit_assert(o.ops[1:])
             return
-        elif fn == HdlValueId("report"):
+        elif fn == self._REPORT:
             self.visit_report(o.ops[1:])
             return
 
